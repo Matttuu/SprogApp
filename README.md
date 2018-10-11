@@ -17,20 +17,26 @@ Mathias Blomgaard, Thomas Christensen, Sebastian Ougter, Michael Trans, Daniel L
 
 
 
+
+
+
 Body-parser:
-    For at kunne læse HTTP POST data skal vi bruge node modulet "body-parser". body-parser er et stykke express middleware, der læser input og gemmer det som et javascript objekt tilgængeligt via req.body
+    For at kunne læse HTTP POST data skal vi bruge node modulet "body-parser". Body-parser er et stykke express middleware, der læser input og gemmer det som et javascript objekt tilgængeligt via req.body
 
 express:
-    Søger for at applikation kan kører.
+    Sørger for at applikation kan kører.
+
 nodemon:
     Bruges til at hver gang du ændre noget kode og du så gemmer det så genstarter server automatiskt.
 
 mongoose:
     Objekt data modellering for at forenkle interaktioner med MongoDB.
+
 bcrypt:
     Bruges til hashing og salting af passwords. 
 
 express session:
     Session date er ikke gemt i cookie kun dens session id. Session data er gemt på server-siden.
+
 connect-mongo
     Søger for at vi kan gemme vores sessions i vores MongoDB database. 
