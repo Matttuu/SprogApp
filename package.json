@@ -1,0 +1,32 @@
+{
+  "name": "sprogapp",
+  "version": "1.0.0",
+  "description": "Dette repository indeholder det udviklingsmæssige arbejde hen imod en færdigkørende applikation, bestilt af Center for Dansk og Integration. Ønsket fra CDI kan kortfattet formuleres som: en web-app, der skal gøre det lettere for indvandrere at lære det danske sprog på arbejdspladsen.",
+  "main": "server.js",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.18.3",
+    "connect-mongo": "^2.0.1",
+    "express": "^4.16.4",
+    "express-session": "^1.15.6",
+    "mongodb": "^3.1.8",
+    "mongoose": "^5.3.2",
+    "node": "^10.11.0",
+    "nodemon": "^1.18.4"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Matttuu/SprogApp.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Matttuu/SprogApp/issues"
+  },
+  "homepage": "https://github.com/Matttuu/SprogApp#readme"
+}
