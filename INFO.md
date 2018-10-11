@@ -15,7 +15,8 @@ Efter i Terminal kører du nodemon server.js
     Bruges til at hver gang du ændre noget kode og du så gemmer det så genstarter server automatiskt.
 
 # Mongoose:
-    Objekt data modellering for at forenkle interaktioner med MongoDB.
+    Objekt data m
+    odellering for at forenkle interaktioner med MongoDB.
 
 # Bcrypt:
     Bruges til hashing og salting af passwords. 
