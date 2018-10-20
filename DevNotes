@@ -3,8 +3,10 @@ Dev spørgsmål:
     - Tilføje mulige produkter at bruge 'currency' på?
 • Der skal vel også være en mulighed for at redigere bruger? 
     - I tilfælde af de skal slettes, laves om på roller etc?
-
-
+• Eventuelt slette templateLogReg? 
+    - Ser ingen grund til at have den, og mappe strukturen stemmer 
+      ikke over ens med den formelle måde at gøre det på
+• Omdøbning af nogle af html formsne og eventuelle funktioner for at de giver mening for os som gruppe.
+• Kommentering af diverse funktioner.
 
 PO / Lærer spørgsmål:
-    

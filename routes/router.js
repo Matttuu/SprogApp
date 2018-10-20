@@ -18,15 +18,19 @@ router.post('/', function (req, res, next) {
     res.send("passwords dont match");
     return next(err);
   }
-
+/* req.body indeholder værdierne (key-value pairs) som er  
+   indtastet i registrerings formen. (admin.html)
+*/
   if (req.body.email &&
     req.body.username &&
+    req.body.role &&
     req.body.password &&
     req.body.passwordConf) {
 
     var userData = {
       email: req.body.email,
       username: req.body.username,
+      role: req.body.role,
       password: req.body.password,
       passwordConf: req.body.passwordConf,
     }
@@ -70,7 +74,7 @@ router.get('/profile', function (req, res, next) {
           err.status = 400;
           return next(err);
         } else {
-          return res.send('<h1>Name: </h1>' + user.username + '<h2>Mail: </h2>' + user.email + '<br><a type="button" href="/logout">Logout</a>')
+          return res.send('<h1>Name: </h1>' + user.username + '<h2>Mail: </h2>' + user.email + '<h2>Rolle: </h2>' +user.role + '<br><a type="button" href="/logout">Logout</a>')
         }
       }
     });
