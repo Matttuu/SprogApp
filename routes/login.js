@@ -41,7 +41,11 @@ router.post('/', function (req, res, next) {
         return next(error);
       } else {
         req.session.userId = user._id;
-        return res.redirect('/profile');
+        return   res.render('profile',{
+          name: user.username,
+          email: user.email
+
+        });
       }
     });
 
@@ -53,7 +57,10 @@ router.post('/', function (req, res, next) {
         return next(err);
       } else {
         req.session.userId = user._id;
-        return res.redirect('/profile');
+        return   res.render('profile',{
+          name: user.username,
+          email: user.email
+        });
       }
     });
   } else {
@@ -78,6 +85,7 @@ router.get('/profile', function (req, res, next) {
           return   res.render('profile',{
             name: user.username,
             email: user.email
+
           });
           //return res.send('<h1>Name: </h1>' + user.username + '<h2>Mail: </h2>' + user.email + '<h2>Rolle: </h2>' +user.role + '<br><a type="button" href="/logout">Logout</a>')
         }
