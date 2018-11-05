@@ -18,11 +18,19 @@
     background-color: rgba(255, 255, 255, 0.8);
     text-align: center; 
     padding:50px 0px;
-    font-size: 30px;
+    font-size: 20px;
     border-style: solid;
     cursor: pointer;
     width: 150px;
     height: 150px;
     margin: 0 2px;
+    font-weight: bold;
+
   }
   
+  #tilføjBillede{
+    text-align: center;
+    font-weight: bold;
+  }
+
+ 
