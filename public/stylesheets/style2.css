@@ -1,4 +1,10 @@
 #ordbog, #chat{
     text-align: center;
     cursor: pointer;
+    text-decoration: none;
   }
+.flex-container{
+  display: flex;
+  flex-direction: row;
+  
+} 

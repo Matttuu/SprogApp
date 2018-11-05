@@ -4,10 +4,11 @@ var User = require('../public/javascripts/user');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('profile', { 
-    
+    User.findById(req.session.userId)
+    .exec(function (error, user) {
+  res.render('ordbog', { 
+    name: user.username
    });
 });
-
-  
+});
 module.exports = router;
