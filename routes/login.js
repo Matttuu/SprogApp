@@ -5,7 +5,7 @@ var User = require('../public/javascripts/user');
 
 // GET route for reading data
 router.get('/', function (req, res, next) {
-  res.render('index',{
+  res.render('login',{
     layout: 'other',
   });
 });
@@ -21,8 +21,7 @@ router.post('/', function (req, res, next) {
     return next(err);
   }
 /* req.body indeholder værdierne (key-value pairs) som er  
-   indtastet i registrerings formen. (admin.html)
-*/
+   indtastet i registrerings formen.*/
   if (req.body.email &&
     req.body.username &&
     req.body.role &&
