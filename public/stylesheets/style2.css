@@ -1,7 +1,9 @@
 #ordbog, #chat{
     text-align: center;
     cursor: pointer;
+    text-decoration: none;
   }
+<<<<<<< HEAD
 
   .flex-container {
     display: flex;
@@ -25,3 +27,10 @@
     margin: 0 2px;
   }
   
+=======
+.flex-container{
+  display: flex;
+  flex-direction: row;
+  
+} 
+>>>>>>> 37863430758dc54521512e75901c3a9162746350
