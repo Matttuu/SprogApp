@@ -2,7 +2,7 @@
 <br>
 
 <div id="tilføjBillede">
-    <p>Tilføj billeder til ordbogen</p>
+    <p>Tilføj billeder til ordbogen</p><!--
     <input type="file">
     <br>
     <p>Billedets navn:</p>
@@ -10,22 +10,39 @@
     <br><br>
     <button>Tilføj</button>
 </div>
+<center> -->
+<div class="container">
+    <div class="row">
+      <div class="col-md-6 m-auto">
+        <form action="/upload" method="POST" enctype="multipart/form-data">
+          <div class="custom-file mb-3">
+            <input type="file" name="file" id="file" class="custom-file-input">
+            <label for="file" class="custom-file-label">Vælg fil</label>
+          </div>
+          <input type="submit" value="Tilføj" class="btn btn-primary btn-block">
+        </form>
+        <hr>
+        <img src="#" alt="">     
+         </div>  
+      </div>
+    </div>
+</center>
 
 <br><br>
 
-<div class="flex-container">
-    <div id="kat" class="billeder"><i class="fas fa-cat" style="font-size:60px"></i>
-    <p>Kat</p>
+<div class="flex-container2">
+    <div class="billeder"> <img src="/billeder/kaffekande.jpg" alt="kaffekande" class="billeder">
+    <p>Kaffekande</p>
     </div>
-    <div class="billeder"><i class="fab fa-fort-awesome" style="font-size:60px"></i>
-    <p>Slot</p>
+    <div> <img src="/billeder/stol.jpg" alt="stol" class="billeder">
+    <p>Stol</p>
     </div>
 </div>
-<div class="flex-container">
-    <div class="billeder"><i class="fas fa-bone" style="font-size:60px"></i>
-    <p>Kødben</p>
+<div class="flex-container2">
+    <div><img src="/billeder/skraldespand.jpg" alt="skraldespand" class="billeder">
+    <p>Skraldespand</p>
     </div>
-    <div class="billeder"><i class="fas fa-car-side" style="font-size:60px"></i>
-    <p>Bil</p>
+    <div><img src="/billeder/vandflaske.jpg" alt="vandflaske" class="billeder">
+    <p>Vandflaske</p>
     </div>
 </div>
