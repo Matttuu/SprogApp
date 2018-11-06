@@ -1,26 +1,24 @@
-
-	<h1>Registrer</h1>
 	<!-- main -->
 	<div id="text-center">
 		<!--Registrering af bruger-->
 		
 		<div class="agile">
 			<div class="signin-form profile">
-				<h3>Registrer</h3>
+				<h1 class="h3 mb-3 font-weight-normal">Registrer</h1>
 				
-				<div class="login-form">
+				<div class="login-form" >
 					<form action='/login' method="post">
-						<input type="email" name="email" placeholder="E-mail" required="">
-                        <input type="text" name="username" placeholder="Brugernavn" required="">
-                        <select name="role" required="">
+						<input class="form-control" type="email" name="email" placeholder="E-mail" required="">
+                        <input class="form-control" type="text" name="username" placeholder="Brugernavn" required="">
+                        <select class="custom-select" name="role" required="">
                             <option value="">Vælg rolle</option>
                             <option value="Admin">Administrator</option>
                             <option value="Straffer">Straffer</option>
                             <option value="Offer">Offer</option>
                         </select>
-						<input type="password" name="password" placeholder="Kodeord" required="">
-                        <input type="password" name="passwordConf" placeholder="Bekræft kodeord" required="">
-						<input type="submit" value="REGISTRER">
+						<input class="form-control" type="password" name="password" placeholder="Kodeord" required="">
+                        <input class="form-control" type="password" name="passwordConf" placeholder="Bekræft kodeord" required="">
+						<input class="btn btn-lg btn-primary btn-block" type="submit" value="REGISTRER">
 					</form>
 				</div>
 				<p><a href="#"> Ved at registrere mig som bruger, godkender jeg sidens politik</a></p>
