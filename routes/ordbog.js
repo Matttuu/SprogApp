@@ -20,7 +20,7 @@ router.get('/', function(req, res, next) {
    });
 });
 });
-/*
+
 //Her er det nye
 
 // Mongo URI
@@ -77,7 +77,7 @@ router.get('/', (req, res) => {
           file.isImage = false;
         }
       });
-      res.render('index', { files: files, layout: 'other' });
+      res.render('ordbog', { files: files });
     }
   });
 });
@@ -87,7 +87,7 @@ router.get('/', (req, res) => {
 router.post('/upload', upload.single('file'), (req, res) => {
   // res.json({ file: req.file });
   res.redirect('/ordbog');
-});
+}); 
 
 // @route GET /files
 // @desc  Display all files in JSON
@@ -146,6 +146,8 @@ router.get('/image/:filename', (req, res) => {
 
 // @route DELETE /files/:id
 // @desc  Delete file
+//Dette kodestykke virker ikke eftersom ordbog.hbs krævede noget ejs for at fungere
+/*
 router.delete('/files/:id', (req, res) => {
   gfs.remove({ _id: req.params.id, root: 'uploads' }, (err, gridStore) => {
     if (err) {
@@ -155,7 +157,7 @@ router.delete('/files/:id', (req, res) => {
     res.redirect('/');
   });
 });
-
-//Her slutter det nye
 */
+//Her slutter det nye
+
 module.exports = router;
