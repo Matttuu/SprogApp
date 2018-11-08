@@ -22,27 +22,57 @@
           <input type="submit" value="Tilføj" class="btn btn-primary btn-block">
         </form>
         <hr>
-        <img src="#" alt="">     
+    
+     {{#if files}}
+            <div class="card card-body mb-3">
+                <img src="{{billede}}" alt="">
+            </div>
+                    {{/if}}
+                    
+                    
+                  
+
+         <div class="card card-body mb-3">
+             <img src={{billede}} alt="Feelssomething?">
+             <p>{{billede}}</p>
+             <p>{{test2}}</p>
+             <p>{{users}}</p>
+             <p>{{agurk}}</p>
+         </div>
          </div>  
       </div>
     </div>
 </center>
 
 <br><br>
-
 <div class="flex-container2">
-    <div class="billeder"> <img src="/billeder/kaffekande.jpg" alt="kaffekande" class="billeder">
-    <p>Kaffekande</p>
-    </div>
-    <div> <img src="/billeder/stol.jpg" alt="stol" class="billeder">
-    <p>Stol</p>
+    <div>
+        <form action="/ordbog/image/:filename" method="GET">
+        <label for="file"></label>
+        </form>
+        <p>{{billede}}</p>
+        <p>{{billedeID}}</p>
+        <img src={{billede}} alt="Nothing so far">
+        <p>Hentet billede</p>
     </div>
 </div>
 <div class="flex-container2">
-    <div><img src="/billeder/skraldespand.jpg" alt="skraldespand" class="billeder">
-    <p>Skraldespand</p>
+    <div class="billeder"> 
+        <img src="/billeder/kaffekande.jpg" alt="kaffekande" class="billeder">
+        <p>Kaffekande</p>
     </div>
-    <div><img src="/billeder/vandflaske.jpg" alt="vandflaske" class="billeder">
-    <p>Vandflaske</p>
+    <div> 
+        <img src="/billeder/stol.jpg" alt="stol" class="billeder"> 
+        <p>Stol</p>
+    </div>
+</div>
+<div class="flex-container2">
+    <div>
+        <img src="/billeder/skraldespand.jpg" alt="skraldespand" class="billeder">
+        <p>Skraldespand</p>
+    </div>
+    <div>
+        <img src="/billeder/vandflaske.jpg" alt="vandflaske" class="billeder">
+        <p>Vandflaske</p>
     </div>
 </div>

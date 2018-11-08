@@ -1,7 +1,5 @@
 var express = require('express');
 var router = express.Router();
-var User = require('../public/javascripts/user');
-const bodyParser = require('body-parser');
 const path = require('path');
 const crypto = require('crypto');
 const mongoose = require('mongoose');
@@ -10,18 +8,14 @@ const GridFsStorage = require('multer-gridfs-storage');
 const Grid = require('gridfs-stream');
 
 
-
 /* GET home page. */
-/*
 router.get('/', function(req, res, next) {
-  res.render('ordbog', { 
-    test: "lort"
+    res.render('/views/test.ejs', { 
+      });
   });
-});
-*/
+  /*
 
-//Her er det nye
-
+  //Her er det nye
 // Mongo URI
 const mongoURI = 'mongodb://admin:team12@ds125693.mlab.com:25693/cdi';
 
@@ -58,14 +52,13 @@ const storage = new GridFsStorage({
 });
 const upload = multer({ storage });
 
-
 // @route GET /
 // @desc Loads form
-router.get('/', (req, res) => {
+app.get('/', (req, res) => {
   gfs.files.find().toArray((err, files) => {
     // Check if files
     if (!files || files.length === 0) {
-      res.render('ordbog', { files: false, billede: "tis" });
+      res.render('test.ejs', { files: false });
     } else {
       files.map(file => {
         if (
@@ -73,26 +66,25 @@ router.get('/', (req, res) => {
           file.contentType === 'image/png'
         ) {
           file.isImage = true;
-          //res.render('ordbog', {files: files, billede: "image/"+file.filename, test2:"hej"});
         } else {
           file.isImage = false;
         }
       });
-      res.redirect('ordbog', {files: files, billede: "image/"+files.filename, test2:"hej"});
+      res.render('test.ejs', { files: files });
     }
   });
 });
 
 // @route POST /upload
 // @desc  Uploads file to DB
-router.post('/upload', upload.single('file'), (req, res) => {
+app.post('/upload', upload.single('file'), (req, res) => {
   // res.json({ file: req.file });
-  res.redirect('/ordbog');
-}); 
+  res.redirect('/');
+});
 
 // @route GET /files
 // @desc  Display all files in JSON
-router.get('/files', (req, res) => {
+app.get('/files', (req, res) => {
   gfs.files.find().toArray((err, files) => {
     // Check if files
     if (!files || files.length === 0) {
@@ -108,7 +100,7 @@ router.get('/files', (req, res) => {
 
 // @route GET /files/:filename
 // @desc  Display single file object
-router.get('/files/:filename', (req, res) => {
+app.get('/files/:filename', (req, res) => {
   gfs.files.findOne({ filename: req.params.filename }, (err, file) => {
     // Check if file
     if (!file || file.length === 0) {
@@ -118,13 +110,12 @@ router.get('/files/:filename', (req, res) => {
     }
     // File exists
     return res.json(file);
-    
   });
 });
 
 // @route GET /image/:filename
 // @desc Display Image
-router.get('/image/:filename', (req, res) => {
+app.get('/image/:filename', (req, res) => {
   gfs.files.findOne({ filename: req.params.filename }, (err, file) => {
     // Check if file
     if (!file || file.length === 0) {
@@ -138,7 +129,6 @@ router.get('/image/:filename', (req, res) => {
       // Read output to browser
       const readstream = gfs.createReadStream(file.filename);
       readstream.pipe(res);
-
     } else {
       res.status(404).json({
         err: 'Not an image'
@@ -149,9 +139,7 @@ router.get('/image/:filename', (req, res) => {
 
 // @route DELETE /files/:id
 // @desc  Delete file
-//Dette kodestykke virker ikke eftersom ordbog.hbs krævede noget ejs for at fungere
-/*
-router.delete('/files/:id', (req, res) => {
+app.delete('/files/:id', (req, res) => {
   gfs.remove({ _id: req.params.id, root: 'uploads' }, (err, gridStore) => {
     if (err) {
       return res.status(404).json({ err: err });
@@ -160,7 +148,5 @@ router.delete('/files/:id', (req, res) => {
     res.redirect('/');
   });
 });
-*/
-//Her slutter det nye
-
-module.exports = router;
+//Her slutter det nye */
+  module.exports = router;

@@ -9,8 +9,10 @@
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.18.3",
     "connect-mongo": "^2.0.1",
+    "consolidate": "^0.15.1",
     "cookie-parser": "~1.4.3",
     "debug": "~2.6.9",
+    "ejs": "^2.6.1",
     "express": "~4.16.0",
     "express-session": "^1.15.6",
     "gridfs-stream": "^1.1.1",
@@ -21,6 +23,7 @@
     "mongoose": "^5.3.8",
     "morgan": "~1.9.0",
     "multer": "^1.4.1",
-    "multer-gridfs-storage": "^3.2.3"
+    "multer-gridfs-storage": "^3.2.3",
+    "swig": "^1.4.2"
   }
 }
