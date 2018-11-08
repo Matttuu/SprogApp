@@ -60,7 +60,7 @@ UserSchema.pre('save', function (next) {
     user.password = hash;
     next();
   })
-});
+}); 
 
 
 var User = mongoose.model('User', UserSchema);

@@ -8,10 +8,10 @@ const crypto = require('crypto');
 var mongoose = require('mongoose');
 var session = require('express-session');
 var MongoStore = require('connect-mongo')(session);
-const multer = require('multer');
-const GridFsStorage = require('multer-gridfs-storage');
-const Grid = require('gridfs-stream');
 const methodOverride = require('method-override');
+var cons = require('consolidate');
+
+
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
@@ -38,6 +38,7 @@ db.once('open', function () {
 // parse incoming requests
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
+app.use(methodOverride('_method'));
 
 //use sessions for tracking logins
 app.use(session({
@@ -52,6 +53,8 @@ app.use(session({
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
+//app.set('view engine', 'ejs');
+
 
 app.use(logger('dev'));
 app.use(express.json());

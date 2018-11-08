@@ -5,7 +5,7 @@ var User = require('../public/javascripts/user');
 
 // GET route for reading data
 router.get('/', function (req, res, next) {
-  res.render('login',{
+  res.render('login.hbs',{
     layout: 'other',
   });
 });
@@ -41,7 +41,7 @@ router.post('/', function (req, res, next) {
         return next(error);
       } else {
         req.session.userId = user._id;
-        return   res.render('profile',{
+        return   res.render('profile.hbs',{
           name: user.username,
           email: user.email
 
@@ -57,7 +57,7 @@ router.post('/', function (req, res, next) {
         return next(err);
       } else {
         req.session.userId = user._id;
-        return   res.render('profile',{
+        return   res.render('profile.hbs',{
           name: user.username,
           email: user.email
         });
@@ -82,7 +82,7 @@ router.get('/profile', function (req, res, next) {
           err.status = 400;
           return next(err);
         } else {
-          return   res.render('profile',{
+          return   res.render('profile.hbs',{
             name: user.username,
             email: user.email
 
@@ -94,7 +94,7 @@ router.get('/profile', function (req, res, next) {
 });
 
 // GET for logout logout
-router.get('/logout', function (req, res, next) {
+router.get('/logout.hbs', function (req, res, next) {
   if (req.session) {
     // delete session object
     req.session.destroy(function (err) {
