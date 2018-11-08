@@ -72,12 +72,12 @@ router.get('/', (req, res, billede) => {
           file.contentType === 'image/jpg'
         ) {
           file.isImage = true;
-          billede = file.filename;
-          
+          billede = file.filename;          
         } else {
           file.isImage = false;
         }
       });
+    
      res.render('ordbog', {files: files, billede: 'ordbog/image/' +billede});
     }
   });
@@ -149,17 +149,17 @@ router.get('/image/:filename', (req, res) => {
 // @route DELETE /files/:id
 // @desc  Delete file
 //Dette kodestykke virker ikke eftersom ordbog.hbs krævede noget ejs for at fungere
-/*
+
 router.delete('/files/:id', (req, res) => {
   gfs.remove({ _id: req.params.id, root: 'uploads' }, (err, gridStore) => {
     if (err) {
       return res.status(404).json({ err: err });
     }
 
-    res.redirect('/');
+    res.redirect('/ordbog');
   });
 });
-*/
+
 //Her slutter det nye
 
 module.exports = router;
