@@ -9,15 +9,6 @@ const multer = require('multer');
 const GridFsStorage = require('multer-gridfs-storage');
 const Grid = require('gridfs-stream');
 
-/* GET home page. */
-/*
-router.get('/', function(req, res, next) {
-  res.render('ordbog', { 
-    test: "lort"
-  });
-});
-*/
-
 //Her er det nye
 
 // Mongo URI
