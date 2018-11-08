@@ -61,46 +61,26 @@ const upload = multer({ storage });
 
 // @route GET /
 // @desc Loads form
-<<<<<<< HEAD
-router.get('/', (req, res) => {
-  
-  gfs.files.find().toArray((err, files, billede) => {
-    
-    // Check if files
-    if (!files || files.length === 0) {
-      res.render('ordbog', { files: false });
-=======
 router.get('/', (req, res, billede) => {
   gfs.files.find().toArray((err, files) => {
     // Check if files
     if (!files || files.length === 0) {
      // res.render('ordbog', { files: false, billede: "tis" });
->>>>>>> a8d3238a76d58f36d96cf30c14202b9ca75a0c33
     } else {
       files.map(file  => {
         if (
           file.contentType === 'image/jpeg' ||
           file.contentType === 'image/png' ||
           file.contentType === 'image/jpg'
-<<<<<<< HEAD
-        ){
-          file.isImage = true;
-          billede = file.filename; 
-=======
         ) {
           file.isImage = true;
           billede = file.filename;
           
->>>>>>> a8d3238a76d58f36d96cf30c14202b9ca75a0c33
         } else {
           file.isImage = false;
         }
       });
-<<<<<<< HEAD
-      res.render('ordbog',{files: files, billede: 'ordbog/image/'+ billede});
-=======
      res.render('ordbog', {files: files, billede: 'ordbog/image/' +billede});
->>>>>>> a8d3238a76d58f36d96cf30c14202b9ca75a0c33
     }
   });
 });
@@ -156,11 +136,7 @@ router.get('/image/:filename', (req, res) => {
     }
 
     // Check if image
-<<<<<<< HEAD
-    if (file.contentType === 'image/jpeg' || file.contentType === 'image/png' ||file.contentType ==='image/jpg') {
-=======
     if (file.contentType === 'image/jpeg' || file.contentType === 'image/png' || file.contentType === 'image/jpg') {
->>>>>>> a8d3238a76d58f36d96cf30c14202b9ca75a0c33
       // Read output to browser
       const readstream = gfs.createReadStream(file.filename);
       readstream.pipe(res);
