@@ -81,6 +81,22 @@ router.post('/upload', upload.single('file'), (req, res) => {
   res.redirect('/ordbog');
 }); 
 
+//POST route for updating data
+
+/*
+Mathias' forsøg på at få indsat tekst til bestemt billede ID
+router.post('/upload/:id/text', function (req, res, billedeData) {
+
+var billedeData = {
+  billedeText: req.body.billedeTextFelt,
+  _id: req.params.id,
+  root: 'uploads'}
+
+  res.redirect('/ordbog')
+}); 
+
+*/ 
+
 // @route GET /files
 // @desc  Display all files in JSON
 router.get('/files', (req, res) => {
@@ -139,7 +155,6 @@ router.get('/image/:filename', (req, res) => {
 
 // @route DELETE /files/:id
 // @desc  Delete file
-//Dette kodestykke virker ikke eftersom ordbog.hbs krævede noget ejs for at fungere
 
 router.delete('/files/:id', (req, res) => {
   gfs.remove({ _id: req.params.id, root: 'uploads' }, (err, gridStore) => {
@@ -150,6 +165,7 @@ router.delete('/files/:id', (req, res) => {
     res.redirect('/ordbog');
   });
 });
+
 
 //Her slutter det nye
 

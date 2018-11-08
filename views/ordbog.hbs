@@ -23,6 +23,10 @@
             {{#each files}}
             <div class="card card-body mb-3">
                 <img src="ordbog/image/{{filename}}" alt="DB BILLEDE HER TAK">
+                <form method="POST" action="/ordbog/files/{{_id}}?_method=POST">
+                <input type="text" name="billedeTextFelt" class="btn btn-danger btn-block mt-4"></input>
+                    {{text}}
+                    </form>
                 <form method="POST" action="/ordbog/files/{{_id}}?_method=DELETE">
                     <button class="btn btn-danger btn-block mt-4">Slet</button>
                 </form>
