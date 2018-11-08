@@ -10,10 +10,9 @@
     background-color: white;
     padding: 2px 2px;
     justify-content:center;
-    cursor: pointer;
-    
-    
+    cursor: pointer;    
   }
+
   .flex-container>div {
     background-color: rgba(255, 255, 255, 0.8);
     text-align: center; 
@@ -25,8 +24,8 @@
     height: 150px;
     margin: 0 2px;
     font-weight: bold;
-
   }
+
   .flex-container2 {
     display: flex;
     flex-wrap: wrap;
@@ -35,6 +34,7 @@
     justify-content:center;
     cursor: pointer;
   }
+
   .flex-container2>div {
     background-color: rgba(255, 255, 255, 0.8);
     text-align: center; 
@@ -46,17 +46,22 @@
     height: 250px;
     margin: 0 2px;
     font-weight: bold;
-
   }
 
-  #tilføjBillede{
+  #tilføjBillede {
     text-align: center;
     font-weight: bold;
   }
 
-  .billeder{
+ 
+  img {
+    width: 100%;
+  } 
+  .billeder {
   width: auto;
   height: 100%;
   }
 
- 
+  .loggedInHeading {
+    margin: 20px;
+  }

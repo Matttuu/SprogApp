@@ -1,5 +1,4 @@
-<center><h1>Ordbog</h1></center>
-<br>
+<center><h1 class="loggedInHeading">Ordbog</h1></center>
 
 <div id="tilføjBillede">
     <p>Tilføj billeder til ordbogen</p><!--
@@ -21,6 +20,7 @@
           </div>
           <input type="submit" value="Tilføj" class="btn btn-primary btn-block">
         </form>
+<<<<<<< HEAD
         <hr>                
                   
 
@@ -28,10 +28,23 @@
              <img src={{{billede}}} alt="Feelssomething?">
 
          </div>
+=======
+        <hr>
+        {{#if files}}
+        {{#each files}}
+            <div class="card card-body mb-3">
+                <img src="ordbog/image/{{filename}}" alt="DB BILLEDE HER TAK">
+            </div>
+            {{/each}}
+            {{/if}}
+            
+                    
+>>>>>>> a8d3238a76d58f36d96cf30c14202b9ca75a0c33
          </div>  
       </div>
     </div>
 </center>
+<<<<<<< HEAD
 
 <br><br>
 
@@ -55,3 +68,5 @@
         <p>Vandflaske</p>
     </div>
 </div>
+=======
+>>>>>>> a8d3238a76d58f36d96cf30c14202b9ca75a0c33
