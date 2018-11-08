@@ -1,11 +1,11 @@
 <center>
     <h1 class="loggedInHeading">Ordbog</h1>
     <p class="loggedInText">Du kan tage billeder eller optage video og tilføje til din personlige ordbog. Klik
-        efterfølgende på et billede eller en video for at tilføje tekst og lyd.</p>
+        efterfølgende på et billede for at tilføje tekst og lyd.</p>
 </center>
 
 <div id="tilføjBillede">
-    <p>Tilføj billede/video til ordbogen</p>
+    <p>Tilføj billede til ordbogen</p>
 </div>
 
 <div class="container">
@@ -23,14 +23,12 @@
             {{#each files}}
             <div class="card card-body mb-3">
                 <img src="ordbog/image/{{filename}}" alt="DB BILLEDE HER TAK">
-
                 <form method="POST" action="/ordbog/files/{{_id}}?_method=DELETE">
-                    <button class="btn btn-danger btn-block mt-4">Delete</button>
+                    <button class="btn btn-danger btn-block mt-4">Slet</button>
                 </form>
             </div>
             {{/each}}
             {{/if}}
         </div>
     </div>
-</div>
 </div>
