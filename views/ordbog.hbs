@@ -1,22 +1,25 @@
-<center><h1 class="loggedInHeading">Ordbog</h1></center>
+<center><h1 class="loggedInHeading">Ordbog</h1>
+<p class="loggedInText">Du kan tage billeder eller optage video og tilføje til din personlige ordbog. Klik efterfølgende på et billede eller en video for at tilføje tekst og lyd.</p></center>
 
 <div id="tilføjBillede">
-    <p>Tilføj billeder til ordbogen</p><!--
-    <input type="file">
-    <br>
-    <p>Billedets navn:</p>
-    <input type="text">
-    <br><br>
-    <button>Tilføj</button>
+  <p>Tilføj billede/video til ordbogen</p>
 </div>
-<center> -->
+
 <div class="container">
-    <div class="row">
-      <div class="col-md-6 m-auto">
-        <form action="/ordbog/upload" method="POST" enctype="multipart/form-data">
-          <div class="custom-file mb-3">
-            <input type="file" accept="video/*;capture=camcorder" name="file"  class="custom-file-input" >
-            <label for="file" class="custom-file-label">Vælg fil</label>
+  <div class="row">
+    <div class="col-md-6 m-auto">
+      <form action="/ordbog/upload" method="POST" enctype="multipart/form-data">
+        <div class="custom-file mb-3">
+          <input type="file" accept="video/*;capture=camcorder" name="file"  class="custom-file-input" >
+          <label for="file" class="custom-file-label">Vælg fil</label>
+        </div>
+        <input type="submit" value="Tilføj" class="btn btn-primary btn-block">
+      </form> 
+      <hr>
+      {{#if files}}
+      {{#each files}}
+          <div class="card card-body mb-3">
+              <img src="ordbog/image/{{filename}}" alt="DB BILLEDE HER TAK">
           </div>
           <input type="submit" value="Tilføj" class="btn btn-primary btn-block">
         </form> 
@@ -35,4 +38,4 @@
          </div>  
       </div>
     </div>
-</center>
+  </div>
