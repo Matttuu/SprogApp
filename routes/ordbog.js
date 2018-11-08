@@ -78,7 +78,7 @@ router.get('/', (req, res) => {
           file.isImage = false;
         }
       });
-      res.redirect('ordbog', {files: files, billede: "image/"+files.filename, test2:"hej"});
+      res.render('ordbog', {files: files, billede: "image/"+files.filename, test2:"hej"});
     }
   });
 });

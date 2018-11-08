@@ -61,8 +61,10 @@ router.post('/', function (req, res, next) {
       } else {
         req.session.userId = user._id;
         return res.render('profile',{
+          uniqueId: user.uniqueId,
           name: user.username,
-          email: user.email
+          email: user.email,
+          role: user.role
         });
       }
     });
@@ -86,8 +88,10 @@ router.get('/profile', function (req, res, next) {
           return next(err);
         } else {
           return res.render('profile',{
+            uniqueId: user.uniqueId,
             name: user.username,
-            email: user.email
+            email: user.email,
+            role: role.user
 
           });
           //return res.send('<h1>Name:</h1>' + user.username + '<h2>ID:</h2>' + user.uniqueId + '<h2>Mail:</h2>' + user.email + '<h2>Rolle:</h2>' +user.role + '<br><a type="button" href="/logout">Logout</a>')
