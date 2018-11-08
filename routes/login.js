@@ -2,14 +2,12 @@ var express = require('express');
 var router = express.Router();
 var User = require('../public/javascripts/user');
 
-
 // GET route for reading data
 router.get('/', function (req, res, next) {
   res.render('login.hbs',{
     layout: 'other',
   });
 });
-
 
 //POST route for updating data
 router.post('/', function (req, res, next) {
@@ -20,6 +18,7 @@ router.post('/', function (req, res, next) {
     res.send("passwords dont match");
     return next(err);
   }
+  
 /* req.body indeholder værdierne (key-value pairs) som er  
    indtastet i registrerings formen.*/
   if (req.body.uniqueId &&

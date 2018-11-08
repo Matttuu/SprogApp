@@ -1,67 +1,73 @@
 #ordbog, #chat{
-    text-align: center;
-    cursor: pointer;
-    text-decoration: none;
-  }
+  text-align: center;
+  cursor: pointer;
+  text-decoration: none;
+}
 
-  .flex-container {
-    display: flex;
-    flex-wrap: wrap;
-    background-color: white;
-    padding: 2px 2px;
-    justify-content:center;
-    cursor: pointer;    
-  }
+.flex-container {
+  display: flex;
+  flex-wrap: wrap;
+  background-color: white;
+  padding: 2px 2px;
+  justify-content:center;
+  cursor: pointer;    
+}
 
-  .flex-container>div {
-    background-color: rgba(255, 255, 255, 0.8);
-    text-align: center; 
-    padding:50px 0px;
-    font-size: 20px;
-    border-style: solid;
-    cursor: pointer;
-    width: 150px;
-    height: 150px;
-    margin: 0 2px;
-    font-weight: bold;
-  }
+.flex-container>div {
+  background-color: rgba(255, 255, 255, 0.8);
+  text-align: center; 
+  padding:50px 0px;
+  font-size: 20px;
+  border-style: solid;
+  cursor: pointer;
+  width: 150px;
+  height: 150px;
+  margin: 0 2px;
+  font-weight: bold;
+}
 
-  .flex-container2 {
-    display: flex;
-    flex-wrap: wrap;
-    background-color: white;
-    padding: 2px 2px;
-    justify-content:center;
-    cursor: pointer;
-  }
+.flex-container2 {
+  display: flex;
+  flex-wrap: wrap;
+  background-color: white;
+  padding: 2px 2px;
+  justify-content:center;
+  cursor: pointer;
+}
 
-  .flex-container2>div {
-    background-color: rgba(255, 255, 255, 0.8);
-    text-align: center; 
-    padding:50px 0px;
-    font-size: 20px;
-    border-style: solid;
-    cursor: pointer;
-    width: 150px;
-    height: 250px;
-    margin: 0 2px;
-    font-weight: bold;
-  }
+.flex-container2>div {
+  background-color: rgba(255, 255, 255, 0.8);
+  text-align: center; 
+  padding:50px 0px;
+  font-size: 20px;
+  border-style: solid;
+  cursor: pointer;
+  width: 150px;
+  height: 250px;
+  margin: 0 2px;
+  font-weight: bold;
+}
 
-  #tilføjBillede {
-    text-align: center;
-    font-weight: bold;
-  }
+#tilføjBillede {
+  text-align: center;
+  font-weight: bold;
+}
 
- 
-  img {
-    width: 100%;
-  } 
-  .billeder {
-  width: auto;
-  height: 100%;
-  }
+img {
+  width: 100%;
+}
 
-  .loggedInHeading {
-    margin: 20px;
-  }
+.billeder {
+width: auto;
+height: 100%;
+}
+
+.loggedInHeading {
+  margin: 20px;
+}
+
+.loggedInText {
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  padding-left: 20px;
+  padding-right: 20px;
+}
