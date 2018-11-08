@@ -3,7 +3,7 @@
 	<div class="agile">
 		<div class="signin-form profile">
 			<h1 class="h3 mb-3 font-weight-normal">Registrer</h1>
-			<p class="h7 mb-3 font-weight-normal">For at kunne benytte applikationen, hvad enten du er kursist eller sprogmakker, så er det nødvendigt at oprette dig først.<br>Udfyld felterne herunder. Det første felt repræsenterer dit unikke ID, og det skal du ikke tænke mere over lige nu.</p>
+			<p class="h7 mb-3 font-weight-normal" style="text-align:justify;">For at kunne benytte applikationen, er det nødvendigt at oprette dig først. Udfyld venligst felterne herunder. Det første felt repræsenterer dit unikke ID, og det skal du ikke tænke mere over lige nu.</p>
 			<div class="login-form" >
 				<form action='/login' method="post">
 					<input class="form-control" type="text" name="uniqueId" placeholder="Dit unikke ID" required="" id="idNo" style="cursor:no-drop;" readonly>
@@ -17,8 +17,9 @@
 					</select>
 					<input class="form-control" type="password" name="password" placeholder="Ønsket kodeord" required="">
 					<input class="form-control" type="password" name="passwordConf" placeholder="Bekræft kodeord" required="">
-					<input class="btn btn-lg btn-primary btn-block" type="submit" value="OPRET DIG">
+					<input class="btn btn-lg btn-primary btn-block" style="margin-top:10px;" type="submit" value="OPRET DIG">
 				</form>
+				<button class="btn btn-lg btn-primary btn-block" style="margin-top:3px;" onclick="history.back()">TILBAGE</button>
 				<br>
 				<p><b>OBS!</b> Ved at registrere mig som bruger, godkender jeg <a href="#">sidens politik.</a></p>
 			</div>
