@@ -43,10 +43,11 @@ router.post('/', function (req, res, next) {
         return next(error);
       } else {
         req.session.userId = user._id;
-        return   res.render('profile',{
+        return res.render('profile',{
+          uniqueId: user.uniqueId,
           name: user.username,
-          email: user.email
-
+          email: user.email,
+          role: user.role
         });
       }
     });
@@ -59,7 +60,7 @@ router.post('/', function (req, res, next) {
         return next(err);
       } else {
         req.session.userId = user._id;
-        return   res.render('profile',{
+        return res.render('profile',{
           name: user.username,
           email: user.email
         });
@@ -84,7 +85,7 @@ router.get('/profile', function (req, res, next) {
           err.status = 400;
           return next(err);
         } else {
-          return   res.render('profile',{
+          return res.render('profile',{
             name: user.username,
             email: user.email
 
