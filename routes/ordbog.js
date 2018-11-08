@@ -62,23 +62,26 @@ const upload = multer({ storage });
 // @route GET /
 // @desc Loads form
 router.get('/', (req, res) => {
-  gfs.files.find().toArray((err, files) => {
+  
+  gfs.files.find().toArray((err, files, billede) => {
+    
     // Check if files
     if (!files || files.length === 0) {
-      res.render('ordbog', { files: false, billede: "tis" });
+      res.render('ordbog', { files: false });
     } else {
-      files.map(file => {
+      files.map(file  => {
         if (
           file.contentType === 'image/jpeg' ||
-          file.contentType === 'image/png'
-        ) {
+          file.contentType === 'image/png' ||
+          file.contentType === 'image/jpg'
+        ){
           file.isImage = true;
-          //res.render('ordbog', {files: files, billede: "image/"+file.filename, test2:"hej"});
+          billede = file.filename; 
         } else {
           file.isImage = false;
         }
       });
-      res.redirect('ordbog', {files: files, billede: "image/"+files.filename, test2:"hej"});
+      res.render('ordbog',{files: files, billede: 'ordbog/image/'+ billede});
     }
   });
 });
@@ -134,7 +137,7 @@ router.get('/image/:filename', (req, res) => {
     }
 
     // Check if image
-    if (file.contentType === 'image/jpeg' || file.contentType === 'image/png') {
+    if (file.contentType === 'image/jpeg' || file.contentType === 'image/png' ||file.contentType ==='image/jpg') {
       // Read output to browser
       const readstream = gfs.createReadStream(file.filename);
       readstream.pipe(res);

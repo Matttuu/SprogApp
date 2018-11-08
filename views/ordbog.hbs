@@ -21,23 +21,12 @@
           </div>
           <input type="submit" value="Tilføj" class="btn btn-primary btn-block">
         </form>
-        <hr>
-    
-     {{#if files}}
-            <div class="card card-body mb-3">
-                <img src="{{billede}}" alt="">
-            </div>
-                    {{/if}}
-                    
-                    
+        <hr>                
                   
 
          <div class="card card-body mb-3">
-             <img src={{billede}} alt="Feelssomething?">
-             <p>{{billede}}</p>
-             <p>{{test2}}</p>
-             <p>{{users}}</p>
-             <p>{{agurk}}</p>
+             <img src={{{billede}}} alt="Feelssomething?">
+
          </div>
          </div>  
       </div>
@@ -45,17 +34,7 @@
 </center>
 
 <br><br>
-<div class="flex-container2">
-    <div>
-        <form action="/ordbog/image/:filename" method="GET">
-        <label for="file"></label>
-        </form>
-        <p>{{billede}}</p>
-        <p>{{billedeID}}</p>
-        <img src={{billede}} alt="Nothing so far">
-        <p>Hentet billede</p>
-    </div>
-</div>
+
 <div class="flex-container2">
     <div class="billeder"> 
         <img src="/billeder/kaffekande.jpg" alt="kaffekande" class="billeder">
