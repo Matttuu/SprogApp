@@ -7,7 +7,9 @@ router.get('/', function(req, res, next) {
   User.findById(req.session.userId)
   .exec(function (error, user) {
   res.render('profile', { 
-    name: user.username
+    name: user.username,
+    role : user.role,
+    uniqueId : user.uniqueId
    });
 });
 });

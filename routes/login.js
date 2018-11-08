@@ -15,20 +15,22 @@ router.get('/', function (req, res, next) {
 router.post('/', function (req, res, next) {
   // confirm that user typed same password twice
   if (req.body.password !== req.body.passwordConf) {
-    var err = new Error('Passwords do not match.');
+    var err = new Error('Kodeordene er ikke ens.');
     err.status = 400;
     res.send("passwords dont match");
     return next(err);
   }
 /* req.body indeholder værdierne (key-value pairs) som er  
    indtastet i registrerings formen.*/
-  if (req.body.email &&
+  if (req.body.uniqueId &&
+    req.body.email &&
     req.body.username &&
     req.body.role &&
     req.body.password &&
     req.body.passwordConf) {
 
     var userData = {
+      uniqueId: req.body.uniqueId,
       email: req.body.email,
       username: req.body.username,
       role: req.body.role,
@@ -52,7 +54,7 @@ router.post('/', function (req, res, next) {
   } else if (req.body.logemail && req.body.logpassword) {
     User.authenticate(req.body.logemail, req.body.logpassword, function (error, user) {
       if (error || !user) {
-        var err = new Error('Wrong email or password.');
+        var err = new Error('Forkert e-mail eller kodeord.');
         err.status = 401;
         return next(err);
       } else {
@@ -64,7 +66,7 @@ router.post('/', function (req, res, next) {
       }
     });
   } else {
-    var err = new Error('All fields required.');
+    var err = new Error('Alle felter skal udfyldes!');
     err.status = 400;
     return next(err);
   }
@@ -78,7 +80,7 @@ router.get('/profile', function (req, res, next) {
         return next(error);
       } else {
         if (user === null) {
-          var err = new Error('Not authorized! Go back!');
+          var err = new Error('Ikke autoriseret. Gå tilbage!');
           err.status = 400;
           return next(err);
         } else {
@@ -87,7 +89,7 @@ router.get('/profile', function (req, res, next) {
             email: user.email
 
           });
-          //return res.send('<h1>Name: </h1>' + user.username + '<h2>Mail: </h2>' + user.email + '<h2>Rolle: </h2>' +user.role + '<br><a type="button" href="/logout">Logout</a>')
+          //return res.send('<h1>Name:</h1>' + user.username + '<h2>ID:</h2>' + user.uniqueId + '<h2>Mail:</h2>' + user.email + '<h2>Rolle:</h2>' +user.role + '<br><a type="button" href="/logout">Logout</a>')
         }
       }
     });
@@ -106,6 +108,5 @@ router.get('/logout', function (req, res, next) {
     });
   }
 });
-
 
 module.exports = router;

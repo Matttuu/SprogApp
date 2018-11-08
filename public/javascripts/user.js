@@ -2,6 +2,12 @@ var mongoose = require('mongoose');
 var bcrypt = require('bcryptjs');
 
 var UserSchema = new mongoose.Schema({
+  uniqueId: {
+    type: String,
+    unique: true,
+    required: true,
+    trim: true
+  },
   email: {
     type: String,
     unique: true,
@@ -61,7 +67,6 @@ UserSchema.pre('save', function (next) {
     next();
   })
 });
-
 
 var User = mongoose.model('User', UserSchema);
 module.exports = User;
