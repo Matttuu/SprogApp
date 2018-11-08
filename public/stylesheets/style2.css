@@ -57,3 +57,7 @@
   width: auto;
   height: 100%;
   }
+
+  .loggedInHeading {
+    margin: 20px;
+  }
