@@ -59,12 +59,8 @@ router.post('/', function (req, res, next) {
         return next(err);
       } else {
         req.session.userId = user._id;
-        return res.render('profile',{
-          uniqueId: user.uniqueId,
-          name: user.username,
-          email: user.email,
-          role: user.role
-        });
+        return res.redirect('/profile');
+
       }
     });
   } else {
@@ -75,7 +71,7 @@ router.post('/', function (req, res, next) {
 })
 
 // GET route after registering
-router.get('/profile', function (req, res, next) {
+router.get('/login', function (req, res, next) {
   User.findById(req.session.userId)
     .exec(function (error, user) {
       if (error) {
@@ -86,13 +82,9 @@ router.get('/profile', function (req, res, next) {
           err.status = 400;
           return next(err);
         } else {
-          return res.render('profile',{
-            uniqueId: user.uniqueId,
-            name: user.username,
-            email: user.email,
-            role: role.user
+          return res.redirect('/profile');
 
-          });
+     
           //return res.send('<h1>Name:</h1>' + user.username + '<h2>ID:</h2>' + user.uniqueId + '<h2>Mail:</h2>' + user.email + '<h2>Rolle:</h2>' +user.role + '<br><a type="button" href="/logout">Logout</a>')
         }
       }
@@ -100,7 +92,7 @@ router.get('/profile', function (req, res, next) {
 });
 
 // GET for logout logout
-router.get('/logout.hbs', function (req, res, next) {
+router.get('/logout', function (req, res, next) {
   if (req.session) {
     // delete session object
     req.session.destroy(function (err) {
