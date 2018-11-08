@@ -1,41 +1,36 @@
-<center><h1 class="loggedInHeading">Ordbog</h1>
-<p class="loggedInText">Du kan tage billeder eller optage video og tilføje til din personlige ordbog. Klik efterfølgende på et billede eller en video for at tilføje tekst og lyd.</p></center>
+<center>
+    <h1 class="loggedInHeading">Ordbog</h1>
+    <p class="loggedInText">Du kan tage billeder eller optage video og tilføje til din personlige ordbog. Klik
+        efterfølgende på et billede eller en video for at tilføje tekst og lyd.</p>
+</center>
 
 <div id="tilføjBillede">
-  <p>Tilføj billede/video til ordbogen</p>
+    <p>Tilføj billede/video til ordbogen</p>
 </div>
 
 <div class="container">
-  <div class="row">
-    <div class="col-md-6 m-auto">
-      <form action="/ordbog/upload" method="POST" enctype="multipart/form-data">
-        <div class="custom-file mb-3">
-          <input type="file" accept="video/*;capture=camcorder" name="file"  class="custom-file-input" >
-          <label for="file" class="custom-file-label">Vælg fil</label>
-        </div>
-        <input type="submit" value="Tilføj" class="btn btn-primary btn-block">
-      </form> 
-      <hr>
-      {{#if files}}
-      {{#each files}}
-          <div class="card card-body mb-3">
-              <img src="ordbog/image/{{filename}}" alt="DB BILLEDE HER TAK">
-          </div>
-          <input type="submit" value="Tilføj" class="btn btn-primary btn-block">
-        </form> 
-        <hr>
-        {{#if files}}
-        {{#each files}}
+    <div class="row">
+        <div class="col-md-6 m-auto">
+            <form action="/ordbog/upload" method="POST" enctype="multipart/form-data">
+                <div class="custom-file mb-3">
+                    <input type="file" accept="video/*;capture=camcorder" name="file" class="custom-file-input">
+                    <label for="file" class="custom-file-label">Vælg fil</label>
+                </div>
+                <input type="submit" value="Tilføj" class="btn btn-primary btn-block">
+            </form>
+            <hr>
+            {{#if files}}
+            {{#each files}}
             <div class="card card-body mb-3">
                 <img src="ordbog/image/{{filename}}" alt="DB BILLEDE HER TAK">
 
                 <form method="POST" action="/ordbog/files/{{_id}}?_method=DELETE">
                     <button class="btn btn-danger btn-block mt-4">Delete</button>
-                 </form>
+                </form>
             </div>
             {{/each}}
-            {{/if}}          
-         </div>  
-      </div>
+            {{/if}}
+        </div>
     </div>
-  </div>
+</div>
+</div>
