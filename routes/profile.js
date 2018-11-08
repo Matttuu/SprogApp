@@ -6,8 +6,10 @@ var User = require('../public/javascripts/user');
 router.get('/', function(req, res, next) {
   User.findById(req.session.userId)
   .exec(function (error, user) {
-  res.render('profile.hbs', { 
-    name: user.username
+  res.render('profile', { 
+    name: user.username,
+    role : user.role,
+    uniqueId : user.uniqueId
    });
 });
 });

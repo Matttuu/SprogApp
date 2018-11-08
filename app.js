@@ -21,6 +21,7 @@ var ordbogRouter = require('./routes/ordbog');
 var loginRouter = require ('./routes/login');
 var signupRouter = require ('./routes/signup');
 var chatRouter = require ('./routes/chat');
+var supportRouter = require('./routes/support');
 
 var app = express();
 
@@ -70,6 +71,7 @@ app.use('/ordbog', ordbogRouter);
 app.use('/login', loginRouter);
 app.use('/signup', signupRouter);
 app.use('/chat', chatRouter);
+app.use('/support', supportRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
