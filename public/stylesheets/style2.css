@@ -54,9 +54,9 @@
     font-weight: bold;
   }
 
-  .billeder{
-  width: auto;
-  height: 100%;
-  }
+ 
+  img {
+    width: 100%;
+  } 
 
  
