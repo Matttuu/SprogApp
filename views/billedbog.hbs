@@ -32,6 +32,10 @@
                     <form method="POST" action="/billedbog/files/{{_id}}?_method=DELETE">
                         <button class="btn btn-danger btn-block mt-4">Slet</button>
                     </form>
+                    </form>
+                    <form metode="AddSound" action="/billedbog/files/{{_id}}?_method=AddSound">
+                     <button class="btn btn-danger btn-block mt-4">Tilføj lyd</button>
+                    </form>
                 </div>
                 {{/each}}
                 {{/if}}

@@ -83,6 +83,15 @@ router.post('/videoupload', upload.single('file'), (req, res) => {
   res.redirect('/videobog');
 }); 
 
+router.patch('/files/:id', (req, res) => {
+    gfs.update({ _id: req.params.id, root: 'videouploads' }, (err, gridStore) => {
+        if (err) {
+          return res.status(404).json({ err: err });
+        }});
+    res.redirect('/videobog');
+    
+});
+
 
 // @route GET /files
 // @desc  Display all files in JSON
@@ -131,11 +140,10 @@ router.get('/image/:filename', (req, res) => {
     if (file.contentType === 'image/mp4' || file.contentType === 'image/png' || file.contentType === 'image/jpg') {
       // Read output to browser
       const readstream = gfs.createReadStream(file.filename);
-      readstream.pipe(res);
+         readstream.pipe(res);
     } else {
         const readstream = gfs.createReadStream(file.filename);
-        readstream.pipe(res)
-      
+        readstream.pipe(res)   
     }
   });
 });
