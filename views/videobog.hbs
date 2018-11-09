@@ -1,11 +1,11 @@
 <center>
-    <h1 class="loggedInHeading">Ordbog</h1>
-    <p class="loggedInText">Du kan tage billeder og tilføje til din personlige ordbog. Klik
-        efterfølgende på et billede for at tilføje tekst og lyd.</p>
+    <h1 class="loggedInHeading">Videobog</h1>
+    <p class="loggedInText">Du kan optage video og tilføje til din personlige videobog. Klik
+        efterfølgende på en video for at tilføje tekst.</p>
 </center>
 
 <div id="tilføjBillede">
-    <p>Tilføj billede til ordbogen</p>
+    <p>Tilføj video til videobogen</p>
 </div>
 
 <div class="container">
@@ -13,7 +13,7 @@
         <div class="col-md-6 m-auto">
             <form action="/videobog/videoupload" method="POST" enctype="multipart/form-data">
                 <div class="custom-file mb-3">
-                    <p>Capture Image: <input type="file" accept="image/*" id="capture" capture="camera" name="file" class="custom-file-input">
+                    <p>Optag video: <input type="file" accept="image/*" id="capture" capture="camera" name="file" class="custom-file-input">
                 
                     <label for="file" class="custom-file-label">Vælg fil</label>
                 </div>
