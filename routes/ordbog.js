@@ -9,15 +9,6 @@ const multer = require('multer');
 const GridFsStorage = require('multer-gridfs-storage');
 const Grid = require('gridfs-stream');
 
-/* GET home page. */
-/*
-router.get('/', function(req, res, next) {
-  res.render('ordbog', { 
-    test: "lort"
-  });
-});
-*/
-
 //Her er det nye
 
 // Mongo URI
@@ -63,7 +54,7 @@ router.get('/', (req, res, billede) => {
   gfs.files.find().toArray((err, files) => {
     // Check if files
     if (!files || files.length === 0) {
-     // res.render('ordbog', { files: false, billede: "tis" });
+     res.render('ordbog', { files: false});
     } else {
       files.map(file  => {
         if (
@@ -89,6 +80,22 @@ router.post('/upload', upload.single('file'), (req, res) => {
   // res.json({ file: req.file });
   res.redirect('/ordbog');
 }); 
+
+//POST route for updating data
+
+/*
+Mathias' forsøg på at få indsat tekst til bestemt billede ID
+router.post('/upload/:id/text', function (req, res, billedeData) {
+
+var billedeData = {
+  billedeText: req.body.billedeTextFelt,
+  _id: req.params.id,
+  root: 'uploads'}
+
+  res.redirect('/ordbog')
+}); 
+
+*/ 
 
 // @route GET /files
 // @desc  Display all files in JSON
@@ -148,7 +155,6 @@ router.get('/image/:filename', (req, res) => {
 
 // @route DELETE /files/:id
 // @desc  Delete file
-//Dette kodestykke virker ikke eftersom ordbog.hbs krævede noget ejs for at fungere
 
 router.delete('/files/:id', (req, res) => {
   gfs.remove({ _id: req.params.id, root: 'uploads' }, (err, gridStore) => {
@@ -159,6 +165,7 @@ router.delete('/files/:id', (req, res) => {
     res.redirect('/ordbog');
   });
 });
+
 
 //Her slutter det nye
 

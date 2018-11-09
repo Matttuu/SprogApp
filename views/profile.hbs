@@ -2,7 +2,10 @@
     <h2 class="loggedInHeading">Velkommen {{name}}</h2>
     <p class="loggedInText">
         Din registrerede rolle er: <b>{{role}}</b><br>
-        Dit unikke ID nummer er: <b>{{uniqueId}}</b>
+        Dit unikke ID nummer er: <b>{{uniqueId}}</b><br>
+        {{#if sprogmakker}}
+        Indtast ID på kursist: <input type="text">
+       {{/if}}
     </p>
     <h4 class="loggedInHeading">Vælg herunder:</h4>
 </div>
