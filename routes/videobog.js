@@ -143,8 +143,7 @@ router.get('/image/:filename', (req, res) => {
          readstream.pipe(res);
     } else {
         const readstream = gfs.createReadStream(file.filename);
-         readstream.pipe(res)
-      
+        readstream.pipe(res)   
     }
   });
 });
