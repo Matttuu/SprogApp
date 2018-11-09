@@ -1,7 +1,6 @@
 <center>
     <h1 class="loggedInHeading">Videoordbog</h1>
-    <p class="loggedInText">Her kan du optage video og tilføje til din ordbog. Klik
-        efterfølgende på videoen for at tilføje tekst.</p>
+    <p class="loggedInText">Her kan du optage video og tilføje til din ordbog. Efterfølgende kan du tilføje tekst til din video.</p>
 </center>
 
 <div id="tilføjBillede">
@@ -24,7 +23,7 @@
             {{#each files}}
             <div class="card card-body mb-3">
                 <video width="320" height="240" controls>
-                         <source src="videobog/image/{{filename}}" type="video/mp4">Din browser understøtter ikke denne filtype</video>
+                         <source src="videobog/image/{{filename}}" type="video/mp4">Din browser understøtter ikke denne filtype!</video>
                 <form method="POST" action="/videobog/files/{{_id}}?_method=POST">
                 <input type="text" name="billedeTextFelt" class="btn btn-danger btn-block mt-4"></input>
                     {{text}}
