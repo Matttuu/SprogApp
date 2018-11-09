@@ -1,0 +1,26 @@
+<div style="text-align:center;">
+    <h1 class="loggedInHeading">Forbind til kursist</h1>
+    <p class="loggedInText">
+        {{#if sprogmakker}}
+        Du er registreret som sprogmakker og har derfor mulighed for at forbinde til kursister.
+        <br>
+        Bed kursisten om at oplyse sit unikke ID-nummer og indtast det herunder. Det unikke ID-nummer kan findes på forsiden af kursistens profil.
+        <br>
+        <button onclick="tilknytKursist()">Klik</button>
+        <div style="margin-left:25px; margin-right:25px;">
+            <form action='/connectId' method="post">
+                <input class="form-control" type="text" name="uniqueId" placeholder="ID-nummer" required="" id="connectIdNo">
+                <input class="btn btn-lg btn-primary btn-block" style="margin-top:10px;" type="submit" value="FORBIND KURSIST">
+            </form>
+        </div>
+        {{else}}
+        Du er ikke registreret som sprogmakker og kan derfor heller ikke forbinde til kursister.
+        {{/if}}
+    </p>
+</div>
+<script>
+    function tilknytKursist() {
+        alert("hej")
+        user.tilknyttetKursist ="Test"; 
+    }
+</script>

@@ -6,28 +6,14 @@ var User = require('../public/javascripts/user');
 router.get('', function(req, res, next) {
   User.findById(req.session.userId)
   .exec(function (error, user) {
-  res.render('profile', { 
+  res.render('connectId', { 
     name: user.username,
     role: user.role,
     uniqueId: user.uniqueId,
-    sprogmakker: user.role ==="Sprogmakker"
+    sprogmakker: user.role ==="Sprogmakker",
+    tilknyttetKursist: user.tilknyttetKursist
    });
 });
-});
-
-
-  // GET for logout logout
-router.get('/logout', function (req, res, next) {
-  if (req.session) {
-    // delete session object
-    req.session.destroy(function (err) {
-      if (err) {
-        return next(err);
-      } else {
-        return res.redirect('/');
-      }
-    });
-  }
 });
 
 module.exports = router;

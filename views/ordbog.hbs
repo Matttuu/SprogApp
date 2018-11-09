@@ -13,27 +13,36 @@
         <div class="col-md-6 m-auto">
             <form action="/ordbog/upload" method="POST" enctype="multipart/form-data">
                 <div class="custom-file mb-3">
+<<<<<<< HEAD
                     <p>Capture Image: <inpu½t type="file" accept="image/*" id="capture" capture="camera" name="file" class="custom-file-input">
                 
                     <label for="file" class="custom-file-label">Vælg fil</label>
+=======
+                    <p>Capture Image: <input type="file" accept="image/*" id="capture" capture="camera" name="file"
+                            class="custom-file-input">
+
+                        <label for="file" class="custom-file-label">Vælg fil</label>
+>>>>>>> 719318bf2f2482cc36bac0ae5230e894ffb3073c
                 </div>
                 <input type="submit" value="Tilføj" class="btn btn-primary btn-block">
             </form>
             <hr>
-            {{#if files}}
-            {{#each files}}
-            <div class="card card-body mb-3">
-                <img src="ordbog/image/{{filename}}" alt="DB BILLEDE HER TAK">
-                <form method="POST" action="/ordbog/files/{{_id}}?_method=POST">
-                <input type="text" name="billedeTextFelt" class="btn btn-danger btn-block mt-4"></input>
-                    {{text}}
+            <div id="billedeListe">
+                {{#if files}}
+                {{#each files}}
+                <div class="card card-body mb-3">
+                    <img src="ordbog/image/{{filename}}" alt="DB BILLEDE HER TAK">
+                    <form method="POST" action="/ordbog/files/{{_id}}?_method=POST">
+                        <input type="text" name="billedeTextFelt" class="btn btn-danger btn-block mt-4"></input>
+                        {{text}}
                     </form>
-                <form method="POST" action="/ordbog/files/{{_id}}?_method=DELETE">
-                    <button class="btn btn-danger btn-block mt-4">Slet</button>
-                </form>
+                    <form method="POST" action="/ordbog/files/{{_id}}?_method=DELETE">
+                        <button class="btn btn-danger btn-block mt-4">Slet</button>
+                    </form>
+                </div>
+                {{/each}}
+                {{/if}}
             </div>
-            {{/each}}
-            {{/if}}
         </div>
     </div>
 </div>
