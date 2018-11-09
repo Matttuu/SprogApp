@@ -24,7 +24,7 @@
             <div class="card card-body mb-3">
                 <video width="100%" height="100%" controls>
                          <source src="videobog/image/{{filename}}" type="video/mp4">Din browser understøtter ikke denne filtype!</video>
-                <form method="POST" action="/videobog/files/{{_id}}?_method=POST">
+                <form method="PUT" action="/videobog/image/{{_id}}.mp4?_method=PUT">
                 <input type="text" name="billedeTextFelt" class="btn btn-danger btn-block mt-4"></input>
                     {{text}}
                     </form>
