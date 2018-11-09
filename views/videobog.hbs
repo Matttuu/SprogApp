@@ -1,0 +1,39 @@
+<center>
+    <h1 class="loggedInHeading">Videoordbog</h1>
+    <p class="loggedInText">Her kan du optage video og tilføje til din ordbog. Efterfølgende kan du tilføje tekst til din video.</p>
+</center>
+
+<div id="tilføjBillede">
+    <p>Tilføj video til videoordbogen</p>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 m-auto">
+            <form action="/videobog/videoupload" method="POST" enctype="multipart/form-data">
+                <div class="custom-file mb-3">
+                    <p>Optag video: <input type="file" accept="image/*" id="capture" capture="camera" name="file" class="custom-file-input">
+                
+                    <label for="file" class="custom-file-label">Vælg videofil</label>
+                </div>
+                <input type="submit" value="Tilføj video" class="btn btn-primary btn-block">
+            </form>
+            <hr>
+            {{#if files}}
+            {{#each files}}
+            <div class="card card-body mb-3">
+                <video width="100%" height="100%" controls>
+                         <source src="videobog/image/{{filename}}" type="video/mp4">Din browser understøtter ikke denne filtype!</video>
+                <form method="POST" action="/videobog/files/{{_id}}?_method=POST">
+                <input type="text" name="billedeTextFelt" class="btn btn-danger btn-block mt-4"></input>
+                    {{text}}
+                    </form>
+                <form method="POST" action="/videobog/files/{{_id}}?_method=DELETE">
+                    <button class="btn btn-danger btn-block mt-4">Slet</button>
+                </form>
+            </div>
+            {{/each}}
+            {{/if}}
+        </div>
+    </div>
+</div>
