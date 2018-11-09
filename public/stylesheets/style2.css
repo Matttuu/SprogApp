@@ -10,14 +10,15 @@
   background-color: white;
   padding: 2px 2px;
   justify-content:center;
-  cursor: pointer;    
+  cursor: pointer;
 }
 
 .flex-container>div {
-  background-color: rgba(255, 255, 255, 0.8);
+  background-color: rgba(245, 245, 255, 0.8);
   text-align: center; 
   padding:45px 0px;
-  border-style: solid;
+  border: 1px solid black;
+  border-radius: 5px;
   cursor: pointer;
   width: 150px;
   height: 150px;
