@@ -54,7 +54,7 @@ router.get('/', (req, res, billede) => {
   gfs.files.find().toArray((err, files) => {
     // Check if files
     if (!files || files.length === 0) {
-     res.render('ordbog', { files: false});
+     res.render('billedbog', { files: false});
     } else {
       files.map(file  => {
         if (
@@ -68,7 +68,7 @@ router.get('/', (req, res, billede) => {
           file.isImage = false;
         }
       });
-     res.render('ordbog', {files: files, billede: 'ordbog/image/' +billede});
+     res.render('billedbog', {files: files, billede: 'billedbog/image/' +billede});
     }
   });
 });
@@ -77,7 +77,7 @@ router.get('/', (req, res, billede) => {
 // @desc  Uploads file to DB
 router.post('/upload', upload.single('file'), (req, res) => {
   // res.json({ file: req.file });
-  res.redirect('/ordbog');
+  res.redirect('/billedbog');
 }); 
 
 
@@ -146,7 +146,7 @@ router.delete('/files/:id', (req, res) => {
       return res.status(404).json({ err: err });
     }
 
-    res.redirect('/ordbog');
+    res.redirect('/billedbog');
   });
 });
 
