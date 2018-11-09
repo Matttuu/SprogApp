@@ -71,7 +71,7 @@ router.post('/', function (req, res, next) {
 })
 
 // GET route after registering
-router.get('/login', function (req, res, next) {
+router.get('/', function (req, res, next) {
   User.findById(req.session.userId)
     .exec(function (error, user) {
       if (error) {
