@@ -23,7 +23,7 @@ let gfs;
 conn.once('open', () => {
   // Init stream
   gfs = Grid(conn.db, mongoose.mongo);
-  gfs.collection('uploads');
+  gfs.collection('videouploads');
 });
 
 // Create storage engine
@@ -38,7 +38,7 @@ const storage = new GridFsStorage({
         const filename = buf.toString('hex') + path.extname(file.originalname);
         const fileInfo = {
           filename: filename,
-          bucketName: 'uploads'
+          bucketName: 'videouploads'
         };
         resolve(fileInfo);
       });
@@ -54,31 +54,33 @@ router.get('/', (req, res, billede) => {
   gfs.files.find().toArray((err, files) => {
     // Check if files
     if (!files || files.length === 0) {
-     res.render('ordbog', { files: false});
+     res.render('videobog', { files: false});
     } else {
       files.map(file  => {
         if (
-          file.contentType === 'image/jpeg' ||
+          file.contentType === 'image/mp4' ||
           file.contentType === 'image/png' ||
           file.contentType === 'image/jpg'
         ) {
-          file.isImage = true;
+          file.isImage = false;
+          
           billede = file.filename;          
         } else {
-          file.isImage = false;
+          
+          file.isImage = true;
         }
       });
     
-     res.render('ordbog', {files: files, billede: 'ordbog/image/' +billede});
+     res.render('videobog', {files: files, billede: 'videobog/image/' +billede});
     }
   });
 });
 
 // @route POST /upload
 // @desc  Uploads file to DB
-router.post('/upload', upload.single('file'), (req, res) => {
+router.post('/videoupload', upload.single('file'), (req, res) => {
   // res.json({ file: req.file });
-  res.redirect('/ordbog');
+  res.redirect('/videobog');
 }); 
 
 
@@ -126,14 +128,14 @@ router.get('/image/:filename', (req, res) => {
     }
 
     // Check if image
-    if (file.contentType === 'image/jpeg' || file.contentType === 'image/png' || file.contentType === 'image/jpg') {
+    if (file.contentType === 'image/mp4' || file.contentType === 'image/png' || file.contentType === 'image/jpg') {
       // Read output to browser
       const readstream = gfs.createReadStream(file.filename);
       readstream.pipe(res);
     } else {
-      res.status(404).json({
-        err: 'Not an image'
-      });
+        const readstream = gfs.createReadStream(file.filename);
+        readstream.pipe(res)
+      
     }
   });
 });
@@ -142,12 +144,12 @@ router.get('/image/:filename', (req, res) => {
 // @desc  Delete file
 
 router.delete('/files/:id', (req, res) => {
-  gfs.remove({ _id: req.params.id, root: 'uploads' }, (err, gridStore) => {
+  gfs.remove({ _id: req.params.id, root: 'videouploads' }, (err, gridStore) => {
     if (err) {
       return res.status(404).json({ err: err });
     }
 
-    res.redirect('/ordbog');
+    res.redirect('/videobog');
   });
 });
 
