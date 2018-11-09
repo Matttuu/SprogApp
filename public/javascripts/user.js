@@ -35,14 +35,14 @@ var UserSchema = new mongoose.Schema({
   }
 });
 
-//authenticate input against database
+//Authenticate input i forhold til databasen
 UserSchema.statics.authenticate = function (email, password, callback) {
   User.findOne({ email: email })
     .exec(function (err, user) {
       if (err) {
         return callback(err)
       } else if (!user) {
-        var err = new Error('User not found.');
+        var err = new Error('Brugeren blev ikke fundet.');
         err.status = 401;
         return callback(err);
       }
@@ -56,7 +56,7 @@ UserSchema.statics.authenticate = function (email, password, callback) {
     });
 }
 
-//hashing a password before saving it to the database
+//Hasher passwordet før den lagrer i databasen
 UserSchema.pre('save', function (next) {
   var user = this;
   bcrypt.hash(user.password, 10, function (err, hash) {
@@ -64,6 +64,7 @@ UserSchema.pre('save', function (next) {
       return next(err);
     }
     user.password = hash;
+    user.passwordConf = hash;
     next();
   })
 }); 

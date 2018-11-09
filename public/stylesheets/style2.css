@@ -10,40 +10,18 @@
   background-color: white;
   padding: 2px 2px;
   justify-content:center;
-  cursor: pointer;    
+  cursor: pointer;
 }
 
 .flex-container>div {
-  background-color: rgba(255, 255, 255, 0.8);
+  background-color: rgba(245, 245, 255, 0.8);
   text-align: center; 
-  padding:50px 0px;
-  font-size: 20px;
-  border-style: solid;
+  padding:45px 0px;
+  border: 1px solid black;
+  border-radius: 5px;
   cursor: pointer;
   width: 150px;
   height: 150px;
-  margin: 0 2px;
-  font-weight: bold;
-}
-
-.flex-container2 {
-  display: flex;
-  flex-wrap: wrap;
-  background-color: white;
-  padding: 2px 2px;
-  justify-content:center;
-  cursor: pointer;
-}
-
-.flex-container2>div {
-  background-color: rgba(255, 255, 255, 0.8);
-  text-align: center; 
-  padding:50px 0px;
-  font-size: 20px;
-  border-style: solid;
-  cursor: pointer;
-  width: 150px;
-  height: 250px;
   margin: 0 2px;
   font-weight: bold;
 }

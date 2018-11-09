@@ -1,42 +1,12 @@
-<center>
+<div style="text-align:center;">
     <h1 class="loggedInHeading">Ordbog</h1>
-    <p class="loggedInText">Du kan tage billeder og tilføje til din personlige ordbog. Klik
-        efterfølgende på et billede for at tilføje tekst og lyd.</p>
-</center>
-
-<div id="tilføjBillede">
-    <p>Tilføj billede til ordbogen</p>
+    <p class="loggedInText" style="text-align:justify;">
+        Din ordbog er opdelt i to kategorier: En <a href="billedbog" target="_self">billedordbog</a> og en <a href="videobog" target="_self">videoordbog</a>.
+        Hvis du ønsker at tage et billede og gemme sammen med tekst og lyd, skal du vælge din billedordbog. Hvis du derimod ønsker at optage en lille video med tilhørende tekst til, så skal du vælge din videoordbog.
+    </p>
+    <h4 class="loggedInHeading">Vælg herunder:</h4>
 </div>
-
-<div class="container">
-    <div class="row">
-        <div class="col-md-6 m-auto">
-            <form action="/ordbog/upload" method="POST" enctype="multipart/form-data">
-                <div class="custom-file mb-3">
-                    <p>Capture Image: <input type="file" accept="image/*" id="capture" capture="camera" name="file"
-                            class="custom-file-input">
-
-                        <label for="file" class="custom-file-label">Vælg fil</label>
-                </div>
-                <input type="submit" value="Tilføj" class="btn btn-primary btn-block">
-            </form>
-            <hr>
-            <div id="billedeListe">
-                {{#if files}}
-                {{#each files}}
-                <div class="card card-body mb-3">
-                    <img src="ordbog/image/{{filename}}" alt="DB BILLEDE HER TAK">
-                    <form method="POST" action="/ordbog/files/{{_id}}?_method=POST">
-                        <input type="text" name="billedeTextFelt" class="btn btn-danger btn-block mt-4"></input>
-                        {{text}}
-                    </form>
-                    <form method="POST" action="/ordbog/files/{{_id}}?_method=DELETE">
-                        <button class="btn btn-danger btn-block mt-4">Slet</button>
-                    </form>
-                </div>
-                {{/each}}
-                {{/if}}
-            </div>
-        </div>
-    </div>
+<div class="flex-container">
+    <div id="item1"><a href='billedbog'><i class="fas fa-image" id="billedbog" style="font-size:60px;"></i></a></div>
+    <div id="item2"><a href='videobog'><i class="fas fa-video" id="videobog" style="font-size:60px;"></i></a></div>
 </div>
