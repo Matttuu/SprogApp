@@ -1,6 +1,7 @@
 <center>
     <h1 class="loggedInHeading">Videoordbog</h1>
-    <p class="loggedInText">Her kan du optage video og tilføje til din ordbog. Efterfølgende kan du tilføje tekst til din video.</p>
+    <p class="loggedInText">Her kan du optage video og tilføje til din ordbog. Efterfølgende kan du tilføje tekst til
+        din video.</p>
 </center>
 
 <div id="tilføjBillede">
@@ -15,18 +16,23 @@
                     Optag video: <input type="file" accept="image/*" id="capture" capture="camera" name="file" class="custom-file-input">
                     <label for="file" class="custom-file-label">Vælg videofil</label>
                 </div>
-                <input type="submit" value="Tilføj video" class="btn btn-primary btn-block">
+                <input type="submit" value="Tilføj video" class="btn btn-success btn-block">
             </form>
             <hr>
             {{#if files}}
             {{#each files}}
             <div class="card card-body mb-3">
                 <video width="100%" height="100%" controls>
-                         <source src="videobog/image/{{filename}}" type="video/mp4">Din browser understøtter ikke denne filtype!</video>
-                <form method="PUT" action="/videobog/image/{{_id}}.mp4?_method=PUT">
-                <input type="text" name="billedeTextFelt" class="btn btn-danger btn-block mt-4"></input>
-                    {{text}}
-                    </form>
+                    <source src="videobog/image/{{filename}}" type="video/mp4">Din browser understøtter ikke denne
+                    filtype!</video>
+                    <br/>
+                <blockquote class="blockquote text-center">
+                      <h6><p class="text-muted">{{videoDescription}}</p></h6>
+                </blockquote>
+                <form method="POST" action="/videobog/files/{{filename}}">
+                    <input type="text" name="videoDescription" class="form-control center_div" placeholder="Tryk her for at tilføje / ændre din beskrivelse" > </input>
+                    <input type="submit" value="Tilføj beskrivelse" class="btn btn-success btn-block">
+                </form>
                 <form method="POST" action="/videobog/files/{{_id}}?_method=DELETE">
                     <button class="btn btn-danger btn-block mt-4">Slet video</button>
                 </form>

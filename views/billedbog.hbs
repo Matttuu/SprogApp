@@ -1,6 +1,7 @@
 <center>
     <h1 class="loggedInHeading">Billedordbog</h1>
-    <p class="loggedInText">Her kan du tage billeder og tilføje til din ordbog. Efterfølgende kan du tilføje tekst og lyd til dit billede.</p>
+    <p class="loggedInText">Her kan du tage billeder og tilføje til din ordbog. Efterfølgende kan du tilføje tekst og
+        lyd til dit billede.</p>
 </center>
 
 <div id="tilføjBillede">
@@ -15,7 +16,7 @@
                     Capture Image: <input type="file" accept="image/*" id="capture" capture="camera" name="file" class="custom-file-input">
                     <label for="file" class="custom-file-label">Vælg billedfil</label>
                 </div>
-                <input type="submit" value="Tilføj billede" class="btn btn-primary btn-block">
+                <input type="submit" value="Tilføj billede" class="btn btn-success btn-block">
             </form>
             <hr>
             <div id="billedeListe">
@@ -23,16 +24,23 @@
                 {{#each files}}
                 <div class="card card-body mb-3">
                     <img src="billedbog/image/{{filename}}" alt="DB BILLEDE HER TAK">
-                    <form method="POST" action="/billedbog/files/{{_id}}?_method=POST">
-                        <input type="text" name="billedeTextFelt" class="btn btn-danger btn-block mt-4"></input>
-                        {{text}}
+                    <br/>
+                    <blockquote class="blockquote text-center">
+                        <h6>
+                            <p class="text-muted">{{billedDescription}}</p>
+                        </h6>
+                    </blockquote>
+                    <form method="POST" action="/billedbog/files/{{filename}}">
+                        <input type="text" name="billedDescription" class="form-control center_div" placeholder="Tryk her for at tilføje / ændre din beskrivelse">
+                        </input>
+                        <input type="submit" value="Tilføj beskrivelse" class="btn btn-success btn-block">
                     </form>
                     <form method="POST" action="/billedbog/files/{{_id}}?_method=DELETE">
                         <button class="btn btn-danger btn-block mt-4">Slet billede</button>
                     </form>
                     </form>
                     <form metode="AddSound" action="/billedbog/files/{{_id}}?_method=AddSound">
-                     <button class="btn btn-danger btn-block mt-4">Tilføj lyd</button>
+                        <button class="btn btn-danger btn-block mt-4">Tilføj lyd</button>
                     </form>
                 </div>
                 {{/each}}
