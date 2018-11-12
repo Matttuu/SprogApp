@@ -162,6 +162,4 @@ router.delete('/files/:id', (req, res) => {
 });
 
 
-//Her slutter det nye
-
 module.exports = router;
