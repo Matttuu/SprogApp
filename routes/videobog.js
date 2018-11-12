@@ -83,14 +83,25 @@ router.post('/videoupload', upload.single('file'), (req, res) => {
   res.redirect('/videobog');
 }); 
 
-router.patch('/files/:id', (req, res) => {
-    gfs.update({ _id: req.params.id, root: 'videouploads' }, (err, gridStore) => {
-        if (err) {
-          return res.status(404).json({ err: err });
-        }});
-    res.redirect('/videobog');
-    
-});
+
+
+
+// Her lagres beskrivelse til videoen i databasen.
+// Det bliver lagret til det specifikke filnavn.
+router.post('/files/:filename', (req, res, next) => {
+    mongoose.connect('mongodb://admin:team12@ds125693.mlab.com:25693/cdi',{useNewUrlParser: true,}, function(err, db){
+    if(err){throw err;}
+   
+    var collection = db.collection('videouploads.files')
+    collection.update(
+      { filename: req.params.filename}, 
+      { '$set': {'videoDescription': req.body.videoDescription}
+    });
+  });
+   res.redirect('/videobog');
+}); 
+
+
 
 
 // @route GET /files

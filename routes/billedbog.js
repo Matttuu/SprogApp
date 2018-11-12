@@ -81,6 +81,22 @@ router.post('/upload', upload.single('file'), (req, res) => {
 }); 
 
 
+// Her lagres beskrivelse til billedet i databasen. 
+// Det bliver lagret til det specifikke filnavn.
+router.post('/files/:filename', (req, res, next) => {
+  mongoose.connect('mongodb://admin:team12@ds125693.mlab.com:25693/cdi',{useNewUrlParser: true,}, function(err, db){
+  if(err){throw err;}
+ 
+  var collection = db.collection('uploads.files')
+  collection.update(
+    { filename: req.params.filename}, 
+    { '$set': {'billedDescription': req.body.billedDescription}
+  });
+});
+ res.redirect('/billedbog');
+}); 
+
+
 // @route GET /files
 // @desc  Display all files in JSON
 router.get('/files', (req, res) => {
