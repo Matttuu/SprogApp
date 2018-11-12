@@ -4,22 +4,24 @@
         Din registrerede rolle er: <b>{{role}}</b><br>
         Dit unikke ID nummer er: <b>{{uniqueId}}</b><br>
         {{#if sprogmakker}}
-        <br>
-        <a href="connectId" target="_self" title="Klik for at forbinde til kursist.">Forbind til en kursist.</a>
-        {{/if}}   
+        <h4 class="loggedInHeading">Vælg herunder:</h4>
+        <div class="flex-container">
+            <div id="item1"><a href='connectId'><i class="fas fa-plug" id="connectId" style="font-size:60px;"></i></a></div>
+            <div id="item2"><a href='chat'><i class="fas fa-comment" id="chat" style="font-size:60px;"></i></a></div>
+        </div>
+        {{else if kursist}}
+        <h4 class="loggedInHeading">Vælg herunder:</h4>
+        <div class="flex-container">
+            <div id="item1"><a href='billedbog'><i class="fas fa-image" id="billedbog" style="font-size:60px;"></i></a></div>
+            <div id="item2"><a href='videobog'><i class="fas fa-video" id="videobog" style="font-size:60px;"></i></a></div>
+        </div>
+        <div class="flex-container">
+            <div id="item4"><a href='chat'><i class="far fa-comment" id="chat" style="font-size:60px;"></i></a></div>
+            <div id="item3"><a href='support'><i class="fas fa-hands-helping" id="support" style="font-size:60px;"></i></a></div>
+        </div>
+        {{else}}
+        <br>Du er admin!
+        <a href="lyd">Lydtest her</a>
+        {{/if}}
     </p>
-    <h4 class="loggedInHeading">Vælg herunder:</h4>
-</div>
-<div class="flex-container">
-    <div id="item1"><a href='billedbog'><i class="fas fa-image" id="billedbog" style="font-size:60px;"></i></a></div>
-    <div id="item2"><a href='videobog'><i class="fas fa-video" id="videobog" style="font-size:60px;"></i></a></div>
-</div>
-<div class="flex-container">
-    <div id="item4"><a href='chat'><i class="far fa-comment" id="chat" style="font-size:60px;"></i></a></div>
-    <div id="item3"><a href='support'><i class="fas fa-hands-helping" id="support" style="font-size:60px;"></i></a></div>
-
-<!--Lyd Test skal slettes når lyd virker-->
-     <div id="item5"><a href='lyd'><i class="fas fa-file-audio" id="lyd" style="font-size:60px;"></i></a></div>
-
-
 </div>
