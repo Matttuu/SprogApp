@@ -11,12 +11,8 @@ router.get('/', function(req, res, next) {
     name: user.username,
     role: user.role,
     uniqueId: user.uniqueId,
-<<<<<<< HEAD
     sprogmakker: user.role === "Sprogmakker",
     tilknyttetKursistID: user.tilknyttetKursistID
-=======
-    sprogmakker: user.role ==="Sprogmakker",
->>>>>>> d0dd2cc74ebb46c4d291e4ee2b202f295c36ad03
    });
 }); 
 });
