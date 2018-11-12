@@ -7,7 +7,11 @@ router.get('/', function(req, res, next) {
     User.findById(req.session.userId)
     .exec(function (error, user) {
     res.render('support', { 
-      name: user.username
+      name: user.username,
+      uniqueId: user.uniqueId,
+      sprogmakker: user.role === "Sprogmakker",
+      kursist: user.role === "Kursist",
+      admin: user.role === "Administrator"
      });
   });
 });

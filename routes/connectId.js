@@ -6,15 +6,16 @@ var mongoose = require('mongoose');
 /* GET home page. */
 router.get('/', function (req, res, next) {
   User.findById(req.session.userId)
-    .exec(function (error, user) {
-      res.render('connectID', {
-        name: user.username,
-        role: user.role,
-        uniqueId: user.uniqueId,
-        sprogmakker: user.role === "Sprogmakker",
-        tilknyttetKursistID: user.tilknyttetKursistID
-      });
-    });
+  .exec(function (error, user) {
+  res.render('connectID', { 
+    name: user.username,
+    role: user.role,
+    uniqueId: user.uniqueId,
+    sprogmakker: user.role === "Sprogmakker",
+    admin: user.role === "Administrator",
+    tilknyttetKursistID: user.tilknyttetKursistID
+   });
+}); 
 });
 
 router.post('/uploadID', (req, res, next) => {

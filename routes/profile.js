@@ -10,13 +10,14 @@ router.get('', function(req, res, next) {
     name: user.username,
     role: user.role,
     uniqueId: user.uniqueId,
-    sprogmakker: user.role ==="Sprogmakker"
+    sprogmakker: user.role === "Sprogmakker",
+    kursist: user.role === "Kursist",
+    admin: user.role === "Administrator"
    });
 });
 });
 
-
-  // GET for logout logout
+// GET for logout logout
 router.get('/logout', function (req, res, next) {
   if (req.session) {
     // delete session object
