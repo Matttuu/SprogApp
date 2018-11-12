@@ -54,3 +54,18 @@ height: 100%;
   display: flex;
   flex-direction: column-reverse;
 }
+
+.tilknyttetKursistTable {
+  font: 18px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+.tilknyttetKursistTable th {
+  padding: 15px;
+}
+
+.tilknyttetKursistTable td {
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}

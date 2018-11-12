@@ -11,7 +11,8 @@ router.get('/', function(req, res, next) {
     name: user.username,
     role: user.role,
     uniqueId: user.uniqueId,
-    sprogmakker: user.role ==="Sprogmakker",
+    sprogmakker: user.role === "Sprogmakker",
+    tilknyttetKursistID: user.tilknyttetKursistID
    });
 }); 
 });
@@ -40,6 +41,5 @@ router.post('/uploadID', (req, res, next) => {
 });
    res.redirect('/connectId');
 }); 
-
 
 module.exports = router;

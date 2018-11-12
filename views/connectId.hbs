@@ -2,16 +2,39 @@
     <h1 class="loggedInHeading">Forbind til kursist</h1>
     <p class="loggedInText">
         {{#if sprogmakker}}
+        <script>
+            $(document).ready(function(e) {
+                $('#connecter').hide();
+                $('form').submit(function() {
+                    $('#connecter').show();
+                    alert("ID blev fundet og kursisten er nu forbundet.");
+                    e.preventDefault();
+                });
+            });
+        </script>
         Du er registreret som sprogmakker og har derfor mulighed for at forbinde til kursister.
         <br>
         Bed kursisten om at oplyse sit unikke ID-nummer og indtast det herunder. Det unikke ID-nummer kan findes på forsiden af kursistens profil.
         <br>
         <div style="margin-left:25px; margin-right:25px;">
-            <form action='/connectId/uploadID' method="post">
+            <form id="connectForm" action='/connectId/uploadID' method="post">
                 <input class="form-control" type="text" name="kursistID" placeholder="ID-nummer" required="" id="connectIdNo" pattern="[A-Za-z0-9_]{11,11}">
                 <input class="btn btn-lg btn-primary btn-block" style="margin-top:10px;" type="submit" value="FORBIND KURSIST">
             </form>
         </div>
+        <br>
+        <div id="connecter">Vent venligst...</div>
+        <table class="tilknyttetKursistTable" align="center">
+            <tr>
+                <th colspan="4">Senest tilknyttede kursist</th>
+            </tr>
+            <tr>
+                <td><b>{{tilknyttetKursistID}}</b></td>
+                <td><a href="chat">Chat</a></td>
+                <td><a href="billedbog">Billedordbog</a></td>
+                <td><a href="videobog">Videoordbog</a></td>
+            </tr>
+        </table>
         {{else}}
         Du er ikke registreret som sprogmakker og kan derfor heller ikke forbinde til kursister.
         {{/if}}

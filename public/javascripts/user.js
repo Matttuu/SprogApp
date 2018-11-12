@@ -31,6 +31,9 @@ var UserSchema = new mongoose.Schema({
   passwordConf: {
     type: String,
     required: true,
+  },
+  tilknyttetKursistID: {
+    type: String,
   }
 });
 
