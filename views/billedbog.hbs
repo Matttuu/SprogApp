@@ -42,22 +42,24 @@
                     <form method="POST" action="/billedbog/files/{{_id}}?_method=DELETE">
                         <button class="btn btn-danger btn-block mt-4">Slet billede</button>
                     </form>
-                    </form>
-                    <!-- Tilføj lyd til billede --> 
-                    <form method="POST" action="/lyd/files/{{filename}}">
-                        <input type="file" name="audio" class="form-control center_div" placeholder="Tryk her for at tilføje / ændre din beskrivelse">
+                    
+
+                    
+                    {{!-- <!-- Tilføj lyd til billede --> 
+                    <form method="POST" action="/billedbog/files/{{filename}}">
+                        <input type="file" name="billedLyd" class="form-control center_div" placeholder="Tryk her for at tilføje / ændre din beskrivelse">
                         </input>
-                        <input type="submit" value="Tilføj beskrivelse" class="btn btn-success btn-block">
-                        <video width="100%" height="100%" controls>
-                         <source src="lyd/audio/{{filename}}" type="audio/mp4">Din browser understøtter ikke denne filtype!</video>
-                <form method="PUT" action="/lyd/audio/{{_id}}.mp4?_method=PUT">
-                <input type="text" name="audioTextFelt" class="btn btn-danger btn-block mt-4"></input>
-                    {{text}}
-                    <form method="POST" action="/lyd/files/{{_id}}?_method=DELETE">
-                    <button class="btn btn-danger btn-block mt-4">Slet lyd</button>
-                </form>
+                        <input type="submit" value="Tilføj lyd" class="btn btn-success btn-block">
                     </form>
-                    </form>
+
+                    <!-- Vis lydindspilning --> 
+                    <audio controls>
+                         <source src="billedbog/image/{{billedLyd}}" type="audio/mp3">
+                         <source src="billedbog/image/{{billedLyd}}" type="audio/m4a">
+                         Din browser understøtter ikke denne filtype!
+                    </audio>    --}}
+                    
+
                 </div>
                 {{/each}}
                 {{/if}}
