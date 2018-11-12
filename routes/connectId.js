@@ -28,7 +28,7 @@ router.post('/uploadID', (req, res, next) => {
     
     var collection = db.collection('users');
 
-    var findID = collection.find({"uniqueId": kursistID}).limit(1);
+    var findID = collection.find({"uniqueId": kursistID});
     findID.count(function(error, antal){
       console.log(antal);
     
