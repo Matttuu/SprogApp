@@ -109,8 +109,8 @@ router.post('/files/:filename', (req, res, next) => {
       var collection = db.collection('uploads.files')
     // Bruger collection.update metoden for at opdatere / give text til specifikt billede
       collection.update(
-      { filename: req.params.filename}, 
-      { '$set': {'billedDescription': req.body.billedDescription}}  
+        { filename: req.params.filename}, 
+        { '$set': {'billedDescription': req.body.billedDescription}}  
       )
     }
   asyncCall();
