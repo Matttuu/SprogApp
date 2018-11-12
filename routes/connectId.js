@@ -11,8 +11,12 @@ router.get('/', function(req, res, next) {
     name: user.username,
     role: user.role,
     uniqueId: user.uniqueId,
+<<<<<<< HEAD
     sprogmakker: user.role === "Sprogmakker",
     tilknyttetKursistID: user.tilknyttetKursistID
+=======
+    sprogmakker: user.role ==="Sprogmakker",
+>>>>>>> d0dd2cc74ebb46c4d291e4ee2b202f295c36ad03
    });
 }); 
 });
@@ -24,9 +28,20 @@ router.post('/uploadID', (req, res, next) => {
   mongoose.connect('mongodb://admin:team12@ds125693.mlab.com:25693/cdi',{useNewUrlParser: true,}, function(err, db){
     if(err){throw err;}
 
+    var kursistID = req.body.kursistID;
+    var k = 1;
+    
     var collection = db.collection('users');
+    
+    var findID = collection.find({"uniqueId": kursistID}).limit(1);
+    findID.count(function(error, antal){
+      console.log(antal);
+    
+    if(antal === 1){
     collection.update({'uniqueId': user.uniqueId},
-    {'$set': {'tilknyttetKursistID': req.body.kursistID}});
+    {'$set': {'tilknyttetKursistID': kursistID}});
+    }
+    });
   });
 });
    res.redirect('/connectId');

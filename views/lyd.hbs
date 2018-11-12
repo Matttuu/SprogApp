@@ -1,0 +1,38 @@
+<center>
+    <h1 class="loggedInHeading">Videoordbog</h1>
+    <p class="loggedInText">Her kan du optage video og tilføje til din ordbog. Efterfølgende kan du tilføje tekst til din video.</p>
+</center>
+
+<div id="tilføjBillede">
+    <p>Tilføj video til videoordbogen</p>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 m-auto">
+            <form action="/lyd/audioupload" method="POST" enctype="multipart/form-data">
+                <div class="custom-file mb-3">
+                    Optag video: <input type="file" accept="audio/*" id="capture" capture="audio" name="file" class="custom-file-input">
+                    <label for="file" class="custom-file-label">Vælg lydfil</label>
+                </div>
+                <input type="submit" value="Tilføj audio" class="btn btn-primary btn-block">
+            </form>
+            <hr>
+            {{#if files}}
+            {{#each files}}
+            <div class="card card-body mb-3">
+                <video width="100%" height="100%" controls>
+                         <source src="lyd/audio/{{filename}}" type="audio/mp4">Din browser understøtter ikke denne filtype!</video>
+                <form method="PUT" action="/lyd/audio/{{_id}}.mp4?_method=PUT">
+                <input type="text" name="audioTextFelt" class="btn btn-danger btn-block mt-4"></input>
+                    {{text}}
+                    </form>
+                <form method="POST" action="/lyd/files/{{_id}}?_method=DELETE">
+                    <button class="btn btn-danger btn-block mt-4">Slet audio</button>
+                </form>
+            </div>
+            {{/each}}
+            {{/if}}
+        </div>
+    </div>
+</div>
