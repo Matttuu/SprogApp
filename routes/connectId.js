@@ -4,42 +4,60 @@ var User = require('../public/javascripts/user');
 var mongoose = require('mongoose');
 
 /* GET home page. */
-router.get('/', function(req, res, next) {
+router.get('/', function (req, res, next) {
   User.findById(req.session.userId)
-  .exec(function (error, user) {
-  res.render('connectID', { 
-    name: user.username,
-    role: user.role,
-    uniqueId: user.uniqueId,
-    sprogmakker: user.role === "Sprogmakker",
-    tilknyttetKursistID: user.tilknyttetKursistID
-   });
-}); 
+    .exec(function (error, user) {
+      res.render('connectID', {
+        name: user.username,
+        role: user.role,
+        uniqueId: user.uniqueId,
+        sprogmakker: user.role === "Sprogmakker",
+        tilknyttetKursistID: user.tilknyttetKursistID
+      });
+    });
 });
 
 router.post('/uploadID', (req, res, next) => {
   User.findById(req.session.userId)
-  .exec(function (error, user) {
+    .exec(function (error, user) {
 
-  mongoose.connect('mongodb://admin:team12@ds125693.mlab.com:25693/cdi',{useNewUrlParser: true,}, function(err, db){
-    if(err){throw err;}
+      mongoose.connect('mongodb://admin:team12@ds125693.mlab.com:25693/cdi', { useNewUrlParser: true, }, function (err, db) {
+        if (err) { throw err; }
 
-    var kursistID = req.body.kursistID;
-    
-    var collection = db.collection('users');
+        function resolveDetteBagefter() {
+          return new Promise(resolve => {
+            setTimeout(() => {
+              resolve(res.redirect('/connectId'));
+            }, 0001);
+          });
+        }
+        async function asyncCall() {
+          var result = await resolveDetteBagefter();
+          var kursistID = req.body.kursistID;
 
-    var findID = collection.find({"uniqueId": kursistID});
-    findID.count(function(error, antal){
-      console.log(antal);
-    
-    if(antal === 1){
-    collection.update({'uniqueId': user.uniqueId},
-    {'$set': {'tilknyttetKursistID': kursistID}});
-    }
+          var collection = db.collection('users');
+
+          var findID = collection.find({ "uniqueId": kursistID });
+
+          //var findName = collection.find({"username": {"uniqueId": "wxkr788n5uc"}});
+          /*
+          var query = {"username": {"uniqueId": "wxkr788n5uc"}};
+          collection.find(query).toArray(function(err, result){
+            if(err) throw err;
+            console.log(result);
+            db.close();
+          });
+*/
+          findID.count(function (error, antal) {
+
+            if (antal === 1) {
+              collection.update({ 'uniqueId': user.uniqueId },
+                { '$set': { 'tilknyttetKursistID': kursistID } });
+            }
+          });
+        }
+        asyncCall();
+      });
     });
-  });
 });
-   res.redirect('/connectId');
-}); 
-
 module.exports = router;
