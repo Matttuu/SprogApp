@@ -86,19 +86,40 @@ router.post('/videoupload', upload.single('file'), (req, res) => {
 
 
 
-// Her lagres beskrivelse til videoen i databasen.
+// Her lagres beskrivelse til videoen i databasen. 
 // Det bliver lagret til det specifikke filnavn.
+/* Der bliver benyttet en async / await funktion for at
+   sørge for koden bliver kørt asynkront. Dette resultere
+   i at teksten bliver opdateret når den bliver sat ind
+   med det samme.
+*/
 router.post('/files/:filename', (req, res, next) => {
-    mongoose.connect('mongodb://admin:team12@ds125693.mlab.com:25693/cdi',{useNewUrlParser: true,}, function(err, db){
-    if(err){throw err;}
+
+  // Connect til database
+  mongoose.connect('mongodb://admin:team12@ds125693.mlab.com:25693/cdi',{useNewUrlParser: true,}, function(err, db){
+  if(err){throw err;}
    
+  // Opretter nyt promise som bliver kørt senere i koden.
+  function resolveDetteBagefter() {
+    return new Promise(resolve => {
+      setTimeout(() => {
+        resolve(res.redirect('/videobog'));
+      }, 0001);
+    });
+  }
+  // Opretter async funktion.
+  async function asyncCall () {
+    var result = await resolveDetteBagefter();
+  // Peger på database collection
     var collection = db.collection('videouploads.files')
+  // Bruger collection.update metoden for at opdatere / give text til specifik video.
     collection.update(
       { filename: req.params.filename}, 
-      { '$set': {'videoDescription': req.body.videoDescription}
-    });
+      { '$set': {'videoDescription': req.body.videoDescription}}
+    )
+  }
+  asyncCall();
   });
-   res.redirect('/videobog');
 }); 
 
 
