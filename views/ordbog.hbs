@@ -1,8 +1,14 @@
 <div style="text-align:center;">
     <h1 class="loggedInHeading">Ordbog</h1>
+    {{#if sprogmakker}}
+    <p class="loggedInText" style="text-align:center;">    
+        {{name}}, du er logget ind som {{role}} og har derfor ikke nogen personlig ordbog.<br>
+        Hvis du ønsker at kigge i dine kursisters ordbøger, kan du finde dem <a href="connectId">her</a>.
+    </p>
+    {{else if kursist}}
     <p class="loggedInText" style="text-align:justify;">
         Din ordbog er opdelt i to kategorier: En <a href="billedbog" target="_self">billedordbog</a> og en <a href="videobog" target="_self">videoordbog</a>.
-        Hvis du ønsker at tage et billede og gemme sammen med tekst og lyd, skal du vælge din billedordbog. Hvis du derimod ønsker at optage en lille video med tilhørende tekst til, så skal du vælge din videoordbog.
+        Hvis du ønsker at tage et billede og gemme sammen med tekst og lyd, skal du vælge din billedordbog. Hvis du derimod ønsker at optage en lille video med tilhørende tekst til, så skal du vælge din videoordbog.    
     </p>
     <h4 class="loggedInHeading">Vælg herunder:</h4>
 </div>
@@ -10,4 +16,9 @@
     <div id="item1"><a href='billedbog'><i class="fas fa-image" id="billedbog" style="font-size:60px;"></i></a></div>
     <div id="item2"><a href='videobog'><i class="fas fa-video" id="videobog" style="font-size:60px;"></i></a></div>
 </div>
+{{else}}
+<p class="loggedInText" style="text-align:center;">
+    Du er admin! Holy Jesus!
+</p>
+{{/if}}
 
