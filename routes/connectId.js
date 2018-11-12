@@ -12,6 +12,7 @@ router.get('/', function(req, res, next) {
     role: user.role,
     uniqueId: user.uniqueId,
     sprogmakker: user.role === "Sprogmakker",
+    admin: user.role === "Administrator",
     tilknyttetKursistID: user.tilknyttetKursistID
    });
 }); 

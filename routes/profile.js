@@ -11,7 +11,8 @@ router.get('', function(req, res, next) {
     role: user.role,
     uniqueId: user.uniqueId,
     sprogmakker: user.role === "Sprogmakker",
-    kursist: user.role === "Kursist"
+    kursist: user.role === "Kursist",
+    admin: user.role === "Administrator"
    });
 });
 });
