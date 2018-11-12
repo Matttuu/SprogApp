@@ -80,6 +80,9 @@ router.post('/upload', upload.single('file'), (req, res) => {
   res.redirect('/billedbog');
 }); 
 
+
+// Her lagres beskrivelse til billedet i databasen. 
+// Det bliver lagret til det specifikke filnavn.
 router.post('/files/:filename', (req, res, next) => {
   mongoose.connect('mongodb://admin:team12@ds125693.mlab.com:25693/cdi',{useNewUrlParser: true,}, function(err, db){
   if(err){throw err;}

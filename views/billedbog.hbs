@@ -23,22 +23,27 @@
                 {{#if files}}
                 {{#each files}}
                 <div class="card card-body mb-3">
+                    <!-- Display billede --> 
                     <img src="billedbog/image/{{filename}}" alt="DB BILLEDE HER TAK">
                     <br/>
+                    <!-- Display tekst tilknyttet til billede -->
                     <blockquote class="blockquote text-center">
                         <h6>
                             <p class="text-muted">{{billedDescription}}</p>
                         </h6>
                     </blockquote>
+                    <!-- Tilføj tekst til billede --> 
                     <form method="POST" action="/billedbog/files/{{filename}}">
                         <input type="text" name="billedDescription" class="form-control center_div" placeholder="Tryk her for at tilføje / ændre din beskrivelse">
                         </input>
                         <input type="submit" value="Tilføj beskrivelse" class="btn btn-success btn-block">
                     </form>
+                    <!-- Slet video -->
                     <form method="POST" action="/billedbog/files/{{_id}}?_method=DELETE">
                         <button class="btn btn-danger btn-block mt-4">Slet billede</button>
                     </form>
                     </form>
+                    <!-- Tilføj lyd til billede --> 
                     <form metode="AddSound" action="/billedbog/files/{{_id}}?_method=AddSound">
                         <button class="btn btn-danger btn-block mt-4">Tilføj lyd</button>
                     </form>

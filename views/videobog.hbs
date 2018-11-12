@@ -22,17 +22,21 @@
             {{#if files}}
             {{#each files}}
             <div class="card card-body mb-3">
+                <!-- Display video --> 
                 <video width="100%" height="100%" controls>
                     <source src="videobog/image/{{filename}}" type="video/mp4">Din browser understøtter ikke denne
                     filtype!</video>
                     <br/>
+                <!-- Display tekst tilknyttet til video -->
                 <blockquote class="blockquote text-center">
                       <h6><p class="text-muted">{{videoDescription}}</p></h6>
                 </blockquote>
+                <!-- Tilføj tekst til video --> 
                 <form method="POST" action="/videobog/files/{{filename}}">
                     <input type="text" name="videoDescription" class="form-control center_div" placeholder="Tryk her for at tilføje / ændre din beskrivelse" > </input>
                     <input type="submit" value="Tilføj beskrivelse" class="btn btn-success btn-block">
                 </form>
+                <!-- Slet video --> 
                 <form method="POST" action="/videobog/files/{{_id}}?_method=DELETE">
                     <button class="btn btn-danger btn-block mt-4">Slet video</button>
                 </form>
