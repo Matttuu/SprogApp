@@ -83,19 +83,39 @@ router.post('/upload', upload.single('file'), (req, res) => {
 
 // Her lagres beskrivelse til billedet i databasen. 
 // Det bliver lagret til det specifikke filnavn.
+/* Der bliver benyttet en async / await funktion for at
+   sørge for koden bliver kørt asynkront. Dette resultere
+   i at teksten bliver opdateret når den bliver sat ind
+   med det samme.
+*/
 router.post('/files/:filename', (req, res, next) => {
+
+  // Connect til database
   mongoose.connect('mongodb://admin:team12@ds125693.mlab.com:25693/cdi',{useNewUrlParser: true,}, function(err, db){
   if(err){throw err;}
- 
-  var collection = db.collection('uploads.files')
-  collection.update(
-    { filename: req.params.filename}, 
-    { '$set': {'billedDescription': req.body.billedDescription}
-  });
-});
- res.redirect('/billedbog');
-}); 
 
+  // Oprette nyt promise som bliver kørt senere i koden.
+    function resolveDetteBagefter() {
+      return new Promise(resolve => {
+        setTimeout(() => {
+          resolve(res.redirect('/billedbog'));
+        }, 0001);
+      });
+    }
+    // Opretter async funktion 
+    async function asyncCall () {
+      var result = await resolveDetteBagefter();
+    // Peger på database collection 
+      var collection = db.collection('uploads.files')
+    // Bruger collection.update metoden for at opdatere / give text til specifikt billede
+      collection.update(
+      { filename: req.params.filename}, 
+      { '$set': {'billedDescription': req.body.billedDescription}}  
+      )
+    }
+  asyncCall();
+ });
+}); 
 
 // @route GET /files
 // @desc  Display all files in JSON
