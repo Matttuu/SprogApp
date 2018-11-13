@@ -52,6 +52,7 @@ router.post('/uploadID', (req, res, next) => {
           findID.count(function (error, antal) {
 
             if (antal === 1) {
+              alert("Test");
               collection.update({ 'uniqueId': user.uniqueId },
                 { '$set': { 'tilknyttetKursistID': kursistID } });
             }
