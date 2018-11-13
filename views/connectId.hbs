@@ -18,13 +18,14 @@
         <br>
         <div style="margin-left:25px; margin-right:25px;">
             <form id="connectForm" action='/connectId/uploadID' method="post">
-                <input class="form-control" type="text" name="kursistID" placeholder="ID-nummer" required="" id="connectIdNo" pattern="[A-Za-z0-9_]{11,11}">
+                <input class="form-control" type="text" name="kursistID" placeholder="ID-nummer" required="" id="connectIdNo" pattern="[A-Za-z0-9_]{10,11}">
                 <input class="btn btn-lg btn-primary btn-block" style="margin-top:10px;" type="submit" value="FORBIND KURSIST">
             </form>
         </div>
         <br>
         <div id="connecter">Vent venligst...</div>
         <table class="tilknyttetKursistTable" align="center">
+             {{#if antalTilknyttedeKursister1}}
             <tr>
                 <th colspan="4">Senest tilknyttede kursist</th>
             </tr>
@@ -34,18 +35,23 @@
                 <td><a href="billedbog">Billedordbog</a></td>
                 <td><a href="videobog">Videoordbog</a></td>
             </tr>
+             {{#if antalTilknyttedeKursister2}}
             <tr>
                 <td><b>{{tilknyttetKursistID2}}</b></td>
                 <td><a href="chat">Chat</a></td>
                 <td><a href="billedbog">Billedordbog</a></td>
                 <td><a href="videobog">Videoordbog</a></td>
             </tr>
+             {{#if antalTilknyttedeKursister3}}
             <tr>
                 <td><b>{{tilknyttetKursistID3}}</b></td>
                 <td><a href="chat">Chat</a></td>
                 <td><a href="billedbog">Billedordbog</a></td>
                 <td><a href="videobog">Videoordbog</a></td>
             </tr>
+            {{/if}}
+            {{/if}}
+            {{/if}}
         </table>
         {{else}}
         Du er ikke registreret som sprogmakker og kan derfor heller ikke forbinde til kursister.

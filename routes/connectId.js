@@ -18,7 +18,14 @@ router.get('/', function (req, res, next) {
         tilknyttetKursistID3: user.tilknyttetKursistID3,
         tilknyttetKursistID4: user.tilknyttetKursistID4,
         tilknyttetKursistID5: user.tilknyttetKursistID5,
-        antalTilknyttedeKursister: user.antalTilknyttedeKursister
+        antalTilknyttedeKursister: user.antalTilknyttedeKursister,
+        antalTilknyttedeKursister1: user.antalTilknyttedeKursister >= 1,
+        antalTilknyttedeKursister2: user.antalTilknyttedeKursister >= 2,
+        antalTilknyttedeKursister3: user.antalTilknyttedeKursister >= 3,
+        antalTilknyttedeKursister4: user.antalTilknyttedeKursister >= 4,
+        antalTilknyttedeKursister5: user.antalTilknyttedeKursister >= 5,
+
+
       });
     });
 });
