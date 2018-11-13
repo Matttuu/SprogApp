@@ -1,0 +1,48 @@
+<center>
+    <h1 class="loggedInHeading">Videoordbog</h1>
+    <p class="loggedInText">Her kan du optage video og tilføje til din ordbog. Efterfølgende kan du tilføje tekst til
+        din video.</p>
+</center>
+
+<div id="tilføjBillede">
+    <p>Tilføj video til videoordbogen</p>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 m-auto">
+            <form action="/videobog/videoupload" method="POST" enctype="multipart/form-data">
+                <div class="custom-file mb-3">
+                    Optag video: <input type="file" accept="video/*" id="capture" capture="camera" name="file" class="custom-file-input">
+                    <label for="file" class="custom-file-label">Vælg videofil</label>
+                </div>
+                <input type="submit" value="Tilføj video" class="btn btn-success btn-block">
+            </form>
+            <hr>
+            {{#if files}}
+            {{#each files}}
+            <div class="card card-body mb-3">
+                <!-- Display video --> 
+                <video width="500" height="250" controls>
+                    <source src="videobog/image/{{filename}}" type="video/mp4">Din browser understøtter ikke denne
+                    filtype!</video>
+                    <br/>
+                <!-- Display tekst tilknyttet til video -->
+                <blockquote class="blockquote text-center">
+                      <h6><p class="text-muted">{{videoDescription}}</p></h6>
+                </blockquote>
+                <!-- Tilføj tekst til video --> 
+                <form method="POST" action="/videobog/files/{{filename}}">
+                    <input type="text" name="videoDescription" class="form-control center_div" placeholder="Tryk her for at tilføje / ændre din beskrivelse" > </input>
+                    <input type="submit" value="Tilføj beskrivelse" class="btn btn-success btn-block">
+                </form>
+                <!-- Slet video --> 
+                <form method="POST" action="/videobog/files/{{_id}}?_method=DELETE">
+                    <button class="btn btn-danger btn-block mt-4">Slet video</button>
+                </form>
+            </div>
+            {{/each}}
+            {{/if}}
+        </div>
+    </div>
+</div>

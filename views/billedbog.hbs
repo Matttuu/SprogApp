@@ -1,0 +1,69 @@
+<center>
+    <h1 class="loggedInHeading">Billedordbog</h1>
+    <p class="loggedInText">Her kan du tage billeder og tilføje til din ordbog. Efterfølgende kan du tilføje tekst og
+        lyd til dit billede.</p>
+</center>
+
+<div id="tilføjBillede">
+    <p>Tilføj billede til billedordbogen</p>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 m-auto">
+            <form action="/billedbog/upload" method="POST" enctype="multipart/form-data">
+                <div class="custom-file mb-3">
+                    Capture Image: <input type="file" accept="image/*" id="capture" capture="camera" name="file" class="custom-file-input">
+                    <label for="file" class="custom-file-label">Vælg billedfil</label>
+                </div>
+                <input type="submit" value="Tilføj billede" class="btn btn-success btn-block">
+            </form>
+            <hr>
+            <div id="billedeListe">
+                {{#if files}}
+                {{#each files}}
+                <div class="card card-body mb-3">
+                    <!-- Display billede --> 
+                    <img src="billedbog/image/{{filename}}" alt="DB BILLEDE HER TAK">
+                    <br/>
+                    <!-- Display tekst tilknyttet til billede -->
+                    <blockquote class="blockquote text-center">
+                        <h6>
+                            <p class="text-muted">{{billedDescription}}</p>
+                        </h6>
+                    </blockquote>
+                    <!-- Tilføj tekst til billede --> 
+                    <form method="POST" action="/billedbog/files/{{filename}}">
+                        <input type="text" name="billedDescription" class="form-control center_div" placeholder="Tryk her for at tilføje / ændre din beskrivelse">
+                        </input>
+                        <input type="submit" value="Tilføj beskrivelse" class="btn btn-success btn-block">
+                    </form>
+                    <!-- Slet video -->
+                    <form method="POST" action="/billedbog/files/{{_id}}?_method=DELETE">
+                        <button class="btn btn-danger btn-block mt-4">Slet billede</button>
+                    </form>
+                    
+
+                    
+                    {{!-- <!-- Tilføj lyd til billede --> 
+                    <form method="POST" action="/billedbog/files/{{filename}}">
+                        <input type="file" name="billedLyd" class="form-control center_div" placeholder="Tryk her for at tilføje / ændre din beskrivelse">
+                        </input>
+                        <input type="submit" value="Tilføj lyd" class="btn btn-success btn-block">
+                    </form>
+
+                    <!-- Vis lydindspilning --> 
+                    <audio controls>
+                         <source src="billedbog/image/{{billedLyd}}" type="audio/mp3">
+                         <source src="billedbog/image/{{billedLyd}}" type="audio/m4a">
+                         Din browser understøtter ikke denne filtype!
+                    </audio>    --}} 
+                    
+
+                </div>
+                {{/each}}
+                {{/if}}
+            </div>
+        </div>
+    </div>
+</div>

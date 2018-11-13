@@ -1,32 +1,32 @@
 {
   "name": "sprogapp",
-  "version": "1.0.0",
-  "description": "Dette repository indeholder det udviklingsmæssige arbejde hen imod en færdigkørende applikation, bestilt af Center for Dansk og Integration. Ønsket fra CDI kan kortfattet formuleres som: en web-app, der skal gøre det lettere for indvandrere at lære det danske sprog på arbejdspladsen.",
-  "main": "server.js",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "nodemon ./bin/www"
+  },
   "dependencies": {
+    "alert-node": "^1.2.2",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.18.3",
     "connect-mongo": "^2.0.1",
-    "express": "^4.16.4",
+    "consolidate": "^0.15.1",
+    "cookie-parser": "~1.4.3",
+    "debug": "~2.6.9",
+    "dialog": "^0.3.1",
+    "ejs": "^2.6.1",
+    "express": "~4.16.0",
     "express-session": "^1.15.6",
+    "gridfs-stream": "^1.1.1",
+    "hbs": "~4.0.1",
+    "http-errors": "~1.6.2",
+    "method-override": "^3.0.0",
     "mongodb": "^3.1.8",
-    "mongoose": "^5.3.2",
-    "node": "^10.11.0",
-    "nodemon": "^1.18.4"
-  },
-  "devDependencies": {},
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/Matttuu/SprogApp.git"
-  },
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/Matttuu/SprogApp/issues"
-  },
-  "homepage": "https://github.com/Matttuu/SprogApp#readme"
+    "mongoose": "^5.3.8",
+    "morgan": "~1.9.0",
+    "multer": "^1.4.1",
+    "multer-gridfs-storage": "^3.2.3",
+    "sweetalert": "^2.1.2",
+    "swig": "^1.4.2"
+  }
 }

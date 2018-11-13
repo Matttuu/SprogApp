@@ -1,0 +1,15 @@
+<div style="text-align:center;">
+    <h1 class="loggedInHeading">Support</h1>
+    <p class="loggedInText"><b>Hej, {{name}}</b></p>
+    {{#if kursist}}
+    <p class="loggedInText" style="text-align:justify;">Er der tekniske problemer med applikationen, så frygt ej. Vi her for at hjælpe dig. Du kan enten kontakte supporten direkte på <a href="mailto:support@sprogapp.dk">support@sprogapp.dk</a> eller rette henvendelse til din sprogmakker eller arbejdsplads, som kan tage fat i teknisk support. Måske skal du oplyse dit ID-nummer, i så fald er det: <b>{{uniqueId}}</b>.</p>
+    <p class="loggedInText" style="text-align:left;">Prøv også: <a href="#">Ofte stillede spørgsmål</a>.</p>
+    {{else if sprogmakker}}
+    <p class="loggedInText" style="text-align:justify;">Hvis du som sprogmakker støder på tekniske problemer, eller har et spørgsmål fra din kursist angående applikationen, du ikke umiddelbart kan svare på, så er du altid velkommen til at kontakte teknisk support på <a href="mailto:support@sprogapp.dk">support@sprogapp.dk</a></p>
+    <p class="loggedInText" style="text-align:justify;">Du kan også prøve at henvise din kursist til vores side omkring <a href="#">ofte stillede spørgsmål</a>.</p>
+    {{else if admin}}
+    <p classs="loggedInText">Du er admin! Hvem skulle kunne hjælpe dig?</p>
+    {{/if}}
+    <br>
+    <img src="/billeder/support.png" alt="Support" style="max-width:200px;max-height:200px;">
+</div>

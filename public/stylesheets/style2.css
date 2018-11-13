@@ -1,0 +1,71 @@
+#ordbog, #chat{
+  text-align: center;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.flex-container {
+  display: flex;
+  flex-wrap: wrap;
+  background-color: white;
+  padding: 2px 2px;
+  justify-content:center;
+  cursor: pointer;
+}
+
+.flex-container>div {
+  background-color: rgba(245, 245, 255, 0.8);
+  text-align: center; 
+  padding:45px 0px;
+  border: 1px solid black;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 150px;
+  height: 150px;
+  margin: 0 2px;
+  font-weight: bold;
+}
+
+#tilføjBillede {
+  text-align: center;
+  font-weight: bold;
+}
+
+img {
+  width: 100%;
+}
+
+.billeder {
+width: auto;
+height: 100%;
+}
+
+.loggedInHeading {
+  margin: 20px;
+}
+
+.loggedInText {
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+#billedeListe{
+  display: flex;
+  flex-direction: column-reverse;
+}
+
+.tilknyttetKursistTable {
+  font: 18px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+.tilknyttetKursistTable th {
+  padding: 15px;
+}
+
+.tilknyttetKursistTable td {
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}

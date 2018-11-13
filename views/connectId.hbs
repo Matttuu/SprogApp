@@ -1,0 +1,78 @@
+<div style="text-align:center;">
+    <h1 class="loggedInHeading">Forbind til kursist</h1>
+    <p class="loggedInText">
+        {{#if sprogmakker}}
+        <script>
+            $(document).ready(function(e) {
+                $('#connecter').hide();
+                $('form').submit(function() {
+                    $('#connecter').show();
+                    confirm("Hvis ID-nummeret findes, er du nu blevet forbundet til kursisten. Tjek listen nederst på siden.");
+                    e.preventDefault();
+                });
+            });
+        </script>
+        Du er registreret som sprogmakker og har derfor mulighed for at forbinde til kursister.
+        <br>
+        Bed kursisten om at oplyse sit unikke ID-nummer og indtast det herunder. Det unikke ID-nummer kan findes på forsiden af kursistens profil.
+        <br>
+        <div style="margin-left:25px; margin-right:25px;">
+            <form id="connectForm" action='/connectId/uploadID' method="post">
+                <input class="form-control" type="text" name="kursistID" placeholder="ID-nummer" required="" id="connectIdNo" pattern="[A-Za-z0-9_]{10,11}">
+                <input class="btn btn-lg btn-primary btn-block" style="margin-top:10px;" type="submit" value="FORBIND KURSIST">
+            </form>
+        </div>
+        <br>
+        <div id="connecter">Vent venligst...</div>
+        <table class="tilknyttetKursistTable" align="center">
+            <div id="noneConnected">Du har i øjeblikket <b>ingen</b> tilknyttede kursister.</div>
+            {{#if antalTilknyttedeKursister1}}
+            <script>$('#noneConnected').hide();</script>
+            <tr>
+                <th colspan="4">Tilknyttede kursister</th>
+            </tr>
+            <tr>
+                <td><b>{{tilknyttetKursistID1}}</b></td>
+                <td><a href="chat">Chat</a></td>
+                <td><a href="billedbog">Billedordbog</a></td>
+                <td><a href="videobog">Videoordbog</a></td>
+            </tr>
+            {{#if antalTilknyttedeKursister2}}
+            <tr>
+                <td><b>{{tilknyttetKursistID2}}</b></td>
+                <td><a href="chat">Chat</a></td>
+                <td><a href="billedbog">Billedordbog</a></td>
+                <td><a href="videobog">Videoordbog</a></td>
+            </tr>
+            {{#if antalTilknyttedeKursister3}}
+            <tr>
+                <td><b>{{tilknyttetKursistID3}}</b></td>
+                <td><a href="chat">Chat</a></td>
+                <td><a href="billedbog">Billedordbog</a></td>
+                <td><a href="videobog">Videoordbog</a></td>
+            </tr>
+            {{#if antalTilknyttedeKursister4}}
+            <tr>
+                <td><b>{{tilknyttetKursistID4}}</b></td>
+                <td><a href="chat">Chat</a></td>
+                <td><a href="billedbog">Billedordbog</a></td>
+                <td><a href="videobog">Videoordbog</a></td>
+            </tr>
+            {{#if antalTilknyttedeKursister5}}
+            <tr>
+                <td><b>{{tilknyttetKursistID5}}</b></td>
+                <td><a href="chat">Chat</a></td>
+                <td><a href="billedbog">Billedordbog</a></td>
+                <td><a href="videobog">Videoordbog</a></td>
+            </tr>
+            {{/if}}
+            {{/if}}
+            {{/if}}
+            {{/if}}
+            {{/if}}
+        </table>
+        {{else}}
+        Du er ikke registreret som sprogmakker og kan derfor heller ikke forbinde til kursister.
+        {{/if}}
+    </p>
+</div>
