@@ -25,10 +25,12 @@
         <br>
         <div id="connecter">Vent venligst...</div>
         <table class="tilknyttetKursistTable" align="center">
+            <div id="noneConnected">Du har i øjeblikket <b>ingen</b> tilknyttede kursister.</div>
+            {{#if antalTilknyttedeKursister1}}
+            <script>$('#noneConnected').hide();</script>
             <tr>
                 <th colspan="4">Tilknyttede kursister</th>
             </tr>
-            {{#if antalTilknyttedeKursister1}}
             <tr>
                 <td><b>{{tilknyttetKursistID1}}</b></td>
                 <td><a href="chat">Chat</a></td>
