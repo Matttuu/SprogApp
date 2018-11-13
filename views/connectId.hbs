@@ -27,24 +27,26 @@
         <table class="tilknyttetKursistTable" align="center">
              {{#if antalTilknyttedeKursister1}}
             <tr>
-                <th colspan="4">Senest tilknyttede kursist</th>
+                <th colspan="5">Senest tilknyttede kursist</th>
             </tr>
             <tr>
-                <td><b>{{tilknyttetKursistID1}}</b></td>
+                <td><b>Navn: {{findName1}}</b></td>
+                <td><b{{tilknyttetKursistID1}}</b></td>
                 <td><a href="chat">Chat</a></td>
                 <td><a href="billedbog">Billedordbog</a></td>
                 <td><a href="videobog">Videoordbog</a></td>
             </tr>
              {{#if antalTilknyttedeKursister2}}
             <tr>
-                <td><b>{{tilknyttetKursistID2}}</b></td>
+                <td><b>Navn:</b></td>
+                <td><b>ID: {{tilknyttetKursistID2}}</b></td>
                 <td><a href="chat">Chat</a></td>
                 <td><a href="billedbog">Billedordbog</a></td>
                 <td><a href="videobog">Videoordbog</a></td>
             </tr>
              {{#if antalTilknyttedeKursister3}}
             <tr>
-                <td><b>{{tilknyttetKursistID3}}</b></td>
+                <td><b>ID: {{tilknyttetKursistID3}}</b></td>
                 <td><a href="chat">Chat</a></td>
                 <td><a href="billedbog">Billedordbog</a></td>
                 <td><a href="videobog">Videoordbog</a></td>
