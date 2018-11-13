@@ -33,7 +33,22 @@ var UserSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  tilknyttetKursistID: {
+  tilknyttetKursistID1: {
+    type: String,
+  },
+  tilknyttetKursistID2: {
+    type: String,
+  },
+  tilknyttetKursistID3: {
+    type: String,
+  },
+  tilknyttetKursistID4: {
+    type: String,
+  },
+  tilknyttetKursistID5: {
+    type: String,
+  },
+  antalTilknyttedeKursister:{
     type: String,
   }
 });
