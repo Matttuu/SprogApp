@@ -25,15 +25,33 @@
         <br>
         <div id="connecter">Vent venligst...</div>
         <table class="tilknyttetKursistTable" align="center">
+             {{#if antalTilknyttedeKursister1}}
             <tr>
                 <th colspan="4">Senest tilknyttede kursist</th>
             </tr>
             <tr>
-                <td><b>{{tilknyttetKursistID}}</b></td>
+                <td><b>{{tilknyttetKursistID1}}</b></td>
                 <td><a href="chat">Chat</a></td>
                 <td><a href="billedbog">Billedordbog</a></td>
                 <td><a href="videobog">Videoordbog</a></td>
             </tr>
+             {{#if antalTilknyttedeKursister2}}
+            <tr>
+                <td><b>{{tilknyttetKursistID2}}</b></td>
+                <td><a href="chat">Chat</a></td>
+                <td><a href="billedbog">Billedordbog</a></td>
+                <td><a href="videobog">Videoordbog</a></td>
+            </tr>
+             {{#if antalTilknyttedeKursister3}}
+            <tr>
+                <td><b>{{tilknyttetKursistID3}}</b></td>
+                <td><a href="chat">Chat</a></td>
+                <td><a href="billedbog">Billedordbog</a></td>
+                <td><a href="videobog">Videoordbog</a></td>
+            </tr>
+            {{/if}}
+            {{/if}}
+            {{/if}}
         </table>
         {{else}}
         Du er ikke registreret som sprogmakker og kan derfor heller ikke forbinde til kursister.

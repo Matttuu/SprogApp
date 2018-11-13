@@ -63,7 +63,7 @@ router.get('/', (req, res, billede) => {
           file.contentType === 'image/jpg'
         ) {
           file.isImage = true;
-          billede = file.filename;          
+          billede = file.filename;        
         } else {
           file.isImage = false;
         }
@@ -166,9 +166,9 @@ router.get('/image/:filename', (req, res) => {
       const readstream = gfs.createReadStream(file.filename);
       readstream.pipe(res);
     } else {
-      res.status(404).json({
-        err: 'Not an image'
-      });
+      const readstream = gfs.createReadStream(file.filename);
+        readstream.pipe(res)   
+      
     }
   });
 });
