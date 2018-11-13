@@ -55,11 +55,6 @@ router.post('/uploadID', (req, res, next) => {
           findID.count(function (error, antal) {
             console.log(antal);
             if (antal === 1) {
-<<<<<<< HEAD
-              alert("Test");
-              collection.update({ 'uniqueId': user.uniqueId },
-                { '$set': { 'tilknyttetKursistID': kursistID } });
-=======
               console.log(user.antalTilknyttedeKursister);
               if (user.antalTilknyttedeKursister === undefined) {
                 collection.update({ 'uniqueId': user.uniqueId },
@@ -97,7 +92,6 @@ router.post('/uploadID', (req, res, next) => {
                 collection.update({ 'uniqueId': user.uniqueId },
                   { '$inc': { 'antalTilknyttedeKursister': +1 } });
               }
->>>>>>> d86c06a3ba253b5d9e249b284d08ef92c262401d
             }
 
           });
