@@ -80,7 +80,6 @@ router.post('/upload', upload.single('file'), (req, res) => {
   res.redirect('/billedbog');
 }); 
 
-
 // Her lagres beskrivelse til billedet i databasen. 
 // Det bliver lagret til det specifikke filnavn.
 /* Der bliver benyttet en async / await funktion for at

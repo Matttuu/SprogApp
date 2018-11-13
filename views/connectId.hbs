@@ -7,7 +7,7 @@
                 $('#connecter').hide();
                 $('form').submit(function() {
                     $('#connecter').show();
-                    alert("ID blev fundet og kursisten er nu forbundet.");
+                    confirm("Hvis ID-nummeret findes, er du nu blevet forbundet til kursisten. Tjek listen nederst på siden.");
                     e.preventDefault();
                 });
             });
@@ -25,9 +25,11 @@
         <br>
         <div id="connecter">Vent venligst...</div>
         <table class="tilknyttetKursistTable" align="center">
-             {{#if antalTilknyttedeKursister1}}
+            <div id="noneConnected">Du har i øjeblikket <b>ingen</b> tilknyttede kursister.</div>
+            {{#if antalTilknyttedeKursister1}}
+            <script>$('#noneConnected').hide();</script>
             <tr>
-                <th colspan="5">Senest tilknyttede kursist</th>
+                <th colspan="5">Tilknyttede kursister</th>
             </tr>
             <tr>
                 <td><b>Navn: {{findName1}}</b></td>
@@ -36,7 +38,7 @@
                 <td><a href="billedbog">Billedordbog</a></td>
                 <td><a href="videobog">Videoordbog</a></td>
             </tr>
-             {{#if antalTilknyttedeKursister2}}
+            {{#if antalTilknyttedeKursister2}}
             <tr>
                 <td><b>Navn:</b></td>
                 <td><b>ID: {{tilknyttetKursistID2}}</b></td>
@@ -44,13 +46,29 @@
                 <td><a href="billedbog">Billedordbog</a></td>
                 <td><a href="videobog">Videoordbog</a></td>
             </tr>
-             {{#if antalTilknyttedeKursister3}}
+            {{#if antalTilknyttedeKursister3}}
             <tr>
                 <td><b>ID: {{tilknyttetKursistID3}}</b></td>
                 <td><a href="chat">Chat</a></td>
                 <td><a href="billedbog">Billedordbog</a></td>
                 <td><a href="videobog">Videoordbog</a></td>
             </tr>
+            {{#if antalTilknyttedeKursister4}}
+            <tr>
+                <td><b>{{tilknyttetKursistID4}}</b></td>
+                <td><a href="chat">Chat</a></td>
+                <td><a href="billedbog">Billedordbog</a></td>
+                <td><a href="videobog">Videoordbog</a></td>
+            </tr>
+            {{#if antalTilknyttedeKursister5}}
+            <tr>
+                <td><b>{{tilknyttetKursistID5}}</b></td>
+                <td><a href="chat">Chat</a></td>
+                <td><a href="billedbog">Billedordbog</a></td>
+                <td><a href="videobog">Videoordbog</a></td>
+            </tr>
+            {{/if}}
+            {{/if}}
             {{/if}}
             {{/if}}
             {{/if}}

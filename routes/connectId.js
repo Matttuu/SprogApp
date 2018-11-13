@@ -74,6 +74,8 @@ router.post('/uploadID', (req, res, next) => {
 
           findID.count(function (error, antal) {
             if (antal === 1) {
+              console.log('Kursist tilknyttet sprogmakker.');
+              console.log(user.antalTilknyttedeKursister);
               if (user.antalTilknyttedeKursister === undefined) {
                 collection.update({ 'uniqueId': user.uniqueId },
                   { '$set': { 'tilknyttetKursistID1': kursistID } });

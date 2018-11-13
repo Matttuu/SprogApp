@@ -5,7 +5,7 @@
 			<h1 class="h3 mb-3 font-weight-normal">Registrer</h1>
 			<p class="h7 mb-3 font-weight-normal" style="text-align:justify;">For at kunne benytte applikationen, er det nødvendigt at oprette dig først. Udfyld venligst felterne herunder. Det første felt repræsenterer dit unikke ID, og det skal du ikke tænke mere over lige nu.</p>
 			<div class="login-form" >
-				<form action='/login' method="post">
+				<form action='/signup' method="post">
 					<input class="form-control" type="text" name="uniqueId" placeholder="Dit unikke ID" required="" id="idNo" style="cursor:no-drop;" readonly>
 					<input class="form-control" type="email" name="email" placeholder="Din e-mail" required="">
 					<input class="form-control" type="text" name="username" placeholder="Dit brugernavn" required="">
@@ -15,8 +15,8 @@
 						<option class="form-control" value="Sprogmakker">Sprogmakker</option>
 						<option class="form-control" value="Administrator">Administrator</option>
 					</select>
-					<input class="form-control" type="password" name="password" placeholder="Ønsket kodeord" required="">
-					<input class="form-control" type="password" name="passwordConf" placeholder="Bekræft kodeord" required="">
+					<input class="form-control" id="first_password" type="password" name="password" placeholder="Ønsket kodeord" required="">
+					<input class="form-control" id="confirm_password" type="password" name="passwordConf" placeholder="Bekræft kodeord" required="">
 					<input class="btn btn-lg btn-primary btn-block" style="margin-top:10px;" type="submit" value="OPRET DIG">
 				</form>
 				<button class="btn btn-lg btn-primary btn-block" style="margin-top:3px;" onclick="history.back()">TILBAGE</button>
@@ -40,3 +40,21 @@
 		document.getElementById("idNo").value = unikkaId;
 	</script>
 </div>
+
+
+<!-- Kontrollerer om indtastede passwords er ens-->
+<script>
+	var password = document.getElementById("first_password")
+  , confirm_password = document.getElementById("confirm_password");
+
+function validatePassword(){
+  if(first_password.value != confirm_password.value) {
+    confirm_password.setCustomValidity("Kodeord er ikke ens");
+  } else {
+    confirm_password.setCustomValidity('');
+  }
+}
+
+first_password.onchange = validatePassword;
+confirm_password.onkeyup = validatePassword;
+</script>
