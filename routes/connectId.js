@@ -8,9 +8,6 @@ router.get('/', function (req, res, next) {
 
   User.findById(req.session.userId)
     .exec(function (error, user) {
-<<<<<<< HEAD
-      res.render('connectId', {
-=======
 
       mongoose.connect('mongodb://admin:team12@ds125693.mlab.com:25693/cdi', { useNewUrlParser: true, }, function (err, db) {
        if (err) { throw err; }
@@ -29,7 +26,6 @@ router.get('/', function (req, res, next) {
       res.render('connectID', {
        // findName1: doc.username,
         //findName2:doc.tilknyttetKursistID2,
->>>>>>> 36594eab3697c9509dfbea9bd120312c786c43c8
         name: user.username,
         role: user.role,
         uniqueId: user.uniqueId,
