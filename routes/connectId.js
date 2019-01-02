@@ -7,7 +7,7 @@ var mongoose = require('mongoose');
 router.get('/', function (req, res, next) {
   User.findById(req.session.userId)
     .exec(function (error, user) {
-      res.render('connectID', {
+      res.render('connectId', {
         name: user.username,
         role: user.role,
         uniqueId: user.uniqueId,
