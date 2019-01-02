@@ -32,8 +32,9 @@
                 <th colspan="5">Tilknyttede kursister</th>
             </tr>
             <tr>
-                <td><b>Navn: {{findName1}}</b></td>
-                <td><b{{tilknyttetKursistID1}}</b></td>
+                <td><b>Navn: {{obj.username}} user1</b></td>
+                <td><b><label name="navn1"></label></b></td>
+                <td><b>ID: {{tilknyttetKursistID1}}</b></td>
                 <td><a href="chat">Chat</a></td>
                 <td><a href="billedbog">Billedordbog</a></td>
                 <td><a href="videobog">Videoordbog</a></td>
@@ -48,6 +49,7 @@
             </tr>
             {{#if antalTilknyttedeKursister3}}
             <tr>
+                <td><b>Navn:</b></td>
                 <td><b>ID: {{tilknyttetKursistID3}}</b></td>
                 <td><a href="chat">Chat</a></td>
                 <td><a href="billedbog">Billedordbog</a></td>
@@ -55,13 +57,15 @@
             </tr>
             {{#if antalTilknyttedeKursister4}}
             <tr>
-                <td><b>{{tilknyttetKursistID4}}</b></td>
+                <td><b>Navn:</b></td>
+                <td><b>ID: {{tilknyttetKursistID4}}</b></td>
                 <td><a href="chat">Chat</a></td>
                 <td><a href="billedbog">Billedordbog</a></td>
                 <td><a href="videobog">Videoordbog</a></td>
             </tr>
             {{#if antalTilknyttedeKursister5}}
             <tr>
+                <td><b>Navn:</b></td>
                 <td><b>{{tilknyttetKursistID5}}</b></td>
                 <td><a href="chat">Chat</a></td>
                 <td><a href="billedbog">Billedordbog</a></td>

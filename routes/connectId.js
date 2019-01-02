@@ -10,45 +10,38 @@ router.get('/', function (req, res, next) {
     .exec(function (error, user) {
 
       mongoose.connect('mongodb://admin:team12@ds125693.mlab.com:25693/cdi', { useNewUrlParser: true, }, function (err, db) {
-       if (err) { throw err; }
-     
+        if (err) { throw err; }
+
         var collection = db.collection('users');
         var kursistID = req.body.kursistID;
         var lagretKursistID1 = req.body.lagretKursistID1;
         var lagretKursistID2 = req.body.lagretKursistID2;
 
 
-        /*
-        collection.findOne({"uniqueId": ""}, {projection:{"username": 1, "_id": 0}}, function(err, doc, name) {
-          console.log(doc);
-       // name = doc.username;
-   */
-      res.render('connectID', {
-       // findName1: doc.username,
-        //findName2:doc.tilknyttetKursistID2,
-        name: user.username,
-        role: user.role,
-        uniqueId: user.uniqueId,
-        sprogmakker: user.role === "Sprogmakker",
-        admin: user.role === "Administrator",
-        tilknyttetKursistID1: user.tilknyttetKursistID1,
-        tilknyttetKursistID2: user.tilknyttetKursistID2,
-        tilknyttetKursistID3: user.tilknyttetKursistID3,
-        tilknyttetKursistID4: user.tilknyttetKursistID4,
-        tilknyttetKursistID5: user.tilknyttetKursistID5,
-        antalTilknyttedeKursister: user.antalTilknyttedeKursister,
-        antalTilknyttedeKursister1: user.antalTilknyttedeKursister >= 1,
-        antalTilknyttedeKursister2: user.antalTilknyttedeKursister >= 2,
-        antalTilknyttedeKursister3: user.antalTilknyttedeKursister >= 3,
-        antalTilknyttedeKursister4: user.antalTilknyttedeKursister >= 4,
-        antalTilknyttedeKursister5: user.antalTilknyttedeKursister >= 5,
-      
-   //   });
-    
+        res.render('connectID', {
+          // findName1: doc.username,
+          //findName2:doc.tilknyttetKursistID2,
+          name: user.username,
+          role: user.role,
+          uniqueId: user.uniqueId,
+          sprogmakker: user.role === "Sprogmakker",
+          admin: user.role === "Administrator",
+          tilknyttetKursistID1: user.tilknyttetKursistID1,
+          tilknyttetKursistID2: user.tilknyttetKursistID2,
+          tilknyttetKursistID3: user.tilknyttetKursistID3,
+          tilknyttetKursistID4: user.tilknyttetKursistID4,
+          tilknyttetKursistID5: user.tilknyttetKursistID5,
+          antalTilknyttedeKursister: user.antalTilknyttedeKursister,
+          antalTilknyttedeKursister1: user.antalTilknyttedeKursister >= 1,
+          antalTilknyttedeKursister2: user.antalTilknyttedeKursister >= 2,
+          antalTilknyttedeKursister3: user.antalTilknyttedeKursister >= 3,
+          antalTilknyttedeKursister4: user.antalTilknyttedeKursister >= 4,
+          antalTilknyttedeKursister5: user.antalTilknyttedeKursister >= 5,
+
+        });
+
       });
-    
     });
-});
 });
 router.post('/uploadID', (req, res, next) => {
   User.findById(req.session.userId)
