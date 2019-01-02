@@ -5,9 +5,31 @@ var mongoose = require('mongoose');
 
 /* GET home page. */
 router.get('/', function (req, res, next) {
+
   User.findById(req.session.userId)
     .exec(function (error, user) {
+<<<<<<< HEAD
       res.render('connectId', {
+=======
+
+      mongoose.connect('mongodb://admin:team12@ds125693.mlab.com:25693/cdi', { useNewUrlParser: true, }, function (err, db) {
+       if (err) { throw err; }
+     
+        var collection = db.collection('users');
+        var kursistID = req.body.kursistID;
+        var lagretKursistID1 = req.body.lagretKursistID1;
+        var lagretKursistID2 = req.body.lagretKursistID2;
+
+
+        /*
+        collection.findOne({"uniqueId": ""}, {projection:{"username": 1, "_id": 0}}, function(err, doc, name) {
+          console.log(doc);
+       // name = doc.username;
+   */
+      res.render('connectID', {
+       // findName1: doc.username,
+        //findName2:doc.tilknyttetKursistID2,
+>>>>>>> 36594eab3697c9509dfbea9bd120312c786c43c8
         name: user.username,
         role: user.role,
         uniqueId: user.uniqueId,
@@ -24,12 +46,14 @@ router.get('/', function (req, res, next) {
         antalTilknyttedeKursister3: user.antalTilknyttedeKursister >= 3,
         antalTilknyttedeKursister4: user.antalTilknyttedeKursister >= 4,
         antalTilknyttedeKursister5: user.antalTilknyttedeKursister >= 5,
-
-
+      
+   //   });
+    
       });
+    
     });
 });
-
+});
 router.post('/uploadID', (req, res, next) => {
   User.findById(req.session.userId)
     .exec(function (error, user) {
@@ -53,7 +77,6 @@ router.post('/uploadID', (req, res, next) => {
           var findID = collection.find({ "uniqueId": kursistID });
 
           findID.count(function (error, antal) {
-            console.log(antal);
             if (antal === 1) {
               console.log('Kursist tilknyttet sprogmakker.');
               console.log(user.antalTilknyttedeKursister);

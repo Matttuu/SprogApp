@@ -19,6 +19,7 @@
                 <input type="submit" value="Tilføj video" class="btn btn-success btn-block">
             </form>
             <hr>
+            <div id="billedeListe">
             {{#if files}}
             {{#each files}}
             <div class="card card-body mb-3">
@@ -43,6 +44,7 @@
             </div>
             {{/each}}
             {{/if}}
+            </div>
         </div>
     </div>
 </div>
