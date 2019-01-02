@@ -1,5 +1,5 @@
 <center>
-    <h1 class="loggedInHeading">Videoordbog</h1>
+    <h1 class="loggedInHeading">LYD</h1>
     <p class="loggedInText">Her kan du optage video og tilføje til din ordbog. Efterfølgende kan du tilføje tekst til din video.</p>
 </center>
 
@@ -18,8 +18,8 @@
                 <input type="submit" value="Tilføj audio" class="btn btn-primary btn-block">
             </form>
             <hr>
-            {{#if files}}
-            {{#each files}}
+            {{#if audiofiles}}
+            {{#each audiofiles}}
             <div class="card card-body mb-3">
                 <audio controls>
                          <source src="lyd/audio/{{filename}}" type="audio/mp4">Din browser understøtter ikke denne filtype!</audio>

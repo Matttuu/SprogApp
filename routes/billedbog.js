@@ -73,6 +73,7 @@ router.get('/', (req, res, billede) => {
   });
 });
 
+
 // @route POST /upload
 // @desc  Uploads file to DB
 router.post('/upload', upload.single('file'), (req, res) => {

@@ -23,42 +23,76 @@
                 {{#if files}}
                 {{#each files}}
                 <div class="card card-body mb-3">
-                    <!-- Display billede --> 
+                    <!-- Display billede -->
                     <img src="billedbog/image/{{filename}}" alt="DB BILLEDE HER TAK">
-                    <br/>
+                    <br />
                     <!-- Display tekst tilknyttet til billede -->
                     <blockquote class="blockquote text-center">
                         <h6>
                             <p class="text-muted">{{billedDescription}}</p>
                         </h6>
                     </blockquote>
-                    <!-- Tilføj tekst til billede --> 
-                    <form method="POST" action="/billedbog/files/{{filename}}">
-                        <input type="text" name="billedDescription" class="form-control center_div" placeholder="Tryk her for at tilføje / ændre din beskrivelse">
-                        </input>
-                        <input type="submit" value="Tilføj beskrivelse" class="btn btn-success btn-block">
-                    </form>
+                    <table class="table">
+                        <tr>
+                            <div class="card-group">
+
+
+
+                                <!-- Tilføj tekst til billede -->
+                                <div class="card card-body mb-1">
+                                    <form method="POST" action="/billedbog/files/{{filename}}">
+                                        <input type="text" name="billedDescription" class="form-control center_div"
+                                            placeholder="Tryk her for at tilføje / ændre din beskrivelse">
+                                        </input><br>
+                                        <input type="submit" value="Tilføj beskrivelse" class="btn btn-success btn-block">
+                                    </form>
+                                </div>
+
+                                <!--LYD-->
+                                <div class="card card-body mb-1">
+                                    <form action="/lyd/audioupload" method="POST" enctype="multipart/form-data">
+                                        <div class="custom-file mb-3">
+                                            Optag video: <input type="file" accept="audio/*" id="capture" capture="audio"
+                                                name="file" class="custom-file-input">
+                                            <label for="file" class="custom-file-label">Vælg lydfil</label>
+                                        </div>
+                                        <input type="submit" value="Tilføj audio" class="btn btn-primary btn-block">
+                                    </form>
+                                    <audio controls>
+                                        <source src="lyd/audio/{{filename}}" type="audio/mp4">Din browser understøtter
+                                        ikke denne
+                                        filtype!</audio>
+                                    <form method="PUT" action="/lyd/audio/{{_id}}.mp4?_method=PUT"></form>
+                                    <form method="POST" action="/lyd/files/{{_id}}?_method=DELETE">
+                                        <button class="btn btn-danger btn-block mt-4">Slet lyd</button>
+                                    </form>
+                                </div>
+                            </div>
+
+                        </tr>
+                    </table>
                     <!-- Slet video -->
                     <form method="POST" action="/billedbog/files/{{_id}}?_method=DELETE">
                         <button class="btn btn-danger btn-block mt-4">Slet billede</button>
                     </form>
-                    
 
-                    
-                    {{!-- <!-- Tilføj lyd til billede --> 
+
+
+                    {{!--
+                    <!-- Tilføj lyd til billede -->
                     <form method="POST" action="/billedbog/files/{{filename}}">
                         <input type="file" name="billedLyd" class="form-control center_div" placeholder="Tryk her for at tilføje / ændre din beskrivelse">
                         </input>
                         <input type="submit" value="Tilføj lyd" class="btn btn-success btn-block">
                     </form>
 
-                    <!-- Vis lydindspilning --> 
+                    <!-- Vis lydindspilning -->
                     <audio controls>
-                         <source src="billedbog/image/{{billedLyd}}" type="audio/mp3">
-                         <source src="billedbog/image/{{billedLyd}}" type="audio/m4a">
-                         Din browser understøtter ikke denne filtype!
-                    </audio>    --}} 
-                    
+                        <source src="billedbog/image/{{billedLyd}}" type="audio/mp3">
+                        <source src="billedbog/image/{{billedLyd}}" type="audio/m4a">
+                        Din browser understøtter ikke denne filtype!
+                    </audio> --}}
+
 
                 </div>
                 {{/each}}
