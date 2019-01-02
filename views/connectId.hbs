@@ -32,8 +32,7 @@
                 <th colspan="5">Tilknyttede kursister</th>
             </tr>
             <tr>
-                <td><b>Navn: {{obj.username}} user1</b></td>
-                <td><b><label name="navn1"></label></b></td>
+                <td><b>Navn: {{obj1.users.username}}</b></td>
                 <td><b>ID: {{tilknyttetKursistID1}}</b></td>
                 <td><a href="chat">Chat</a></td>
                 <td><a href="billedbog">Billedordbog</a></td>
@@ -41,15 +40,15 @@
             </tr>
             {{#if antalTilknyttedeKursister2}}
             <tr>
-                <td><b>Navn:</b></td>
-                <td><b>ID: {{tilknyttetKursistID2}}</b></td>
+                <td><b>Navn: {{obj2.users.username}}</b></td>
+                <td><b> ID: {{tilknyttetKursistID2}}</b></td>
                 <td><a href="chat">Chat</a></td>
                 <td><a href="billedbog">Billedordbog</a></td>
                 <td><a href="videobog">Videoordbog</a></td>
             </tr>
             {{#if antalTilknyttedeKursister3}}
             <tr>
-                <td><b>Navn:</b></td>
+                <td><b>Navn: {{obj3.users.username}}</b></td>
                 <td><b>ID: {{tilknyttetKursistID3}}</b></td>
                 <td><a href="chat">Chat</a></td>
                 <td><a href="billedbog">Billedordbog</a></td>
@@ -57,7 +56,7 @@
             </tr>
             {{#if antalTilknyttedeKursister4}}
             <tr>
-                <td><b>Navn:</b></td>
+                <td><b>Navn: {{obj4.users.username}}</b></td>
                 <td><b>ID: {{tilknyttetKursistID4}}</b></td>
                 <td><a href="chat">Chat</a></td>
                 <td><a href="billedbog">Billedordbog</a></td>
@@ -65,7 +64,7 @@
             </tr>
             {{#if antalTilknyttedeKursister5}}
             <tr>
-                <td><b>Navn:</b></td>
+                <td><b>Navn: {{obj5.users.username}}</b></td>
                 <td><b>{{tilknyttetKursistID5}}</b></td>
                 <td><a href="chat">Chat</a></td>
                 <td><a href="billedbog">Billedordbog</a></td>

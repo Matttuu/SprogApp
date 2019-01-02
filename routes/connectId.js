@@ -17,29 +17,59 @@ router.get('/', function (req, res, next) {
         var lagretKursistID1 = req.body.lagretKursistID1;
         var lagretKursistID2 = req.body.lagretKursistID2;
 
+        collection.findOne({ uniqueId: user.tilknyttetKursistID1 }, function (err, result) {
+          if (err) throw err;
+          var obj1 = {};
+          obj1.users = result;
+          collection.findOne({ uniqueId: user.tilknyttetKursistID2 }, function (err, result) {
+            if (err) throw err;
+            var obj2 = {};
+            obj2.users = result;
+            collection.findOne({ uniqueId: user.tilknyttetKursistID3 }, function (err, result) {
+              if (err) throw err;
+              var obj3 = {};
+              obj3.users = result;
+              collection.findOne({ uniqueId: user.tilknyttetKursistID4 }, function (err, result) {
+                if (err) throw err;
+                var obj4 = {};
+                obj4.users = result;
+                collection.findOne({ uniqueId: user.tilknyttetKursistID5 }, function (err, result) {
+                  if (err) throw err;
+                  var obj5 = {};
+                  obj5.users = result;
 
-        res.render('connectID', {
-          // findName1: doc.username,
-          //findName2:doc.tilknyttetKursistID2,
-          name: user.username,
-          role: user.role,
-          uniqueId: user.uniqueId,
-          sprogmakker: user.role === "Sprogmakker",
-          admin: user.role === "Administrator",
-          tilknyttetKursistID1: user.tilknyttetKursistID1,
-          tilknyttetKursistID2: user.tilknyttetKursistID2,
-          tilknyttetKursistID3: user.tilknyttetKursistID3,
-          tilknyttetKursistID4: user.tilknyttetKursistID4,
-          tilknyttetKursistID5: user.tilknyttetKursistID5,
-          antalTilknyttedeKursister: user.antalTilknyttedeKursister,
-          antalTilknyttedeKursister1: user.antalTilknyttedeKursister >= 1,
-          antalTilknyttedeKursister2: user.antalTilknyttedeKursister >= 2,
-          antalTilknyttedeKursister3: user.antalTilknyttedeKursister >= 3,
-          antalTilknyttedeKursister4: user.antalTilknyttedeKursister >= 4,
-          antalTilknyttedeKursister5: user.antalTilknyttedeKursister >= 5,
+                  res.render('connectID', {
+                    // findName1: doc.username,
+                    //findName2:doc.tilknyttetKursistID2,
+                    name: user.username,
+                    role: user.role,
+                    uniqueId: user.uniqueId,
+                    sprogmakker: user.role === "Sprogmakker",
+                    admin: user.role === "Administrator",
+                    tilknyttetKursistID1: user.tilknyttetKursistID1,
+                    tilknyttetKursistID2: user.tilknyttetKursistID2,
+                    tilknyttetKursistID3: user.tilknyttetKursistID3,
+                    tilknyttetKursistID4: user.tilknyttetKursistID4,
+                    tilknyttetKursistID5: user.tilknyttetKursistID5,
+                    antalTilknyttedeKursister: user.antalTilknyttedeKursister,
+                    antalTilknyttedeKursister1: user.antalTilknyttedeKursister >= 1,
+                    antalTilknyttedeKursister2: user.antalTilknyttedeKursister >= 2,
+                    antalTilknyttedeKursister3: user.antalTilknyttedeKursister >= 3,
+                    antalTilknyttedeKursister4: user.antalTilknyttedeKursister >= 4,
+                    antalTilknyttedeKursister5: user.antalTilknyttedeKursister >= 5,
+                    obj1,
+                    obj2,
+                    obj3,
+                    obj4,
+                    obj5
 
+
+                  });
+                });
+              });
+            });
+          });
         });
-
       });
     });
 });
