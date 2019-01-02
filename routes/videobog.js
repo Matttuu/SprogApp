@@ -59,9 +59,9 @@ router.get('/', (req, res, billede) => {
       files.map(file  => {
         if (
           file.contentType === 'image/mp4' ||
-          file.contentType === 'image/png' ||
+          file.contentType === 'image/mov' ||
           file.contentType === 'image/mpeg-4' ||
-          file.contentType === 'image/jpg'
+          file.contentType === 'image/m4v'
         ) {
           file.isImage = false;
           
@@ -170,7 +170,7 @@ router.get('/image/:filename', (req, res) => {
     }
 
     // Check if image
-    if (file.contentType === 'image/mp4' || file.contentType === 'image/png' || file.contentType === 'image/jpg' || file.contentType === 'image/mpeg-4') {
+    if (file.contentType === 'image/mp4' || file.contentType === 'image/mov' || file.contentType === 'image/m4v' || file.contentType === 'image/mpeg-4') {
       // Read output to browser
       const readstream = gfs.createReadStream(file.filename);
          readstream.pipe(res);
