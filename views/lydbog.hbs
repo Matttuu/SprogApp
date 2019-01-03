@@ -33,3 +33,14 @@
         </div>
     </div>
 </div>
+{{else if sprogmakker}}
+<center>
+    <h1 class="loggedInHeading">Lydordbog</h1>
+    <p class="loggedInText">Da du er logget ind som sprogmakker, har du ikke en lydordbog.</p>
+</center>
+{{else if admin}}
+<center>
+    <h1 class="loggedInHeading">Lydordbog</h1>
+    <p class="loggedInText">Da du er logget ind som administrator, har du ikke en lydordbog.</p>
+</center>
+{{/if}}
