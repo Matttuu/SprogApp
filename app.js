@@ -14,7 +14,6 @@ var cons = require('consolidate');
 // Routers
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
-var hesteRouter = require('./routes/heste');
 var profileRouter = require('./routes/profile');
 var billedbogRouter = require('./routes/billedbog');
 var videobogRouter = require('./routes/videobog');
@@ -65,7 +64,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
-app.use('/heste', hesteRouter);
 app.use('/profile', profileRouter);
 app.use('/billedbog', billedbogRouter);
 app.use('/videobog', videobogRouter);
