@@ -50,7 +50,7 @@
 
                                 <!--LYD-->
                                 <div class="card card-body mb-1">
-                                    <form action="/lyd/audioupload" method="POST" enctype="multipart/form-data">
+                                    <form action="/lydbog/audioupload" method="POST" enctype="multipart/form-data">
                                         <div class="custom-file mb-3">
                                             Optag video: <input type="file" accept="audio/*" id="capture" capture="audio"
                                                 name="file" class="custom-file-input">
@@ -59,11 +59,11 @@
                                         <input type="submit" value="Tilføj audio" class="btn btn-primary btn-block">
                                     </form>
                                     <audio controls>
-                                        <source src="lyd/audio/{{filename}}" type="audio/mp4">Din browser understøtter
+                                        <source src="lydbog/audio/{{filename}}" type="audio/mp4">Din browser understøtter
                                         ikke denne
                                         filtype!</audio>
-                                    <form method="PUT" action="/lyd/audio/{{_id}}.mp4?_method=PUT"></form>
-                                    <form method="POST" action="/lyd/files/{{_id}}?_method=DELETE">
+                                    <form method="PUT" action="/lydbog/audio/{{_id}}.mp4?_method=PUT"></form>
+                                    <form method="POST" action="/lydbog/files/{{_id}}?_method=DELETE">
                                         <button class="btn btn-danger btn-block mt-4">Slet lyd</button>
                                     </form>
                                 </div>

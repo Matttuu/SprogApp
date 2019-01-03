@@ -54,14 +54,17 @@ router.get('/', (req, res, audio) => {
   gfs.files.find().toArray((err, files) => {
     // Check if files
     if (!files || files.length === 0) {
-     res.render('lyd', { files: false});
+     res.render('lydbog', { files: false});
     } else {
       files.map(file  => {
         if (
           file.contentType === 'audio/mp3' ||
           file.contentType === 'audio/mp4' ||
-          file.contentType === 'audio/x-m4a'||
-          file.contentType === 'audio/m4a' ||
+          file.contentType === 'audio/mov' ||
+          file.contentType === 'audio/mpeg-4' ||
+          file.contentType === 'audio/x-m4v'||
+          file.contentType === 'audio/m4v' ||
+          file.contentType === 'audio/amr' ||
           file.contentType === 'audio/wav' 
 
           
@@ -72,7 +75,7 @@ router.get('/', (req, res, audio) => {
           file.isAudio = false;
         }
       });
-     res.render('lyd', {audiofiles: files, audio: 'lyd/Audio/' + audio, title: 'Lydordbog',});
+     res.render('lydbog', {audiofiles: files, audio: 'lydbog/Audio/' +audio});
     }
   });
 });
@@ -93,7 +96,7 @@ router.post('/files/:filename', (req, res, next) => {
     function resolveDetteBagefter() {
       return new Promise(resolve => {
         setTimeout(() => {
-          resolve(res.redirect('/lyd'));
+          resolve(res.redirect('/lydbog'));
         }, 0001);
       });
     }
@@ -115,7 +118,7 @@ router.post('/files/:filename', (req, res, next) => {
 // @desc  Uploads file to DB
 router.post('/audioupload', upload.single('file'), (req, res) => {
   // res.json({ file: req.file });
-  res.redirect('/lyd');
+  res.redirect('/lydbog');
 }); 
 
 
@@ -163,7 +166,7 @@ router.get('/audio/:filename', (req, res) => {
     }
 
     // Check if audio
-    if (file.contentType === 'audio/mp3' || file.contentType === 'audio/mp4' || file.contentType === 'audio/x-m4a' || file.contentType === 'audio/amr' || file.contentType === 'audio/wav') {
+    if (file.contentType === 'audio/mp3' || file.contentType === 'audio/mp4' || file.contentType === 'audio/mov' || file.contentType === 'audio/mpeg-4' || file.contentType === 'audio/x-m4v' || file.contentType === 'audio/m4v' || file.contentType === 'audio/amr' || file.contentType === 'audio/wav' ) {
       // Read output to browser
       const readstream = gfs.createReadStream(file.filename);
       readstream.pipe(res);
@@ -184,7 +187,7 @@ router.delete('/files/:id', (req, res) => {
       return res.status(404).json({ err: err });
     }
 
-    res.redirect('/lyd');
+    res.redirect('/lydbog');
   });
 });
 
