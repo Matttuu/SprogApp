@@ -77,7 +77,13 @@ router.get('/', (req, res, billede) => {
         }
       });
     
-     res.render('videobog', {files: files, billede: 'videobog/image/' + billede, title: 'Videoordbog',});
+     res.render('videobog', {
+       files: files, billede: 'videobog/image/' + billede,
+       title: 'Videoordbog',
+       sprogmakker: user.role === "Sprogmakker",
+       kursist: user.role === "Kursist",
+       admin: user.role === "Administrator"
+     });
     }
   });
 });

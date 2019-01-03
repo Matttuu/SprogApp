@@ -75,7 +75,12 @@ router.get('/', (req, res, audio) => {
           file.isAudio = false;
         }
       });
-     res.render('lydbog', {audiofiles: files, audio: 'lydbog/Audio/' +audio});
+     res.render('lydbog', {
+       audiofiles: files, audio: 'lydbog/Audio/' + audio,
+       sprogmakker: user.role === "Sprogmakker",
+       kursist: user.role === "Kursist",
+       admin: user.role === "Administrator"
+      });
     }
   });
 });
