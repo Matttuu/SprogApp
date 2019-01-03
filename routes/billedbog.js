@@ -78,6 +78,8 @@ const uploadLyd = multer({ storageLyd });
 // @route GET /
 // @desc Loads form
 router.get('/', (req, res, billede) => {
+  User.findById(req.session.userId)
+  .exec(function (error, user) {
   gfs.files.find().toArray((err, files) => {
     // Check if files
     if (!files || files.length === 0) {
@@ -125,10 +127,9 @@ router.get('/', (req, res, billede) => {
         kursist: user.role === "Kursist",
         admin: user.role === "Administrator"
       });
-
       }
     });
-
+  });
   });
 });
 
