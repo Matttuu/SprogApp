@@ -115,7 +115,7 @@ router.post('/files/:filename', (req, res, next) => {
 // @desc  Uploads file to DB
 router.post('/audioupload', upload.single('file'), (req, res) => {
   // res.json({ file: req.file });
-  res.redirect('/lyd');
+  res.redirect('/billedbog');
 }); 
 
 

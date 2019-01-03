@@ -37,7 +37,7 @@
                             <div class="card-group">
 
 
-
+                                
                                 <!-- Tilføj tekst til billede -->
                                 <div class="card card-body mb-1">
                                     <form method="POST" action="/billedbog/files/{{filename}}">
@@ -58,21 +58,26 @@
                                         </div>
                                         <input type="submit" value="Tilføj audio" class="btn btn-primary btn-block">
                                     </form>
+                                    {{#if audiofiles}}
+                                    {{#each audiofiles}}
                                     <audio controls>
-                                        <source src="lyd/audio/{{filename}}" type="audio/mp4">Din browser understøtter
+                                        <source src="billedbog/audio/{{this.filename}}" type="audio/mp4">Din browser understøtter
                                         ikke denne
                                         filtype!</audio>
-                                    <form method="PUT" action="/lyd/audio/{{_id}}.mp4?_method=PUT"></form>
-                                    <form method="POST" action="/lyd/files/{{_id}}?_method=DELETE">
+                                    <form method="PUT" action="/billedbog/audio/{{this._id}}.mp4?_method=PUT"></form>
+                                    <form method="POST" action="/billedbog/audiofiles/{{this._id}}?_method=DELETE">
                                         <button class="btn btn-danger btn-block mt-4">Slet lyd</button>
                                     </form>
+                                    {{/each}}
+                                    {{/if}}
                                 </div>
+                                
                             </div>
 
                         </tr>
                     </table>
                     <!-- Slet video -->
-                    <form method="POST" action="/billedbog/files/{{_id}}?_method=DELETE">
+                    <form method="POST" action="/billedbog/audiofiles/{{_id}}?_method=DELETE">
                         <button class="btn btn-danger btn-block mt-4">Slet billede</button>
                     </form>
 
@@ -95,8 +100,10 @@
 
 
                 </div>
+                
                 {{/each}}
                 {{/if}}
+                
             </div>
         </div>
     </div>
