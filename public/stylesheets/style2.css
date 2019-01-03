@@ -69,3 +69,9 @@ height: 100%;
   text-align: left;
   padding: 8px;
 }
+
+.tableHeading2 {
+  font-size: 14px;
+  border: 1px solid #dddddd;
+  background-color: rgb(241, 241, 241);
+}
