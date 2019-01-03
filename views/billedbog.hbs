@@ -57,18 +57,7 @@
                                         </div>
                                         <input type="submit" value="Tilføj audio" class="btn btn-primary btn-block">
                                     </form>
-                                    {{#if audiofiles}}
-                                    {{#each audiofiles}}
-                                    <audio controls>
-                                        <source src="lydbog/audio/{{filename}}" type="audio/mp4">Din browser understøtter
-                                        ikke denne
-                                        filtype!</audio>
-                                    <form method="PUT" action="/lydbog/audio/{{_id}}.mp4?_method=PUT"></form>
-                                    <form method="POST" action="/lydbog/files/{{_id}}?_method=DELETE">
-                                        <button class="btn btn-danger btn-block mt-4">Slet lyd</button>
-                                    </form>
-                                    {{/each}}
-                                    {{/if}}
+                                
                                 </div>
                                 
                             </div>
@@ -76,33 +65,14 @@
                         </tr>
                     </table>
                     <!-- Slet video -->
-                    <form method="POST" action="/billedbog/audiofiles/{{_id}}?_method=DELETE">
+                    <form method="POST" action="/billedbog/files/{{_id}}?_method=DELETE">
                         <button class="btn btn-danger btn-block mt-4">Slet billede</button>
                     </form>
-
-
-
-                    {{!--
-                    <!-- Tilføj lyd til billede -->
-                    <form method="POST" action="/billedbog/files/{{filename}}">
-                        <input type="file" name="billedLyd" class="form-control center_div" placeholder="Tryk her for at tilføje / ændre din beskrivelse">
-                        </input>
-                        <input type="submit" value="Tilføj lyd" class="btn btn-success btn-block">
-                    </form>
-
-                    <!-- Vis lydindspilning -->
-                    <audio controls>
-                        <source src="billedbog/image/{{billedLyd}}" type="audio/mp3">
-                        <source src="billedbog/image/{{billedLyd}}" type="audio/m4a">
-                        Din browser understøtter ikke denne filtype!
-                    </audio> --}}
-
-
                 </div>
                 
                 {{/each}}
                 {{/if}}
-                
+               
             </div>
         </div>
     </div>
