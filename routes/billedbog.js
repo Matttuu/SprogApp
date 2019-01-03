@@ -15,7 +15,7 @@ const Grid = require('gridfs-stream');
 const mongoURI = 'mongodb://admin:team12@ds125693.mlab.com:25693/cdi';
 
 // Create mongo connection
-const conn = mongoose.createConnection(mongoURI, {useNewUrlParser: true});
+const conn = mongoose.createConnection(mongoURI, { useNewUrlParser: true });
 
 // Init gfs
 let gfs;
@@ -79,58 +79,58 @@ const uploadLyd = multer({ storageLyd });
 // @desc Loads form
 router.get('/', (req, res, billede) => {
   User.findById(req.session.userId)
-  .exec(function (error, user) {
-  gfs.files.find().toArray((err, files) => {
-    // Check if files
-    if (!files || files.length === 0) {
-     res.render('billedbog', { files: false});    
-    } else {
-      files.map(file  => {
-        if (
-          file.contentType === 'image/jpeg' ||
-          file.contentType === 'image/png' ||
-          file.contentType === 'image/jpg'
-        ) {
-          file.isImage = true;
-          billede = file.filename;        
+    .exec(function (error, user) {
+      gfs.files.find().toArray((err, files) => {
+        // Check if files
+        if (!files || files.length === 0) {
+          res.render('billedbog', { files: false });
         } else {
-          file.isImage = false;
+          files.map(file => {
+            if (
+              file.contentType === 'image/jpeg' ||
+              file.contentType === 'image/png' ||
+              file.contentType === 'image/jpg'
+            ) {
+              file.isImage = true;
+              billede = file.filename;
+            } else {
+              file.isImage = false;
+            }
+          });
         }
-      });
-    }
-    gfsLyd.files.find().toArray((err, filesLyd) => {
-      // Check if files
-      if (!filesLyd || filesLyd.length === 0) {
-       res.render('billedbog', { files: false});
-      } else {
-        filesLyd.map(fileLyd  => {
-          if (
-            fileLyd.contentType === 'audio/mp3' ||
-            fileLyd.contentType === 'audio/mp4' ||
-            fileLyd.contentType === 'audio/x-m4a'||
-            fileLyd.contentType === 'audio/m4a' ||
-            fileLyd.contentType === 'audio/wav' 
-  
-            
-          ) {
-            fileLyd.isAudio = true;
-            audio = fileLyd.filename;          
+        gfsLyd.files.find().toArray((err, filesLyd) => {
+          // Check if files
+          if (!filesLyd || filesLyd.length === 0) {
+            res.render('billedbog', { files: false });
           } else {
-            fileLyd.isAudio = false;
+            filesLyd.map(fileLyd => {
+              if (
+                fileLyd.contentType === 'audio/mp3' ||
+                fileLyd.contentType === 'audio/mp4' ||
+                fileLyd.contentType === 'audio/x-m4a' ||
+                fileLyd.contentType === 'audio/m4a' ||
+                fileLyd.contentType === 'audio/wav'
+
+
+              ) {
+                fileLyd.isAudio = true;
+                audio = fileLyd.filename;
+              } else {
+                fileLyd.isAudio = false;
+              }
+            });
+            //res.render('billedbog', {audiofiles: files});
+            res.render('billedbog', {
+              files: files, audiofiles: filesLyd,
+              title: 'Billedordbog',
+              sprogmakker: user.role === "Sprogmakker",
+              kursist: user.role === "Kursist",
+              admin: user.role === "Administrator"
+            });
           }
         });
-       //res.render('billedbog', {audiofiles: files});
-       res.render('billedbog', {
-        files: files, audiofiles: filesLyd,
-        title: 'Billedordbog', 
-        sprogmakker: user.role === "Sprogmakker",
-        kursist: user.role === "Kursist",
-        admin: user.role === "Administrator"
       });
-      }
     });
-  });
-  });
 });
 
 
@@ -139,7 +139,7 @@ router.get('/', (req, res, billede) => {
 router.post('/upload', upload.single('file'), (req, res) => {
   // res.json({ file: req.file });
   res.redirect('/billedbog');
-}); 
+});
 
 // Her lagres beskrivelse til billedet i databasen. 
 // Det bliver lagret til det specifikke filnavn.
@@ -151,10 +151,10 @@ router.post('/upload', upload.single('file'), (req, res) => {
 router.post('/files/:filename', (req, res, next) => {
 
   // Connect til database
-  mongoose.connect('mongodb://admin:team12@ds125693.mlab.com:25693/cdi',{useNewUrlParser: true,}, function(err, db){
-  if(err){throw err;}
+  mongoose.connect('mongodb://admin:team12@ds125693.mlab.com:25693/cdi', { useNewUrlParser: true, }, function (err, db) {
+    if (err) { throw err; }
 
-  // Oprette nyt promise som bliver kørt senere i koden.
+    // Oprette nyt promise som bliver kørt senere i koden.
     function resolveDetteBagefter() {
       return new Promise(resolve => {
         setTimeout(() => {
@@ -163,19 +163,19 @@ router.post('/files/:filename', (req, res, next) => {
       });
     }
     // Opretter async funktion 
-    async function asyncCall () {
+    async function asyncCall() {
       var result = await resolveDetteBagefter();
-    // Peger på database collection 
+      // Peger på database collection 
       var collection = db.collection('uploads.files')
-    // Bruger collection.update metoden for at opdatere / give text til specifikt billede
+      // Bruger collection.update metoden for at opdatere / give text til specifikt billede
       collection.update(
-        { filename: req.params.filename}, 
-        { '$set': {'billedDescription': req.body.billedDescription}}  
+        { filename: req.params.filename },
+        { '$set': { 'billedDescription': req.body.billedDescription } }
       )
     }
-  asyncCall();
- });
-}); 
+    asyncCall();
+  });
+});
 
 // @route GET /files
 // @desc  Display all files in JSON
@@ -205,7 +205,7 @@ router.get('/files/:filename', (req, res) => {
     }
     // File exists
     return res.json(file);
-    
+
   });
 });
 
@@ -227,8 +227,8 @@ router.get('/image/:filename', (req, res) => {
       readstream.pipe(res);
     } else {
       const readstream = gfs.createReadStream(file.filename);
-        readstream.pipe(res)   
-      
+      readstream.pipe(res)
+
     }
   });
 });
@@ -292,10 +292,10 @@ router.get('/', (req, res, audio) => {
 router.post('/audiofiles/:filename', (req, res, next) => {
 
   // Connect til database
-  mongoose.connect('mongodb://admin:team12@ds125693.mlab.com:25693/cdi',{useNewUrlParser: true,}, function(err, db){
-  if(err){throw err;}
+  mongoose.connect('mongodb://admin:team12@ds125693.mlab.com:25693/cdi', { useNewUrlParser: true, }, function (err, db) {
+    if (err) { throw err; }
 
-  // Oprette nyt promise som bliver kørt senere i koden.
+    // Oprette nyt promise som bliver kørt senere i koden.
     function resolveDetteBagefter() {
       return new Promise(resolve => {
         setTimeout(() => {
@@ -304,26 +304,26 @@ router.post('/audiofiles/:filename', (req, res, next) => {
       });
     }
     // Opretter async funktion 
-    async function asyncCall () {
+    async function asyncCall() {
       var result = await resolveDetteBagefter();
-    // Peger på database collection 
+      // Peger på database collection 
       var collection = db.collection('uploads.files')
-    // Bruger collection.update metoden for at opdatere / give text til specifikt billede
+      // Bruger collection.update metoden for at opdatere / give text til specifikt billede
       collection.update(
-      { filename: req.params.filename}, 
-      { '$set': {'audio': req.body.audio}}  
+        { filename: req.params.filename },
+        { '$set': { 'audio': req.body.audio } }
       )
     }
-  asyncCall();
- });
-}); 
+    asyncCall();
+  });
+});
 
 // @route POST /upload
 // @desc  Uploads file to DB
 router.post('/audioupload', uploadLyd.single('file'), (req, res) => {
   // res.json({ file: req.file });
   res.redirect('/billedbog');
-}); 
+});
 
 
 // @route GET /files
@@ -354,7 +354,7 @@ router.get('/audiofiles/:filename', (req, res) => {
     }
     // File exists
     return res.json(file);
-    
+
   });
 });
 

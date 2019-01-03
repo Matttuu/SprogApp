@@ -15,7 +15,7 @@ const Grid = require('gridfs-stream');
 const mongoURI = 'mongodb://admin:team12@ds125693.mlab.com:25693/cdi';
 
 // Create mongo connection
-const conn = mongoose.createConnection(mongoURI, {useNewUrlParser: true});
+const conn = mongoose.createConnection(mongoURI, { useNewUrlParser: true });
 
 // Init gfs
 let gfs;
@@ -51,38 +51,41 @@ const upload = multer({ storage });
 // @route GET /
 // @desc Loads form
 router.get('/', (req, res, audio) => {
-  gfs.files.find().toArray((err, files) => {
-    // Check if files
-    if (!files || files.length === 0) {
-     res.render('lydbog', { files: false});
-    } else {
-      files.map(file  => {
-        if (
-          file.contentType === 'audio/mp3' ||
-          file.contentType === 'audio/mp4' ||
-          file.contentType === 'audio/mov' ||
-          file.contentType === 'audio/mpeg-4' ||
-          file.contentType === 'audio/x-m4v'||
-          file.contentType === 'audio/m4v' ||
-          file.contentType === 'audio/amr' ||
-          file.contentType === 'audio/wav' 
-
-          
-        ) {
-          file.isAudio = true;
-          audio = file.filename;          
+  User.findById(req.session.userId)
+    .exec(function (error, user) {
+      gfs.files.find().toArray((err, files) => {
+        // Check if files
+        if (!files || files.length === 0) {
+          res.render('lydbog', { files: false });
         } else {
-          file.isAudio = false;
+          files.map(file => {
+            if (
+              file.contentType === 'audio/mp3' ||
+              file.contentType === 'audio/mp4' ||
+              file.contentType === 'audio/mov' ||
+              file.contentType === 'audio/mpeg-4' ||
+              file.contentType === 'audio/x-m4v' ||
+              file.contentType === 'audio/m4v' ||
+              file.contentType === 'audio/amr' ||
+              file.contentType === 'audio/wav'
+
+
+            ) {
+              file.isAudio = true;
+              audio = file.filename;
+            } else {
+              file.isAudio = false;
+            }
+          });
+          res.render('lydbog', {
+            audiofiles: files, audio: 'lydbog/Audio/' + audio,
+            sprogmakker: user.role === "Sprogmakker",
+            kursist: user.role === "Kursist",
+            admin: user.role === "Administrator"
+          });
         }
       });
-     res.render('lydbog', {
-       audiofiles: files, audio: 'lydbog/Audio/' + audio,
-       sprogmakker: user.role === "Sprogmakker",
-       kursist: user.role === "Kursist",
-       admin: user.role === "Administrator"
-      });
-    }
-  });
+    });
 });
 // Her lagres beskrivelse til billedet i databasen. 
 // Det bliver lagret til det specifikke filnavn.
@@ -94,10 +97,10 @@ router.get('/', (req, res, audio) => {
 router.post('/files/:filename', (req, res, next) => {
 
   // Connect til database
-  mongoose.connect('mongodb://admin:team12@ds125693.mlab.com:25693/cdi',{useNewUrlParser: true,}, function(err, db){
-  if(err){throw err;}
+  mongoose.connect('mongodb://admin:team12@ds125693.mlab.com:25693/cdi', { useNewUrlParser: true, }, function (err, db) {
+    if (err) { throw err; }
 
-  // Oprette nyt promise som bliver kørt senere i koden.
+    // Oprette nyt promise som bliver kørt senere i koden.
     function resolveDetteBagefter() {
       return new Promise(resolve => {
         setTimeout(() => {
@@ -106,25 +109,25 @@ router.post('/files/:filename', (req, res, next) => {
       });
     }
     // Opretter async funktion 
-    async function asyncCall () {
+    async function asyncCall() {
       var result = await resolveDetteBagefter();
-    // Peger på database collection 
+      // Peger på database collection 
       var collection = db.collection('uploads.files')
-    // Bruger collection.update metoden for at opdatere / give text til specifikt billede
+      // Bruger collection.update metoden for at opdatere / give text til specifikt billede
       collection.update(
-      { filename: req.params.filename}, 
-      { '$set': {'audio': req.body.audio}}  
+        { filename: req.params.filename },
+        { '$set': { 'audio': req.body.audio } }
       )
     }
-  asyncCall();
- });
-}); 
+    asyncCall();
+  });
+});
 // @route POST /upload
 // @desc  Uploads file to DB
 router.post('/audioupload', upload.single('file'), (req, res) => {
   // res.json({ file: req.file });
   res.redirect('/billedbog');
-}); 
+});
 
 
 // @route GET /files
@@ -155,7 +158,7 @@ router.get('/files/:filename', (req, res) => {
     }
     // File exists
     return res.json(file);
-    
+
   });
 });
 
@@ -171,7 +174,7 @@ router.get('/audio/:filename', (req, res) => {
     }
 
     // Check if audio
-    if (file.contentType === 'audio/mp3' || file.contentType === 'audio/mp4' || file.contentType === 'audio/mov' || file.contentType === 'audio/mpeg-4' || file.contentType === 'audio/x-m4v' || file.contentType === 'audio/m4v' || file.contentType === 'audio/amr' || file.contentType === 'audio/wav' ) {
+    if (file.contentType === 'audio/mp3' || file.contentType === 'audio/mp4' || file.contentType === 'audio/mov' || file.contentType === 'audio/mpeg-4' || file.contentType === 'audio/x-m4v' || file.contentType === 'audio/m4v' || file.contentType === 'audio/amr' || file.contentType === 'audio/wav') {
       // Read output to browser
       const readstream = gfs.createReadStream(file.filename);
       readstream.pipe(res);

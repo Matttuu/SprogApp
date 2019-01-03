@@ -15,7 +15,7 @@ const Grid = require('gridfs-stream');
 const mongoURI = 'mongodb://admin:team12@ds125693.mlab.com:25693/cdi';
 
 // Create mongo connection
-const conn = mongoose.createConnection(mongoURI, {useNewUrlParser: true});
+const conn = mongoose.createConnection(mongoURI, { useNewUrlParser: true });
 
 // Init gfs
 let gfs;
@@ -51,41 +51,44 @@ const upload = multer({ storage });
 // @route GET /
 // @desc Loads form
 router.get('/', (req, res, billede) => {
-  gfs.files.find().toArray((err, files) => {
-    // Check if files
-    if (!files || files.length === 0) {
-     res.render('videobog', { files: false});
-    } else {
-      files.map(file  => {
-        if (
-          file.contentType === 'image/mp3' ||
-          file.contentType === 'image/mp4' ||
-          file.contentType === 'image/mov' ||
-          file.contentType === 'image/mpeg-4' ||
-          file.contentType === 'image/x-m4v'||
-          file.contentType === 'image/m4v'||
-          file.contentType === 'image/amr' ||
-          file.contentType === 'image/avi' ||
-          file.contentType === 'image/wav' 
-        ) {
-          file.isImage = false;
-          
-          billede = file.filename;          
+  User.findById(req.session.userId)
+    .exec(function (error, user) {
+      gfs.files.find().toArray((err, files) => {
+        // Check if files
+        if (!files || files.length === 0) {
+          res.render('videobog', { files: false });
         } else {
-          
-          file.isImage = true;
+          files.map(file => {
+            if (
+              file.contentType === 'image/mp3' ||
+              file.contentType === 'image/mp4' ||
+              file.contentType === 'image/mov' ||
+              file.contentType === 'image/mpeg-4' ||
+              file.contentType === 'image/x-m4v' ||
+              file.contentType === 'image/m4v' ||
+              file.contentType === 'image/amr' ||
+              file.contentType === 'image/avi' ||
+              file.contentType === 'image/wav'
+            ) {
+              file.isImage = false;
+
+              billede = file.filename;
+            } else {
+
+              file.isImage = true;
+            }
+          });
+
+          res.render('videobog', {
+            files: files, billede: 'videobog/image/' + billede,
+            title: 'Videoordbog',
+            sprogmakker: user.role === "Sprogmakker",
+            kursist: user.role === "Kursist",
+            admin: user.role === "Administrator"
+          });
         }
       });
-    
-     res.render('videobog', {
-       files: files, billede: 'videobog/image/' + billede,
-       title: 'Videoordbog',
-       sprogmakker: user.role === "Sprogmakker",
-       kursist: user.role === "Kursist",
-       admin: user.role === "Administrator"
-     });
-    }
-  });
+    });
 });
 
 // @route POST /upload
@@ -93,7 +96,7 @@ router.get('/', (req, res, billede) => {
 router.post('/videoupload', upload.single('file'), (req, res) => {
   // res.json({ file: req.file });
   res.redirect('/videobog');
-}); 
+});
 
 
 
@@ -108,31 +111,31 @@ router.post('/videoupload', upload.single('file'), (req, res) => {
 router.post('/files/:filename', (req, res, next) => {
 
   // Connect til database
-  mongoose.connect('mongodb://admin:team12@ds125693.mlab.com:25693/cdi',{useNewUrlParser: true,}, function(err, db){
-  if(err){throw err;}
-   
-  // Opretter nyt promise som bliver kørt senere i koden.
-  function resolveDetteBagefter() {
-    return new Promise(resolve => {
-      setTimeout(() => {
-        resolve(res.redirect('/videobog'));
-      }, 0001);
-    });
-  }
-  // Opretter async funktion.
-  async function asyncCall () {
-    var result = await resolveDetteBagefter();
-  // Peger på database collection
-    var collection = db.collection('videouploads.files')
-  // Bruger collection.update metoden for at opdatere / give text til specifik video.
-    collection.update(
-      { filename: req.params.filename}, 
-      { '$set': {'videoDescription': req.body.videoDescription}}
-    )
-  }
-  asyncCall();
+  mongoose.connect('mongodb://admin:team12@ds125693.mlab.com:25693/cdi', { useNewUrlParser: true, }, function (err, db) {
+    if (err) { throw err; }
+
+    // Opretter nyt promise som bliver kørt senere i koden.
+    function resolveDetteBagefter() {
+      return new Promise(resolve => {
+        setTimeout(() => {
+          resolve(res.redirect('/videobog'));
+        }, 0001);
+      });
+    }
+    // Opretter async funktion.
+    async function asyncCall() {
+      var result = await resolveDetteBagefter();
+      // Peger på database collection
+      var collection = db.collection('videouploads.files')
+      // Bruger collection.update metoden for at opdatere / give text til specifik video.
+      collection.update(
+        { filename: req.params.filename },
+        { '$set': { 'videoDescription': req.body.videoDescription } }
+      )
+    }
+    asyncCall();
   });
-}); 
+});
 
 
 
@@ -165,7 +168,7 @@ router.get('/files/:filename', (req, res) => {
     }
     // File exists
     return res.json(file);
-    
+
   });
 });
 
@@ -181,13 +184,13 @@ router.get('/image/:filename', (req, res) => {
     }
 
     // Check if image
-    if (file.contentType === 'image/mp3' || file.contentType === 'image/mp4' || file.contentType === 'image/mov' || file.contentType === 'image/mpeg-4' || file.contentType === 'image/x-m4v' || file.contentType === 'image/m4v' || file.contentType === 'image/amr' || file.contentType === 'audio/wav'|| file.contentType === 'audio/avi') {
+    if (file.contentType === 'image/mp3' || file.contentType === 'image/mp4' || file.contentType === 'image/mov' || file.contentType === 'image/mpeg-4' || file.contentType === 'image/x-m4v' || file.contentType === 'image/m4v' || file.contentType === 'image/amr' || file.contentType === 'audio/wav' || file.contentType === 'audio/avi') {
       // Read output to browser
       const readstream = gfs.createReadStream(file.filename);
-         readstream.pipe(res);
+      readstream.pipe(res);
     } else {
-        const readstream = gfs.createReadStream(file.filename);
-        readstream.pipe(res)   
+      const readstream = gfs.createReadStream(file.filename);
+      readstream.pipe(res)
     }
   });
 });
