@@ -23,7 +23,7 @@ var signupRouter = require ('./routes/signup');
 var chatRouter = require ('./routes/chat');
 var supportRouter = require('./routes/support');
 var connectIdRouter = require('./routes/connectId');
-var lydRouter = require('./routes/lyd');
+var lydbogRouter = require('./routes/lydbog');
 
 var app = express();
 
@@ -75,7 +75,7 @@ app.use('/signup', signupRouter);
 app.use('/chat', chatRouter);
 app.use('/support', supportRouter);
 app.use('/connectId', connectIdRouter);
-app.use('/lyd', lydRouter);
+app.use('/lydbog', lydbogRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

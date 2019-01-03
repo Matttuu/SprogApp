@@ -54,7 +54,7 @@ router.get('/', (req, res, audio) => {
   gfs.files.find().toArray((err, files) => {
     // Check if files
     if (!files || files.length === 0) {
-     res.render('lyd', { files: false});
+     res.render('lydbog', { files: false});
     } else {
       files.map(file  => {
         if (
@@ -72,7 +72,7 @@ router.get('/', (req, res, audio) => {
           file.isAudio = false;
         }
       });
-     res.render('lyd', {audiofiles: files, audio: 'lyd/Audio/' + audio, title: 'Lydordbog',});
+     res.render('lydbog', {audiofiles: files, audio: 'lydbog/Audio/' +audio});
     }
   });
 });
@@ -93,7 +93,7 @@ router.post('/files/:filename', (req, res, next) => {
     function resolveDetteBagefter() {
       return new Promise(resolve => {
         setTimeout(() => {
-          resolve(res.redirect('/lyd'));
+          resolve(res.redirect('/lydbog'));
         }, 0001);
       });
     }
@@ -115,7 +115,7 @@ router.post('/files/:filename', (req, res, next) => {
 // @desc  Uploads file to DB
 router.post('/audioupload', upload.single('file'), (req, res) => {
   // res.json({ file: req.file });
-  res.redirect('/lyd');
+  res.redirect('/lydbog');
 }); 
 
 
@@ -184,7 +184,7 @@ router.delete('/files/:id', (req, res) => {
       return res.status(404).json({ err: err });
     }
 
-    res.redirect('/lyd');
+    res.redirect('/lydbog');
   });
 });
 

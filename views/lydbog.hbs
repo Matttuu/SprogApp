@@ -10,7 +10,7 @@
 <div class="container">
     <div class="row">
         <div class="col-md-6 m-auto">
-            <form action="/lyd/audioupload" method="POST" enctype="multipart/form-data">
+            <form action="/lydbog/audioupload" method="POST" enctype="multipart/form-data">
                 <div class="custom-file mb-3">
                     Optag video: <input type="file" accept="audio/*" id="capture" capture="audio" name="file" class="custom-file-input">
                     <label for="file" class="custom-file-label">Vælg lydfil</label>
@@ -22,9 +22,9 @@
             {{#each audiofiles}}
             <div class="card card-body mb-3">
                 <audio controls>
-                         <source src="lyd/audio/{{filename}}" type="audio/mp4">Din browser understøtter ikke denne filtype!</audio>
-                <form method="PUT" action="/lyd/audio/{{_id}}.mp4?_method=PUT"></form>
-                <form method="POST" action="/lyd/files/{{_id}}?_method=DELETE">
+                         <source src="lydbog/audio/{{filename}}" type="audio/mp4">Din browser understøtter ikke denne filtype!</audio>
+                <form method="PUT" action="/lydbog/audio/{{_id}}.mp4?_method=PUT"></form>
+                <form method="POST" action="/lydbog/files/{{_id}}?_method=DELETE">
                     <button class="btn btn-danger btn-block mt-4">Slet lyd</button>
                 </form>
             </div>
