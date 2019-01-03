@@ -32,41 +32,47 @@
                 <th colspan="5">Tilknyttede kursister</th>
             </tr>
             <tr>
-                <td><b>Navn: {{obj1.users.username}}</b></td>
-                <td><b>ID: {{tilknyttetKursistID1}}</b></td>
-                <td><a href="chat">Chat</a></td>
+                <th colspan="1" class="tableHeading2">Navn</th>
+                <th colspan="1" class="tableHeading2">Unikt ID</th>
+                <th colspan="1" class="tableHeading2">Chat</th>
+                <th colspan="2" class="tableHeading2">Personlige ordbøger</th>
+            </tr>
+            <tr>
+                <td>{{obj1.users.username}}</td>
+                <td>{{tilknyttetKursistID1}}</td>
+                <td><a href="chat">Start chat</a></td>
                 <td><a href="billedbog">Billedordbog</a></td>
                 <td><a href="videobog">Videoordbog</a></td>
             </tr>
             {{#if antalTilknyttedeKursister2}}
             <tr>
-                <td><b>Navn: {{obj2.users.username}}</b></td>
-                <td><b> ID: {{tilknyttetKursistID2}}</b></td>
-                <td><a href="chat">Chat</a></td>
+                <td>{{obj2.users.username}}</td>
+                <td>{{tilknyttetKursistID2}}</td>
+                <td><a href="chat">Start chat</a></td>
                 <td><a href="billedbog">Billedordbog</a></td>
                 <td><a href="videobog">Videoordbog</a></td>
             </tr>
             {{#if antalTilknyttedeKursister3}}
             <tr>
-                <td><b>Navn: {{obj3.users.username}}</b></td>
-                <td><b>ID: {{tilknyttetKursistID3}}</b></td>
-                <td><a href="chat">Chat</a></td>
+                <td>{{obj3.users.username}}</td>
+                <td>{{tilknyttetKursistID3}}</td>
+                <td><a href="chat">Start chat</a></td>
                 <td><a href="billedbog">Billedordbog</a></td>
                 <td><a href="videobog">Videoordbog</a></td>
             </tr>
             {{#if antalTilknyttedeKursister4}}
             <tr>
-                <td><b>Navn: {{obj4.users.username}}</b></td>
-                <td><b>ID: {{tilknyttetKursistID4}}</b></td>
-                <td><a href="chat">Chat</a></td>
+                <td>{{obj4.users.username}}</td>
+                <td>{{tilknyttetKursistID4}}</td>
+                <td><a href="chat">Start chat</a></td>
                 <td><a href="billedbog">Billedordbog</a></td>
                 <td><a href="videobog">Videoordbog</a></td>
             </tr>
             {{#if antalTilknyttedeKursister5}}
             <tr>
-                <td><b>Navn: {{obj5.users.username}}</b></td>
-                <td><b>{{tilknyttetKursistID5}}</b></td>
-                <td><a href="chat">Chat</a></td>
+                <td>{{obj5.users.username}}</td>
+                <td>{{tilknyttetKursistID5}}</td>
+                <td><a href="chat">Start chat</a></td>
                 <td><a href="billedbog">Billedordbog</a></td>
                 <td><a href="videobog">Videoordbog</a></td>
             </tr>

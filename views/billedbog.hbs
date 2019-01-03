@@ -1,4 +1,10 @@
-{{#if kursist}}
+{{#if sprogmakker}}
+<center>
+    <h1 class="loggedInHeading">Lydordbog</h1>
+    <p class="loggedInText">Da du er logget ind som sprogmakker, har du ikke en lydordbog.</p>
+</center>
+
+{{else}}
 <center>
     <h1 class="loggedInHeading">Billedordbog</h1>
     <p class="loggedInText">Her kan du tage billeder og tilføje til din ordbog. Efterfølgende kan du tilføje tekst til
@@ -87,15 +93,4 @@
         </div>
     </div>
 </div>
-
-{{else if sprogmakker}}
-<center>
-    <h1 class="loggedInHeading">Billedordbog</h1>
-    <p class="loggedInText">Da du er logget ind som sprogmakker, har du ikke en billedordbog.</p>
-</center>
-{{else if admin}}
-<center>
-    <h1 class="loggedInHeading">Billedordbog</h1>
-    <p class="loggedInText">Da du er logget ind som administrator, har du ikke en billedordbog.</p>
-</center>
 {{/if}}

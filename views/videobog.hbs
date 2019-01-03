@@ -1,3 +1,10 @@
+{{#if sprogmakker}}
+<center>
+    <h1 class="loggedInHeading">Videoordbog</h1>
+    <p class="loggedInText">Da du er logget ind som sprogmakker, har du ikke en videoordbog.</p>
+</center>
+
+{{else}}
 <center>
     <h1 class="loggedInHeading">Videoordbog</h1>
     <p class="loggedInText">Her kan du optage video og tilføje til din ordbog. Efterfølgende kan du tilføje tekst til din video.</p>
@@ -47,3 +54,4 @@
         </div>
     </div>
 </div>
+{{/if}}

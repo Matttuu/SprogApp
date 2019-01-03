@@ -1,3 +1,10 @@
+{{#if sprogmakker}}
+<center>
+    <h1 class="loggedInHeading">Lydordbog</h1>
+    <p class="loggedInText">Da du er logget ind som sprogmakker, har du ikke en lydordbog.</p>
+</center>
+
+{{else}}
 <center>
     <h1 class="loggedInHeading">Lydordbog</h1>
     <p class="loggedInText">Her kan du optage lyd og tilføje til din ordbog. Efterfølgende kan du tilføje tekst til lyden.</p>
@@ -33,3 +40,4 @@
         </div>
     </div>
 </div>
+{{/if}}
