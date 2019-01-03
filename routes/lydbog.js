@@ -79,6 +79,7 @@ router.get('/', (req, res, audio) => {
           });
           res.render('lydbog', {
             audiofiles: files, audio: 'lydbog/Audio/' + audio,
+            title: 'Lydordbog',
             sprogmakker: user.role === "Sprogmakker",
             kursist: user.role === "Kursist",
             admin: user.role === "Administrator"
