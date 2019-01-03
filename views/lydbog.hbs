@@ -1,0 +1,35 @@
+<center>
+    <h1 class="loggedInHeading">Lydordbog</h1>
+    <p class="loggedInText">Her kan du optage lyd og tilføje til din ordbog. Efterfølgende kan du tilføje tekst til lyden.</p>
+</center>
+
+<div id="tilføjBillede">
+    <p>Tilføj lyd til lydoordbogen</p>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 m-auto">
+            <form action="/lydbog/audioupload" method="POST" enctype="multipart/form-data">
+                <div class="custom-file mb-3">
+                    Optag lyd: <input type="file" accept="audio/*" id="capture" capture="audio" name="file" class="custom-file-input">
+                    <label for="file" class="custom-file-label">Vælg lydfil</label>
+                </div>
+                <input type="submit" value="Tilføj valgte lyd" class="btn btn-primary btn-block">
+            </form>
+            <hr>
+            {{#if audiofiles}}
+            {{#each audiofiles}}
+            <div class="card card-body mb-3">
+                <audio controls>
+                         <source src="lydbog/audio/{{filename}}" type="audio/mp4">Din browser understøtter ikke denne filtype!</audio>
+                <form method="PUT" action="/lydbog/audio/{{_id}}.mp4?_method=PUT"></form>
+                <form method="POST" action="/lydbog/files/{{_id}}?_method=DELETE">
+                    <button class="btn btn-danger btn-block mt-4">Slet lyd</button>
+                </form>
+            </div>
+            {{/each}}
+            {{/if}}
+        </div>
+    </div>
+</div>

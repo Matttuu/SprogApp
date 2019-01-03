@@ -39,6 +39,7 @@ router.get('/', function (req, res, next) {
                   obj5.users = result;
 
                   res.render('connectID', {
+                    title: 'Tilknyt kursist',
                     // findName1: doc.username,
                     //findName2:doc.tilknyttetKursistID2,
                     name: user.username,

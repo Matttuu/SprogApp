@@ -1,7 +1,6 @@
 <center>
     <h1 class="loggedInHeading">Billedordbog</h1>
-    <p class="loggedInText">Her kan du tage billeder og tilføje til din ordbog. Efterfølgende kan du tilføje tekst og
-        lyd til dit billede.</p>
+    <p class="loggedInText">Her kan du tage billeder og tilføje til din ordbog. Efterfølgende kan du tilføje tekst til dit billede.</p>
 </center>
 
 <div id="tilføjBillede">
@@ -16,7 +15,7 @@
                     Capture Image: <input type="file" accept="image/*" id="capture" capture="camera" name="file" class="custom-file-input">
                     <label for="file" class="custom-file-label">Vælg billedfil</label>
                 </div>
-                <input type="submit" value="Tilføj billede" class="btn btn-success btn-block">
+                <input type="submit" value="Tilføj valgte billede" class="btn btn-success btn-block">
             </form>
             <hr>
             <div id="billedeListe">
@@ -50,7 +49,7 @@
 
                                 <!--LYD-->
                                 <div class="card card-body mb-1">
-                                    <form action="/lyd/audioupload" method="POST" enctype="multipart/form-data">
+                                    <form action="/lydbog/audioupload" method="POST" enctype="multipart/form-data">
                                         <div class="custom-file mb-3">
                                             Optag video: <input type="file" accept="audio/*" id="capture" capture="audio"
                                                 name="file" class="custom-file-input">
@@ -61,11 +60,11 @@
                                     {{#if audiofiles}}
                                     {{#each audiofiles}}
                                     <audio controls>
-                                        <source src="billedbog/audio/{{this.filename}}" type="audio/mp4">Din browser understøtter
+                                        <source src="lydbog/audio/{{filename}}" type="audio/mp4">Din browser understøtter
                                         ikke denne
                                         filtype!</audio>
-                                    <form method="PUT" action="/billedbog/audio/{{this._id}}.mp4?_method=PUT"></form>
-                                    <form method="POST" action="/billedbog/audiofiles/{{this._id}}?_method=DELETE">
+                                    <form method="PUT" action="/lydbog/audio/{{_id}}.mp4?_method=PUT"></form>
+                                    <form method="POST" action="/lydbog/files/{{_id}}?_method=DELETE">
                                         <button class="btn btn-danger btn-block mt-4">Slet lyd</button>
                                     </form>
                                     {{/each}}

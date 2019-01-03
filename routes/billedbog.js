@@ -118,7 +118,7 @@ router.get('/', (req, res, billede) => {
           }
         });
        //res.render('billedbog', {audiofiles: files});
-       res.render('billedbog', {files: files, audiofiles: filesLyd});
+       res.render('billedbog', {files: files, audiofiles: filesLyd, title: 'Billedordbog'});
 
       }
     });
