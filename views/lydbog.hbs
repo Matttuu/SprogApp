@@ -1,10 +1,10 @@
 <center>
-    <h1 class="loggedInHeading">LYD</h1>
-    <p class="loggedInText">Her kan du optage video og tilføje til din ordbog. Efterfølgende kan du tilføje tekst til din video.</p>
+    <h1 class="loggedInHeading">Lydordbog</h1>
+    <p class="loggedInText">Her kan du optage lyd og tilføje til din ordbog. Efterfølgende kan du tilføje tekst til lyden.</p>
 </center>
 
 <div id="tilføjBillede">
-    <p>Tilføj video til videoordbogen</p>
+    <p>Tilføj lyd til lydoordbogen</p>
 </div>
 
 <div class="container">
@@ -12,10 +12,10 @@
         <div class="col-md-6 m-auto">
             <form action="/lydbog/audioupload" method="POST" enctype="multipart/form-data">
                 <div class="custom-file mb-3">
-                    Optag video: <input type="file" accept="audio/*" id="capture" capture="audio" name="file" class="custom-file-input">
+                    Optag lyd: <input type="file" accept="audio/*" id="capture" capture="audio" name="file" class="custom-file-input">
                     <label for="file" class="custom-file-label">Vælg lydfil</label>
                 </div>
-                <input type="submit" value="Tilføj audio" class="btn btn-primary btn-block">
+                <input type="submit" value="Tilføj valgte lyd" class="btn btn-primary btn-block">
             </form>
             <hr>
             {{#if audiofiles}}
