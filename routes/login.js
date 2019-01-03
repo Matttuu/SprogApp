@@ -5,6 +5,7 @@ var User = require('../public/javascripts/user');
 // GET route for reading data
 router.get('/', function (req, res, next) {
   res.render('login.hbs',{
+    title: 'Log ind',
     layout: 'other',
   });
 });

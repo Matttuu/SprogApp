@@ -72,7 +72,7 @@ router.get('/', (req, res, billede) => {
         }
       });
     
-     res.render('videobog', {files: files, billede: 'videobog/image/' +billede});
+     res.render('videobog', {files: files, billede: 'videobog/image/' + billede, title: 'Videoordbog',});
     }
   });
 });

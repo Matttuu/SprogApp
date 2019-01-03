@@ -68,7 +68,7 @@ router.get('/', (req, res, billede) => {
           file.isImage = false;
         }
       });
-     res.render('billedbog', {files: files, billede: 'billedbog/image/' +billede});
+     res.render('billedbog', {files: files, billede: 'billedbog/image/' + billede, title: 'Billedordbog',});
     }
   });
 });

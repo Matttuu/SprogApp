@@ -72,7 +72,7 @@ router.get('/', (req, res, audio) => {
           file.isAudio = false;
         }
       });
-     res.render('lyd', {audiofiles: files, audio: 'lyd/Audio/' +audio});
+     res.render('lyd', {audiofiles: files, audio: 'lyd/Audio/' + audio, title: 'Lydordbog',});
     }
   });
 });

@@ -4,7 +4,8 @@ var User = require('../public/javascripts/user');
 
 // GET route for reading data
 router.get('/', function (req, res, next) {
-  res.render('signup.hbs',{
+  res.render('signup.hbs', {
+    title: 'Opret dig',
     layout: 'other',
   });
 });
