@@ -36,7 +36,7 @@
 
                 {{#if files}}
                 {{#each files}}   
-                <div id="billedObj" class="card card-body mb-3">
+                <div id="billedeObj" class="card card-body mb-3">
                     <!-- Display billede -->
                     {{metadata}}
                     <img src="billedbog/image/{{filename}}" alt="DB BILLEDE HER TAK">
@@ -107,9 +107,10 @@
     $(document).ready(function () {
         $("#myInput").on("keyup", function () {
             var value = $(this).val().toLowerCase();
-            $("#billedObj").filter(function () {
+            $("#billedeListe div").filter(function () {
                 $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
             });
+            
         });
     });
 </script>
