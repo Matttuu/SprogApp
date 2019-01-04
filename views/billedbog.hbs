@@ -20,7 +20,7 @@
 <div id="tilføjBillede">
     <p>Tilføj billede til billedordbogen</p>
 </div>
-<input style="display:none" id="uniqueIDS" value={{uniqueId}}></input>
+<input style="display:none" type="text" id="uniqueIDS" value={{uniqueId}}></input>
 <div class="container">
     <div class="row">
         <div class="col-md-6 m-auto">
@@ -35,64 +35,66 @@
             <div id="billedeListe">
 
                 {{#if files}}
-                {{#each files}}   
-                <div id="billedeObj" class="card card-body mb-3">
-                    <!-- Display billede -->
-                    <p style="display:none">{{metadata}}</p>
-                    <img src="billedbog/image/{{filename}}" alt="DB BILLEDE HER TAK">
-                    <br>
-                    <!-- Display tekst tilknyttet til billede -->
-                    <blockquote class="blockquote text-center">
-                        <h6>
-                            <p id="bDescrip"class="text-muted">{{billedDescription}}</p>
-                        </h6>
-                    </blockquote>
-                    <table class="table">
-                        <tr>
-                            <div class="card-group">
-                                <!-- Tilføj tekst til billede -->
-                                <div class="card card-body mb-1">
-                                    <form method="POST" action="/billedbog/files/{{filename}}">
-                                        <input type="text" name="billedDescription" class="form-control center_div"
-                                            placeholder="Tryk her for at tilføje / ændre din beskrivelse">
-                                        </input><br>
-                                        <input type="submit" value="Tilføj beskrivelse" class="btn btn-success btn-block">
-                                    </form>
+                {{#each files}}
+                <div class={{metadata}} style="display:none">
+                    <div id="billedeObj" class="card card-body mb-3">
+                        <!-- Display billede -->
+                        <p style="display:none" id="mdata">{{metadata}}</p>
+                        <img src="billedbog/image/{{filename}}" alt="DB BILLEDE HER TAK">
+                        <br>
+                        <!-- Display tekst tilknyttet til billede -->
+                        <blockquote class="blockquote text-center">
+                            <h6>
+                                <p id="bDescrip" class="text-muted">{{billedDescription}}</p>
+                            </h6>
+                        </blockquote>
+                        <table class="table">
+                            <tr>
+                                <div class="card-group">
+                                    <!-- Tilføj tekst til billede -->
+                                    <div class="card card-body mb-1">
+                                        <form method="POST" action="/billedbog/files/{{filename}}">
+                                            <input type="text" name="billedDescription" class="form-control center_div"
+                                                placeholder="Tryk her for at tilføje / ændre din beskrivelse">
+                                            </input><br>
+                                            <input type="submit" value="Tilføj beskrivelse" class="btn btn-success btn-block">
+                                        </form>
+                                    </div>
+
+                                    <!--LYD-->
+                                    <div class="card card-body mb-1">
+                                        <form action="/lydbog/audioupload2" method="POST" enctype="multipart/form-data">
+                                            <div class="custom-file mb-3">
+                                                Optag video: <input type="file" accept="audio/*" id="capture" capture="audio"
+                                                    name="file" class="custom-file-input">
+                                                <label for="file" class="custom-file-label">Vælg lydfil</label>
+                                            </div>
+                                            <input type="submit" value="Tilføj audio" class="btn btn-primary btn-block">
+                                        </form>
+                                    </div>
                                 </div>
 
-                                <!--LYD-->
-                                <div class="card card-body mb-1">
-                                    <form action="/lydbog/audioupload2" method="POST" enctype="multipart/form-data">
-                                        <div class="custom-file mb-3">
-                                            Optag video: <input type="file" accept="audio/*" id="capture" capture="audio"
-                                                name="file" class="custom-file-input">
-                                            <label for="file" class="custom-file-label">Vælg lydfil</label>
-                                        </div>
-                                        <input type="submit" value="Tilføj audio" class="btn btn-primary btn-block">
+                                {{#if ../audiofiles}}
+                                {{#each ../audiofiles}}
+                                <div class="card card-body mb-3">
+                                    <audio controls>
+                                        <source src="billedbog/audio/{{filename}}" type="audio/mp4">Din browser
+                                        understøtter ikke denne filtype!</audio>
+                                    <form method="PUT" action="/billedbog/audio/{{_id}}.mp4?_method=PUT"></form>
+                                    <form method="POST" action="/billedbog/audiofiles/{{_id}}?_method=DELETE">
+                                        <button class="btn btn-danger btn-block mt-4">Slet lyd</button>
                                     </form>
-                                </div>
-                            </div>
-                            
-                            {{#if ../audiofiles}}
-                            {{#each ../audiofiles}}
-                            <div class="card card-body mb-3">
-                                <audio controls>
-                                    <source src="billedbog/audio/{{filename}}" type="audio/mp4">Din browser
-                                    understøtter ikke denne filtype!</audio>
-                                <form method="PUT" action="/billedbog/audio/{{_id}}.mp4?_method=PUT"></form>
-                                <form method="POST" action="/billedbog/audiofiles/{{_id}}?_method=DELETE">
-                                    <button class="btn btn-danger btn-block mt-4">Slet lyd</button>
-                                </form>
 
-                            </div>
-                            {{/each}}
-                            {{/if}}
-                        </tr>
-                    </table>
-                    <!-- Slet video -->
-                    <form method="POST" action="/billedbog/files/{{_id}}?_method=DELETE">
-                        <button class="btn btn-danger btn-block mt-4">Slet billede</button>
-                    </form>
+                                </div>
+                                {{/each}}
+                                {{/if}}
+                            </tr>
+                        </table>
+                        <!-- Slet video -->
+                        <form method="POST" action="/billedbog/files/{{_id}}?_method=DELETE">
+                            <button class="btn btn-danger btn-block mt-4">Slet billede</button>
+                        </form>
+                    </div>
                 </div>
                 {{/each}}
                 {{/if}}
@@ -105,18 +107,24 @@
 
 <script>
     $(document).ready(function () {
+    var idValue = $("#uniqueIDS").val();
+        $("div").filter("."+idValue).css("display", "block");
+    });
+
+    $(document).ready(function () {
         $("#myInput").on("keyup", function () {
             var value = $(this).val().toLowerCase();
             $("#billedeListe #billedeObj").filter(function () {
                 $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
             });
-            
+            if (value == "") {
+                var value2 = $("#uniqueIDS").val();
+                $("#billedeListe #billedeObj").filter(function () {
+                    $(this).toggle($(this).text().toLowerCase().indexOf(value2) > -1)
+                });
+            }
         });
     });
-    $(document).ready(function () {
-            var value = $("#uniqueIDS").val();
-            $("#billedeListe #billedeObj").filter(function () {
-                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-            });
-        });
+ 
+
 </script>
