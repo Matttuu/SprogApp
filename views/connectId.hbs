@@ -1,6 +1,7 @@
 <div style="text-align:center;">
     <h1 class="loggedInHeading">Forbind til kursist</h1>
     <p class="loggedInText">
+
         {{#if sprogmakker}}
         <script>
             $(document).ready(function(e) {
@@ -26,6 +27,7 @@
         <div id="connecter">Vent venligst...</div>
         <table class="tilknyttetKursistTable" align="center">
             <div id="noneConnected">Du har i øjeblikket <b>ingen</b> tilknyttede kursister.</div>
+
             {{#if antalTilknyttedeKursister1}}
             <script>$('#noneConnected').hide();</script>
             <tr>
@@ -45,6 +47,7 @@
                 <td><a href="underUdvikling.html">Videoordbog</a></td>
                 <td><a href="underUdvikling.html">Lydordbog</a></td>
             </tr>
+
             {{#if antalTilknyttedeKursister2}}
             <tr>
                 <td>{{obj2.users.username}}</td>
@@ -54,6 +57,7 @@
                 <td><a href="underUdvikling.html">Videoordbog</a></td>
                 <td><a href="underUdvikling.html">Lydordbog</a></td>
             </tr>
+
             {{#if antalTilknyttedeKursister3}}
             <tr>
                 <td>{{obj3.users.username}}</td>
@@ -63,6 +67,7 @@
                 <td><a href="underUdvikling.html">Videoordbog</a></td>
                 <td><a href="underUdvikling.html">Lydordbog</a></td>
             </tr>
+
             {{#if antalTilknyttedeKursister4}}
             <tr>
                 <td>{{obj4.users.username}}</td>
@@ -72,6 +77,7 @@
                 <td><a href="underUdvikling.html">Videoordbog</a></td>
                 <td><a href="underUdvikling.html">Lydordbog</a></td>
             </tr>
+
             {{#if antalTilknyttedeKursister5}}
             <tr>
                 <td>{{obj5.users.username}}</td>
@@ -87,6 +93,7 @@
             {{/if}}
             {{/if}}
         </table>
+        
         {{else}}
         Du er ikke registreret som sprogmakker og kan derfor heller ikke forbinde til kursister.
         {{/if}}

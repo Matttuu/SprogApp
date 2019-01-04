@@ -33,9 +33,9 @@
             </form>
             <hr>
             <div id="billedeListe">
+
                 {{#if files}}
                 {{#each files}}   
-
                 <div id="billedObj" class="card card-body mb-3">
                     <!-- Display billede -->
                     {{metadata}}
@@ -72,6 +72,7 @@
                                     </form>
                                 </div>
                             </div>
+                            
                             {{#if ../audiofiles}}
                             {{#each ../audiofiles}}
                             <div class="card card-body mb-3">
