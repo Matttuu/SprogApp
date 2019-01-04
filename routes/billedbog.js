@@ -119,18 +119,22 @@ router.get('/', (req, res, billede) => {
           res.render('billedbog', { files: false });
         } else {
           files.map(file => {
-            if (
-              (file.contentType === 'image/jpeg' ||
+            if 
+              ((file.contentType === 'image/jpeg' ||
               file.contentType === 'image/png' ||
-              file.contentType === 'image/jpg') &&
-              file.metadata == user.uniqueId
+              file.contentType === 'image/jpg')&&
+              file.metadata === user.uniqueId
 
             ) {
-              billede = true;
+              billede = file.metadata;
+              print = true
+              console.log(billede);
 
             } else {
             
-              billede = false;
+              billede = file.metadata;
+              print = false;
+              console.log(billede);
             }
           });
         }
@@ -152,8 +156,12 @@ router.get('/', (req, res, billede) => {
             }
           });
           res.render('billedbog', {
+            user: user,
+            uniqueId: user.uniqueId,
             files: files,
+            test2: print,
             file: files.metadata === user.uniqueId,
+            test: files.metadata === "8dbi6fjyptf",
             audiofiles: filesLyd,
             title: 'Billedordbog',
             sprogmakker: user.role === "Sprogmakker",
