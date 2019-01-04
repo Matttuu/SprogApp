@@ -20,7 +20,7 @@
 <div id="tilføjBillede">
     <p>Tilføj billede til billedordbogen</p>
 </div>
-<p>{{uniqueId}}</p>
+<input style="display:none" id="uniqueIDS" value={{uniqueId}}></input>
 <div class="container">
     <div class="row">
         <div class="col-md-6 m-auto">
@@ -38,7 +38,7 @@
                 {{#each files}}   
                 <div id="billedeObj" class="card card-body mb-3">
                     <!-- Display billede -->
-                    {{metadata}}
+                    <p style="display:none">{{metadata}}</p>
                     <img src="billedbog/image/{{filename}}" alt="DB BILLEDE HER TAK">
                     <br>
                     <!-- Display tekst tilknyttet til billede -->
@@ -113,4 +113,10 @@
             
         });
     });
+    $(document).ready(function () {
+            var value = $("#uniqueIDS").val();
+            $("#billedeListe #billedeObj").filter(function () {
+                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+            });
+        });
 </script>
