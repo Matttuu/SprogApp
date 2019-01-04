@@ -27,16 +27,13 @@
             <hr>
             <div id="billedeListe">
                 {{#if files}}
-                {{#each files}} 
-                {{#if test2}}
+                {{#each files}}   
 
-
-                <div class="card card-body mb-3">
+                <div id="billedObj" class="card card-body mb-3">
                     <!-- Display billede -->
                     {{metadata}}
-                    <img src="billedbog/image/{{filename}}" alt="DB BILLEDE HER TAK">
+                    <img src="billedbog/image/{{metadata}}" alt="DB BILLEDE HER TAK">
                     <br>
-
                     <!-- Display tekst tilknyttet til billede -->
                     <blockquote class="blockquote text-center">
                         <h6>
@@ -80,7 +77,6 @@
                                 </form>
 
                             </div>
-
                             {{/each}}
                             {{/if}}
                         </tr>
@@ -90,7 +86,6 @@
                         <button class="btn btn-danger btn-block mt-4">Slet billede</button>
                     </form>
                 </div>
-                {{/if}}
                 {{/each}}
                 {{/if}}
 

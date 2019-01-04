@@ -111,9 +111,11 @@ const uploadLyd = multer({ storageLyd });
 // @route GET /
 // @desc Loads form
 router.get('/', (req, res, billede) => {
+
   User.findById(req.session.userId)
-    .exec(function (error, user) {
+  .exec(function (error, user) {
       gfs.files.find().toArray((err, files) => {
+        
         // Check if files
         if (!files || files.length === 0) {
           res.render('billedbog', { files: false });
@@ -126,52 +128,51 @@ router.get('/', (req, res, billede) => {
               file.metadata === user.uniqueId
 
             ) {
-              billede = file.metadata;
-              print = true
-              console.log(billede);
+              //billede = file.metadata;
+              //print = true;
+              file.isImage = true;
+              //billede = true;
+              console.log(file.metadata)
+          
+              gfsLyd.files.find().toArray((err, filesLyd) => {
 
-            } else {
-            
-              billede = file.metadata;
-              print = false;
-              console.log(billede);
-            }
+                filesLyd.map(fileLyd => {
+                  if (
+                    fileLyd.contentType === 'audio/mp3' ||
+                    fileLyd.contentType === 'audio/mp4' ||
+                    fileLyd.contentType === 'audio/x-m4a' ||
+                    fileLyd.contentType === 'audio/m4a' ||
+                    fileLyd.contentType === 'audio/wav' 
+      
+                  ) {
+                    fileLyd.isAudio = true;
+                    audio = fileLyd.filename;
+                  } else {
+                    fileLyd.isAudio = false;
+                  }
+                });
+                res.render('billedbog', {
+                  user: user,
+                  uniqueId: user.uniqueId,
+                  files: files,
+                  test: files.metadata === "8dbi6fjyptf",
+                  test2: billede.metadata === user.uniqueId,
+                  test3: billede === user.uniqueId,
+                  file: files.metadata === user.uniqueId,
+                  audiofiles: filesLyd,
+                  title: 'Billedordbog',
+                  sprogmakker: user.role === "Sprogmakker",
+                  kursist: user.role === "Kursist",
+                  admin: user.role === "Administrator"
+                });
+      
+              });
+            } 
           });
         }
-        gfsLyd.files.find().toArray((err, filesLyd) => {
-
-          filesLyd.map(fileLyd => {
-            if (
-              fileLyd.contentType === 'audio/mp3' ||
-              fileLyd.contentType === 'audio/mp4' ||
-              fileLyd.contentType === 'audio/x-m4a' ||
-              fileLyd.contentType === 'audio/m4a' ||
-              fileLyd.contentType === 'audio/wav' 
-
-            ) {
-              fileLyd.isAudio = true;
-              audio = fileLyd.filename;
-            } else {
-              fileLyd.isAudio = false;
-            }
-          });
-          res.render('billedbog', {
-            user: user,
-            uniqueId: user.uniqueId,
-            files: files,
-            test2: print,
-            file: files.metadata === user.uniqueId,
-            test: files.metadata === "8dbi6fjyptf",
-            audiofiles: filesLyd,
-            title: 'Billedordbog',
-            sprogmakker: user.role === "Sprogmakker",
-            kursist: user.role === "Kursist",
-            admin: user.role === "Administrator"
-          });
-
-        });
+     
       });
-    });
+  });
 });
 
 
@@ -254,8 +255,8 @@ router.get('/files/:filename', (req, res) => {
 
 // @route GET /image/:filename
 // @desc Display Image
-router.get('/image/:filename', (req, res) => {
-  gfs.files.findOne({ filename: req.params.filename }, (err, file) => {
+router.get('/image/:metadata', (req, res) => {
+  gfs.files.findOne({ metadata: req.params.metadata }, (err, file) => {
     User.findById(req.session.userId)
     .exec(function (error, user) {
 
@@ -272,8 +273,7 @@ router.get('/image/:filename', (req, res) => {
       const readstream = gfs.createReadStream(file.filename);
       readstream.pipe(res);
     } else {
-      
-
+      file = false;
     }
   });
   });
