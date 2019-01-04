@@ -27,11 +27,11 @@ let gfsLyd;
 conn.once('open', () => {
   // Init stream
   gfs = Grid(conn.db, mongoose.mongo);
-  gfs.collection('uploads');
+  gfs.collection('imageuploads');
   gfsLyd = Grid(conn.db, mongoose.mongo);
   gfsLyd.collection('audiouploads');
 });
-
+/*
 // Create storage engine
 const storage = new GridFsStorage({
   url: mongoURI,
@@ -42,20 +42,20 @@ const storage = new GridFsStorage({
           return reject(err);
         }
         const filename = buf.toString('hex') + path.extname(file.originalname);
+        const fUpload = upload.fields([{name: "test"}]);
+        const test = "test";
         const fileInfo = {
           filename: filename,
-          bucketName: 'uploads'
+          bucketName: 'imageuploads'
         };
         resolve(fileInfo);
       });
     });
   }
 });
-const upload = multer({ storage });
-
-
+*/
 // Create storage engine
-const storageLyd = new GridFsStorage({
+const storage = new GridFsStorage({
   url: mongoURI,
   file: (req, file) => {
     return new Promise((resolve, reject) => {
@@ -63,9 +63,42 @@ const storageLyd = new GridFsStorage({
         if (err) {
           return reject(err);
         }
+      User.findById(req.session.userId)
+      .exec(function (error, user) {
         const filename = buf.toString('hex') + path.extname(file.originalname);
+        const metadata = user.uniqueId;
         const fileInfo = {
           filename: filename,
+          metadata: metadata,
+
+          bucketName: 'imageuploads'
+        };
+        resolve(fileInfo);
+   
+    });
+  });
+});
+  }
+});
+const upload = multer({ storage });
+
+
+// Create storage engine
+const storageLyd = new GridFsStorage({
+  
+  url: mongoURI,
+  file: (req, file) => {
+    
+    return new Promise((resolve, reject) => {
+      crypto.randomBytes(16, (err, buf) => {
+        if (err) {
+          return reject(err);
+        }
+        const filename = buf.toString('hex') + path.extname(file.originalname);
+        const metadata = "hej";
+        const fileInfo = {
+          filename: filename,
+          metadata: metadata,
           bucketName: 'audiouploads'
         };
         resolve(fileInfo);
@@ -87,47 +120,47 @@ router.get('/', (req, res, billede) => {
         } else {
           files.map(file => {
             if (
-              file.contentType === 'image/jpeg' ||
+              (file.contentType === 'image/jpeg' ||
               file.contentType === 'image/png' ||
-              file.contentType === 'image/jpg'
+              file.contentType === 'image/jpg') &&
+              file.metadata == user.uniqueId
+
             ) {
-              file.isImage = true;
-              billede = file.filename;
+              billede = true;
+
             } else {
-              file.isImage = false;
+            
+              billede = false;
             }
           });
         }
         gfsLyd.files.find().toArray((err, filesLyd) => {
-          // Check if files
-          if (!filesLyd || filesLyd.length === 0) {
-            res.render('billedbog', { files: false });
-          } else {
-            filesLyd.map(fileLyd => {
-              if (
-                fileLyd.contentType === 'audio/mp3' ||
-                fileLyd.contentType === 'audio/mp4' ||
-                fileLyd.contentType === 'audio/x-m4a' ||
-                fileLyd.contentType === 'audio/m4a' ||
-                fileLyd.contentType === 'audio/wav'
 
+          filesLyd.map(fileLyd => {
+            if (
+              fileLyd.contentType === 'audio/mp3' ||
+              fileLyd.contentType === 'audio/mp4' ||
+              fileLyd.contentType === 'audio/x-m4a' ||
+              fileLyd.contentType === 'audio/m4a' ||
+              fileLyd.contentType === 'audio/wav' 
 
-              ) {
-                fileLyd.isAudio = true;
-                audio = fileLyd.filename;
-              } else {
-                fileLyd.isAudio = false;
-              }
-            });
-            //res.render('billedbog', {audiofiles: files});
-            res.render('billedbog', {
-              files: files, audiofiles: filesLyd,
-              title: 'Billedordbog',
-              sprogmakker: user.role === "Sprogmakker",
-              kursist: user.role === "Kursist",
-              admin: user.role === "Administrator"
-            });
-          }
+            ) {
+              fileLyd.isAudio = true;
+              audio = fileLyd.filename;
+            } else {
+              fileLyd.isAudio = false;
+            }
+          });
+          res.render('billedbog', {
+            files: files,
+            file: files.metadata === user.uniqueId,
+            audiofiles: filesLyd,
+            title: 'Billedordbog',
+            sprogmakker: user.role === "Sprogmakker",
+            kursist: user.role === "Kursist",
+            admin: user.role === "Administrator"
+          });
+
         });
       });
     });
@@ -138,6 +171,8 @@ router.get('/', (req, res, billede) => {
 // @desc  Uploads file to DB
 router.post('/upload', upload.single('file'), (req, res) => {
   // res.json({ file: req.file });
+  
+
   res.redirect('/billedbog');
 });
 
@@ -166,7 +201,7 @@ router.post('/files/:filename', (req, res, next) => {
     async function asyncCall() {
       var result = await resolveDetteBagefter();
       // Peger på database collection 
-      var collection = db.collection('uploads.files')
+      var collection = db.collection('imageuploads.files')
       // Bruger collection.update metoden for at opdatere / give text til specifikt billede
       collection.update(
         { filename: req.params.filename },
@@ -213,6 +248,9 @@ router.get('/files/:filename', (req, res) => {
 // @desc Display Image
 router.get('/image/:filename', (req, res) => {
   gfs.files.findOne({ filename: req.params.filename }, (err, file) => {
+    User.findById(req.session.userId)
+    .exec(function (error, user) {
+
     // Check if file
     if (!file || file.length === 0) {
       return res.status(404).json({
@@ -226,10 +264,10 @@ router.get('/image/:filename', (req, res) => {
       const readstream = gfs.createReadStream(file.filename);
       readstream.pipe(res);
     } else {
-      const readstream = gfs.createReadStream(file.filename);
-      readstream.pipe(res)
+      
 
     }
+  });
   });
 });
 
@@ -237,7 +275,7 @@ router.get('/image/:filename', (req, res) => {
 // @desc  Delete file
 
 router.delete('/files/:id', (req, res) => {
-  gfs.remove({ _id: req.params.id, root: 'uploads' }, (err, gridStore) => {
+  gfs.remove({ _id: req.params.id, root: 'imageuploads' }, (err, gridStore) => {
     if (err) {
       return res.status(404).json({ err: err });
     }
@@ -252,36 +290,7 @@ router.delete('/files/:id', (req, res) => {
 
 //LYD***********************************************************************************************************
 
-/*
-// @route GET /
-// @desc Loads form
-router.get('/', (req, res, audio) => {
-  gfsLyd.files.find().toArray((err, files) => {
-    // Check if files
-    if (!files || files.length === 0) {
-     res.render('billedbog', { files: false});
-    } else {
-      files.map(file  => {
-        if (
-          file.contentType === 'audio/mp3' ||
-          file.contentType === 'audio/mp4' ||
-          file.contentType === 'audio/x-m4a'||
-          file.contentType === 'audio/m4a' ||
-          file.contentType === 'audio/wav' 
 
-          
-        ) {
-          file.isAudio = true;
-          audio = file.filename;          
-        } else {
-          file.isAudio = false;
-        }
-      });
-     //res.render('billedbog', {audiofiles: files});
-    }
-  });
-});
-*/
 // Her lagres beskrivelse til billedet i databasen. 
 // Det bliver lagret til det specifikke filnavn.
 /* Der bliver benyttet en async / await funktion for at
@@ -307,7 +316,7 @@ router.post('/audiofiles/:filename', (req, res, next) => {
     async function asyncCall() {
       var result = await resolveDetteBagefter();
       // Peger på database collection 
-      var collection = db.collection('uploads.files')
+      var collection = db.collection('imageuploads.files')
       // Bruger collection.update metoden for at opdatere / give text til specifikt billede
       collection.update(
         { filename: req.params.filename },

@@ -36,8 +36,10 @@ const storage = new GridFsStorage({
           return reject(err);
         }
         const filename = buf.toString('hex') + path.extname(file.originalname);
+        const metadata = "lort";
         const fileInfo = {
           filename: filename,
+          metadata: metadata,
           bucketName: 'audiouploads'
         };
         resolve(fileInfo);
@@ -126,6 +128,10 @@ router.post('/files/:filename', (req, res, next) => {
 // @route POST /upload
 // @desc  Uploads file to DB
 router.post('/audioupload', upload.single('file'), (req, res) => {
+  // res.json({ file: req.file });
+  res.redirect('/lydbog');
+});
+router.post('/audioupload2', upload.single('file'), (req, res) => {
   // res.json({ file: req.file });
   res.redirect('/billedbog');
 });
