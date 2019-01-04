@@ -3,12 +3,14 @@
     <p class="loggedInText">
         Din registrerede rolle er: <b>{{role}}</b><br>
         Dit unikke ID nummer er: <b>{{uniqueId}}</b><br>
+
         {{#if sprogmakker}}
         <h4 class="loggedInHeading">Vælg herunder:</h4>
         <div class="flex-container">
             <div id="item1"><a href='connectId'><i class="fas fa-plug" id="connectId" style="font-size:60px;"></i></a></div>
             <div id="item2"><a href='underUdvikling.html'><i class="fas fa-comment" id="chat" style="font-size:60px;"></i></a></div>
         </div>
+
         {{else if kursist}}
         <h4 class="loggedInHeading">Vælg herunder:</h4>
         <div class="flex-container">
@@ -23,6 +25,7 @@
             <div id="item5"><a href='support'><i class="fas fa-hands-helping" id="support" style="font-size:60px;"></i></a></div>
             <div id="item6"><a href='/'><i class="fas fa-none" id="none" style="font-size:60px;"></i></a></div>
         </div>
+
         {{else if admin}}
         <h2 class="loggedInHeading">Admin menu</h2>
         <a href="billedbog">Billedordbog</a><br>
@@ -31,5 +34,6 @@
         <a href="chat">Chat</a><br>
         <a href="connectId">Forbind kursist</a>
         {{/if}}
+        
     </p>
 </div>
