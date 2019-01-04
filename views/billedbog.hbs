@@ -10,6 +10,23 @@
     <p class="loggedInText">Her kan du tage billeder og tilføje til din ordbog. Efterfølgende kan du tilføje tekst til
         dit billede.</p>
 </center>
+
+<script>
+    $(document).ready(function () {
+        $("#myInput").on("keyup", function () {
+            var value = $(this).val().toLowerCase();
+            $("#billedeListe").filter(function () {
+                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+            });
+        });
+    });
+</script>
+<div class="col-md-5 m-auto">
+    <form>
+        <input type="text" name="search" placeholder="  Search.." class="form-control" id="myInput">
+    </form>
+</div>
+<br>
 <div id="tilføjBillede">
     <p>Tilføj billede til billedordbogen</p>
 </div>
