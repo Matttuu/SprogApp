@@ -134,43 +134,49 @@ router.get('/', (req, res, billede) => {
               //billede = true;
               console.log(file.metadata)
           
-              gfsLyd.files.find().toArray((err, filesLyd) => {
-
-                filesLyd.map(fileLyd => {
-                  if (
-                    fileLyd.contentType === 'audio/mp3' ||
-                    fileLyd.contentType === 'audio/mp4' ||
-                    fileLyd.contentType === 'audio/x-m4a' ||
-                    fileLyd.contentType === 'audio/m4a' ||
-                    fileLyd.contentType === 'audio/wav' 
-      
-                  ) {
-                    fileLyd.isAudio = true;
-                    audio = fileLyd.filename;
-                  } else {
-                    fileLyd.isAudio = false;
-                  }
-                });
-                res.render('billedbog', {
-                  user: user,
-                  uniqueId: user.uniqueId,
-                  files: files,
-                  test: files.metadata === "8dbi6fjyptf",
-                  test2: billede.metadata === user.uniqueId,
-                  test3: billede === user.uniqueId,
-                  file: files.metadata === user.uniqueId,
-                  audiofiles: filesLyd,
-                  title: 'Billedordbog',
-                  sprogmakker: user.role === "Sprogmakker",
-                  kursist: user.role === "Kursist",
-                  admin: user.role === "Administrator"
-                });
-      
-              });
-            } 
+            } else {
+              console.log(file.metadata)
+              //billede = file.metadata;
+              file.isImage = false;
+              //billede = false;
+              //print = false;
+              
+            }
           });
         }
-     
+        gfsLyd.files.find().toArray((err, filesLyd) => {
+
+          filesLyd.map(fileLyd => {
+            if (
+              fileLyd.contentType === 'audio/mp3' ||
+              fileLyd.contentType === 'audio/mp4' ||
+              fileLyd.contentType === 'audio/x-m4a' ||
+              fileLyd.contentType === 'audio/m4a' ||
+              fileLyd.contentType === 'audio/wav' 
+
+            ) {
+              fileLyd.isAudio = true;
+              audio = fileLyd.filename;
+            } else {
+              fileLyd.isAudio = false;
+            }
+          });
+          res.render('billedbog', {
+            user: user,
+            uniqueId: user.uniqueId,
+            files: files,
+            test: files.metadata === "8dbi6fjyptf",
+            test2: billede.metadata === user.uniqueId,
+            test3: billede === user.uniqueId,
+            file: files.metadata === user.uniqueId,
+            audiofiles: filesLyd,
+            title: 'Billedordbog',
+            sprogmakker: user.role === "Sprogmakker",
+            kursist: user.role === "Kursist",
+            admin: user.role === "Administrator"
+          });
+
+        });
       });
   });
 });
@@ -255,8 +261,8 @@ router.get('/files/:filename', (req, res) => {
 
 // @route GET /image/:filename
 // @desc Display Image
-router.get('/image/:metadata', (req, res) => {
-  gfs.files.findOne({ metadata: req.params.metadata }, (err, file) => {
+router.get('/image/:filename', (req, res) => {
+  gfs.files.findOne({ filename: req.params.filename }, (err, file) => {
     User.findById(req.session.userId)
     .exec(function (error, user) {
 

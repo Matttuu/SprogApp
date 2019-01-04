@@ -10,16 +10,7 @@
     <p class="loggedInText">Her kan du tage billeder og tilføje til din ordbog. Efterfølgende kan du tilføje tekst til
         dit billede.</p>
 </center>
-<script>
-    $(document).ready(function () {
-        $("#myInput").on("keyup", function () {
-            var value = $(this).val().toLowerCase();
-            $("#billedeListe").filter(function () {
-                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-            });
-        });
-    });
-</script>
+
 <div class="col-md-5 m-auto">
     <form>
         <input type="text" name="search" placeholder="Søg..." class="form-control" id="myInput">
@@ -48,12 +39,12 @@
                 <div id="billedObj" class="card card-body mb-3">
                     <!-- Display billede -->
                     {{metadata}}
-                    <img src="billedbog/image/{{metadata}}" alt="DB BILLEDE HER TAK">
+                    <img src="billedbog/image/{{filename}}" alt="DB BILLEDE HER TAK">
                     <br>
                     <!-- Display tekst tilknyttet til billede -->
                     <blockquote class="blockquote text-center">
                         <h6>
-                            <p class="text-muted">{{billedDescription}}</p>
+                            <p id="bDescrip"class="text-muted">{{billedDescription}}</p>
                         </h6>
                     </blockquote>
                     <table class="table">
@@ -110,3 +101,14 @@
     </div>
 </div>
 {{/if}}
+
+<script>
+    $(document).ready(function () {
+        $("#myInput").on("keyup", function () {
+            var value = $(this).val().toLowerCase();
+            $("#billedObj").filter(function () {
+                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+            });
+        });
+    });
+</script>
