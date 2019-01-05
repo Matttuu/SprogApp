@@ -7,12 +7,18 @@
 {{else}}
 <center>
     <h1 class="loggedInHeading">Videoordbog</h1>
-    <p class="loggedInText">Her kan du optage video og tilføje til din ordbog. Efterfølgende kan du tilføje tekst til din video.</p>
+    <p class="loggedInText">Her kan du optage video og tilføje til din ordbog. Efterfølgende kan du tilføje tekst til
+        din video.</p>
 </center>
-
+<div class="col-md-5 m-auto">
+    <form>
+        <input type="text" name="search" placeholder="Søg..." class="form-control" id="myInput">
+    </form>
+</div>
 <div id="tilføjBillede">
     <p>Tilføj video til videoordbogen</p>
 </div>
+<input style="display:none" type="text" id="uniqueIDS" value={{uniqueId}}></input>
 
 <div class="container">
     <div class="row">
@@ -25,33 +31,66 @@
                 <input type="submit" value="Tilføj valgte video" class="btn btn-success btn-block">
             </form>
             <hr>
-            <div id="billedeListe">
-            {{#if files}}
-            {{#each files}}
-            <div class="card card-body mb-3">
-                <!-- Display video --> 
-                <video width="500" height="250" controls>
-                    <source src="videobog/image/{{filename}}" type="video/mp4">Din browser understøtter ikke denne
-                    filtype!</video>
-                    <br/>
-                <!-- Display tekst tilknyttet til video -->
-                <blockquote class="blockquote text-center">
-                      <h6><p class="text-muted">{{videoDescription}}</p></h6>
-                </blockquote>
-                <!-- Tilføj tekst til video --> 
-                <form method="POST" action="/videobog/files/{{filename}}">
-                    <input type="text" name="videoDescription" class="form-control center_div" placeholder="Tryk her for at tilføje / ændre din beskrivelse" > </input>
-                    <input type="submit" value="Tilføj beskrivelse" class="btn btn-success btn-block">
-                </form>
-                <!-- Slet video --> 
-                <form method="POST" action="/videobog/files/{{_id}}?_method=DELETE">
-                    <button class="btn btn-danger btn-block mt-4">Slet video</button>
-                </form>
-            </div>
-            {{/each}}
-            {{/if}}
+            <div id="videoListe">
+                {{#if files}}
+                {{#each files}}
+                <div class={{metadata}} style="display:none">
+
+                    <div id="videoObj" class="card card-body mb-3">
+
+                        <!-- Display video -->
+                        <p style="display:none" id="mdata">{{metadata}}</p>
+
+                        <video width="500" height="250" controls>
+                            <source src="videobog/image/{{filename}}" type="video/mp4">Din browser understøtter ikke
+                            denne
+                            filtype!</video>
+                        <br />
+                        <!-- Display tekst tilknyttet til video -->
+                        <blockquote class="blockquote text-center">
+                            <h6>
+                                <p class="text-muted">{{videoDescription}}</p>
+                            </h6>
+                        </blockquote>
+                        <!-- Tilføj tekst til video -->
+                        <form method="POST" action="/videobog/files/{{filename}}">
+                            <input type="text" name="videoDescription" class="form-control center_div" placeholder="Tryk her for at tilføje / ændre din beskrivelse">
+                            </input>
+                            <input type="submit" value="Tilføj beskrivelse" class="btn btn-success btn-block">
+                        </form>
+                        <!-- Slet video -->
+                        <form method="POST" action="/videobog/files/{{_id}}?_method=DELETE">
+                            <button class="btn btn-danger btn-block mt-4">Slet video</button>
+                        </form>
+                    </div>
+                    {{/each}}
+                    {{/if}}
+                </div>
             </div>
         </div>
     </div>
-</div>
-{{/if}}
+    {{/if}}
+
+    <script>
+        $(document).ready(function () {
+            var idValue = $("#uniqueIDS").val();
+            $("div").filter("." + idValue).css("display", "block");
+        });
+
+        $(document).ready(function () {
+            $("#myInput").on("keyup", function () {
+                var value = $(this).val().toLowerCase();
+                $("#videoListe #videoObj").filter(function () {
+                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                });
+                if (value == "") {
+                    var value2 = $("#uniqueIDS").val();
+                    $("#videoListe #videoObj").filter(function () {
+                        $(this).toggle($(this).text().toLowerCase().indexOf(value2) > -1)
+                    });
+                }
+            });
+        });
+
+
+    </script>

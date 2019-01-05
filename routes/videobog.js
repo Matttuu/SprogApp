@@ -35,14 +35,19 @@ const storage = new GridFsStorage({
         if (err) {
           return reject(err);
         }
+        User.findById(req.session.userId)
+        .exec(function (error, user) {
         const filename = buf.toString('hex') + path.extname(file.originalname);
+        const metadata = user.uniqueId;
         const fileInfo = {
           filename: filename,
+          metadata: metadata,
           bucketName: 'videouploads'
         };
         resolve(fileInfo);
       });
     });
+  });
   }
 });
 const upload = multer({ storage });
@@ -81,6 +86,8 @@ router.get('/', (req, res, billede) => {
 
           res.render('videobog', {
             files: files, billede: 'videobog/image/' + billede,
+            user: user,
+            uniqueId: user.uniqueId,
             title: 'Videoordbog',
             sprogmakker: user.role === "Sprogmakker",
             kursist: user.role === "Kursist",
