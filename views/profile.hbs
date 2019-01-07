@@ -3,7 +3,6 @@
     <p class="loggedInText">
         Din registrerede rolle er: <b>{{role}}</b><br>
         Dit unikke ID nummer er: <b>{{uniqueId}}</b><br><br>
-        Samlede antal point: <b>{{userPoints}}</b>!
 
         <!-- Hvis du er logget ind som sprogmakker, vises dette dashboard -->
         {{#if sprogmakker}}
@@ -15,12 +14,13 @@
 
         <!-- Hvis du er logget ind som kursist, vises dette dashboard -->
         {{else if kursist}}
+        Samlede antal point: <b>{{userPoints}}</b>!
 
         <!--Progressbar som henter antal point fra databasen og skalérer automatisk-->
         <div class="container">
             <div class="progress">
-                <div class="progress-bar" role="progressbar" aria-valuenow={{userPoints}} aria-valuemin="0"
-                    aria-valuemax="100" style="width:{{userPoints}}%">
+                <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow={{userPoints}}
+                    aria-valuemin="0" aria-valuemax="100" style="width:{{userPoints}}%">
                     {{userPoints}}
                 </div>
             </div>
