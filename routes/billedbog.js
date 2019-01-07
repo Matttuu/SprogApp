@@ -99,22 +99,15 @@ router.post('/upload', upload.single('file'), (req, res) => {
         }
         async function asyncCall() {
           var result = await resolveDetteBagefter();
-
           var collection = db.collection('users');
-          var findID = collection.find({ "uniqueId": user.uniqueId });
-
-          
-      
-
-            collection.update({ 'uniqueId': user.uniqueId },
-              { '$inc': { 'userPoints': 10 } });
-
-        
-   
-      }
-      asyncCall();
+  
+          //Tilføjer 10 point til brugeren
+          collection.update({ 'uniqueId': user.uniqueId },
+            { '$inc': { 'userPoints': 10 } });
+        }
+        asyncCall();
+      });
     });
-});
 });
 // Her lagres beskrivelse til billedet i databasen. 
 // Det bliver lagret til det specifikke filnavn.
