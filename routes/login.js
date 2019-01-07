@@ -36,6 +36,7 @@ router.post('/', function (req, res, next) {
       role: req.body.role,
       password: req.body.password,
       passwordConf: req.body.passwordConf,
+      userPoints: 0,
     }
 
     User.create(userData, function (error, user) {
@@ -47,7 +48,8 @@ router.post('/', function (req, res, next) {
           uniqueId: user.uniqueId,
           name: user.username,
           email: user.email,
-          role: user.role
+          role: user.role,
+          userPoints: user.userPoints,
         });
       }
     });
