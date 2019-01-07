@@ -1,49 +1,62 @@
-function createCookie(name, value, expires, path, domain) {
-    var cookie = name + "=" + escape(value) + ";";
-  
-    if (expires) {
-      // If it's a date
-      if(expires instanceof Date) {
-        // If it isn't a valid date
-        if (isNaN(expires.getTime()))
-         expires = new Date();
-      }
-      else
-        expires = new Date(new Date().getTime() + parseInt(expires) * 1000 * 60 * 60 * 24);
-  
-      cookie += "expires=" + expires.toGMTString() + ";";
+
+
+function getTimeRemaining(endtime) {
+    var t = Date.parse(endtime) - Date.parse(new Date());
+    var seconds = Math.floor((t / 1000) % 60);
+    var minutes = Math.floor((t / 1000 / 60) % 60);
+    var hours = Math.floor((t / (1000 * 60 * 60)) % 24);
+    var days = Math.floor(t / (1000 * 60 * 60 * 24));
+    return {
+        'total': t,
+        'days': days,
+        'hours': hours,
+        'minutes': minutes,
+        'seconds': seconds
+    };
+}
+function initializeClock(id, endtime) {
+    var clock = document.getElementById(id);
+    var daysSpan = clock.querySelector('.days');
+    var hoursSpan = clock.querySelector('.hours');
+    var minutesSpan = clock.querySelector('.minutes');
+    var secondsSpan = clock.querySelector('.seconds');
+
+    function updateClock() {
+        var t = getTimeRemaining(endtime);
+
+        daysSpan.innerHTML = t.days;
+        hoursSpan.innerHTML = ('0' + t.hours).slice(-2);
+        minutesSpan.innerHTML = ('0' + t.minutes).slice(-2);
+        secondsSpan.innerHTML = ('0' + t.seconds).slice(-2);
+
+        if (t.total <= 0) {
+            clearInterval(timeinterval);
+        }
     }
-  
-    if (path)
-      cookie += "path=" + path + ";";
-    if (domain)
-      cookie += "domain=" + domain + ";";
-  
-    document.cookie = cookie;
-  }
-  
 
+    updateClock();
+    var timeinterval = setInterval(updateClock, 1000);
+}
 
+// Hvis der allerede er en cookie som hedder userPoints, brug værdien fra den til deadline
+if (document.cookie && document.cookie.match('userPoints')) {
+    // få deadline fra cookien
+    var deadline = document.cookie.match(/(^|;)userPoints=([^;]+)/)[2];
+}
 
- // Denne kode bruges til at oprette en cookie (Skal ligge på en anden side evt. login)
-  createCookie("website", "exino.it", new Date(new Date().getTime() + 10000));
-createCookie("author", "aurelio", 30);
+// ellers, sæt en deadline fra nu og
+// gem som cookie med givet navn
+else {
 
+    
+    // Lave en deadline i '10' minutter fra dette tidspunkt.
+    var timeInMinutes = 10;
+    var currentTime = Date.parse(new Date());
+    var deadline = new Date(currentTime + timeInMinutes * 60 * 1000);
+    expirationGMT = deadline.toGMTString();
 
-// Denne kode henter cookies
-function getCookie(name) {
-    var regexp = new RegExp("(?:^" + name + "|;\s*"+ name + ")=(.*?)(?:;|$)", "g");
-    var result = regexp.exec(document.cookie);
-    return (result === null) ? null : result[1];
-  }
-
-
-// Denne kode bruges til at slette 
-function deleteCookie(name, path, domain) {
-    // If the cookie exists
-    if (getCookie(name))
-      createCookie(name, "", -1, path, domain);
-  }
-
-
-
+    // Gem i deadline i en cookie
+    document.cookie = 'userPoints= ' + deadline + '; expires=' + expirationGMT + '; path=/; domain=localhost';
+    
+}
+initializeClock('clockdiv', deadline);
