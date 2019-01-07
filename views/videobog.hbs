@@ -18,6 +18,8 @@
 <div id="tilføjBillede">
     <p>Tilføj video til videoordbogen</p>
 </div>
+<!--Sætter et usynligt tag på siden, som har brugerens unikke id som værdi.
+    Dette bliver brugt til at vise de billeder som passer til id'et.-->
 <input style="display:none" type="text" id="uniqueIDS" value={{uniqueId}}></input>
 
 <div class="container">
@@ -35,6 +37,7 @@
                 {{#if files}}
                 {{#each files}}
                 <div class={{metadata}} style="display:none">
+                    <!--Usynligt tag, som har billedets metadata.-->
 
                     <div id="videoObj" class="card card-body mb-3">
 
@@ -63,9 +66,10 @@
                             <button class="btn btn-danger btn-block mt-4">Slet video</button>
                         </form>
                     </div>
-                    {{/each}}
-                    {{/if}}
                 </div>
+
+                {{/each}}
+                {{/if}}
             </div>
         </div>
     </div>

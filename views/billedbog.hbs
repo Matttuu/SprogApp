@@ -22,7 +22,7 @@
 </div>
 
 <!--Sætter et usynligt tag på siden, som har brugerens unikke id som værdi.
-    Dette bliver brugt til at vise de billeder som passer til id'et-->
+    Dette bliver brugt til at vise de billeder som passer til id'et.-->
 <input style="display:none" type="text" id="uniqueIDS" value={{uniqueId}}></input>
 
 <div class="container">
@@ -42,7 +42,6 @@
                 {{#each files}}
                 <div class={{metadata}} style="display:none">
                     <!--Usynligt tag, som har billedets metadata.-->
-                    <input style="display:none" type="text" id="uniqueFName" value={{filename}}></input>
 
                     <div id="billedeObj" class="card card-body mb-3">
                         <!-- Display billede -->

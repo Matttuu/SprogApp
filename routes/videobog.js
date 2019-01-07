@@ -55,7 +55,7 @@ const upload = multer({ storage });
 
 // @route GET /
 // @desc Loads form
-router.get('/', (req, res, billede) => {
+router.get('/', (req, res) => {
   User.findById(req.session.userId)
     .exec(function (error, user) {
       gfs.files.find().toArray((err, files) => {
