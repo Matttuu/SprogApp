@@ -9,8 +9,6 @@ const multer = require('multer');
 const GridFsStorage = require('multer-gridfs-storage');
 const Grid = require('gridfs-stream');
 
-//Her er det nye
-
 // Mongo URI
 const mongoURI = 'mongodb://admin:team12@ds125693.mlab.com:25693/cdi';
 
@@ -52,7 +50,6 @@ const storage = new GridFsStorage({
 });
 const upload = multer({ storage });
 
-
 // @route GET /
 // @desc Loads form
 router.get('/', (req, res) => {
@@ -78,7 +75,7 @@ router.get('/', (req, res) => {
 });
 
 // @route POST /upload
-// @desc  Uploads file to DB
+// @desc Uploads file to DB
 router.post('/videoupload', upload.single('file'), (req, res) => {
  
   User.findById(req.session.userId)
@@ -106,9 +103,6 @@ router.post('/videoupload', upload.single('file'), (req, res) => {
       });
     });
 });
-
-
-
 
 // Her lagres beskrivelse til videoen i databasen. 
 // Det bliver lagret til det specifikke filnavn.
@@ -146,11 +140,8 @@ router.post('/files/:filename', (req, res, next) => {
   });
 });
 
-
-
-
 // @route GET /files
-// @desc  Display all files in JSON
+// @desc Display all files in JSON
 router.get('/files', (req, res) => {
   gfs.files.find().toArray((err, files) => {
     // Check if files
@@ -166,7 +157,7 @@ router.get('/files', (req, res) => {
 });
 
 // @route GET /files/:filename
-// @desc  Display single file object
+// @desc Display single file object
 router.get('/files/:filename', (req, res) => {
   gfs.files.findOne({ filename: req.params.filename }, (err, file) => {
     // Check if file
@@ -198,14 +189,15 @@ router.get('/image/:filename', (req, res) => {
       const readstream = gfs.createReadStream(file.filename);
       readstream.pipe(res);
     } else {
-      const readstream = gfs.createReadStream(file.filename);
-      readstream.pipe(res)
+      res.status(404).json({
+        err: 'Not Video'
+      });
     }
   });
 });
 
 // @route DELETE /files/:id
-// @desc  Delete file
+// @desc Delete file
 
 router.delete('/files/:id', (req, res) => {
   gfs.remove({ _id: req.params.id, root: 'videouploads' }, (err, gridStore) => {
@@ -216,6 +208,5 @@ router.delete('/files/:id', (req, res) => {
     res.redirect('/videobog');
   });
 });
-
 
 module.exports = router;
