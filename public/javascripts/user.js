@@ -50,8 +50,11 @@ var UserSchema = new mongoose.Schema({
   },
   antalTilknyttedeKursister:{
     type: String,
+  },
+  userPoints:{
+    type: Number
   }
-});
+})
 
 //Authenticate input i forhold til databasen
 UserSchema.statics.authenticate = function (email, password, callback) {

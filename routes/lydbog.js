@@ -9,8 +9,6 @@ const multer = require('multer');
 const GridFsStorage = require('multer-gridfs-storage');
 const Grid = require('gridfs-stream');
 
-//Her er det nye
-
 // Mongo URI
 const mongoURI = 'mongodb://admin:team12@ds125693.mlab.com:25693/cdi';
 
@@ -52,7 +50,6 @@ const storage = new GridFsStorage({
 });
 const upload = multer({ storage });
 
-
 // @route GET /
 // @desc Loads form
 router.get('/', (req, res) => {
@@ -65,6 +62,8 @@ router.get('/', (req, res) => {
         } else {
           res.render('lydbog', {
             audiofiles: files,
+            user: user,
+            uniqueId: user.uniqueId,
             title: 'Lydordbog',
             sprogmakker: user.role === "Sprogmakker",
             kursist: user.role === "Kursist",
@@ -74,7 +73,15 @@ router.get('/', (req, res) => {
       });
     });
 });
-// Her lagres beskrivelse til billedet i databasen. 
+
+// @route POST /upload
+// @desc Uploads file to DB
+router.post('/audioupload', upload.single('file'), (req, res) => {
+  // res.json({ file: req.file });
+  res.redirect('/lydbog');
+});
+
+// Her lagres beskrivelse til lyden i databasen. 
 // Det bliver lagret til det specifikke filnavn.
 /* Der bliver benyttet en async / await funktion for at
    sørge for koden bliver kørt asynkront. Dette resultere
@@ -87,7 +94,7 @@ router.post('/files/:filename', (req, res, next) => {
   mongoose.connect('mongodb://admin:team12@ds125693.mlab.com:25693/cdi', { useNewUrlParser: true, }, function (err, db) {
     if (err) { throw err; }
 
-    // Oprette nyt promise som bliver kørt senere i koden.
+    // Opretter nyt promise som bliver kørt senere i koden.
     function resolveDetteBagefter() {
       return new Promise(resolve => {
         setTimeout(() => {
@@ -99,11 +106,11 @@ router.post('/files/:filename', (req, res, next) => {
     async function asyncCall() {
       var result = await resolveDetteBagefter();
       // Peger på database collection 
-      var collection = db.collection('uploads.files')
-      // Bruger collection.update metoden for at opdatere / give text til specifikt billede
+      var collection = db.collection('audiouploads.files')
+      // Bruger collection.update metoden for at opdatere / give text til specifik lyd
       collection.update(
         { filename: req.params.filename },
-        { '$set': { 'audio': req.body.audio } }
+        { '$set': { 'audioDescription': req.body.audioDescription } }
       )
     }
     asyncCall();
@@ -112,13 +119,35 @@ router.post('/files/:filename', (req, res, next) => {
 // @route POST /upload
 // @desc  Uploads file to DB
 router.post('/audioupload', upload.single('file'), (req, res) => {
-  // res.json({ file: req.file });
-  res.redirect('/lydbog');
+  
+  User.findById(req.session.userId)
+    .exec(function (error, user) {
+
+      mongoose.connect('mongodb://admin:team12@ds125693.mlab.com:25693/cdi', { useNewUrlParser: true, }, function (err, db) {
+        if (err) { throw err; }
+
+        function resolveDetteBagefter() {
+          return new Promise(resolve => {
+            setTimeout(() => {
+              resolve(res.redirect('/lydbog'));
+            }, 0001);
+          });
+        }
+        async function asyncCall() {
+          await resolveDetteBagefter();
+          var collection = db.collection('users');
+
+          //Tilføjer 10 point til brugeren
+          collection.update({ 'uniqueId': user.uniqueId },
+            { '$inc': { 'userPoints': 10 } });
+        }
+        asyncCall();
+      });
+    });
 });
 
-
 // @route GET /files
-// @desc  Display all files in JSON
+// @desc Display all files in JSON
 router.get('/files', (req, res) => {
   gfs.files.find().toArray((err, files) => {
     // Check if files
@@ -134,7 +163,7 @@ router.get('/files', (req, res) => {
 });
 
 // @route GET /files/:filename
-// @desc  Display single file object
+// @desc Display single file object
 router.get('/files/:filename', (req, res) => {
   gfs.files.findOne({ filename: req.params.filename }, (err, file) => {
     // Check if file
@@ -174,7 +203,7 @@ router.get('/audio/:filename', (req, res) => {
 });
 
 // @route DELETE /files/:id
-// @desc  Delete file
+// @desc Delete file
 
 router.delete('/files/:id', (req, res) => {
   gfs.remove({ _id: req.params.id, root: 'audiouploads' }, (err, gridStore) => {
@@ -185,8 +214,5 @@ router.delete('/files/:id', (req, res) => {
     res.redirect('/lydbog');
   });
 });
-
-
-//Her slutter det nye
 
 module.exports = router;

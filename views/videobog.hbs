@@ -21,7 +21,7 @@
 </div>
 
 <!-- Sætter et usynligt tag på siden, som har brugerens unikke id som værdi.
-    Dette bliver brugt til at vise de billeder som passer til id'et. -->
+    Dette bliver brugt til at vise de videoer som passer til id'et. -->
 <input style="display:none" type="text" id="uniqueIDS" value={{uniqueId}}></input>
 
 <div class="container">
@@ -36,32 +36,32 @@
             </form>
             <hr>
             <div id="videoListe">
+
                 {{#if files}}
                 {{#each files}}
                 <div class={{metadata}} style="display:none">
-                    <!--Usynligt tag, som har billedets metadata.-->
+                    <!--Usynligt tag, som har videoens metadata.-->
                     <div id="videoObj" class="card card-body mb-3">
-
                         <!-- Display video -->
                         <p style="display:none" id="mdata">{{metadata}}</p>
-
                         <video height="250" controls>
-                            <source src="videobog/image/{{filename}}" type="video/mp4">Din browser understøtter ikke
-                            denne
-                            filtype!</video>
-                        <br>
+                            <source src="videobog/video/{{filename}}">Din browser understøtter ikke denne filtype!
+                        </video>
                         <!-- Display tekst tilknyttet til video -->
                         <blockquote class="blockquote text-center">
+                            <br>
                             <h6>
                                 <p class="text-muted">{{videoDescription}}</p>
                             </h6>
                         </blockquote>
                         <!-- Tilføj tekst til video -->
-                        <form method="POST" action="/videobog/files/{{filename}}">
-                            <input type="text" name="videoDescription" class="form-control center_div" placeholder="Tryk her for at tilføje / ændre din beskrivelse">
-                            </input>
-                            <input type="submit" value="Tilføj beskrivelse" class="btn btn-success btn-block">
-                        </form>
+                        <div class="card card-body mb-1">
+                            <form method="POST" action="/videobog/files/{{filename}}">
+                                <input type="text" name="videoDescription" class="form-control center_div" placeholder="Tryk her for at tilføje / ændre din beskrivelse">
+                                <br>
+                                <input type="submit" value="Tilføj beskrivelse" class="btn btn-success btn-block">
+                            </form>
+                        </div>
                         <!-- Slet video -->
                         <form method="POST" action="/videobog/files/{{_id}}?_method=DELETE">
                             <button class="btn btn-danger btn-block mt-4">Slet video</button>

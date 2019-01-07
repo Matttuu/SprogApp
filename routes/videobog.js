@@ -9,8 +9,6 @@ const multer = require('multer');
 const GridFsStorage = require('multer-gridfs-storage');
 const Grid = require('gridfs-stream');
 
-//Her er det nye
-
 // Mongo URI
 const mongoURI = 'mongodb://admin:team12@ds125693.mlab.com:25693/cdi';
 
@@ -52,7 +50,6 @@ const storage = new GridFsStorage({
 });
 const upload = multer({ storage });
 
-
 // @route GET /
 // @desc Loads form
 router.get('/', (req, res) => {
@@ -78,14 +75,34 @@ router.get('/', (req, res) => {
 });
 
 // @route POST /upload
-// @desc  Uploads file to DB
+// @desc Uploads file to DB
 router.post('/videoupload', upload.single('file'), (req, res) => {
-  // res.json({ file: req.file });
-  res.redirect('/videobog');
+ 
+  User.findById(req.session.userId)
+    .exec(function (error, user) {
+
+      mongoose.connect('mongodb://admin:team12@ds125693.mlab.com:25693/cdi', { useNewUrlParser: true, }, function (err, db) {
+        if (err) { throw err; }
+
+        function resolveDetteBagefter() {
+          return new Promise(resolve => {
+            setTimeout(() => {
+              resolve(res.redirect('/videobog'));
+            }, 0001);
+          });
+        }
+        async function asyncCall() {
+          await resolveDetteBagefter();
+          var collection = db.collection('users');
+
+          //Tilføjer 10 point til brugeren
+          collection.update({ 'uniqueId': user.uniqueId },
+            { '$inc': { 'userPoints': 10 } });
+        }
+        asyncCall();
+      });
+    });
 });
-
-
-
 
 // Her lagres beskrivelse til videoen i databasen. 
 // Det bliver lagret til det specifikke filnavn.
@@ -123,11 +140,8 @@ router.post('/files/:filename', (req, res, next) => {
   });
 });
 
-
-
-
 // @route GET /files
-// @desc  Display all files in JSON
+// @desc Display all files in JSON
 router.get('/files', (req, res) => {
   gfs.files.find().toArray((err, files) => {
     // Check if files
@@ -143,7 +157,7 @@ router.get('/files', (req, res) => {
 });
 
 // @route GET /files/:filename
-// @desc  Display single file object
+// @desc Display single file object
 router.get('/files/:filename', (req, res) => {
   gfs.files.findOne({ filename: req.params.filename }, (err, file) => {
     // Check if file
@@ -160,7 +174,7 @@ router.get('/files/:filename', (req, res) => {
 
 // @route GET /image/:filename
 // @desc Display Image
-router.get('/image/:filename', (req, res) => {
+router.get('/video/:filename', (req, res) => {
   gfs.files.findOne({ filename: req.params.filename }, (err, file) => {
     // Check if file
     if (!file || file.length === 0) {
@@ -170,19 +184,19 @@ router.get('/image/:filename', (req, res) => {
     }
 
     // Check if image
-    if (file.contentType === 'image/mp3' || file.contentType === 'image/mp4' || file.contentType === 'image/mov' || file.contentType === 'image/mpeg-4' || file.contentType === 'image/x-m4v' || file.contentType === 'image/m4v' || file.contentType === 'image/amr' || file.contentType === 'audio/wav' || file.contentType === 'audio/avi') {
+    if (file.contentType === 'video/mp3' || file.contentType === 'video/mp4' || file.contentType === 'video/mov' || file.contentType === 'video/mpeg-4' || file.contentType === 'video/x-m4v' || file.contentType === 'video/m4v' || file.contentType === 'video/amr') {
       // Read output to browser
       const readstream = gfs.createReadStream(file.filename);
       readstream.pipe(res);
     } else {
-      const readstream = gfs.createReadStream(file.filename);
-      readstream.pipe(res)
+      file = false;
+
     }
   });
 });
 
 // @route DELETE /files/:id
-// @desc  Delete file
+// @desc Delete file
 
 router.delete('/files/:id', (req, res) => {
   gfs.remove({ _id: req.params.id, root: 'videouploads' }, (err, gridStore) => {
@@ -193,6 +207,5 @@ router.delete('/files/:id', (req, res) => {
     res.redirect('/videobog');
   });
 });
-
 
 module.exports = router;
