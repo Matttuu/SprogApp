@@ -72,25 +72,28 @@
     {{/if}}
 
     <script>
+        /*JQuery-filter som vil vise alle de div-tags som har klasse-værdien fra idValue, hvilket 
+        har brugerens unikke id som værdi. Det vil sige hvis den givende div har klassen: qksas0zzk8,
+        og idValue og er qksas0zzk8 så vil div'en blive vist.*/
         $(document).ready(function () {
             var idValue = $("#uniqueIDS").val();
             $("div").filter("." + idValue).css("display", "block");
         });
 
+        /*Søgefunktionen:
+           Henter værdien fra #myInput, hvilket er søge-feltet og sætter alt til Lower Case,
+           hvilket betyder at jhon, Jhon og JHON vil give de samme resultater.
+           Her kigger funktionen efter billed-objekterne i billedlisten og matcher værdierne.
+           Den kigger dog efter alt i div'en, hvilket inkluderer tilføj beskrivelse knappen og 
+           slet billede knappen. 
+           */
         $(document).ready(function () {
             $("#myInput").on("keyup", function () {
                 var value = $(this).val().toLowerCase();
                 $("#videoListe #videoObj").filter(function () {
                     $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
                 });
-                if (value == "") {
-                    var value2 = $("#uniqueIDS").val();
-                    $("#videoListe #videoObj").filter(function () {
-                        $(this).toggle($(this).text().toLowerCase().indexOf(value2) > -1)
-                    });
-                }
             });
         });
-
 
     </script>

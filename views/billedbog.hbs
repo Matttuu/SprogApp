@@ -20,7 +20,11 @@
 <div id="tilføjBillede">
     <p>Tilføj billede til billedordbogen</p>
 </div>
+
+<!--Sætter et usynligt tag på siden, som har brugerens unikke id som værdi.
+    Dette bliver brugt til at vise de billeder som passer til id'et-->
 <input style="display:none" type="text" id="uniqueIDS" value={{uniqueId}}></input>
+
 <div class="container">
     <div class="row">
         <div class="col-md-6 m-auto">
@@ -33,10 +37,11 @@
             </form>
             <hr>
             <div id="billedeListe">
-
+                
                 {{#if files}}
                 {{#each files}}
                 <div class={{metadata}} style="display:none">
+                    <!--Usynligt tag, som har billedets metadata.-->
                     <input style="display:none" type="text" id="uniqueFName" value={{filename}}></input>
 
                     <div id="billedeObj" class="card card-body mb-3">
@@ -63,37 +68,6 @@
                                         </form>
                                     </div>
 
-                                    <!--LYD-->
-                                    <div class="card card-body mb-1">
-                                        <form action="/lydbog/audioupload2" method="POST" enctype="multipart/form-data">
-                                            <div class="custom-file mb-3">
-                                                Optag video: <input type="file" accept="audio/*" id="capture" capture="audio"
-                                                    name="file" class="custom-file-input">
-                                                <label for="file" class="custom-file-label">Vælg lydfil</label>
-                                            </div>
-                                            <input type="submit" value="Tilføj audio" class="btn btn-primary btn-block">
-                                        </form>
-                                    </div>
-                                </div>
-
-                                {{#if ../audiofiles}}
-                                {{#each ../audiofiles}}
-                                <p style="display:none" id="fName">{{filename}}</p>
-
-                                <div style="display:none" class={{metadata}}>
-                                    <div id="aFiles" class="card card-body mb-3">
-                                        <audio controls>
-                                            <source src="billedbog/audio/{{filename}}" type="audio/mp4">Din browser
-                                            understøtter ikke denne filtype!</audio>
-                                        <form method="PUT" action="/billedbog/audio/{{_id}}.mp4?_method=PUT"></form>
-                                        <form method="POST" action="/billedbog/audiofiles/{{_id}}?_method=DELETE">
-                                            <button class="btn btn-danger btn-block mt-4">Slet lyd</button>
-                                        </form>
-
-                                    </div>
-                                </div>
-                                {{/each}}
-                                {{/if}}
                             </tr>
                         </table>
                         <!-- Slet video -->
@@ -112,31 +86,28 @@
 {{/if}}
 
 <script>
+    /*JQuery-filter som vil vise alle de div-tags som har klasse-værdien fra idValue, hvilket 
+    har brugerens unikke id som værdi. Det vil sige hvis den givende div har klassen: qksas0zzk8,
+    og idValue og er qksas0zzk8 så vil div'en blive vist.*/
     $(document).ready(function () {
         var idValue = $("#uniqueIDS").val();
         $("div").filter("." + idValue).css("display", "block");
     });
 
-     $(document).ready(function () {
-        var idValue = $("#uniqueFName").val();
-        $("div").filter("." + idValue).css("display", "block");
-    });
-
+    /*Søgefunktionen:
+    Henter værdien fra #myInput, hvilket er søge-feltet og sætter alt til Lower Case,
+    hvilket betyder at jhon, Jhon og JHON vil give de samme resultater.
+    Her kigger funktionen efter billed-objekterne i billedlisten og matcher værdierne.
+    Den kigger dog efter alt i div'en, hvilket inkluderer tilføj beskrivelse knappen og 
+    slet billede knappen. 
+    */
     $(document).ready(function () {
         $("#myInput").on("keyup", function () {
             var value = $(this).val().toLowerCase();
             $("#billedeListe #billedeObj").filter(function () {
                 $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
             });
-            if (value == "") {
-                var value2 = $("#uniqueIDS").val();
-                $("#billedeListe #billedeObj").filter(function () {
-                    $(this).toggle($(this).text().toLowerCase().indexOf(value2) > -1)
-                });
-            }
         });
     });
-
-
 
 </script>

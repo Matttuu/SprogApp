@@ -63,29 +63,8 @@ router.get('/', (req, res, billede) => {
         if (!files || files.length === 0) {
           res.render('videobog', { files: false });
         } else {
-          files.map(file => {
-            if (
-              file.contentType === 'image/mp3' ||
-              file.contentType === 'image/mp4' ||
-              file.contentType === 'image/mov' ||
-              file.contentType === 'image/mpeg-4' ||
-              file.contentType === 'image/x-m4v' ||
-              file.contentType === 'image/m4v' ||
-              file.contentType === 'image/amr' ||
-              file.contentType === 'image/avi' ||
-              file.contentType === 'image/wav'
-            ) {
-              file.isImage = false;
-
-              billede = file.filename;
-            } else {
-
-              file.isImage = true;
-            }
-          });
-
           res.render('videobog', {
-            files: files, billede: 'videobog/image/' + billede,
+            files: files,
             user: user,
             uniqueId: user.uniqueId,
             title: 'Videoordbog',

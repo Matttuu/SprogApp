@@ -55,7 +55,7 @@ const upload = multer({ storage });
 
 // @route GET /
 // @desc Loads form
-router.get('/', (req, res, audio) => {
+router.get('/', (req, res) => {
   User.findById(req.session.userId)
     .exec(function (error, user) {
       gfs.files.find().toArray((err, files) => {
@@ -63,27 +63,8 @@ router.get('/', (req, res, audio) => {
         if (!files || files.length === 0) {
           res.render('lydbog', { files: false });
         } else {
-          files.map(file => {
-            if (
-              file.contentType === 'audio/mp3' ||
-              file.contentType === 'audio/mp4' ||
-              file.contentType === 'audio/mov' ||
-              file.contentType === 'audio/mpeg-4' ||
-              file.contentType === 'audio/x-m4v' ||
-              file.contentType === 'audio/m4v' ||
-              file.contentType === 'audio/amr' ||
-              file.contentType === 'audio/wav'
-
-
-            ) {
-              file.isAudio = true;
-              audio = file.filename;
-            } else {
-              file.isAudio = false;
-            }
-          });
           res.render('lydbog', {
-            audiofiles: files, audio: 'lydbog/Audio/' + audio,
+            audiofiles: files,
             title: 'Lydordbog',
             sprogmakker: user.role === "Sprogmakker",
             kursist: user.role === "Kursist",
@@ -133,10 +114,6 @@ router.post('/files/:filename', (req, res, next) => {
 router.post('/audioupload', upload.single('file'), (req, res) => {
   // res.json({ file: req.file });
   res.redirect('/lydbog');
-});
-router.post('/audioupload2', upload.single('file'), (req, res) => {
-  // res.json({ file: req.file });
-  res.redirect('/billedbog');
 });
 
 
