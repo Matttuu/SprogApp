@@ -4,6 +4,7 @@
         Din registrerede rolle er: <b>{{role}}</b><br>
         Dit unikke ID nummer er: <b>{{uniqueId}}</b><br>
 
+        <!-- Hvis du er logget ind som sprogmakker, vises dette dashboard -->
         {{#if sprogmakker}}
         <h4 class="loggedInHeading">Vælg herunder:</h4>
         <div class="flex-container">
@@ -11,6 +12,7 @@
             <div id="item2"><a href='underUdvikling.html'><i class="fas fa-comment" id="chat" style="font-size:60px;"></i></a></div>
         </div>
 
+        <!-- Hvis du er logget ind som kursist, vises dette dashboard -->
         {{else if kursist}}
         <h4 class="loggedInHeading">Vælg herunder:</h4>
         <div class="flex-container">
@@ -26,6 +28,7 @@
             <div id="item6"><a href='/'><i class="fas fa-none" id="none" style="font-size:60px;"></i></a></div>
         </div>
 
+        <!-- Hvis du er logget ind som administrator, vises dette dashboard -->
         {{else if admin}}
         <h2 class="loggedInHeading">Admin menu</h2>
         <a href="billedbog">Billedordbog</a><br>

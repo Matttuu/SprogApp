@@ -84,8 +84,6 @@ router.get('/', function (req, res, next) {
           return next(err);
         } else {
           return res.redirect('/profile');
-
-     
           //return res.send('<h1>Name:</h1>' + user.username + '<h2>ID:</h2>' + user.uniqueId + '<h2>Mail:</h2>' + user.email + '<h2>Rolle:</h2>' +user.role + '<br><a type="button" href="/logout">Logout</a>')
         }
       }
