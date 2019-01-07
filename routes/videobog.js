@@ -172,8 +172,8 @@ router.get('/files/:filename', (req, res) => {
   });
 });
 
-// @route GET /image/:filename
-// @desc Display Image
+// @route GET /Video/:filename
+// @desc Display Video
 router.get('/video/:filename', (req, res) => {
   gfs.files.findOne({ filename: req.params.filename }, (err, file) => {
     // Check if file
@@ -183,7 +183,7 @@ router.get('/video/:filename', (req, res) => {
       });
     }
 
-    // Check if image
+    // Check if Video
     if (file.contentType === 'video/mp3' || file.contentType === 'video/mp4' || file.contentType === 'video/mov' || file.contentType === 'video/mpeg-4' || file.contentType === 'video/x-m4v' || file.contentType === 'video/m4v' || file.contentType === 'video/amr') {
       // Read output to browser
       const readstream = gfs.createReadStream(file.filename);
