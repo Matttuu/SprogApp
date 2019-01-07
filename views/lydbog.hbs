@@ -5,7 +5,7 @@
     <p class="loggedInText">Da du er logget ind som sprogmakker, har du ikke en lydordbog.</p>
 </center>
 
-<!-- Kursist og admin kan se lydordbogen -->
+<!-- Kursist og admin kan se sin personlige lydordbog -->
 {{else}}
 <center>
     <h1 class="loggedInHeading">Lydordbog</h1>
@@ -14,7 +14,7 @@
 </center>
 <div class="col-md-5 m-auto">
     <form>
-        <input type="text" name="search" placeholder="Søg..." class="form-control" id="myInput">
+        <input type="text" name="search" placeholder="Søg efter lyd..." class="form-control" id="myInput">
     </form>
 </div>
 <br>
@@ -34,7 +34,7 @@
                     Optag lyd: <input type="file" accept="audio/*" id="capture" capture="audio" name="file" class="custom-file-input">
                     <label for="file" class="custom-file-label">Vælg lydfil</label>
                 </div>
-                <input type="submit" value="Tilføj valgte lyd" class="btn btn-primary btn-block">
+                <input type="submit" value="Tilføj valgte lyd" class="btn btn-success btn-block">
             </form>
             <hr>
             <div id="lydListe">
@@ -42,13 +42,14 @@
                 {{#if audiofiles}}
                 {{#each audiofiles}}
                 <div class={{metadata}} style="display:none">
-                    <!--Usynligt tag, som har lydenss metadata.-->
+                    <!-- Usynligt tag, som har lydens metadata -->
                     <div id="lydObj" class="card card-body mb-3">
-                        <!-- Display lyd -->
+                        <!-- Display lyd (med controls) -->
                         <p style="display:none" id="mdata">{{metadata}}</p>
-                        <audio controls>
-                            <source src="lydbog/audio/{{filename}}" type="audio/mp4">Din browser understøtter ikke
-                            denne filtype!</audio>
+                        <center>
+                            <audio controls>
+                                <source src="lydbog/audio/{{filename}}" type="audio/mp4">Din browser understøtter ikke denne filtype!</audio>
+                        </center>
                         <!-- Display tekst tilknyttet til lyd -->
                         <blockquote class="blockquote text-center">
                             <br>
