@@ -80,7 +80,6 @@ router.get('/', (req, res) => {
     });
 });
 
-
 // @route POST /upload
 // @desc  Uploads file to DB
 router.post('/upload', upload.single('file'), (req, res) => {
@@ -184,7 +183,6 @@ router.get('/image/:filename', (req, res) => {
 
 // @route DELETE /files/:id
 // @desc  Delete file
-
 router.delete('/files/:id', (req, res) => {
   gfs.remove({ _id: req.params.id, root: 'imageuploads' }, (err, gridStore) => {
     if (err) {
@@ -193,8 +191,5 @@ router.delete('/files/:id', (req, res) => {
     res.redirect('/billedbog');
   });
 });
-
-
-
 
 module.exports = router;
