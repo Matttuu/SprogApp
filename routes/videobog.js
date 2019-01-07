@@ -80,8 +80,31 @@ router.get('/', (req, res) => {
 // @route POST /upload
 // @desc  Uploads file to DB
 router.post('/videoupload', upload.single('file'), (req, res) => {
-  // res.json({ file: req.file });
-  res.redirect('/videobog');
+ 
+  User.findById(req.session.userId)
+    .exec(function (error, user) {
+
+      mongoose.connect('mongodb://admin:team12@ds125693.mlab.com:25693/cdi', { useNewUrlParser: true, }, function (err, db) {
+        if (err) { throw err; }
+
+        function resolveDetteBagefter() {
+          return new Promise(resolve => {
+            setTimeout(() => {
+              resolve(res.redirect('/videobog'));
+            }, 0001);
+          });
+        }
+        async function asyncCall() {
+          await resolveDetteBagefter();
+          var collection = db.collection('users');
+
+          //Tilføjer 10 point til brugeren
+          collection.update({ 'uniqueId': user.uniqueId },
+            { '$inc': { 'userPoints': 10 } });
+        }
+        asyncCall();
+      });
+    });
 });
 
 

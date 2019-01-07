@@ -82,6 +82,7 @@ router.get('/', (req, res) => {
 
 // @route POST /upload
 // @desc  Uploads file to DB
+//Her uploader vi billedet og samtidig smider 10 point ind til brugeren
 router.post('/upload', upload.single('file'), (req, res) => {
 
   User.findById(req.session.userId)
@@ -98,9 +99,9 @@ router.post('/upload', upload.single('file'), (req, res) => {
           });
         }
         async function asyncCall() {
-          var result = await resolveDetteBagefter();
+          await resolveDetteBagefter();
           var collection = db.collection('users');
-  
+
           //Tilføjer 10 point til brugeren
           collection.update({ 'uniqueId': user.uniqueId },
             { '$inc': { 'userPoints': 10 } });
