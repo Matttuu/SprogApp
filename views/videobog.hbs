@@ -15,11 +15,13 @@
         <input type="text" name="search" placeholder="Søg..." class="form-control" id="myInput">
     </form>
 </div>
+<br>
 <div id="tilføjBillede">
     <p>Tilføj video til videoordbogen</p>
 </div>
-<!--Sætter et usynligt tag på siden, som har brugerens unikke id som værdi.
-    Dette bliver brugt til at vise de billeder som passer til id'et.-->
+
+<!-- Sætter et usynligt tag på siden, som har brugerens unikke id som værdi.
+    Dette bliver brugt til at vise de billeder som passer til id'et. -->
 <input style="display:none" type="text" id="uniqueIDS" value={{uniqueId}}></input>
 
 <div class="container">
@@ -38,7 +40,6 @@
                 {{#each files}}
                 <div class={{metadata}} style="display:none">
                     <!--Usynligt tag, som har billedets metadata.-->
-
                     <div id="videoObj" class="card card-body mb-3">
 
                         <!-- Display video -->
@@ -76,21 +77,24 @@
     {{/if}}
 
     <script>
-        /*JQuery-filter som vil vise alle de div-tags som har klasse-værdien fra idValue, hvilket 
-        har brugerens unikke id som værdi. Det vil sige hvis den givende div har klassen: qksas0zzk8,
-        og idValue og er qksas0zzk8 så vil div'en blive vist.*/
+        /*
+            jQuery-filter som vil vise alle de div-tags, der har klasse-værdien fra idValue, hvilket 
+            har brugerens unikke id som værdi. Det vil sige hvis den givende div har klassen: qksas0zzk8,
+            og idValue og er qksas0zzk8 så vil div'en blive vist.
+        */
         $(document).ready(function () {
             var idValue = $("#uniqueIDS").val();
             $("div").filter("." + idValue).css("display", "block");
         });
 
-        /*Søgefunktionen:
-           Henter værdien fra #myInput, hvilket er søge-feltet og sætter alt til Lower Case,
-           hvilket betyder at jhon, Jhon og JHON vil give de samme resultater.
-           Her kigger funktionen efter billed-objekterne i billedlisten og matcher værdierne.
-           Den kigger dog efter alt i div'en, hvilket inkluderer tilføj beskrivelse knappen og 
-           slet billede knappen. 
-           */
+        /*
+            Søgefunktionen:
+            Henter værdien fra #myInput, hvilket er søge-feltet og sætter alt til Lower Case,
+            hvilket betyder at jhon, Jhon og JHON vil give de samme resultater.
+            Her kigger funktionen efter video-objekterne i videolisten og matcher værdierne.
+            Den kigger dog efter alt i div'en, hvilket inkluderer tilføj beskrivelse knappen og 
+            slet video-knappen.
+        */
         $(document).ready(function () {
             $("#myInput").on("keyup", function () {
                 var value = $(this).val().toLowerCase();
@@ -99,5 +103,4 @@
                 });
             });
         });
-
     </script>
