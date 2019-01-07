@@ -37,6 +37,8 @@
                 {{#if files}}
                 {{#each files}}
                 <div class={{metadata}} style="display:none">
+                    <input style="display:none" type="text" id="uniqueFName" value={{filename}}></input>
+
                     <div id="billedeObj" class="card card-body mb-3">
                         <!-- Display billede -->
                         <p style="display:none" id="mdata">{{metadata}}</p>
@@ -76,15 +78,19 @@
 
                                 {{#if ../audiofiles}}
                                 {{#each ../audiofiles}}
-                                <div class="card card-body mb-3">
-                                    <audio controls>
-                                        <source src="billedbog/audio/{{filename}}" type="audio/mp4">Din browser
-                                        understøtter ikke denne filtype!</audio>
-                                    <form method="PUT" action="/billedbog/audio/{{_id}}.mp4?_method=PUT"></form>
-                                    <form method="POST" action="/billedbog/audiofiles/{{_id}}?_method=DELETE">
-                                        <button class="btn btn-danger btn-block mt-4">Slet lyd</button>
-                                    </form>
+                                <p style="display:none" id="fName">{{filename}}</p>
 
+                                <div style="display:none" class={{metadata}}>
+                                    <div id="aFiles" class="card card-body mb-3">
+                                        <audio controls>
+                                            <source src="billedbog/audio/{{filename}}" type="audio/mp4">Din browser
+                                            understøtter ikke denne filtype!</audio>
+                                        <form method="PUT" action="/billedbog/audio/{{_id}}.mp4?_method=PUT"></form>
+                                        <form method="POST" action="/billedbog/audiofiles/{{_id}}?_method=DELETE">
+                                            <button class="btn btn-danger btn-block mt-4">Slet lyd</button>
+                                        </form>
+
+                                    </div>
                                 </div>
                                 {{/each}}
                                 {{/if}}
@@ -107,8 +113,13 @@
 
 <script>
     $(document).ready(function () {
-    var idValue = $("#uniqueIDS").val();
-        $("div").filter("."+idValue).css("display", "block");
+        var idValue = $("#uniqueIDS").val();
+        $("div").filter("." + idValue).css("display", "block");
+    });
+
+     $(document).ready(function () {
+        var idValue = $("#uniqueFName").val();
+        $("div").filter("." + idValue).css("display", "block");
     });
 
     $(document).ready(function () {
@@ -125,6 +136,7 @@
             }
         });
     });
- 
+
+
 
 </script>

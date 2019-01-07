@@ -35,8 +35,10 @@ const storage = new GridFsStorage({
         if (err) {
           return reject(err);
         }
+        User.findById(req.session.userId)
+        .exec(function (error, user) {
         const filename = buf.toString('hex') + path.extname(file.originalname);
-        const metadata = "lort";
+        const metadata = user.uniqueId;
         const fileInfo = {
           filename: filename,
           metadata: metadata,
@@ -45,6 +47,7 @@ const storage = new GridFsStorage({
         resolve(fileInfo);
       });
     });
+  });
   }
 });
 const upload = multer({ storage });
