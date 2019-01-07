@@ -189,9 +189,8 @@ router.get('/image/:filename', (req, res) => {
       const readstream = gfs.createReadStream(file.filename);
       readstream.pipe(res);
     } else {
-      res.status(404).json({
-        err: 'Not Video'
-      });
+      const readstream = gfs.createReadStream(file.filename);
+      readstream.pipe(res);
     }
   });
 });
