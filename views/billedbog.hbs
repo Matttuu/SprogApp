@@ -44,10 +44,10 @@
                     <div id="billedeObj" class="card card-body mb-3">
                         <!-- Display billede -->
                         <p style="display:none" id="mdata">{{metadata}}</p>
-                        <img src="billedbog/image/{{filename}}" alt="DB BILLEDE HER TAK">
-                        <br>
+                        <img src="billedbog/image/{{filename}}" alt="Billede">
                         <!-- Display tekst tilknyttet til billede -->
                         <blockquote class="blockquote text-center">
+                            <br>
                             <h6>
                                 <p id="bDescrip" class="text-muted">{{billedDescription}}</p>
                             </h6>
@@ -60,16 +60,17 @@
                                         <form method="POST" action="/billedbog/files/{{filename}}">
                                             <input type="text" name="billedDescription" class="form-control center_div"
                                                 placeholder="Tryk her for at tilføje / ændre din beskrivelse">
-                                            </input><br>
+                                            <br>
                                             <input type="submit" value="Tilføj beskrivelse" class="btn btn-success btn-block">
                                         </form>
                                     </div>
                             </tr>
+                            <!-- Slet video -->
+                            <form method="POST" action="/billedbog/files/{{_id}}?_method=DELETE">
+                                <button class="btn btn-danger btn-block mt-4">Slet billede</button>
+                            </form>
                         </table>
-                        <!-- Slet video -->
-                        <form method="POST" action="/billedbog/files/{{_id}}?_method=DELETE">
-                            <button class="btn btn-danger btn-block mt-4">Slet billede</button>
-                        </form>
+
                     </div>
                 </div>
                 {{/each}}

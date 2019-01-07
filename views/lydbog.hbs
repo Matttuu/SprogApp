@@ -1,18 +1,30 @@
+<!-- Hvis du er logget ind som sprogmakker, kan du ikke se nogen lydordbog -->
 {{#if sprogmakker}}
 <center>
     <h1 class="loggedInHeading">Lydordbog</h1>
     <p class="loggedInText">Da du er logget ind som sprogmakker, har du ikke en lydordbog.</p>
 </center>
 
+<!-- Kursist og admin kan se lydordbogen -->
 {{else}}
 <center>
     <h1 class="loggedInHeading">Lydordbog</h1>
-    <p class="loggedInText">Her kan du optage lyd og tilføje til din ordbog. Efterfølgende kan du tilføje tekst til lyden.</p>
+    <p class="loggedInText">Her kan du optage lyd og tilføje til din ordbog. Efterfølgende kan du tilføje tekst til
+        lyden.</p>
 </center>
-
+<div class="col-md-5 m-auto">
+    <form>
+        <input type="text" name="search" placeholder="Søg..." class="form-control" id="myInput">
+    </form>
+</div>
+<br>
 <div id="tilføjBillede">
     <p>Tilføj lyd til lydoordbogen</p>
 </div>
+
+<!-- Sætter et usynligt tag på siden, som har brugerens unikke id som værdi.
+    Dette bliver brugt til at vise de lyde som passer til id'et. -->
+<input style="display:none" type="text" id="uniqueIDS" value={{uniqueId}}></input>
 
 <div class="container">
     <div class="row">
@@ -25,21 +37,72 @@
                 <input type="submit" value="Tilføj valgte lyd" class="btn btn-primary btn-block">
             </form>
             <hr>
+            <div id="lydListe">
 
-            {{#if audiofiles}}
-            {{#each audiofiles}}
-            <div class="card card-body mb-3">
-                <audio controls>
-                         <source src="lydbog/audio/{{filename}}" type="audio/mp4">Din browser understøtter ikke denne filtype!</audio>
-                <form method="PUT" action="/lydbog/audio/{{_id}}.mp4?_method=PUT"></form>
-                <form method="POST" action="/lydbog/files/{{_id}}?_method=DELETE">
-                    <button class="btn btn-danger btn-block mt-4">Slet lyd</button>
-                </form>
+                {{#if audiofiles}}
+                {{#each audiofiles}}
+                <div class={{metadata}} style="display:none">
+                    <!--Usynligt tag, som har lydenss metadata.-->
+                    <div id="lydObj" class="card card-body mb-3">
+                        <!-- Display lyd -->
+                        <p style="display:none" id="mdata">{{metadata}}</p>
+                        <audio controls>
+                            <source src="lydbog/audio/{{filename}}" type="audio/mp4">Din browser understøtter ikke
+                            denne filtype!</audio>
+                        <!-- Display tekst tilknyttet til lyd -->
+                        <blockquote class="blockquote text-center">
+                            <br>
+                            <h6>
+                                <p class="text-muted">{{audioDescription}}</p>
+                            </h6>
+                        </blockquote>
+                        <!-- Tilføj tekst til lyd -->
+                        <div class="card card-body mb-1">
+                            <form method="POST" action="/lydbog/files/{{filename}}">
+                                <input type="text" name="audioDescription" class="form-control center_div" placeholder="Tryk her for at tilføje / ændre din beskrivelse">
+                                <br>
+                                <input type="submit" value="Tilføj beskrivelse" class="btn btn-success btn-block">
+                            </form>
+                        </div>
+                        <!-- Slet lyd -->
+                        <form method="POST" action="/lydbog/files/{{_id}}?_method=DELETE">
+                            <button class="btn btn-danger btn-block mt-4">Slet video</button>
+                        </form>
+                    </div>
+                </div>
+
+                {{/each}}
+                {{/if}}
             </div>
-            {{/each}}
-            {{/if}}
-            
         </div>
     </div>
-</div>
-{{/if}}
+    {{/if}}
+
+    <script>
+        /*
+            jQuery-filter som vil vise alle de div-tags, der har klasse-værdien fra idValue, hvilket 
+            har brugerens unikke id som værdi. Det vil sige hvis den givende div har klassen: qksas0zzk8,
+            og idValue og er qksas0zzk8 så vil div'en blive vist.
+        */
+        $(document).ready(function () {
+            var idValue = $("#uniqueIDS").val();
+            $("div").filter("." + idValue).css("display", "block");
+        });
+
+        /*
+            Søgefunktionen:
+            Henter værdien fra #myInput, hvilket er søge-feltet og sætter alt til Lower Case,
+            hvilket betyder at jhon, Jhon og JHON vil give de samme resultater.
+            Her kigger funktionen efter lyd-objekterne i lydlisten og matcher værdierne.
+            Den kigger dog efter alt i div'en, hvilket inkluderer tilføj beskrivelse knappen og 
+            slet lyd-knappen.
+        */
+        $(document).ready(function () {
+            $("#myInput").on("keyup", function () {
+                var value = $(this).val().toLowerCase();
+                $("#lydListe #lydObj").filter(function () {
+                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                });
+            });
+        });
+    </script>
