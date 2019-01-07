@@ -2,7 +2,8 @@
     <h2 class="loggedInHeading">Velkommen {{name}}</h2>
     <p class="loggedInText">
         Din registrerede rolle er: <b>{{role}}</b><br>
-        Dit unikke ID nummer er: <b>{{uniqueId}}</b><br>
+        Dit unikke ID nummer er: <b>{{uniqueId}}</b><br><br>
+        Samlede antal point: <b>{{userPoints}}</b>!
 
         <!-- Hvis du er logget ind som sprogmakker, vises dette dashboard -->
         {{#if sprogmakker}}
@@ -14,6 +15,17 @@
 
         <!-- Hvis du er logget ind som kursist, vises dette dashboard -->
         {{else if kursist}}
+
+        <!--Progressbar som henter antal point fra databasen og skalérer automatisk-->
+        <div class="container">
+            <div class="progress">
+                <div class="progress-bar" role="progressbar" aria-valuenow={{userPoints}} aria-valuemin="0"
+                    aria-valuemax="100" style="width:{{userPoints}}%">
+                    {{userPoints}}
+                </div>
+            </div>
+        </div>
+
         <h4 class="loggedInHeading">Vælg herunder:</h4>
         <div class="flex-container">
             <div id="item1"><a href='billedbog'><i class="fas fa-image" id="billedbog" style="font-size:60px;"></i></a></div>
@@ -38,6 +50,6 @@
         <a href="connectId">Forbind kursist</a>
         <a href="/">Log ud</a>
         {{/if}}
-        
+
     </p>
 </div>
