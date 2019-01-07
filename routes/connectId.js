@@ -13,9 +13,6 @@ router.get('/', function (req, res, next) {
         if (err) { throw err; }
 
         var collection = db.collection('users');
-        var kursistID = req.body.kursistID;
-        var lagretKursistID1 = req.body.lagretKursistID1;
-        var lagretKursistID2 = req.body.lagretKursistID2;
 
         collection.findOne({ uniqueId: user.tilknyttetKursistID1 }, function (err, result) {
           if (err) throw err;
@@ -40,8 +37,6 @@ router.get('/', function (req, res, next) {
 
                   res.render('connectID', {
                     title: 'Tilknyt kursist',
-                    // findName1: doc.username,
-                    //findName2:doc.tilknyttetKursistID2,
                     name: user.username,
                     role: user.role,
                     uniqueId: user.uniqueId,
@@ -63,8 +58,6 @@ router.get('/', function (req, res, next) {
                     obj3,
                     obj4,
                     obj5
-
-
                   });
                 });
               });
@@ -137,7 +130,6 @@ router.post('/uploadID', (req, res, next) => {
                   { '$inc': { 'antalTilknyttedeKursister': +1 } });
               }
             }
-
           });
         }
         asyncCall();
