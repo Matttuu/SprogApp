@@ -10,6 +10,7 @@ router.get('', function(req, res, next) {
     title: 'Dashboard',
     name: user.username,
     role: user.role,
+    userPoints: user.userPoints,
     uniqueId: user.uniqueId,
     sprogmakker: user.role === "Sprogmakker",
     kursist: user.role === "Kursist",

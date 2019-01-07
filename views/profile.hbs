@@ -2,7 +2,16 @@
     <h2 class="loggedInHeading">Velkommen {{name}}</h2>
     <p class="loggedInText">
         Din registrerede rolle er: <b>{{role}}</b><br>
-        Dit unikke ID nummer er: <b>{{uniqueId}}</b><br>
+        Dit unikke ID nummer er: <b>{{uniqueId}}</b><br><br>
+        Samlede antal point: <b>{{userPoints}}</b>!
+        
+<div class="container">
+  <div class="progress">
+    <div class="progress-bar" role="progressbar" aria-valuenow={{userPoints}} aria-valuemin="0" aria-valuemax="100" style="width:{{userPoints}}%">
+      {{userPoints}}
+    </div>
+  </div>
+</div>
 
         <!-- Hvis du er logget ind som sprogmakker, vises dette dashboard -->
         {{#if sprogmakker}}
