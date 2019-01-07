@@ -19,7 +19,7 @@
         <!--Progressbar som henter antal point fra databasen og skalérer automatisk-->
         <div class="container">
             <div class="progress">
-                <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow={{userPoints}}
+                <div class="progress-bar" role="progressbar" aria-valuenow={{userPoints}}
                     aria-valuemin="0" aria-valuemax="100" style="width:{{userPoints}}%">
                     {{userPoints}}
                 </div>
@@ -48,7 +48,7 @@
         <a href="lydbog">Lydordbog</a><br>
         <a href="chat">Chat</a><br>
         <a href="connectId">Forbind kursist</a>
-        <a href="/">Log ud</a>
+        <a href="/profile/logout">Log ud</a>
         {{/if}}
 
     </p>
