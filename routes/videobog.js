@@ -174,7 +174,7 @@ router.get('/files/:filename', (req, res) => {
 
 // @route GET /image/:filename
 // @desc Display Image
-router.get('/image/:filename', (req, res) => {
+router.get('/video/:filename', (req, res) => {
   gfs.files.findOne({ filename: req.params.filename }, (err, file) => {
     // Check if file
     if (!file || file.length === 0) {
@@ -184,14 +184,13 @@ router.get('/image/:filename', (req, res) => {
     }
 
     // Check if image
-    if (file.contentType === 'image/mp3' || file.contentType === 'image/mp4' || file.contentType === 'image/mov' || file.contentType === 'image/mpeg-4' || file.contentType === 'image/x-m4v' || file.contentType === 'image/m4v' || file.contentType === 'image/amr' || file.contentType === 'audio/wav' || file.contentType === 'audio/avi') {
+    if (file.contentType === 'video/mp3' || file.contentType === 'video/mp4' || file.contentType === 'video/mov' || file.contentType === 'video/mpeg-4' || file.contentType === 'video/x-m4v' || file.contentType === 'video/m4v' || file.contentType === 'video/amr') {
       // Read output to browser
       const readstream = gfs.createReadStream(file.filename);
       readstream.pipe(res);
     } else {
-      res.status(404).json({
-        err: 'Not Video'
-      });
+      file = false;
+
     }
   });
 });
