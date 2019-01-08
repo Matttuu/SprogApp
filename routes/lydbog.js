@@ -220,7 +220,7 @@ router.get('/audio/:filename', (req, res) => {
     }
 
     // Check if audio
-    if (file.contentType === 'audio/mp3' || file.contentType === 'audio/mp4' || file.contentType === 'audio/mov' || file.contentType === 'audio/mpeg-4' || file.contentType === 'audio/x-m4v' || file.contentType === 'audio/m4v' || file.contentType === 'audio/amr' || file.contentType === 'audio/wav') {
+    if (file.contentType === 'audio/mp3' || file.contentType === 'audio/mp4' || file.contentType === 'audio/mov' || file.contentType === 'audio/mpeg-4' || file.contentType === 'audio/x-m4a' || file.contentType === 'audio/m4a' || file.contentType === 'audio/amr' || file.contentType === 'audio/wav') {
       // Read output to browser
       const readstream = gfs.createReadStream(file.filename);
       readstream.pipe(res);
