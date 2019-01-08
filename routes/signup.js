@@ -36,6 +36,7 @@ router.post('/', function (req, res, next) {
       role: req.body.role,
       password: req.body.password,
       passwordConf: req.body.passwordConf,
+      userPoints: 0,
     }
 
     User.create(userData, function (error, user) {
@@ -50,7 +51,8 @@ router.post('/', function (req, res, next) {
           role: user.role,
           sprogmakker: user.role === "Sprogmakker",
           kursist: user.role === "Kursist",
-          admin: user.role === "Administrator"
+          admin: user.role === "Administrator",
+          userPoints: user.userPoints,
         });
       }
     });

@@ -8,7 +8,7 @@ router.get('/', function(req, res, next) {
   .exec(function (error, user) {
   res.render('profile', {
     title: 'Dashboard',
-    name: user.username,
+    username: user.username,
     role: user.role,
     userPoints: user.userPoints,
     uniqueId: user.uniqueId,
