@@ -2,54 +2,54 @@
     <h2 class="loggedInHeading">Velkommen {{username}}</h2>
     <p class="loggedInText">
         Din registrerede rolle er: <b>{{role}}</b><br>
-        Dit unikke ID nummer er: <b>{{uniqueId}}</b><br><br>
+        Dit unikke ID nummer er: <b>{{uniqueId}}</b><br><br></p>
 
-        <!-- Hvis du er logget ind som sprogmakker, vises dette dashboard -->
-        {{#if sprogmakker}}
-        <h4 class="loggedInHeading">Vælg herunder:</h4>
-        <div class="flex-container">
-            <div id="item1"><a href='connectId'><i class="fas fa-plug" id="connectId" style="font-size:60px;"></i></a></div>
-            <div id="item2"><a href='underUdvikling.html'><i class="fas fa-comment" id="chat" style="font-size:60px;"></i></a></div>
-        </div>
+    <!-- Hvis du er logget ind som sprogmakker, vises dette dashboard -->
+    {{#if sprogmakker}}
+    <h4 class="loggedInHeading">Vælg herunder:</h4>
+    <div class="flex-container">
+        <div id="item1"><a href='connectId'><i class="fas fa-plug" id="connectId" style="font-size:60px;"></i></a></div>
+        <div id="item2"><a href='underUdvikling.html'><i class="fas fa-comment" id="chat" style="font-size:60px;"></i></a></div>
+    </div>
 
-        <!-- Hvis du er logget ind som kursist, vises dette dashboard -->
-        {{else if kursist}}
-        Samlede antal point: <b>{{userPoints}}</b>!
+    <!-- Hvis du er logget ind som kursist, vises dette dashboard -->
+    {{else if kursist}}
+    <p>Samlede antal point: <b>{{userPoints}}</b>!</p>
 
-        <!--Progressbar som henter antal point fra databasen og skalérer automatisk-->
-        <div class="container">
-            <div class="progress">
-                <div class="progress-bar" role="progressbar" aria-valuenow={{userPoints}}
-                    aria-valuemin="0" aria-valuemax="100" style="width:{{userPoints}}%">
-                    {{userPoints}}
-                </div>
+    <!--Progressbar som henter antal point fra databasen og skalérer automatisk-->
+    <div class="container">
+        <div class="progress">
+            <div class="progress-bar" role="progressbar" aria-valuenow={{userPoints}} aria-valuemin="0" aria-valuemax="100"
+                style="width:{{userPoints}}%">
+                {{userPoints}}
             </div>
         </div>
+    </div>
+    <p>Rank: <b>{{userRank}}</b></p>
+    <h4 class="loggedInHeading">Vælg herunder:</h4>
+    <div class="flex-container">
+        <div id="item1"><a href='billedbog'><i class="fas fa-image" id="billedbog" style="font-size:60px;"></i></a></div>
+        <div id="item2"><a href='videobog'><i class="fas fa-video" id="videobog" style="font-size:60px;"></i></a></div>
+    </div>
+    <div class="flex-container">
+        <div id="item3"><a href='lydbog'><i class="fas fa-volume-up" id="lydbog" style="font-size:60px;"></i></a></div>
+        <div id="item4"><a href='underUdvikling.html'><i class="fas fa-comment" id="chat" style="font-size:60px;"></i></a></div>
+    </div>
+    <div class="flex-container">
+        <div id="item5"><a href='support'><i class="fas fa-hands-helping" id="support" style="font-size:60px;"></i></a></div>
+        <div id="item6"><a href='/'><i class="fas fa-sign-out-alt" id="logout" style="font-size:60px;"></i></a></div>
+    </div>
 
-        <h4 class="loggedInHeading">Vælg herunder:</h4>
-        <div class="flex-container">
-            <div id="item1"><a href='billedbog'><i class="fas fa-image" id="billedbog" style="font-size:60px;"></i></a></div>
-            <div id="item2"><a href='videobog'><i class="fas fa-video" id="videobog" style="font-size:60px;"></i></a></div>
-        </div>
-        <div class="flex-container">
-            <div id="item3"><a href='lydbog'><i class="fas fa-volume-up" id="lydbog" style="font-size:60px;"></i></a></div>
-            <div id="item4"><a href='underUdvikling.html'><i class="fas fa-comment" id="chat" style="font-size:60px;"></i></a></div>
-        </div>
-        <div class="flex-container">
-            <div id="item5"><a href='support'><i class="fas fa-hands-helping" id="support" style="font-size:60px;"></i></a></div>
-            <div id="item6"><a href='/'><i class="fas fa-sign-out-alt" id="logout" style="font-size:60px;"></i></a></div>
-        </div>
-
-        <!-- Hvis du er logget ind som administrator, vises dette dashboard -->
-        {{else if admin}}
-        <h2 class="loggedInHeading">Admin menu</h2>
-        <a href="billedbog">Billedordbog</a><br>
-        <a href="videobog">Videoordbog</a><br>
-        <a href="lydbog">Lydordbog</a><br>
-        <a href="chat">Chat</a><br>
-        <a href="connectId">Forbind kursist</a>
-        <a href="/profile/logout">Log ud</a>
-        {{/if}}
+    <!-- Hvis du er logget ind som administrator, vises dette dashboard -->
+    {{else if admin}}
+    <h2 class="loggedInHeading">Admin menu</h2>
+    <a href="billedbog">Billedordbog</a><br>
+    <a href="videobog">Videoordbog</a><br>
+    <a href="lydbog">Lydordbog</a><br>
+    <a href="chat">Chat</a><br>
+    <a href="connectId">Forbind kursist</a>
+    <a href="/profile/logout">Log ud</a>
+    {{/if}}
 
     </p>
     <h1>Daily reward nedtælling</h1>
@@ -76,67 +76,67 @@
 
 <script>
 
-   
 
-function getTimeRemaining(endtime) {
-    var t = Date.parse(endtime) - Date.parse(new Date());
-    var seconds = Math.floor((t / 1000) % 60);
-    var minutes = Math.floor((t / 1000 / 60) % 60);
-    var hours = Math.floor((t / (1000 * 60 * 60)) % 24);
-    var days = Math.floor(t / (1000 * 60 * 60 * 24));
-    return {
-        'total': t,
-        'days': days,
-        'hours': hours,
-        'minutes': minutes,
-        'seconds': seconds
-    };
-}
-function initializeClock(id, endtime) {
-    var clock = document.getElementById(id);
-    var daysSpan = clock.querySelector('.days');
-    var hoursSpan = clock.querySelector('.hours');
-    var minutesSpan = clock.querySelector('.minutes');
-    var secondsSpan = clock.querySelector('.seconds');
 
-    function updateClock() {
-        var t = getTimeRemaining(endtime);
+    function getTimeRemaining(endtime) {
+        var t = Date.parse(endtime) - Date.parse(new Date());
+        var seconds = Math.floor((t / 1000) % 60);
+        var minutes = Math.floor((t / 1000 / 60) % 60);
+        var hours = Math.floor((t / (1000 * 60 * 60)) % 24);
+        var days = Math.floor(t / (1000 * 60 * 60 * 24));
+        return {
+            'total': t,
+            'days': days,
+            'hours': hours,
+            'minutes': minutes,
+            'seconds': seconds
+        };
+    }
+    function initializeClock(id, endtime) {
+        var clock = document.getElementById(id);
+        var daysSpan = clock.querySelector('.days');
+        var hoursSpan = clock.querySelector('.hours');
+        var minutesSpan = clock.querySelector('.minutes');
+        var secondsSpan = clock.querySelector('.seconds');
 
-        daysSpan.innerHTML = t.days;
-        hoursSpan.innerHTML = ('0' + t.hours).slice(-2);
-        minutesSpan.innerHTML = ('0' + t.minutes).slice(-2);
-        secondsSpan.innerHTML = ('0' + t.seconds).slice(-2);
+        function updateClock() {
+            var t = getTimeRemaining(endtime);
 
-        if (t.total <= 0) {
-            clearInterval(timeinterval);
+            daysSpan.innerHTML = t.days;
+            hoursSpan.innerHTML = ('0' + t.hours).slice(-2);
+            minutesSpan.innerHTML = ('0' + t.minutes).slice(-2);
+            secondsSpan.innerHTML = ('0' + t.seconds).slice(-2);
+
+            if (t.total <= 0) {
+                clearInterval(timeinterval);
+            }
         }
+
+        updateClock();
+        var timeinterval = setInterval(updateClock, 1000);
     }
 
-    updateClock();
-    var timeinterval = setInterval(updateClock, 1000);
-}
+    // Hvis der allerede er en cookie som hedder userPoints, brug værdien fra den til deadline
+    if (document.cookie && document.cookie.match('userPoints')) {
+        // få deadline fra cookien
+        var deadline = document.cookie.match(/(^|;)userPoints=([^;]+)/)[2];
+    }
 
-// Hvis der allerede er en cookie som hedder userPoints, brug værdien fra den til deadline
-if (document.cookie && document.cookie.match('userPoints')) {
-    // få deadline fra cookien
-    var deadline = document.cookie.match(/(^|;)userPoints=([^;]+)/)[2];
-}
+    // ellers, sæt en deadline fra nu og
+    // gem som cookie med givet navn
+    else {
 
-// ellers, sæt en deadline fra nu og
-// gem som cookie med givet navn
-else {
 
-    
-    // Lave en deadline i '10' minutter fra dette tidspunkt.
-    var timeInMinutes = 10;
-    var currentTime = Date.parse(new Date());
-    var deadline = new Date(currentTime + timeInMinutes * 60 * 1000);
-    expirationGMT = deadline.toGMTString();
+        // Lave en deadline i '10' minutter fra dette tidspunkt.
+        var timeInMinutes = 10;
+        var currentTime = Date.parse(new Date());
+        var deadline = new Date(currentTime + timeInMinutes * 60 * 1000);
+        expirationGMT = deadline.toGMTString();
 
-    // Gem i deadline i en cookie
-    document.cookie = 'userPoints= ' + deadline + '; expires=' + expirationGMT + '; path=/; domain=localhost';
-    
-}
-initializeClock('clockdiv', deadline);
-    
+        // Gem i deadline i en cookie
+        document.cookie = 'userPoints= ' + deadline + '; expires=' + expirationGMT + '; path=/; domain=localhost';
+
+    }
+    initializeClock('clockdiv', deadline);
+
 </script>

@@ -53,6 +53,9 @@ var UserSchema = new mongoose.Schema({
   },
   userPoints:{
     type: Number
+  },
+  userRank:{
+    type: String
   }
 })
 
