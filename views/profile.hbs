@@ -26,27 +26,7 @@
         </div>
     </div>
     <p><span><a href='rank.html'>Rank</a></span> : <b>{{userRank}}</b></p>
-    {{#if ordJungloer}}
-    <p><b>Du har nået den øverste rank! <br>
-        Godt klaret! </b>
-    </p>
-
-    {{/if}}
-    <h4 class="loggedInHeading">Vælg herunder:</h4>
-    <div class="flex-container">
-        <div id="item1"><a href='billedbog'><i class="fas fa-image" id="billedbog" style="font-size:60px;"></i></a></div>
-        <div id="item2"><a href='videobog'><i class="fas fa-video" id="videobog" style="font-size:60px;"></i></a></div>
-    </div>
-    <div class="flex-container">
-        <div id="item3"><a href='lydbog'><i class="fas fa-volume-up" id="lydbog" style="font-size:60px;"></i></a></div>
-        <div id="item4"><a href='underUdvikling.html'><i class="fas fa-comment" id="chat" style="font-size:60px;"></i></a></div>
-    </div>
-    <div class="flex-container">
-        <div id="item5"><a href='support'><i class="fas fa-hands-helping" id="support" style="font-size:60px;"></i></a></div>
-        <div id="item6"><a href='/'><i class="fas fa-sign-out-alt" id="logout" style="font-size:60px;"></i></a></div>
-    </div>
-
-    <h2>Daily reward nedtælling</h2>
+    <h4 class="loggedInHeading">Daily reward nedtælling:</h2>
     <div id="clockdiv">
         <div>
             <span class="days"></span>
@@ -65,6 +45,28 @@
             <div class="smalltext">Sekunder</div>
         </div>
     </div>
+    {{#if ordJungloer}}
+    <p><b>Du har nået den øverste rank! <br>
+        Godt klaret! </b>
+    </p>
+    
+
+    {{/if}}
+    <h4 class="loggedInHeading">Vælg herunder:</h4>
+    <div class="flex-container">
+        <div id="item1"><a href='billedbog'><i class="fas fa-image" id="billedbog" style="font-size:60px;"></i></a></div>
+        <div id="item2"><a href='videobog'><i class="fas fa-video" id="videobog" style="font-size:60px;"></i></a></div>
+    </div>
+    <div class="flex-container">
+        <div id="item3"><a href='lydbog'><i class="fas fa-volume-up" id="lydbog" style="font-size:60px;"></i></a></div>
+        <div id="item4"><a href='underUdvikling.html'><i class="fas fa-comment" id="chat" style="font-size:60px;"></i></a></div>
+    </div>
+    <div class="flex-container">
+        <div id="item5"><a href='support'><i class="fas fa-hands-helping" id="support" style="font-size:60px;"></i></a></div>
+        <div id="item6"><a href='/'><i class="fas fa-sign-out-alt" id="logout" style="font-size:60px;"></i></a></div>
+    </div>
+
+    
 
     <!-- Hvis du er logget ind som administrator, vises dette dashboard -->
     {{else if admin}}
