@@ -9,8 +9,7 @@
 {{else}}
 <center>
     <h1 class="loggedInHeading">Lydordbog</h1>
-    <p class="loggedInText">Her kan du optage lyd og tilføje til din ordbog. Efterfølgende kan du tilføje tekst til
-        lyden.</p>
+    <p class="loggedInText">Her kan du optage lyd og tilføje til din ordbog. Efterfølgende kan du tilføje tekst til lyden.</p>
 </center>
 <div class="col-md-5 m-auto">
     <form>
@@ -50,15 +49,13 @@
                             <audio controls>
                                 <source src="lydbog/audio/{{filename}}" type="audio/mp4">Din browser understøtter ikke denne filtype!</audio>
                         </center>
-                        <div id="searchArea">
-                            <!-- Display tekst tilknyttet til lyd -->
-                            <blockquote class="blockquote text-center">
-                                <br>
-                                <h6>
-                                    <p class="text-muted">{{audioDescription}}</p>
-                                </h6>
-                            </blockquote>
-                        </div>
+                        <!-- Display tekst tilknyttet til lyd -->
+                        <blockquote class="blockquote text-center">
+                            <br>
+                            <h6>
+                                <p class="text-muted">{{audioDescription}}</p>
+                            </h6>
+                        </blockquote>
                         <!-- Tilføj tekst til lyd -->
                         <div class="card card-body mb-1">
                             <form method="POST" action="/lydbog/files/{{filename}}">
@@ -97,13 +94,11 @@
             Henter værdien fra #myInput, hvilket er søge-feltet og sætter alt til Lower Case,
             hvilket betyder at jhon, Jhon og JHON vil give de samme resultater.
             Her kigger funktionen efter lyd-objekterne i lydlisten og matcher værdierne.
-            Den kigger dog efter alt i div'en, hvilket inkluderer tilføj beskrivelse knappen og 
-            slet lyd-knappen.
         */
         $(document).ready(function () {
             $("#myInput").on("keyup", function () {
                 var value = $(this).val().toLowerCase();
-                $("#searchArea #lydObj").filter(function () {
+                $("#lydListe #lydObj").filter(function () {
                     $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
                 });
             });
