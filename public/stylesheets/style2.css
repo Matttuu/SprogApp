@@ -26,7 +26,7 @@
   font-weight: bold;
 }
 
-#tilføjBillede {
+#tilføjBillede, #tilføjVideo, #tilføjLyd {
   text-align: center;
   font-weight: bold;
 }
@@ -50,7 +50,7 @@ height: 100%;
   padding-right: 20px;
 }
 
-#billedeListe, #videoListe{
+#billedeListe, #videoListe, #lydListe {
   display: flex;
   flex-direction: column-reverse;
 }
