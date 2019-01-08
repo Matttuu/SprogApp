@@ -41,7 +41,7 @@ else {
 
   User.findById(req.session.userId)
   .exec(function (error, user) {
-  res.render('profile', {
+  res.render('profile', {    
     title: 'Dashboard',
     username: user.username,
     role: user.role,
