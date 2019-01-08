@@ -37,7 +37,7 @@
             </form>
             <hr>
             <div id="billedeListe">
-                
+
                 {{#if files}}
                 {{#each files}}
                 <div class={{metadata}} style="display:none">
@@ -50,7 +50,9 @@
                         <blockquote class="blockquote text-center">
                             <br>
                             <h6>
-                                <p class="text-muted">{{billedDescription}}</p>
+                                <p id="beskrivelsen" class="text-muted">{{billedDescription}}</p>
+                                <!-- Næste linje virker ikke endnu, men gør heller ingen skade -->
+                                <p id="ingenBeskrivelse" class="text-muted" style="display:none;"><i>Ingen beskrivelse tilføjet.</i></p>
                             </h6>
                         </blockquote>
                         <table class="table">
