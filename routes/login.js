@@ -4,7 +4,7 @@ var User = require('../public/javascripts/user');
 
 // GET route for reading data
 router.get('/', function (req, res, next) {
-  res.render('login.hbs',{
+  res.render('login.hbs', {
     title: 'Log ind',
     layout: 'other',
   });
@@ -19,42 +19,10 @@ router.post('/', function (req, res, next) {
     res.send("passwords dont match");
     return next(err);
   }
-  
-/* req.body indeholder værdierne (key-value pairs) som er  
-   indtastet i registrerings formen.*/
-  if (req.body.uniqueId &&
-    req.body.email &&
-    req.body.username &&
-    req.body.role &&
-    req.body.password &&
-    req.body.passwordConf) {
 
-    var userData = {
-      uniqueId: req.body.uniqueId,
-      email: req.body.email,
-      username: req.body.username,
-      role: req.body.role,
-      password: req.body.password,
-      passwordConf: req.body.passwordConf,
-      userPoints: 0,
-    }
-
-    User.create(userData, function (error, user) {
-      if (error) {
-        return next(error);
-      } else {
-        req.session.userId = user._id;
-        return res.render('profile',{
-          uniqueId: user.uniqueId,
-          name: user.username,
-          email: user.email,
-          role: user.role,
-          userPoints: user.userPoints,
-        });
-      }
-    });
-
-  } else if (req.body.logemail && req.body.logpassword) {
+  /* req.body indeholder værdierne (key-value pairs) som er  
+     indtastet i registrerings formen.*/
+  if (req.body.logemail && req.body.logpassword) {
     User.authenticate(req.body.logemail, req.body.logpassword, function (error, user) {
       if (error || !user) {
         var err = new Error('Forkert e-mail eller kodeord.');
@@ -66,10 +34,6 @@ router.post('/', function (req, res, next) {
 
       }
     });
-  } else {
-    var err = new Error('Alle felter skal udfyldes!');
-    err.status = 400;
-    return next(err);
   }
 })
 
