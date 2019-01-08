@@ -25,7 +25,12 @@
             </div>
         </div>
     </div>
-    <p>Rank: <b>{{userRank}}</b></p>
+    <p><span><a href='rank.html'>Rank</a></span> : <b>{{userRank}}</b></p>
+    {{#if ordJungloer}}
+    <p><b>Du har nået den øverste rank! <br>
+        Godt klaret! </b>
+    </p>
+    {{/if}}
     <h4 class="loggedInHeading">Vælg herunder:</h4>
     <div class="flex-container">
         <div id="item1"><a href='billedbog'><i class="fas fa-image" id="billedbog" style="font-size:60px;"></i></a></div>
