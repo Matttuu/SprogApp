@@ -30,6 +30,7 @@
     <p><b>Du har nået den øverste rank! <br>
         Godt klaret! </b>
     </p>
+
     {{/if}}
     <h4 class="loggedInHeading">Vælg herunder:</h4>
     <div class="flex-container">
@@ -45,19 +46,7 @@
         <div id="item6"><a href='/'><i class="fas fa-sign-out-alt" id="logout" style="font-size:60px;"></i></a></div>
     </div>
 
-    <!-- Hvis du er logget ind som administrator, vises dette dashboard -->
-    {{else if admin}}
-    <h2 class="loggedInHeading">Admin menu</h2>
-    <a href="billedbog">Billedordbog</a><br>
-    <a href="videobog">Videoordbog</a><br>
-    <a href="lydbog">Lydordbog</a><br>
-    <a href="chat">Chat</a><br>
-    <a href="connectId">Forbind kursist</a>
-    <a href="/profile/logout">Log ud</a>
-    {{/if}}
-
-    </p>
-    <h1>Daily reward nedtælling</h1>
+    <h2>Daily reward nedtælling</h2>
     <div id="clockdiv">
         <div>
             <span class="days"></span>
@@ -76,6 +65,20 @@
             <div class="smalltext">Sekunder</div>
         </div>
     </div>
+
+    <!-- Hvis du er logget ind som administrator, vises dette dashboard -->
+    {{else if admin}}
+    <h2 class="loggedInHeading">Admin menu</h2>
+    <a href="billedbog">Billedordbog</a><br>
+    <a href="videobog">Videoordbog</a><br>
+    <a href="lydbog">Lydordbog</a><br>
+    <a href="chat">Chat</a><br>
+    <a href="connectId">Forbind kursist</a>
+    <a href="/profile/logout">Log ud</a>
+    {{/if}}
+
+    </p>
+    
 
 </div>
 
