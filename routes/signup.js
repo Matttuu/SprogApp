@@ -37,6 +37,7 @@ router.post('/', function (req, res, next) {
       password: req.body.password,
       passwordConf: req.body.passwordConf,
       userPoints: 0,
+      userRank: "Begynder",
     }
 
     User.create(userData, function (error, user) {
@@ -53,6 +54,7 @@ router.post('/', function (req, res, next) {
           kursist: user.role === "Kursist",
           admin: user.role === "Administrator",
           userPoints: user.userPoints,
+          userRank: user.userRank,
         });
       }
     });

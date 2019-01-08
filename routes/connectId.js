@@ -35,7 +35,7 @@ router.get('/', function (req, res, next) {
                   var obj5 = {};
                   obj5.users = result;
 
-                  res.render('connectID', {
+                  res.render('connectId', {
                     title: 'Tilknyt kursist',
                     name: user.username,
                     role: user.role,

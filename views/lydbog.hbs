@@ -14,11 +14,11 @@
 </center>
 <div class="col-md-5 m-auto">
     <form>
-        <input type="text" name="search" placeholder="Søg efter lyd..." class="form-control" id="myInput">
+        <input type="search" name="search" placeholder="Søg efter lyd..." class="form-control" id="myInput">
     </form>
 </div>
 <br>
-<div id="tilføjBillede">
+<div id="tilføjLyd">
     <p>Tilføj lyd til lydoordbogen</p>
 </div>
 
@@ -50,13 +50,15 @@
                             <audio controls>
                                 <source src="lydbog/audio/{{filename}}" type="audio/mp4">Din browser understøtter ikke denne filtype!</audio>
                         </center>
-                        <!-- Display tekst tilknyttet til lyd -->
-                        <blockquote class="blockquote text-center">
-                            <br>
-                            <h6>
-                                <p class="text-muted">{{audioDescription}}</p>
-                            </h6>
-                        </blockquote>
+                        <div id="searchArea">
+                            <!-- Display tekst tilknyttet til lyd -->
+                            <blockquote class="blockquote text-center">
+                                <br>
+                                <h6>
+                                    <p class="text-muted">{{audioDescription}}</p>
+                                </h6>
+                            </blockquote>
+                        </div>
                         <!-- Tilføj tekst til lyd -->
                         <div class="card card-body mb-1">
                             <form method="POST" action="/lydbog/files/{{filename}}">
@@ -101,7 +103,7 @@
         $(document).ready(function () {
             $("#myInput").on("keyup", function () {
                 var value = $(this).val().toLowerCase();
-                $("#lydListe #lydObj").filter(function () {
+                $("#searchArea").filter(function () {
                     $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
                 });
             });

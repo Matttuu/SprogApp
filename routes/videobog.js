@@ -34,18 +34,18 @@ const storage = new GridFsStorage({
           return reject(err);
         }
         User.findById(req.session.userId)
-        .exec(function (error, user) {
-        const filename = buf.toString('hex') + path.extname(file.originalname);
-        const metadata = user.uniqueId;
-        const fileInfo = {
-          filename: filename,
-          metadata: metadata,
-          bucketName: 'videouploads'
-        };
-        resolve(fileInfo);
+          .exec(function (error, user) {
+            const filename = buf.toString('hex') + path.extname(file.originalname);
+            const metadata = user.uniqueId;
+            const fileInfo = {
+              filename: filename,
+              metadata: metadata,
+              bucketName: 'videouploads'
+            };
+            resolve(fileInfo);
+          });
       });
     });
-  });
   }
 });
 const upload = multer({ storage });
@@ -77,7 +77,7 @@ router.get('/', (req, res) => {
 // @route POST /upload
 // @desc Uploads file to DB
 router.post('/videoupload', upload.single('file'), (req, res) => {
- 
+
   User.findById(req.session.userId)
     .exec(function (error, user) {
 
@@ -98,6 +98,36 @@ router.post('/videoupload', upload.single('file'), (req, res) => {
           //Tilføjer 10 point til brugeren
           collection.update({ 'uniqueId': user.uniqueId },
             { '$inc': { 'userPoints': 10 } });
+
+          if (user.userPoints <= 90) {
+            collection.update({ 'uniqueId': user.uniqueId },
+              { '$set': { 'userPoints': 0 } });
+
+            if (user.userRank == "Begynder") {
+              collection.update({ 'uniqueId': user.uniqueId },
+                { '$set': { 'userRank': "Børnehaveklasse" } });
+            }
+            else if (user.userRank == "Børnehaveklasse") {
+              collection.update({ 'uniqueId': user.uniqueId },
+                { '$set': { 'userRank': "Folkeskoleelev" } });
+            }
+            else if (user.userRank == "Folkeskoleelev") {
+              collection.update({ 'uniqueId': user.uniqueId },
+                { '$set': { 'userRank': "Gymnasieelev" } });
+            }
+            else if (user.userRank == "Gymnasieelev") {
+              collection.update({ 'uniqueId': user.uniqueId },
+                { '$set': { 'userRank': "Akademielev" } });
+            }
+            else if (user.userRank == "Akademielev") {
+              collection.update({ 'uniqueId': user.uniqueId },
+                { '$set': { 'userRank': "Lærer" } });
+            }
+            else if (user.userRank == "Lærer") {
+              collection.update({ 'uniqueId': user.uniqueId },
+                { '$set': { 'userRank': "Ord-Jonglør" } });
+            }
+          }
         }
         asyncCall();
       });
@@ -184,13 +214,12 @@ router.get('/video/:filename', (req, res) => {
     }
 
     // Check if Video
-    if (file.contentType === 'video/mp3' || file.contentType === 'video/mp4' || file.contentType === 'video/mov' || file.contentType === 'video/mpeg-4' || file.contentType === 'video/x-m4a' || file.contentType === 'video/m4a' || file.contentType === 'video/amr'|| file.contentType === 'video/quicktime') {
+    if (file.contentType === 'video/mp3' || file.contentType === 'video/mp4' || file.contentType === 'video/mov' || file.contentType === 'video/mpeg-4' || file.contentType === 'video/x-m4a' || file.contentType === 'video/m4a' || file.contentType === 'video/amr'|| file.contentType === 'video/quicktime' || file.contentType === 'video/avi' || file.contentType === 'video/wmv' || file.contentType === 'video/RealVideo' || file.contentType === 'video/flash' || file.contentType === 'video/ogg' || file.contentType === 'video/webm') {
       // Read output to browser
       const readstream = gfs.createReadStream(file.filename);
       readstream.pipe(res);
     } else {
       file = false;
-
     }
   });
 });
