@@ -11,6 +11,7 @@ router.get('/', function(req, res, next) {
     username: user.username,
     role: user.role,
     userPoints: user.userPoints,
+    userRank: user.userRank,
     uniqueId: user.uniqueId,
     sprogmakker: user.role === "Sprogmakker",
     kursist: user.role === "Kursist",

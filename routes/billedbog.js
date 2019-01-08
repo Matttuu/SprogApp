@@ -105,12 +105,42 @@ router.post('/upload', upload.single('file'), (req, res) => {
           //Tilføjer 10 point til brugeren
           collection.update({ 'uniqueId': user.uniqueId },
             { '$inc': { 'userPoints': 10 } });
+
+          if (user.userPoints <= 90) {
+            collection.update({ 'uniqueId': user.uniqueId },
+              { '$set': { 'userPoints': 0 } });
+
+            if (user.userRank == "Begynder") {
+              collection.update({ 'uniqueId': user.uniqueId },
+                { '$set': { 'userRank': "Børnehaveklasse" } });
+            }
+            else if (user.userRank == "Børnehaveklasse") {
+              collection.update({ 'uniqueId': user.uniqueId },
+                { '$set': { 'userRank': "Folkeskoleelev" } });
+            }
+            else if (user.userRank == "Folkeskoleelev") {
+              collection.update({ 'uniqueId': user.uniqueId },
+                { '$set': { 'userRank': "Gymnasieelev" } });
+            }
+            else if (user.userRank == "Gymnasieelev") {
+              collection.update({ 'uniqueId': user.uniqueId },
+                { '$set': { 'userRank': "Akademielev" } });
+            }
+            else if (user.userRank == "Akademielev") {
+              collection.update({ 'uniqueId': user.uniqueId },
+                { '$set': { 'userRank': "Lærer" } });
+            }
+            else if (user.userRank == "Lærer") {
+              collection.update({ 'uniqueId': user.uniqueId },
+                { '$set': { 'userRank': "Ord-Jonglør" } });
+            }
+          }
         }
         asyncCall();
       });
     });
 });
-// Her lagres beskrivelse til billedet i databasen. 
+// Her lagrees beskrivelse til billedet i databasen. 
 // Det bliver lagret til det specifikke filnavn.
 /* Der bliver benyttet en async / await funktion for at
    sørge for koden bliver kørt asynkront. Dette resultere
