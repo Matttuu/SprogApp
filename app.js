@@ -41,6 +41,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(methodOverride('_method'));
 
+
 // Use sessions for tracking logins
 app.use(session({
   secret: 'work hard',  
@@ -89,5 +90,9 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error', { layout: 'errorView2' });
 });
+
+
+
+ 
 
 module.exports = app;
