@@ -126,14 +126,14 @@ if (document.cookie && document.cookie.match('userPoints')) {
 else {
 
     
-    // Lave en deadline i '10' minutter fra dette tidspunkt.
-    var timeInMinutes = 10;
+    // Lave en deadline i 'x' minutter fra dette tidspunkt.
+    var timeInMinutes = 1320;
     var currentTime = Date.parse(new Date());
     var deadline = new Date(currentTime + timeInMinutes * 60 * 1000);
     expirationGMT = deadline.toGMTString();
 
     // Gem i deadline i en cookie
-    document.cookie = 'userPoints= ' + deadline + '; expires=' + expirationGMT + '; path=/; domain=exino.dk';
+    document.cookie = 'userPoints= ' + deadline + '; expires=' + expirationGMT + '; path=/; domain=www.exino.dk';
     
 }
 initializeClock('clockdiv', deadline);

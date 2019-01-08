@@ -99,7 +99,7 @@ router.post('/videoupload', upload.single('file'), (req, res) => {
           collection.update({ 'uniqueId': user.uniqueId },
             { '$inc': { 'userPoints': 10 } });
 
-          if (user.userPoints <= 90) {
+            if (user.userPoints >= 90 && user.userRank != "Ord-Junglør") {
             collection.update({ 'uniqueId': user.uniqueId },
               { '$set': { 'userPoints': 0 } });
 
@@ -214,7 +214,7 @@ router.get('/video/:filename', (req, res) => {
     }
 
     // Check if Video
-    if (file.contentType === 'video/mp3' || file.contentType === 'video/mp4' || file.contentType === 'video/mov' || file.contentType === 'video/mpeg-4' || file.contentType === 'video/x-m4a' || file.contentType === 'video/m4a' || file.contentType === 'video/amr'|| file.contentType === 'video/quicktime' || file.contentType === 'video/avi' || file.contentType === 'video/wmv' || file.contentType === 'video/RealVideo' || file.contentType === 'video/flash' || file.contentType === 'video/ogg' || file.contentType === 'video/webm') {
+    if (file.contentType === 'video/mp3' || file.contentType === 'video/mp4' || file.contentType === 'video/mov' || file.contentType === 'video/mpeg-4' || file.contentType === 'video/x-m4a' || file.contentType === 'video/m4a' || file.contentType === 'video/amr'|| file.contentType === 'video/quicktime' || file.contentType === 'video/avi' || file.contentType === 'video/wmv' || file.contentType === 'video/RealVideo' || file.contentType === 'video/flash' || file.contentType === 'video/ogg' || file.contentType === 'video/webm'|| file.contentType === 'video/H.264') {
       // Read output to browser
       const readstream = gfs.createReadStream(file.filename);
       readstream.pipe(res);

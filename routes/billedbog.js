@@ -106,7 +106,7 @@ router.post('/upload', upload.single('file'), (req, res) => {
           collection.update({ 'uniqueId': user.uniqueId },
             { '$inc': { 'userPoints': 10 } });
 
-          if (user.userPoints <= 90) {
+          if (user.userPoints >= 90 && user.userRank != "Ord-Junglør") {
             collection.update({ 'uniqueId': user.uniqueId },
               { '$set': { 'userPoints': 0 } });
 

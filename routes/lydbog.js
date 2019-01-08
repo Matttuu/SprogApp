@@ -75,10 +75,63 @@ router.get('/', (req, res) => {
 });
 
 // @route POST /upload
-// @desc Uploads file to DB
+// @desc  Uploads file to DB
 router.post('/audioupload', upload.single('file'), (req, res) => {
-  // res.json({ file: req.file });
-  res.redirect('/lydbog');
+
+  User.findById(req.session.userId)
+    .exec(function (error, user) {
+
+      mongoose.connect('mongodb://admin:team12@ds125693.mlab.com:25693/cdi', { useNewUrlParser: true, }, function (err, db) {
+        if (err) { throw err; }
+
+        function resolveDetteBagefter() {
+          return new Promise(resolve => {
+            setTimeout(() => {
+              resolve(res.redirect('/lydbog'));
+            }, 0001);
+          });
+        }
+        async function asyncCall() {
+          await resolveDetteBagefter();
+          var collection = db.collection('users');
+
+          //Tilføjer 10 point til brugeren
+          collection.update({ 'uniqueId': user.uniqueId },
+            { '$inc': { 'userPoints': 10 } });
+
+          if (user.userPoints >= 90 && user.userRank != "Ord-Junglør") {
+            collection.update({ 'uniqueId': user.uniqueId },
+              { '$set': { 'userPoints': 0 } });
+
+            if (user.userRank == "Begynder") {
+              collection.update({ 'uniqueId': user.uniqueId },
+                { '$set': { 'userRank': "Børnehaveklasse" } });
+            }
+            else if (user.userRank == "Børnehaveklasse") {
+              collection.update({ 'uniqueId': user.uniqueId },
+                { '$set': { 'userRank': "Folkeskoleelev" } });
+            }
+            else if (user.userRank == "Folkeskoleelev") {
+              collection.update({ 'uniqueId': user.uniqueId },
+                { '$set': { 'userRank': "Gymnasieelev" } });
+            }
+            else if (user.userRank == "Gymnasieelev") {
+              collection.update({ 'uniqueId': user.uniqueId },
+                { '$set': { 'userRank': "Akademielev" } });
+            }
+            else if (user.userRank == "Akademielev") {
+              collection.update({ 'uniqueId': user.uniqueId },
+                { '$set': { 'userRank': "Lærer" } });
+            }
+            else if (user.userRank == "Lærer") {
+              collection.update({ 'uniqueId': user.uniqueId },
+                { '$set': { 'userRank': "Ord-Jonglør" } });
+            }
+          }
+        }
+        asyncCall();
+      });
+    });
 });
 
 // Her lagres beskrivelse til lyden i databasen. 
@@ -115,65 +168,6 @@ router.post('/files/:filename', (req, res, next) => {
     }
     asyncCall();
   });
-});
-// @route POST /upload
-// @desc  Uploads file to DB
-router.post('/audioupload', upload.single('file'), (req, res) => {
-
-  User.findById(req.session.userId)
-    .exec(function (error, user) {
-
-      mongoose.connect('mongodb://admin:team12@ds125693.mlab.com:25693/cdi', { useNewUrlParser: true, }, function (err, db) {
-        if (err) { throw err; }
-
-        function resolveDetteBagefter() {
-          return new Promise(resolve => {
-            setTimeout(() => {
-              resolve(res.redirect('/lydbog'));
-            }, 0001);
-          });
-        }
-        async function asyncCall() {
-          await resolveDetteBagefter();
-          var collection = db.collection('users');
-
-          //Tilføjer 10 point til brugeren
-          collection.update({ 'uniqueId': user.uniqueId },
-            { '$inc': { 'userPoints': 10 } });
-
-          if (user.userPoints <= 90) {
-            collection.update({ 'uniqueId': user.uniqueId },
-              { '$set': { 'userPoints': 0 } });
-
-            if (user.userRank == "Begynder") {
-              collection.update({ 'uniqueId': user.uniqueId },
-                { '$set': { 'userRank': "Børnehaveklasse" } });
-            }
-            else if (user.userRank == "Børnehaveklasse") {
-              collection.update({ 'uniqueId': user.uniqueId },
-                { '$set': { 'userRank': "Folkeskoleelev" } });
-            }
-            else if (user.userRank == "Folkeskoleelev") {
-              collection.update({ 'uniqueId': user.uniqueId },
-                { '$set': { 'userRank': "Gymnasieelev" } });
-            }
-            else if (user.userRank == "Gymnasieelev") {
-              collection.update({ 'uniqueId': user.uniqueId },
-                { '$set': { 'userRank': "Akademielev" } });
-            }
-            else if (user.userRank == "Akademielev") {
-              collection.update({ 'uniqueId': user.uniqueId },
-                { '$set': { 'userRank': "Lærer" } });
-            }
-            else if (user.userRank == "Lærer") {
-              collection.update({ 'uniqueId': user.uniqueId },
-                { '$set': { 'userRank': "Ord-Jonglør" } });
-            }
-          }
-        }
-        asyncCall();
-      });
-    });
 });
 
 // @route GET /files
