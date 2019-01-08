@@ -51,7 +51,7 @@ else {
     sprogmakker: user.role === "Sprogmakker",
     kursist: user.role === "Kursist",
     admin: user.role === "Administrator",
-    ordJungloer: user.userRank === "Ord-Junglør"
+    ordJongloer: user.userRank === "Ord-Jonglør"
    });
 })
 
