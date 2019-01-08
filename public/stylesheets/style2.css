@@ -107,3 +107,48 @@ li{
     list-style-type: none;
   
 }
+
+
+
+
+
+/*      CSS til søgefelt         */
+
+#myInput::-webkit-input-placeholder{
+  padding: 140px;
+  -webkit-transition: all 0.5s;
+}
+
+:focus#myInput::-webkit-input-placeholder{
+  padding: 2px;
+  -webkit-transition: all 0.5s;
+}
+
+#myInput {
+  outline: none;
+}
+#myInput[type="search"] {
+  -webkit-box-sizing: content-box;
+  font-family: inherit;
+  font-size: 100%;
+}
+
+#myInput[type="search"] {
+  background: #ededed
+    url(https://static.tumblr.com/ftv85bp/MIXmud4tx/search-icon.png) no-repeat
+    120px center;
+  border: solid 1px #ccc;
+  padding: 7px 0px 7px 0px;
+  width: 100%;
+
+  -webkit-border-radius: 6px;
+  -webkit-transition: all 0.5s;
+
+}
+#myInput[type="search"]:focus {
+  background: none;
+  border-color: #66cc75;
+  -webkit-box-shadow: 0 0 5px rgba(109, 207, 246, 0.5);
+}
+
+/*  ^   CSS til søgefelt     ^   */
