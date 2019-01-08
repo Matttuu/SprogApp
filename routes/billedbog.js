@@ -140,7 +140,7 @@ router.post('/upload', upload.single('file'), (req, res) => {
       });
     });
 });
-// Her lagres beskrivelse til billedet i databasen. 
+// Her lagrees beskrivelse til billedet i databasen. 
 // Det bliver lagret til det specifikke filnavn.
 /* Der bliver benyttet en async / await funktion for at
    sørge for koden bliver kørt asynkront. Dette resultere
