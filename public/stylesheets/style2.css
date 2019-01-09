@@ -112,6 +112,11 @@ li{
     list-style-type: none;
   
 }
+#home{
+  font-size: 30px;
+  color:gray;
+  margin: 5px;
+}
 
 
 
