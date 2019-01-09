@@ -14,18 +14,23 @@
 
     <!-- Hvis du er logget ind som kursist, vises dette dashboard -->
     {{else if kursist}}
-    <p>Antal point i denne rank: <b>{{userPoints}}</b>!</p>
+    <p>Antal point i denne rang: <b>{{userPoints}}</b>!</p>
 
     <!-- Progressbar som henter antal point fra databasen og skalérer automatisk -->
     <div class="container">
         <div class="progress">
             <div class="progress-bar" role="progressbar" aria-valuenow={{userPoints}} aria-valuemin="0" aria-valuemax="100"
                 style="width:{{userPoints}}%">
-                {{userPoints}}
+                {{userPoints}} / 100
             </div>
         </div>
     </div>
-    <p><span><a href='rank.html'>Rank</a></span>: <b>{{userRank}}</b></p>
+    
+    <p><a href='rank.html'>Rang</a>: <b>{{userRank}}</b></p>
+
+    {{#if ordJongloer}}
+    <p><b>Du har nået den øverste rank!<br>Godt klaret!</b></p>
+    {{/if}}
 
     <!-- Daglig belønning -->
     <h4 class="loggedInHeading">Tid til daglig belønning:</h2>
