@@ -105,32 +105,32 @@ router.post('/upload', upload.single('file'), (req, res) => {
           //Tilføjer 10 point til brugeren
           collection.update({ 'uniqueId': user.uniqueId },
             { '$inc': { 'userPoints': 10 } });
-
-          if (user.userPoints >= 90 && user.userRank != "Ord-Jonglør") {
+            
+            if (user.userPoints >= 90 && user.userRank != "Ord-Jonglør") {
             collection.update({ 'uniqueId': user.uniqueId },
               { '$set': { 'userPoints': 0 } });
 
-            if (user.userRank == "Begynder") {
+            if (user.userRank == "Ingen rang") {
               collection.update({ 'uniqueId': user.uniqueId },
-                { '$set': { 'userRank': "Børnehaveklasse" } });
+                { '$set': { 'userRank': "Bronze" } });
             }
-            else if (user.userRank == "Børnehaveklasse") {
+            else if (user.userRank == "Bronze") {
               collection.update({ 'uniqueId': user.uniqueId },
-                { '$set': { 'userRank': "Folkeskoleelev" } });
+                { '$set': { 'userRank': "Sølv" } });
             }
-            else if (user.userRank == "Folkeskoleelev") {
+            else if (user.userRank == "Sølv") {
               collection.update({ 'uniqueId': user.uniqueId },
-                { '$set': { 'userRank': "Gymnasieelev" } });
+                { '$set': { 'userRank': "Guld" } });
             }
-            else if (user.userRank == "Gymnasieelev") {
+            else if (user.userRank == "Guld") {
               collection.update({ 'uniqueId': user.uniqueId },
-                { '$set': { 'userRank': "Akademielev" } });
+                { '$set': { 'userRank': "Platin" } });
             }
-            else if (user.userRank == "Akademielev") {
+            else if (user.userRank == "Platin") {
               collection.update({ 'uniqueId': user.uniqueId },
-                { '$set': { 'userRank': "Lærer" } });
+                { '$set': { 'userRank': "Diamant" } });
             }
-            else if (user.userRank == "Lærer") {
+            else if (user.userRank == "Diamant") {
               collection.update({ 'uniqueId': user.uniqueId },
                 { '$set': { 'userRank': "Ord-Jonglør" } });
             }

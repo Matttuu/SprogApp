@@ -37,7 +37,7 @@ router.post('/', function (req, res, next) {
       password: req.body.password,
       passwordConf: req.body.passwordConf,
       userPoints: 0,
-      userRank: "Begynder",
+      userRank: "Ingen rang",
     }
 
     User.create(userData, function (error, user) {
