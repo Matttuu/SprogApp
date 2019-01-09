@@ -124,7 +124,7 @@
         var timeinterval = setInterval(updateClock, 1000);
     }
 
-    // Hvis der allerede er en cookie som hedder userPoints, brug værdien fra den til deadline
+   /* // Hvis der allerede er en cookie som hedder userPoints, brug værdien fra den til deadline
     if (document.cookie && document.cookie.match('userPoints')) {
         // få deadline fra cookien
         var deadline = document.cookie.match(/(^|;)userPoints=([^;]+)/)[2];
@@ -143,7 +143,7 @@
         // Gem i deadline i en cookie
         document.cookie = 'userPoints= ' + deadline + '; expires=' + expirationGMT + '; path=/; domain=www.exino.dk';
 
-    }
-    initializeClock('clockdiv', deadline);
+    } */
+    initializeClock('clockdiv', {{cookieTest}});
 
 </script>
