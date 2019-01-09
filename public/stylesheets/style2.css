@@ -66,8 +66,11 @@ height: 100%;
 .tilknyttetKursistTable td {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
   border: 1px solid #dddddd;
-  text-align: left;
   padding: 8px;
+}
+
+#Tilknyttedekursisterp{
+  font: 20px "Lucida Grande", Helvetica, Arial, sans-serif; 
 }
 
 .tableHeading2 {
@@ -152,5 +155,9 @@ li{
   border-color: #66cc75;
   -webkit-box-shadow: 0 0 5px rgba(109, 207, 246, 0.5);
 }
+
+
+
+
 
 /*  ^   CSS til søgefelt     ^   */
