@@ -1,10 +1,68 @@
-<!-- Hvis du er logget ind som sprogmakker, kan du ikke se nogen billedordbog -->
+<!-- Hvis du er logget ind som sprogmakker, kan du ikke se nogen billedordbog, men du ser derimod kursisters ordbøger -->
 {{#if sprogmakker}}
-<center>
+<div style="text-align:center;">
     <h1 class="loggedInHeading">Billedordbog</h1>
-    <p class="loggedInText">Da du er logget ind som sprogmakker, har du ikke en billedordbog.</p>
-    <p class="loggedInText"><li><a href="connectId">Se dine tilknyttede kursisters ordbøger</a>.</li></p>
-</center>
+    <p class="loggedInText">Da du er logget ind som sprogmakker, har du ikke en personlig billedordbog, men du kan tilgå dine tilknyttede kursisters billedordbog herunder.</p>
+    <p class="loggedInText">
+        <br>
+        <table class="tilknyttetKursistTable" align="center">
+            <div id="noneConnected">Du har i øjeblikket <b>ingen</b> tilknyttede kursister. <a href="connectId">Tilknyt nogle her.</a></div>
+
+            <!-- Hvis du har 1 tilknyttet kursist -->
+            {{#if antalTilknyttedeKursister1}}
+            <script>$('#noneConnected').hide();</script>
+
+            <p id="Tilknyttedekursisterp"> <b>Tilknyttede kursister</b></p>
+            <tr>
+                <th class="tableHeading2">Navn</th>
+                <th class="tableHeading2">Unikt ID</th>
+                <th class="tableHeading2">Ordbog</th>
+            </tr>
+            <tr>
+                <td>{{obj1.users.username}}</td>
+                <td>{{tilknyttetKursistID1}}</td>
+                <td><a href="underUdvikling.html">Se billedordbog</a></td>
+            </tr>
+
+            <!-- Hvis du har 2 tilknyttede kursister -->
+            {{#if antalTilknyttedeKursister2}}
+            <tr>
+                <td>{{obj2.users.username}}</td>
+                <td>{{tilknyttetKursistID2}}</td>
+                <td><a href="underUdvikling.html">Se billedordbog</a></td>
+            </tr>
+
+            <!-- Hvis du har 3 tilknyttede kursister -->
+            {{#if antalTilknyttedeKursister3}}
+            <tr>
+                <td>{{obj3.users.username}}</td>
+                <td>{{tilknyttetKursistID3}}</td>
+                <td><a href="underUdvikling.html">Se billedordbog</a></td>
+            </tr>
+
+            <!-- Hvis du har 4 tilknyttede kursister -->
+            {{#if antalTilknyttedeKursister4}}
+            <tr>
+                <td>{{obj4.users.username}}</td>
+                <td>{{tilknyttetKursistID4}}</td>
+                <td><a href="underUdvikling.html">Se billedordbog</a></td>
+            </tr>
+
+            <!-- Hvis du har 5 tilknyttede kursister -->
+            {{#if antalTilknyttedeKursister5}}
+            <tr>
+                <td>{{obj5.users.username}}</td>
+                <td>{{tilknyttetKursistID5}}</td>
+                <td><a href="underUdvikling.html">Se billedordbog</a></td>
+            </tr>
+            {{/if}}
+            {{/if}}
+            {{/if}}
+            {{/if}}
+            {{/if}}
+        </table>
+    </p>
+</div>
 
 <!-- Kursist og admin kan se sin personlige billedeordbog -->
 {{else}}
@@ -15,7 +73,7 @@
 
 <div class="col-md-5 m-auto">
     <form>
-        <input type="search" name="search" placeholder="Søg efter billede..." id = "myInput">
+        <input type="search" name="search" placeholder="Søg efter billede..." id="myInput">
     </form>
 </div>
 <br>
@@ -54,7 +112,8 @@
                             <h6>
                                 <p id="beskrivelsen" class="text-muted">{{billedDescription}}</p>
                                 <!-- Næste linje virker ikke endnu, men gør heller ingen skade -->
-                                <p id="ingenBeskrivelse" class="text-muted" style="display:none;"><i>Ingen beskrivelse tilføjet.</i></p>
+                                <p id="ingenBeskrivelse" class="text-muted" style="display:none;"><i>Ingen beskrivelse
+                                        tilføjet.</i></p>
                             </h6>
                         </blockquote>
                         <table class="table">

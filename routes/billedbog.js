@@ -53,29 +53,76 @@ const storage = new GridFsStorage({
 });
 const upload = multer({ storage });
 
-
 // @route GET /
 // @desc Loads form
 router.get('/', (req, res) => {
-
   User.findById(req.session.userId)
     .exec(function (error, user) {
-      gfs.files.find().toArray((err, files) => {
 
-        // Check if files
-        if (!files || files.length === 0) {
-          res.render('billedbog', { files: false });
-        } else {
-          res.render('billedbog', {
-            user: user,
-            uniqueId: user.uniqueId,
-            files: files,
-            title: 'Billedordbog',
-            sprogmakker: user.role === "Sprogmakker",
-            kursist: user.role === "Kursist",
-            admin: user.role === "Administrator"
+      mongoose.connect('mongodb://admin:team12@ds125693.mlab.com:25693/cdi', { useNewUrlParser: true, }, function (err, db) {
+        if (err) { throw err; }
+
+        var collection = db.collection('users');
+
+        collection.findOne({ uniqueId: user.tilknyttetKursistID1 }, function (err, result) {
+          if (err) throw err;
+          var obj1 = {};
+          obj1.users = result;
+          collection.findOne({ uniqueId: user.tilknyttetKursistID2 }, function (err, result) {
+            if (err) throw err;
+            var obj2 = {};
+            obj2.users = result;
+            collection.findOne({ uniqueId: user.tilknyttetKursistID3 }, function (err, result) {
+              if (err) throw err;
+              var obj3 = {};
+              obj3.users = result;
+              collection.findOne({ uniqueId: user.tilknyttetKursistID4 }, function (err, result) {
+                if (err) throw err;
+                var obj4 = {};
+                obj4.users = result;
+                collection.findOne({ uniqueId: user.tilknyttetKursistID5 }, function (err, result) {
+                  if (err) throw err;
+                  var obj5 = {};
+                  obj5.users = result;
+
+                  gfs.files.find().toArray((err, files) => {
+
+                    // Check if files
+                    if (!files || files.length === 0) {
+                      res.render('billedbog', { files: false });
+                    } else {
+                      res.render('billedbog', {
+                        user: user,
+                        uniqueId: user.uniqueId,
+                        files: files,
+                        title: 'Billedordbog',
+                        sprogmakker: user.role === "Sprogmakker",
+                        kursist: user.role === "Kursist",
+                        admin: user.role === "Administrator",
+                        tilknyttetKursistID1: user.tilknyttetKursistID1,
+                        tilknyttetKursistID2: user.tilknyttetKursistID2,
+                        tilknyttetKursistID3: user.tilknyttetKursistID3,
+                        tilknyttetKursistID4: user.tilknyttetKursistID4,
+                        tilknyttetKursistID5: user.tilknyttetKursistID5,
+                        antalTilknyttedeKursister: user.antalTilknyttedeKursister,
+                        antalTilknyttedeKursister1: user.antalTilknyttedeKursister >= 1,
+                        antalTilknyttedeKursister2: user.antalTilknyttedeKursister >= 2,
+                        antalTilknyttedeKursister3: user.antalTilknyttedeKursister >= 3,
+                        antalTilknyttedeKursister4: user.antalTilknyttedeKursister >= 4,
+                        antalTilknyttedeKursister5: user.antalTilknyttedeKursister >= 5,
+                        obj1,
+                        obj2,
+                        obj3,
+                        obj4,
+                        obj5
+                      });
+                    }
+                  });
+                });
+              });
+            });
           });
-        }
+        });
       });
     });
 });
@@ -105,8 +152,8 @@ router.post('/upload', upload.single('file'), (req, res) => {
           //Tilføjer 10 point til brugeren
           collection.update({ 'uniqueId': user.uniqueId },
             { '$inc': { 'userPoints': 10 } });
-            
-            if (user.userPoints >= 90 && user.userRank != "Ord-Jonglør") {
+
+          if (user.userPoints >= 90 && user.userRank != "Ord-Jonglør") {
             collection.update({ 'uniqueId': user.uniqueId },
               { '$set': { 'userPoints': 0 } });
 
@@ -140,6 +187,7 @@ router.post('/upload', upload.single('file'), (req, res) => {
       });
     });
 });
+
 // Her lagrees beskrivelse til billedet i databasen. 
 // Det bliver lagret til det specifikke filnavn.
 /* Der bliver benyttet en async / await funktion for at
