@@ -25,6 +25,7 @@
         </div>
         <br>
         <div id="connecter">Vent venligst...</div>
+        <br>
         <table class="tilknyttetKursistTable" align="center">
             <div id="noneConnected">Du har i øjeblikket <b>ingen</b> tilknyttede kursister.</div>
 
@@ -32,59 +33,59 @@
             {{#if antalTilknyttedeKursister1}}
             <script>$('#noneConnected').hide();</script>
             
-        <p id="Tilknyttedekursisterp">Tilknyttede kursister</p>
+            <p id="Tilknyttedekursisterp">Tilknyttede kursister</p>
             <tr>
                 <th class="tableHeading2">Navn</th>
                 <th class="tableHeading2">Unikt ID</th>
                 <th class="tableHeading2">Chat</th>
                 <th class="tableHeading2">Personlige ordbøger</th>
             </tr>
-            <!-- billedordbog, videoordbog og lydordbog ligger inde under td da de har samme overskrift ud fra table så de bliver reponsiveness -->
+            <!-- billedordbog og videoordbog ligger inde under td da de har samme overskrift ud fra table så de bliver reponsiveness -->
             <tr>
                 <td>{{obj1.users.username}}</td>
                 <td>{{tilknyttetKursistID1}}</td>
                 <td><a href="underUdvikling.html">Start chat </a></td>
-                <td><a href="underUdvikling.html">Billedordbog </a><a href="underUdvikling.html">Videoordbog </a><a href="underUdvikling.html">Lydordbog</a></td>
+                <td><a href="underUdvikling.html">Billedordbog</a> - <a href="underUdvikling.html">Videoordbog</a></td>
             </tr>
 
             <!-- Hvis du har 2 tilknyttede kursister -->
-            <!-- billedordbog, videoordbog og lydordbog ligger inde under td da de har samme overskrift ud fra table så de bliver reponsiveness -->
+            <!-- billedordbog og videoordbog ligger inde under td da de har samme overskrift ud fra table så de bliver reponsiveness -->
             {{#if antalTilknyttedeKursister2}}
             <tr>
                 <td>{{obj2.users.username}}</td>
                 <td>{{tilknyttetKursistID2}}</td>
                 <td><a href="underUdvikling.html">Start chat</a></td>
-                 <td><a href="underUdvikling.html">Billedordbog </a><a href="underUdvikling.html">Videoordbog </a><a href="underUdvikling.html">Lydordbog</a></td>
+                <td><a href="underUdvikling.html">Billedordbog</a> - <a href="underUdvikling.html">Videoordbog</a></td>
             </tr>
 
             <!-- Hvis du har 3 tilknyttede kursister -->
-            <!-- billedordbog, videoordbog og lydordbog ligger inde under td da de har samme overskrift ud fra table så de bliver reponsiveness -->
+            <!-- billedordbog og videoordbog ligger inde under td da de har samme overskrift ud fra table så de bliver reponsiveness -->
             {{#if antalTilknyttedeKursister3}}
             <tr>
                 <td>{{obj3.users.username}}</td>
                 <td>{{tilknyttetKursistID3}}</td>
                 <td><a href="underUdvikling.html">Start chat</a></td>
-                <td><a href="underUdvikling.html">Billedordbog </a><a href="underUdvikling.html">Videoordbog </a><a href="underUdvikling.html">Lydordbog</a></td>
+                <td><a href="underUdvikling.html">Billedordbog</a> - <a href="underUdvikling.html">Videoordbog</a></td>
             </tr>
 
             <!-- Hvis du har 4 tilknyttede kursister -->
-            <!-- billedordbog, videoordbog og lydordbog ligger inde under td da de har samme overskrift ud fra table så de bliver reponsiveness -->
+            <!-- billedordbog og videoordbog ligger inde under td da de har samme overskrift ud fra table så de bliver reponsiveness -->
             {{#if antalTilknyttedeKursister4}}
             <tr>
                 <td>{{obj4.users.username}}</td>
                 <td>{{tilknyttetKursistID4}}</td>
                 <td><a href="underUdvikling.html">Start chat</a></td>
-                  <td><a href="underUdvikling.html">Billedordbog </a><a href="underUdvikling.html">Videoordbog </a><a href="underUdvikling.html">Lydordbog</a></td>
+                <td><a href="underUdvikling.html">Billedordbog</a> - <a href="underUdvikling.html">Videoordbog</a></td>
             </tr>
 
             <!-- Hvis du har 5 tilknyttede kursister -->
-            <!-- billedordbog, videoordbog og lydordbog ligger inde under td da de har samme overskrift ud fra table så de bliver reponsiveness -->
+            <!-- billedordbog og videoordbog ligger inde under td da de har samme overskrift ud fra table så de bliver reponsiveness -->
             {{#if antalTilknyttedeKursister5}}
             <tr>
                 <td>{{obj5.users.username}}</td>
                 <td>{{tilknyttetKursistID5}}</td>
                 <td><a href="underUdvikling.html">Start chat</a></td>
-                  <td><a href="underUdvikling.html">Billedordbog </a><a href="underUdvikling.html">Videoordbog </a><a href="underUdvikling.html">Lydordbog</a></td>
+                <td><a href="underUdvikling.html">Billedordbog</a> - <a href="underUdvikling.html">Videoordbog</a></td>
             </tr>
             {{/if}}
             {{/if}}

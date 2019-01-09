@@ -1,8 +1,8 @@
 <div style="text-align:center;">
     <h2 class="loggedInHeading">Velkommen {{username}}</h2>
     <p class="loggedInText">
-        Din registrerede rolle er: <b>{{role}}</b><br>
-        Dit unikke ID nummer er: <b>{{uniqueId}}</b><br><br></p>
+        Din rolle: <b>{{role}}</b><br>
+        Dit unikke ID: <b>{{uniqueId}}</b><br></p>
 
     <!-- Hvis du er logget ind som sprogmakker, vises dette dashboard -->
     {{#if sprogmakker}}
@@ -14,19 +14,18 @@
 
     <!-- Hvis du er logget ind som kursist, vises dette dashboard -->
     {{else if kursist}}
-    <p>Antal point i denne rang: <b>{{userPoints}}</b>!</p>
+    <p class="loggedInText">Optjente point i denne rang: <b>{{userPoints}}</b></p>
 
     <!-- Progressbar som henter antal point fra databasen og skalérer automatisk -->
-    <div class="container">
+    <div class="container" style="margin-bottom:5px;">
         <div class="progress">
             <div class="progress-bar" role="progressbar" aria-valuenow={{userPoints}} aria-valuemin="0" aria-valuemax="100"
                 style="width:{{userPoints}}%">
-                {{userPoints}} / 100
+                {{userPoints}} / 100 point
             </div>
         </div>
     </div>
-    
-    <p><a href='rank.html'>Rang</a>: <b>{{userRank}}</b></p>
+    <p class="loggedInText">Nuværende rang: <b>{{userRank}}</b> <a href='rank.html'><b>(?)</b></a></p>
 
     {{#if ordJongloer}}
     <p><b>Du har nået den øverste rank!<br>Godt klaret!</b></p>
@@ -80,7 +79,7 @@
     <a href="videobog">Videoordbog</a><br>
     <a href="lydbog">Lydordbog</a><br>
     <a href="chat">Chat</a><br>
-    <a href="connectId">Forbind kursist</a>
+    <a href="connectId">Forbind kursist</a><br>
     <a href="/profile/logout">Log ud</a>
     {{/if}}
 
