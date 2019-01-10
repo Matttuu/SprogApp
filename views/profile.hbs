@@ -25,9 +25,23 @@
             </div>
         </div>
     </div>
+    {{#if bronze}}
     <p class="loggedInText">Nuværende rang: <b>{{userRank}}</b> <img class="rankIconsProfile" src="/billeder/Bronze_icon.png" alt=""> <a href='rank.html'><b>(?)</b></a></p>
-
+    {{/if}}
+    {{#if sølv}}
+    <p class="loggedInText">Nuværende rang: <b>{{userRank}}</b> <img class="rankIconsProfile" src="/billeder/Silver_icon.png" alt=""> <a href='rank.html'><b>(?)</b></a></p>
+    {{/if}}
+    {{#if guld}}
+    <p class="loggedInText">Nuværende rang: <b>{{userRank}}</b> <img class="rankIconsProfile" src="/billeder/Gold_icon.png" alt=""> <a href='rank.html'><b>(?)</b></a></p>
+    {{/if}}
+    {{#if platin}}
+    <p class="loggedInText">Nuværende rang: <b>{{userRank}}</b> <img class="rankIconsProfile" src="/billeder/Platinum_icon.png" alt=""> <a href='rank.html'><b>(?)</b></a></p>
+    {{/if}}
+    {{#if diamant}}
+    <p class="loggedInText">Nuværende rang: <b>{{userRank}}</b> <img class="rankIconsProfile" src="/billeder/Diamond_icon.png" alt=""> <a href='rank.html'><b>(?)</b></a></p>
+    {{/if}}
     {{#if ordJongloer}}
+    <p class="loggedInText">Nuværende rang: <b>{{userRank}}</b> <img class="rankIconsProfile" src="/billeder/Champion_icon.png" alt=""> <a href='rank.html'><b>(?)</b></a></p>
     <p><b>Du har nået den øverste rank!<br>Godt klaret!</b></p>
     {{/if}}
 
@@ -51,11 +65,6 @@
             <div class="smalltext">Sekunder</div>
         </div>
     </div>
-
-    <!-- Hvis du når den højeste rangering -->
-    {{#if ordJongloer}}
-    <p><b>Du har nået den øverste rank!<br>Godt klaret!</b></p>
-    {{/if}}
 
     <!-- Dashboard ikoner/grafik -->
     <h4 class="loggedInHeading">Vælg herunder:</h4>
