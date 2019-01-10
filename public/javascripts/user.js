@@ -56,6 +56,9 @@ var UserSchema = new mongoose.Schema({
   },
   userRank:{
     type: String
+  },
+  lastVisitDate:{
+    type: Number
   }
 })
 
