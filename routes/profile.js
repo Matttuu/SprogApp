@@ -9,6 +9,7 @@ router.get('/', function(req, res, next) {
   .exec(function (error, user) {
   res.render('profile', {    
     title: 'Dashboard',
+    user: user,
     username: user.username,
     role: user.role,
     userPoints: user.userPoints,
@@ -17,6 +18,11 @@ router.get('/', function(req, res, next) {
     sprogmakker: user.role === "Sprogmakker",
     kursist: user.role === "Kursist",
     admin: user.role === "Administrator",
+    bronze: user.userRank === "Bronze",
+    silver: user.userRank === "Sølv",
+    gold: user.userRank === "Guld",
+    platin: user.userRank === "Platin",
+    diamant: user.userRank === "Diamant",
     ordJongloer: user.userRank === "Ord-Jonglør",
    });
 })

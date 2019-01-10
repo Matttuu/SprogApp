@@ -25,7 +25,7 @@
             </div>
         </div>
     </div>
-    <p class="loggedInText">Nuværende rang: <b>{{userRank}}</b> <a href='rank.html'><b>(?)</b></a></p>
+    <p class="loggedInText">Nuværende rang: <b>{{userRank}}</b> <img class="rankIconsProfile" src="/billeder/Bronze_icon.png" alt=""> <a href='rank.html'><b>(?)</b></a></p>
 
     {{#if ordJongloer}}
     <p><b>Du har nået den øverste rank!<br>Godt klaret!</b></p>
@@ -69,7 +69,7 @@
     </div>
     <div class="flex-container">
         <div id="item5"><a href='support'><i class="fas fa-hands-helping" id="support" style="font-size:60px;"></i></a></div>
-        <div id="item6"><a href='/'><i class="fas fa-sign-out-alt" id="logout" style="font-size:60px;"></i></a></div>
+        <div id="item6"><a href='/profile/logout'><i class="fas fa-sign-out-alt" id="logout" style="font-size:60px;"></i></a></div>
     </div>
 
     <!-- Hvis du er logget ind som administrator, vises dette dashboard -->
@@ -141,7 +141,7 @@
         expirationGMT = deadline.toGMTString();
 
         // Gem i deadline i en cookie
-        document.cookie = 'userPoints= ' + deadline + '; expires=' + expirationGMT + '; path=/; domain=www.exino.dk';
+        document.cookie = 'userPoints= ' + deadline + '; expires=' + expirationGMT + '; path=/; domain=localhost';
 
     } 
     initializeClock('clockdiv', deadline);
