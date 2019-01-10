@@ -118,6 +118,7 @@ router.get('/', (req, res) => {
                         user: user,
                         uniqueId: user.uniqueId,
                         files: files, audiofiles: filesLyd,
+                        checkAliases: req.body.audioAliases == files.filename,
                         title: 'Billedordbog',
                         sprogmakker: user.role === "Sprogmakker",
                         kursist: user.role === "Kursist",

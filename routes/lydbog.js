@@ -37,9 +37,11 @@ const storage = new GridFsStorage({
           .exec(function (error, user) {
             const filename = buf.toString('hex') + path.extname(file.originalname);
             const metadata = user.uniqueId;
+            const aliases = req.body.usynligtID;
             const fileInfo = {
               filename: filename,
               metadata: metadata,
+              aliases: aliases,
               bucketName: 'audiouploads'
             };
             resolve(fileInfo);

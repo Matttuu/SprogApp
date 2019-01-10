@@ -2,11 +2,13 @@
 {{#if sprogmakker}}
 <div style="text-align:center;">
     <h1 class="loggedInHeading">Billedordbog</h1>
-    <p class="loggedInText">Da du er logget ind som sprogmakker, har du ikke en personlig billedordbog, men du kan tilgå dine tilknyttede kursisters billedordbog herunder.</p>
+    <p class="loggedInText">Da du er logget ind som sprogmakker, har du ikke en personlig billedordbog, men du kan
+        tilgå dine tilknyttede kursisters billedordbog herunder.</p>
     <p class="loggedInText">
         <br>
         <table class="tilknyttetKursistTable" align="center">
-            <div id="noneConnected">Du har i øjeblikket <b>ingen</b> tilknyttede kursister. <a href="connectId">Tilknyt nogle her.</a></div>
+            <div id="noneConnected">Du har i øjeblikket <b>ingen</b> tilknyttede kursister. <a href="connectId">Tilknyt
+                    nogle her.</a></div>
 
             <!-- Hvis du har 1 tilknyttet kursist -->
             {{#if antalTilknyttedeKursister1}}
@@ -68,7 +70,8 @@
 {{else}}
 <center>
     <h1 class="loggedInHeading">Billedordbog</h1>
-    <p class="loggedInText">Her kan du tage billeder og tilføje til din ordbog. Efterfølgende kan du tilføje tekst til dit billede.</p>
+    <p class="loggedInText">Her kan du tage billeder og tilføje til din ordbog. Efterfølgende kan du tilføje tekst til
+        dit billede.</p>
 </center>
 
 <div class="col-md-5 m-auto">
@@ -128,23 +131,27 @@
                                             <input type="submit" value="Tilføj beskrivelse" class="btn btn-success btn-block">
                                         </form>
                                     </div>
-                              
-                                <!--LYD-->
-                                <div class="card card-body mb-1">
-                                    <form action="/lydbog/audioupload2" method="POST" enctype="multipart/form-data">
-                                        <div class="custom-file mb-3">
-                                            Optag video: <input type="file" accept="audio/*" id="capture" capture="audio"
-                                                name="file" class="custom-file-input">
-                                            <label for="file" class="custom-file-label">Vælg lydfil</label>
-                                        </div>
-                                        <input type="submit" value="Tilføj audio" class="btn btn-primary btn-block">
-                                    </form>
-                                </div>
+
+                                    <!--LYD-->
+                                    <div class="card card-body mb-1">
+                                        <form action="/lydbog/audioupload2" method="POST" enctype="multipart/form-data">
+                                            <input style="display:none" type="text" id="usynligtID" name="usynligtID" value={{_id}}></input>
+
+                                            <div class="custom-file mb-3">
+                                                Optag video: <input type="file" accept="audio/*" id="capture" capture="audio"
+                                                    name="file" class="custom-file-input">
+                                                <label for="file" class="custom-file-label">Vælg lydfil</label>
+                                            </div>
+                                            <input type="submit" value="Tilføj audio" class="btn btn-primary btn-block">
+                                        </form>
+                                    </div>
                             </tr>
                             <tr>
                                 {{#each ../audiofiles}}
-                                  <div class={{metadata}} style="display:none">
+                                {{#if ../checkAliases}}
+                                    <div class={{metadata}} style="display:none">
                                     <div class="card card-body mb-3">
+                                            <input style="display:none" type="text" name="audioAliases" value={{aliases}}></input>
                                         <audio controls>
                                             <source src="billedbog/audio/{{filename}}" type="audio/mp4">Din browser
                                             understøtter ikke denne filtype!</audio>
@@ -152,10 +159,10 @@
                                         <form method="POST" action="/billedbog/audiofiles/{{_id}}?_method=DELETE">
                                             <button class="btn btn-danger btn-block mt-4">Slet lyd</button>
                                         </form>
-
+                                        </div>
                                     </div>
-                                    </div>
-                                    {{/each}}
+                                {{/if}}
+                                {{/each}}
                             </tr>
                             <!-- Slet billede -->
                             <form method="POST" action="/billedbog/files/{{_id}}?_method=DELETE">
@@ -184,6 +191,7 @@
         var idValue = $("#uniqueIDS").val();
         $("div").filter("." + idValue).css("display", "block");
     });
+     
 
     /*
         Søgefunktionen:
