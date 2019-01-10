@@ -134,6 +134,64 @@ router.post('/audioupload', upload.single('file'), (req, res) => {
     });
 });
 
+router.post('/audioupload2', upload.single('file'), (req, res) => {
+
+  User.findById(req.session.userId)
+    .exec(function (error, user) {
+
+      mongoose.connect('mongodb://admin:team12@ds125693.mlab.com:25693/cdi', { useNewUrlParser: true, }, function (err, db) {
+        if (err) { throw err; }
+
+        function resolveDetteBagefter() {
+          return new Promise(resolve => {
+            setTimeout(() => {
+              resolve(res.redirect('/billedbog'));
+            }, 0001);
+          });
+        }
+        async function asyncCall() {
+          await resolveDetteBagefter();
+          var collection = db.collection('users');
+
+          //Tilføjer 10 point til brugeren
+          collection.update({ 'uniqueId': user.uniqueId },
+            { '$inc': { 'userPoints': 10 } });
+            
+            if (user.userPoints >= 90 && user.userRank != "Ord-Jonglør") {
+            collection.update({ 'uniqueId': user.uniqueId },
+              { '$set': { 'userPoints': 0 } });
+
+            if (user.userRank == "Ingen rang") {
+              collection.update({ 'uniqueId': user.uniqueId },
+                { '$set': { 'userRank': "Bronze" } });
+            }
+            else if (user.userRank == "Bronze") {
+              collection.update({ 'uniqueId': user.uniqueId },
+                { '$set': { 'userRank': "Sølv" } });
+            }
+            else if (user.userRank == "Sølv") {
+              collection.update({ 'uniqueId': user.uniqueId },
+                { '$set': { 'userRank': "Guld" } });
+            }
+            else if (user.userRank == "Guld") {
+              collection.update({ 'uniqueId': user.uniqueId },
+                { '$set': { 'userRank': "Platin" } });
+            }
+            else if (user.userRank == "Platin") {
+              collection.update({ 'uniqueId': user.uniqueId },
+                { '$set': { 'userRank': "Diamant" } });
+            }
+            else if (user.userRank == "Diamant") {
+              collection.update({ 'uniqueId': user.uniqueId },
+                { '$set': { 'userRank': "Ord-Jonglør" } });
+            }
+          }
+        }
+        asyncCall();
+      });
+    });
+});
+
 // Her lagres beskrivelse til lyden i databasen. 
 // Det bliver lagret til det specifikke filnavn.
 /* Der bliver benyttet en async / await funktion for at
