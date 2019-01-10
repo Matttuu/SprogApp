@@ -112,6 +112,11 @@ li{
     list-style-type: none;
   
 }
+#home{
+  font-size: 30px;
+  color:gray;
+  margin-right:10px
+}
 
 
 
@@ -156,6 +161,14 @@ li{
   -webkit-box-shadow: 0 0 5px rgba(109, 207, 246, 0.5);
 }
 
+.rankIcons{
+  height: 15%;
+  width: auto;
+}
+.rankIconsProfile{
+  height: auto;
+  width: 30px;
+}
 
 
 
