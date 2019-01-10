@@ -18,6 +18,7 @@ router.get('/', function(req, res, next) {
     sprogmakker: user.role === "Sprogmakker",
     kursist: user.role === "Kursist",
     admin: user.role === "Administrator",
+    ingenRang: user.userRank === "Ingen rang",
     bronze: user.userRank === "Bronze",
     sølv: user.userRank === "Sølv",
     guld: user.userRank === "Guld",

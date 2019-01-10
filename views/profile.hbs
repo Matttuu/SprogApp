@@ -25,6 +25,9 @@
             </div>
         </div>
     </div>
+    {{#if ingenRang}}
+    <p class="loggedInText">Nuværende rang: <b>{{userRank}}</b> <a href='rank.html'><b>(?)</b></a></p>
+    {{/if}}
     {{#if bronze}}
     <p class="loggedInText">Nuværende rang: <b>{{userRank}}</b> <img class="rankIconsProfile" src="/billeder/Bronze_icon.png" alt=""> <a href='rank.html'><b>(?)</b></a></p>
     {{/if}}
