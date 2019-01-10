@@ -8,8 +8,8 @@
     {{#if sprogmakker}}
     <h4 class="loggedInHeading">Vælg herunder:</h4>
     <div class="flex-container">
-        <div id="item1"><a href='connectId'><i class="fas fa-plug" id="connectId" style="font-size:60px;"></i></a></div>
-        <div id="item2"><a href='underUdvikling.html'><i class="fas fa-comment" id="chat" style="font-size:60px;"></i></a></div>
+        <div id="chat"><a href='connectId'><img src="https://66.media.tumblr.com/5a824c1bfb66d8e7cb3a2431e79315e2/tumblr_pl4bs9TIFG1y4za8go1_540.gif" alt="Chat" style="width:100px"></a></div>
+        <div id="chat" ><a href='underUdvikling.html'> <img src="https://66.media.tumblr.com/1bf128a4bbe0b31f777d0ce138c75124/tumblr_pl454cWvyW1y4za8go1_540.gif" alt="Chat" style="width:100px"></a></div>   
     </div>
 
     <!-- Hvis du er logget ind som kursist, vises dette dashboard -->
@@ -71,18 +71,27 @@
 
     <!-- Dashboard ikoner/grafik -->
     <h4 class="loggedInHeading">Vælg herunder:</h4>
-    <div class="flex-container">
-        <div id="item1"><a href='billedbog'><i class="fas fa-image" id="billedbog" style="font-size:60px;"></i></a></div>
-        <div id="item2"><a href='videobog'><i class="fas fa-video" id="videobog" style="font-size:60px;"></i></a></div>
+      <div class="flex-container">
+        <div ><a href='billedbog'>
+        <img src="https://66.media.tumblr.com/ce7da4097bd9bc732467e3518d1e5bab/tumblr_pl2kz7jpGI1y4za8go1_500.gif" alt="Billedbog" style="width:100px">
+        </a></div>
+
+         <div ><a href='videobog'>
+         <img src="https://66.media.tumblr.com/5355b32098c73c3d02a49620f8f9184a/tumblr_pl41u1gqRR1y4za8go1_500.gif" alt="Videobog" style="width:100px">
+        </a></div>
     </div>
     <div class="flex-container">
-        <div id="item3"><a href='lydbog'><i class="fas fa-volume-up" id="lydbog" style="font-size:60px;"></i></a></div>
-        <div id="item4"><a href='underUdvikling.html'><i class="fas fa-comment" id="chat" style="font-size:60px;"></i></a></div>
+        <div > <a href='support' class="support">
+        <img src="https://66.media.tumblr.com/0d6a7ca3b02533bcc99212e989eeb8a7/tumblr_pl4808KPxR1y4za8go1_500.gif" alt="Support" style="width:100px">
+        </a> </div>
+
+         <div id="chat" ><a href='underUdvikling.html'>
+         <img src="https://66.media.tumblr.com/1bf128a4bbe0b31f777d0ce138c75124/tumblr_pl454cWvyW1y4za8go1_540.gif" alt="Chat" style="width:100px">
+        </a></div>
     </div>
-    <div class="flex-container">
-        <div id="item5"><a href='support'><i class="fas fa-hands-helping" id="support" style="font-size:60px;"></i></a></div>
-        <div id="item6"><a href='/profile/logout'><i class="fas fa-sign-out-alt" id="logout" style="font-size:60px;"></i></a></div>
-       </div>
+  
+
+
 
 
     <!-- Hvis du er logget ind som administrator, vises dette dashboard -->
@@ -90,7 +99,6 @@
     <h2 class="loggedInHeading">Admin menu</h2>
     <a href="billedbog">Billedordbog</a><br>
     <a href="videobog">Videoordbog</a><br>
-    <a href="lydbog">Lydordbog</a><br>
     <a href="chat">Chat</a><br>
     <a href="connectId">Forbind kursist</a><br>
     <a href="/profile/logout">Log ud</a>
