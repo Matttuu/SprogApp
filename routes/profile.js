@@ -7,22 +7,6 @@ const mongoose = require('mongoose');
 /* GET home page. */
 router.get('/', function (req, res, next) {
 
-  mongoose.connect('mongodb://admin:team12@ds125693.mlab.com:25693/cdi', { useNewUrlParser: true, }, function (err, db) {
-    if (err) { throw err; }
-    var collection = db.collection('users');
-    var d = new Date();
-    var getDate = d.getDate();
-    /*Tjekker tjekker hvornår brugeren sidst har været logget ind.
-      Hvis ikke man har været logget ind i dag så får man 10 point,
-      og værdien for sidste besøg bliver opdateret.*/
-    if (user.lastVisitDate != getDate) {
-      collection.update({ 'uniqueId': user.uniqueId },
-        { '$set': { 'lastVisitDate': getDate } });
-      collection.update({ 'uniqueId': user.uniqueId },
-        { '$inc': { 'userPoints': 10 } });
-    }
-  });
-
   User.findById(req.session.userId)
     .exec(function (error, user) {
       res.render('profile', {
@@ -36,14 +20,30 @@ router.get('/', function (req, res, next) {
         sprogmakker: user.role === "Sprogmakker",
         kursist: user.role === "Kursist",
         admin: user.role === "Administrator",
-        ingenRang: user.userRank === "Ingen rang",
+        noRank: user.userRank === "Ingen rang",
         bronze: user.userRank === "Bronze",
-        sølv: user.userRank === "Sølv",
-        guld: user.userRank === "Guld",
-        platin: user.userRank === "Platin",
-        diamant: user.userRank === "Diamant",
+        silver: user.userRank === "Sølv",
+        gold: user.userRank === "Guld",
+        platinum: user.userRank === "Platin",
+        diamond: user.userRank === "Diamant",
         ordJongloer: user.userRank === "Ord-Jonglør",
       });
+      mongoose.connect('mongodb://admin:team12@ds125693.mlab.com:25693/cdi', { useNewUrlParser: true, }, function (err, db) {
+    if (err) { throw err; }
+    var collection = db.collection('users');
+    var d = new Date();
+    var getDate = d.getDate();
+    console.log(getDate)
+    /*Tjekker hvornår brugeren sidst har været logget ind.
+      Hvis ikke man har været logget ind i dag så får man 10 point,
+      og værdien for sidste besøg bliver opdateret.*/
+    if (user.lastVisitDate != getDate) {
+      collection.update({ 'uniqueId': user.uniqueId },
+        { '$set': { 'lastVisitDate': getDate } });
+      collection.update({ 'uniqueId': user.uniqueId },
+        { '$inc': { 'userPoints': 10 } });
+    }
+  });
     })
 });
 
