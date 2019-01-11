@@ -88,7 +88,7 @@
 <div class="container">
     <div class="row">
         <div class="col-md-6 m-auto">
-            <!--Du tilføje den video som du har optaget -->
+            <!-- Du kan tilføje den video som du har optaget -->
             <form action="/videobog/videoupload" method="POST" enctype="multipart/form-data">
                 <div class="custom-file mb-3">
                     Optag video: <input type="file" accept="video/*" id="capture" capture="camera" name="file" class="custom-file-input">
@@ -119,7 +119,7 @@
                         <!-- Tilføj tekst til video -->
                         <div class="card card-body mb-1">
                             <form method="POST" action="/videobog/files/{{filename}}">
-                                <input type="text" name="videoDescription" class="form-control center_div" placeholder="Tryk her for at tilføje / ændre din beskrivelse">
+                                <input type="text" name="videoDescription" class="form-control center_div" placeholder="Tilføj eller ændre beskrivelse...">
                                 <br>
                                 <input type="submit" value="Tilføj beskrivelse" class="btn btn-success btn-block">
                             </form>

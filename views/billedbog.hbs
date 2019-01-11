@@ -91,7 +91,7 @@
 <div class="container">
     <div class="row">
         <div class="col-md-6 m-auto">
-             <!--Du tilføje det billede som du har taget -->
+             <!-- Du kan tilføje det billede som du har taget -->
             <form action="/billedbog/upload" method="POST" enctype="multipart/form-data">
                 <div class="custom-file mb-3">
                     Capture Image: <input type="file" accept="image/*" id="capture" capture="camera" name="file" class="custom-file-input">
@@ -127,7 +127,7 @@
                                     <div class="card card-body mb-1">
                                         <form method="POST" action="/billedbog/files/{{filename}}">
                                             <input type="text" name="billedDescription" class="form-control center_div"
-                                                placeholder="Tryk her for at tilføje / ændre din beskrivelse">
+                                                placeholder="Tilføj eller ændre beskrivelse...">
                                             <br>
                                             <input type="submit" value="Tilføj beskrivelse" class="btn btn-success btn-block">
                                         </form>
@@ -145,7 +145,7 @@
                                                 <br>
                                                 <input type="submit" value="Tilføj audio" class="btn btn-primary btn-block">
                                             </form>
-                                                <p id="needLink"><a href="http://n4.dk/uploadLyd/" target="_self">Mangler du et link til lyden? Klik her</a></p>
+                                            <span id="needLink" style="margin-top:5px;"><a href="http://n4.dk/uploadLyd/" target="_self">Mangler du et link til lyden? Klik her!</a></span>
                                     </div>
                             </tr>
                             <tr>
@@ -164,7 +164,7 @@
                                         </form>
                                         </div>
                                     </div>
-                              {{/if}}
+                                {{/if}}
                                 {{/each}} -->
                                 <div class="card card-body mb-3">
                                     <audio controls style="width: 100%">
