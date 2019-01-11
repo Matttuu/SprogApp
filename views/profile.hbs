@@ -1,30 +1,37 @@
+<!--En body er lavet pga. loade funktionen til denne hbs-side-->
+
 <body onload="myFunction()" style="margin:0;">
     <div id="loader"></div>
-<div style="display:none;" id="myDiv" class="animate-bottom">
-<div style="text-align:center;">
-    <h2 class="loggedInHeading">Velkommen {{username}}</h2>
-    <p class="loggedInText">
-        Din rolle: <b>{{role}}</b><br>
-        Dit unikke ID: <b>{{uniqueId}}</b><br></p>
+    <div style="display:none;" id="myDiv" class="animate-bottom">
+        <div style="text-align:center;">
 
-    <!-- Hvis du er logget ind som sprogmakker, vises dette dashboard -->
-    {{#if sprogmakker}}
-    <h4 class="loggedInHeading">Vælg herunder:</h4>
-    <div class="flex-container">
-        <div id="chat"><a href='connectId'><img src="https://66.media.tumblr.com/5a824c1bfb66d8e7cb3a2431e79315e2/tumblr_pl4bs9TIFG1y4za8go1_540.gif" alt="Chat" style="width:100px"></a></div>
-        <div id="chat" ><a href='underUdvikling.html'> <img src="https://66.media.tumblr.com/1bf128a4bbe0b31f777d0ce138c75124/tumblr_pl454cWvyW1y4za8go1_540.gif" alt="Chat" style="width:100px"></a></div>   
-    </div>
+            <h2 class="loggedInHeading">Velkommen {{username}}</h2>
+            <p class="loggedInText">
+                Din rolle: <b>{{role}}</b><br>
+                Dit unikke ID: <b>{{uniqueId}}</b><br></p>
 
-    <!-- Hvis du er logget ind som kursist, vises dette dashboard -->
-    {{else if kursist}}
-    <p class="loggedInText">Optjente point i denne rang: <b>{{userPoints}}</b></p>
+            <!-- Hvis du er logget ind som sprogmakker, vises dette dashboard -->
+            {{#if sprogmakker}}
+            <h4 class="loggedInHeading">Vælg herunder:</h4>
+            <div class="flex-container">
+                <div id="chat"><a href='connectId'><img src="https://66.media.tumblr.com/5a824c1bfb66d8e7cb3a2431e79315e2/tumblr_pl4bs9TIFG1y4za8go1_540.gif"
+                            alt="Chat" style="width:100px"></a></div>
+                <div id="chat"><a href='underUdvikling.html'> <img src="https://66.media.tumblr.com/1bf128a4bbe0b31f777d0ce138c75124/tumblr_pl454cWvyW1y4za8go1_540.gif"
+                            alt="Chat" style="width:100px"></a></div>
+            </div>
 
-    <!-- Progressbar som henter antal point fra databasen og skalérer automatisk -->
-    <div class="container" style="margin-bottom:5px;">
-        <div class="progress">
-            <div class="progress-bar" role="progressbar" aria-valuenow={{userPoints}} aria-valuemin="0" aria-valuemax="100"
-                style="width:{{userPoints}}%">
-                {{userPoints}} / 100 point
+            <!-- Hvis du er logget ind som kursist, vises dette dashboard -->
+            {{else if kursist}}
+            <p class="loggedInText">Optjente point i denne rang: <b>{{userPoints}}</b></p>
+
+            <!-- Progressbar som henter antal point fra databasen og skalérer automatisk -->
+            <div class="container" style="margin-bottom:5px;">
+                <div class="progress">
+                    <div class="progress-bar" role="progressbar" aria-valuenow={{userPoints}} aria-valuemin="0"
+                        aria-valuemax="100" style="width:{{userPoints}}%">
+                        {{userPoints}} / 100 point
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -34,27 +41,33 @@
     <p class="loggedInText">Nuværende rang: <b>{{userRank}}</b> <a href='rank.html'><b>(?)</b></a></p>
     {{/if}}
     {{#if bronze}}
-    <p class="loggedInText">Nuværende rang: <b>{{userRank}}</b> <img class="rankIconsProfile" src="/billeder/Bronze_icon.png" alt=""> <a href='rank.html'><b>(?)</b></a></p>
+    <p class="loggedInText">Nuværende rang: <b>{{userRank}}</b> <img class="rankIconsProfile" src="/billeder/Bronze_icon.png"
+            alt=""> <a href='rank.html'><b>(?)</b></a></p>
     {{/if}}
     {{#if silver}}
-    <p class="loggedInText">Nuværende rang: <b>{{userRank}}</b> <img class="rankIconsProfile" src="/billeder/Silver_icon.png" alt=""> <a href='rank.html'><b>(?)</b></a></p>
+    <p class="loggedInText">Nuværende rang: <b>{{userRank}}</b> <img class="rankIconsProfile" src="/billeder/Silver_icon.png"
+            alt=""> <a href='rank.html'><b>(?)</b></a></p>
     {{/if}}
     {{#if gold}}
-    <p class="loggedInText">Nuværende rang: <b>{{userRank}}</b> <img class="rankIconsProfile" src="/billeder/Gold_icon.png" alt=""> <a href='rank.html'><b>(?)</b></a></p>
+    <p class="loggedInText">Nuværende rang: <b>{{userRank}}</b> <img class="rankIconsProfile" src="/billeder/Gold_icon.png"
+            alt=""> <a href='rank.html'><b>(?)</b></a></p>
     {{/if}}
     {{#if platinum}}
-    <p class="loggedInText">Nuværende rang: <b>{{userRank}}</b> <img class="rankIconsProfile" src="/billeder/Platinum_icon.png" alt=""> <a href='rank.html'><b>(?)</b></a></p>
+    <p class="loggedInText">Nuværende rang: <b>{{userRank}}</b> <img class="rankIconsProfile" src="/billeder/Platinum_icon.png"
+            alt=""> <a href='rank.html'><b>(?)</b></a></p>
     {{/if}}
     {{#if diamond}}
-    <p class="loggedInText">Nuværende rang: <b>{{userRank}}</b> <img class="rankIconsProfile" src="/billeder/Diamond_icon.png" alt=""> <a href='rank.html'><b>(?)</b></a></p>
+    <p class="loggedInText">Nuværende rang: <b>{{userRank}}</b> <img class="rankIconsProfile" src="/billeder/Diamond_icon.png"
+            alt=""> <a href='rank.html'><b>(?)</b></a></p>
     {{/if}}
     {{#if ordJongloer}}
-    <p class="loggedInText">Nuværende rang: <b>{{userRank}}</b> <img class="rankIconsProfile" src="/billeder/Champion_icon.png" alt=""> <a href='rank.html'><b>(?)</b></a></p>
+    <p class="loggedInText">Nuværende rang: <b>{{userRank}}</b> <img class="rankIconsProfile" src="/billeder/Champion_icon.png"
+            alt=""> <a href='rank.html'><b>(?)</b></a></p>
     <p><b>Du har nået den øverste rank!<br>Godt klaret!</b></p>
     {{/if}}
 
     <!-- Daglig belønning -->
-    <h4 class="loggedInHeading">Tid til daglig belønning:</h2>
+    <h4 class="loggedInHeading">Tid til daglig belønning:</h4>
     <div id="clockdiv">
         <div style="display:none;">
             <span class="days"></span>
@@ -77,23 +90,34 @@
     <!-- Dashboard ikoner/grafik -->
     <h4 class="loggedInHeading">Vælg herunder:</h4>
     <div class="flex-container">
-        <div><a href='billedbog'>
-        <img src="https://66.media.tumblr.com/ce7da4097bd9bc732467e3518d1e5bab/tumblr_pl2kz7jpGI1y4za8go1_500.gif" alt="Billedbog" style="width:100px">
-        </a></div>
-        <div><a href='videobog'>
-        <img src="https://66.media.tumblr.com/5355b32098c73c3d02a49620f8f9184a/tumblr_pl41u1gqRR1y4za8go1_500.gif" alt="Videobog" style="width:100px">
-        </a></div>
+        <div>
+            <a href='billedbog'>
+                <img src="https://66.media.tumblr.com/ce7da4097bd9bc732467e3518d1e5bab/tumblr_pl2kz7jpGI1y4za8go1_500.gif"
+                    alt="Billedbog" style="width:100px">
+            </a>
+        </div>
+        <div>
+            <a href='videobog'>
+                <img src="https://66.media.tumblr.com/5355b32098c73c3d02a49620f8f9184a/tumblr_pl41u1gqRR1y4za8go1_500.gif"
+                    alt="Videobog" style="width:100px">
+            </a>
+        </div>
     </div>
     <div class="flex-container">
-        <div><a href='support' class="support">
-        <img src="https://66.media.tumblr.com/0d6a7ca3b02533bcc99212e989eeb8a7/tumblr_pl4808KPxR1y4za8go1_500.gif" alt="Support" style="width:100px">
-        </a></div>
+        <div>
+            <a href='support' class="support">
+                <img src="https://66.media.tumblr.com/0d6a7ca3b02533bcc99212e989eeb8a7/tumblr_pl4808KPxR1y4za8go1_500.gif"
+                    alt="Support" style="width:100px">
+            </a>
+        </div>
         <div id="chat">
-        <a href='underUdvikling.html'>
-        <img src="https://66.media.tumblr.com/1bf128a4bbe0b31f777d0ce138c75124/tumblr_pl454cWvyW1y4za8go1_540.gif" alt="Chat" style="width:100px">
-        </a></div>
+            <a href='underUdvikling.html'>
+                <img src="https://66.media.tumblr.com/1bf128a4bbe0b31f777d0ce138c75124/tumblr_pl454cWvyW1y4za8go1_540.gif"
+                    alt="Chat" style="width:100px">
+            </a>
+        </div>
     </div>
-  
+
     <!-- Hvis du er logget ind som administrator, vises dette dashboard -->
     {{else if admin}}
     <h2 class="loggedInHeading">Admin menu</h2>
@@ -104,8 +128,6 @@
     <a href="/profile/logout">Log ud</a>
     {{/if}}
 
-</div>
-</div>
 </body>
 
 <script>
@@ -147,7 +169,7 @@
         var timeinterval = setInterval(updateClock, 1000);
     }
 
-   // Hvis der allerede er en cookie som hedder userPoints, brug værdien fra den til deadline
+    // Hvis der allerede er en cookie som hedder userPoints, brug værdien fra den til deadline
     if (document.cookie && document.cookie.match('userPoints')) {
         // få deadline fra cookien
         var deadline = document.cookie.match(/(^|;)userPoints=([^;]+)/)[2];
@@ -166,17 +188,16 @@
         // Gem i deadline i en cookie
         document.cookie = 'userPoints= ' + deadline + '; expires=' + expirationGMT + '; path=/; domain=localhost';
 
-    } 
+    }
     initializeClock('clockdiv', deadline);
 
-var myVar;
-
-function myFunction() {
-  myVar = setTimeout(showPage, 1500);
-}
-
-function showPage() {
-  document.getElementById("loader").style.display = "none";
-  document.getElementById("myDiv").style.display = "block";
-}
+    //Script to loading af siden.
+    var myVar;
+    function myFunction() {
+        myVar = setTimeout(showPage, 1500);
+    }
+    function showPage() {
+        document.getElementById("loader").style.display = "none";
+        document.getElementById("myDiv").style.display = "block";
+    }
 </script>
