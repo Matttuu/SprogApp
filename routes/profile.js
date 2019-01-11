@@ -29,21 +29,20 @@ router.get('/', function (req, res, next) {
         ordJongloer: user.userRank === "Ord-Jonglør",
       });
       mongoose.connect('mongodb://admin:team12@ds125693.mlab.com:25693/cdi', { useNewUrlParser: true, }, function (err, db) {
-    if (err) { throw err; }
-    var collection = db.collection('users');
-    var d = new Date();
-    var getDate = d.getDate();
-    console.log(getDate)
-    /*Tjekker hvornår brugeren sidst har været logget ind.
-      Hvis ikke man har været logget ind i dag så får man 10 point,
-      og værdien for sidste besøg bliver opdateret.*/
-    if (user.lastVisitDate != getDate) {
-      collection.update({ 'uniqueId': user.uniqueId },
-        { '$set': { 'lastVisitDate': getDate } });
-      collection.update({ 'uniqueId': user.uniqueId },
-        { '$inc': { 'userPoints': 10 } });
-    }
-  });
+        if (err) { throw err; }
+        var collection = db.collection('users');
+        var d = new Date();
+        var getDate = d.getDate();
+        /*Tjekker hvornår brugeren sidst har været logget ind.
+          Hvis ikke man har været logget ind i dag så får man 10 point,
+          og værdien for sidste besøg bliver opdateret.*/
+        if (user.lastVisitDate != getDate) {
+          collection.update({ 'uniqueId': user.uniqueId },
+            { '$set': { 'lastVisitDate': getDate } });
+          collection.update({ 'uniqueId': user.uniqueId },
+            { '$inc': { 'userPoints': 10 } });
+        }
+      });
     })
 });
 

@@ -108,8 +108,8 @@ router.get('/', (req, res) => {
                   var obj5 = {};
                   obj5.users = result;
 
-                  gfs.files.find().toArray((err, files) => {
-                    gfsLyd.files.find().toArray((err, filesLyd) => {
+                      gfs.files.find().toArray((err, files) => {
+                   // gfsLyd.files.find().toArray((err, filesLyd) => {
                     // Check if files
                     if (!files || files.length === 0) {
                       res.render('billedbog', { files: false });
@@ -117,8 +117,9 @@ router.get('/', (req, res) => {
                       res.render('billedbog', {
                         user: user,
                         uniqueId: user.uniqueId,
-                        files: files, audiofiles: filesLyd,
-                        checkAliases: req.body.audioAliases == files.filename,
+                        files: files,
+                        //audiofiles: filesLyd,
+                        //checkAliases: req.body.audioAliases == files.filename,
                         title: 'Billedordbog',
                         sprogmakker: user.role === "Sprogmakker",
                         kursist: user.role === "Kursist",
@@ -140,8 +141,8 @@ router.get('/', (req, res) => {
                         obj4,
                         obj5
                       });
-                    }
-                  });
+                   }
+                 // });
                 });
               });
               });
@@ -212,6 +213,36 @@ router.post('/upload', upload.single('file'), (req, res) => {
       });
     });
 });
+
+router.post('/audiouploadLink/files/:filename', (req, res, next) => {
+
+  // Connect til database
+  mongoose.connect('mongodb://admin:team12@ds125693.mlab.com:25693/cdi', { useNewUrlParser: true, }, function (err, db) {
+    if (err) { throw err; }
+
+    // Opretter nyt promise som bliver kørt senere i koden.
+    function resolveDetteBagefter() {
+      return new Promise(resolve => {
+        setTimeout(() => {
+          resolve(res.redirect('/billedbog'));
+        }, 0001);
+      });
+    }
+    // Opretter async funktion 
+    async function asyncCall() {
+      var result = await resolveDetteBagefter();
+      // Peger på database collection 
+      var collection = db.collection('imageuploads.files')
+      // Bruger collection.update metoden for at opdatere / give text til specifik lyd
+      collection.update(
+        { filename: req.params.filename },
+        { '$set': { 'audioLink': req.body.audioLink } }
+      )
+    }
+    asyncCall();
+  });
+});
+
 
 // Her lagrees beskrivelse til billedet i databasen. 
 // Det bliver lagret til det specifikke filnavn.

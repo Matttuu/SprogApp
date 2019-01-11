@@ -1,3 +1,6 @@
+<body onload="myFunction()" style="margin:0;">
+    <div id="loader"></div>
+<div style="display:none;" id="myDiv" class="animate-bottom">
 <div style="text-align:center;">
     <h2 class="loggedInHeading">Velkommen {{username}}</h2>
     <p class="loggedInText">
@@ -104,6 +107,8 @@
     {{/if}}
 
 </div>
+</div>
+</body>
 
 <script>
     function getTimeRemaining(endtime) {
@@ -154,7 +159,7 @@
     // gem som cookie med givet navn
     else {
 
-        // Lave en deadline i '10' minutter fra dette tidspunkt.
+        // Lave en deadline i '1320' minutter fra dette tidspunkt.
         var timeInMinutes = 1320;
         var currentTime = Date.parse(new Date());
         var deadline = new Date(currentTime + timeInMinutes * 60 * 1000);
@@ -166,4 +171,14 @@
     } 
     initializeClock('clockdiv', deadline);
 
+var myVar;
+
+function myFunction() {
+  myVar = setTimeout(showPage, 1500);
+}
+
+function showPage() {
+  document.getElementById("loader").style.display = "none";
+  document.getElementById("myDiv").style.display = "block";
+}
 </script>
