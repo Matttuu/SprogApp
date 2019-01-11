@@ -136,10 +136,6 @@
                                     <!--LYD-->
                                     <div class="card card-body mb-1">
                                             <form action="/billedbog/audiouploadLink/files/{{filename}}" method="POST">
-
-                                                <!--input type="file" accept="audio/*" id="capture" capture="audio" name="file"
-                                                    class="custom-file-input"-->
-                                                <!--label for="file" class="custom-file-label">Vælg lydfil</label-->
                                                 <input type="text" class="form-control center_div" name="audioLink"
                                                     placeholder="Indsæt link til lyd...">
                                                 <br>
@@ -149,23 +145,7 @@
                                     </div>
                             </tr>
                             <tr>
-                                <!--
-                                {{#each ../audiofiles}}
-                                {{#if ../checkAliases}} 
-                                    <div class={{metadata}} style="display:none">
-                                    <div class="card card-body mb-3">
-                                            <input style="display:none" type="text" name="audioAliases" value={{aliases}}></input>
-                                        <audio controls>
-                                            <source src="https://00e9e64bacfce5df5eeafac06a24fee9c70fa7a798f883c4c1-apidata.googleusercontent.com/download/storage/v1/b/teamvandmandlyd/o/doramiWo.wav?qk=AD5uMEujp6tXJXlSSeG5JKBer0D9Ep2zCdCC4xPwho8ZKgPg_cZU1dvpjucF7bbVEbDJwG45YMsBR0ifOcEPQsxsCc4Tf61--_lVbgAqDC4hXU46c1maZgaDp22jop8LO2Ga0k5w9bbcBO11grARKGBN6tID4Yl-ueeVydVAwXkKgKSZKdlnQdMzGIgAxMHqz8bO8YWir2niBkbcx6PgWldJBzXgMba6AtnmokvBfgxdKpalXPika--8SjcEFAkJR9dOoqGeEN4SGcaw96VA8W_TW-fyxOy9eYomD3hQfqulaze44yHJ9At4IIua3sXUtQTnkiP2-Jq1wain3Bp7xUWlD3ukrYFURBZPQfFxnjYmUbD7radr1KnfzRAaui7uC0RJoFO8PIeyl-XVrwsBv6xxUSd7Ev9NCcBzon_AAskhf-BQ800Rk81nrO9zTdh5QMo9L0nrkojfUrYny-5-9CQo1txdZkUT-t0Bz6cru9EbuSLoE6W6asjnVbHXKmxxae9wCiloa1v45n80qB5Y9SMp2Zgh3v4r23L62RhBDJoA7QTPPwgkr6FxkBA0yuvVVNzVQp-5xGKdkhLA383UHa7dRjZeNQMU8SIvd6HAwtexeYdNmPde9PtXIUX0xEs2Tjnli2YHCXlLlDs1309zT0Yhi13GcBxqaLObTQyBqvsvsxuwTDZxHX5DwhApRKUDkB5o3FePoXhcIHVtc938GwU4j0U3q4FZtnLMo1i0nMW7hR-saDW6ubuMgIBlpTYuhS6E1yJIdG02" type="audio/mp4">Din browser
-                                            understøtter ikke denne filtype!</audio>
-                                        <form method="PUT" action="/billedbog/audio/{{_id}}.mp4?_method=PUT"></form>
-                                        <form method="POST" action="/billedbog/audiofiles/{{_id}}?_method=DELETE">
-                                            <button class="btn btn-danger btn-block mt-4">Slet lyd</button>
-                                        </form>
-                                        </div>
-                                    </div>
-                              {{/if}}
-                                {{/each}} -->
+                                <!--Viser kontrolpanelet for lyden-->
                                 <div class="card card-body mb-3">
                                     <audio controls style="width: 100%">
                                         <source src={{audioLink}} width="10px" type="audio/mp4">Din browser
