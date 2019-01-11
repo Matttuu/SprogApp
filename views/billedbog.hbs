@@ -135,18 +135,17 @@
 
                                     <!--LYD-->
                                     <div class="card card-body mb-1">
-                                        <div class="custom-file mb-3">
                                             <form action="/billedbog/audiouploadLink/files/{{filename}}" method="POST">
 
                                                 <!--input type="file" accept="audio/*" id="capture" capture="audio" name="file"
                                                     class="custom-file-input"-->
                                                 <!--label for="file" class="custom-file-label">Vælg lydfil</label-->
                                                 <input type="text" class="form-control center_div" name="audioLink"
-                                                    placeholder="Link til lyd...">
+                                                    placeholder="Indsæt link til lyd...">
                                                 <br>
                                                 <input type="submit" value="Tilføj audio" class="btn btn-primary btn-block">
                                             </form>
-                                        </div>
+                                                <p id="needLink"><a href="http://n4.dk/uploadLyd/">Mangler du et link til lyden? Klik her</a></p>
                                     </div>
                             </tr>
                             <tr>
@@ -168,10 +167,9 @@
                               {{/if}}
                                 {{/each}} -->
                                 <div class="card card-body mb-3">
-                                    <audio controls>
-                                        <source src={{audioLink}} type="audio/mp4">Din browser
+                                    <audio controls style="width: 100%">
+                                        <source src={{audioLink}} width="10px" type="audio/mp4">Din browser
                                         understøtter ikke denne filtype!</audio>
-                                    <p id="theAudioLink" class="text-muted">{{audioLink}}</p>
                                 </div>
                             </tr>
                             <!-- Slet billede -->

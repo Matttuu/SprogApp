@@ -160,6 +160,7 @@ li{
   border-color: #66cc75;
   -webkit-box-shadow: 0 0 5px rgba(109, 207, 246, 0.5);
 }
+/*  ^   CSS til søgefelt     ^   */
 
 .rankIcons{
   height: 15%;
@@ -169,11 +170,6 @@ li{
   height: auto;
   width: 30px;
 }
-
-
-
-
-/*  ^   CSS til søgefelt     ^   */
 
 /*Loader*/
 /* Center the loader */
@@ -226,4 +222,8 @@ li{
 #myDiv {
   display: none;
   text-align: center;
+}
+
+#needLink{
+font-size: 90%
 }
