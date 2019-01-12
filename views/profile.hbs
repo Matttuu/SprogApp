@@ -1,29 +1,28 @@
-<!--En body er lavet pga. loade funktionen til denne hbs-side-->
-
+<!-- En body er lavet pga. load-funktionen til denne hbs-side -->
 <body onload="myFunction()" style="margin:0;">
     <div id="loader"></div>
     <div style="display:none;" id="myDiv" class="animate-bottom">
         <div style="text-align:center;">
-
             <h2 class="loggedInHeading">Velkommen {{username}}</h2>
             <p class="loggedInText">
                 Din rolle: <b>{{role}}</b><br>
                 Dit unikke ID: <b>{{uniqueId}}</b><br></p>
-
             <!-- Hvis du er logget ind som sprogmakker, vises dette dashboard -->
             {{#if sprogmakker}}
             <h4 class="loggedInHeading">Vælg herunder:</h4>
             <div class="flex-container">
-                <div id="chat"><a href='connectId'><img src="https://66.media.tumblr.com/5a824c1bfb66d8e7cb3a2431e79315e2/tumblr_pl4bs9TIFG1y4za8go1_540.gif"
-                            alt="Chat" style="width:100px"></a></div>
-                <div id="chat"><a href='underUdvikling.html'> <img src="https://66.media.tumblr.com/1bf128a4bbe0b31f777d0ce138c75124/tumblr_pl454cWvyW1y4za8go1_540.gif"
-                            alt="Chat" style="width:100px"></a></div>
+                <div id="chat">
+                    <a href='connectId'><img src="https://66.media.tumblr.com/5a824c1bfb66d8e7cb3a2431e79315e2/tumblr_pl4bs9TIFG1y4za8go1_540.gif"
+                            alt="Tilknyt kursist" style="width:100px"></a>
+                </div>
+                <div id="chat">
+                    <a href='underUdvikling.html'><img src="https://66.media.tumblr.com/1bf128a4bbe0b31f777d0ce138c75124/tumblr_pl454cWvyW1y4za8go1_540.gif"
+                            alt="Chat" style="width:100px"></a>
+                </div>
             </div>
-
             <!-- Hvis du er logget ind som kursist, vises dette dashboard -->
             {{else if kursist}}
             <p class="loggedInText">Optjente point i denne rang: <b>{{userPoints}}</b></p>
-
             <!-- Progressbar som henter antal point fra databasen og skalérer automatisk -->
             <div class="container" style="margin-bottom:5px;">
                 <div class="progress">
@@ -34,8 +33,6 @@
                 </div>
             </div>
         </div>
-
-
         <!-- Viser din aktuelle rang og ikon -->
         {{#if noRank}}
         <p class="loggedInText">Nuværende rang: <b>{{userRank}}</b> <a href='rank.html'><b>(?)</b></a></p>
@@ -65,8 +62,7 @@
                 alt=""> <a href='rank.html'><b>(?)</b></a></p>
         <p><b>Du har nået den øverste rank!<br>Godt klaret!</b></p>
         {{/if}}
-
-        <!-- Daglig belønning -->
+        <!-- Tid til den daglige belønning -->
         <h4 class="loggedInHeading">Tid til daglig belønning:</h4>
         <div id="clockdiv">
             <div style="display:none;">
@@ -86,7 +82,6 @@
                 <div class="smalltext">Sekunder</div>
             </div>
         </div>
-
         <!-- Dashboard ikoner/grafik -->
         <h4 class="loggedInHeading">Vælg herunder:</h4>
         <div class="flex-container">
@@ -117,7 +112,6 @@
                 </a>
             </div>
         </div>
-
         <!-- Hvis du er logget ind som administrator, vises dette dashboard -->
         {{else if admin}}
         <h2 class="loggedInHeading">Admin menu</h2>
@@ -164,34 +158,26 @@
                 clearInterval(timeinterval);
             }
         }
-
         updateClock();
         var timeinterval = setInterval(updateClock, 1000);
     }
-
-    // Hvis der allerede er en cookie som hedder userPoints, brug værdien fra den til deadline
+    // Hvis der allerede er en cookie, som hedder userPoints, brug værdien fra den til deadline
     if (document.cookie && document.cookie.match('userPoints')) {
-        // få deadline fra cookien
+        // Få deadline fra cookien
         var deadline = document.cookie.match(/(^|;)userPoints=([^;]+)/)[2];
     }
-
-    // ellers, sæt en deadline fra nu og
-    // gem som cookie med givet navn
+    // Ellers sæt en deadline fra nu og gem som cookie med givet navn
     else {
-
-        // Lave en deadline i '1320' minutter fra dette tidspunkt.
+        // Laver en deadline i '1320' minutter fra dette tidspunkt.
         var timeInMinutes = 1320;
         var currentTime = Date.parse(new Date());
         var deadline = new Date(currentTime + timeInMinutes * 60 * 1000);
         expirationGMT = deadline.toGMTString();
-
         // Gem i deadline i en cookie
         document.cookie = 'userPoints= ' + deadline + '; expires=' + expirationGMT + '; path=/; domain=localhost';
-
     }
     initializeClock('clockdiv', deadline);
-
-    //Script to loading af siden.
+    // Script til loading af siden.
     var myVar;
     function myFunction() {
         myVar = setTimeout(showPage, 1500);

@@ -1,10 +1,22 @@
 {
   "name": "sprogapp",
   "version": "0.0.0",
+  "description": "Mobile-first application for CDI",
   "private": true,
   "scripts": {
     "start": "nodemon ./bin/www"
   },
+  "keywords": [
+    "software-development",
+    "computer-science",
+    "sprog-app",
+    "html",
+    "css",
+    "javascript",
+    "json",
+    "mongodb"
+  ],
+  "author": "Team Vandmand",
   "dependencies": {
     "alert-node": "^1.2.2",
     "bcryptjs": "^2.4.3",

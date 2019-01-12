@@ -214,7 +214,6 @@ router.post('/audiouploadLink/files/:filename', (req, res, next) => {
   });
 });
 
-
 // Her lagrees beskrivelse til billedet i databasen. 
 // Det bliver lagret til det specifikke filnavn.
 /* Der bliver benyttet en async / await funktion for at

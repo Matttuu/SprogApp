@@ -28,11 +28,9 @@
         <br>
         <table class="tilknyttetKursistTable" align="center">
             <div id="noneConnected">Du har i øjeblikket <b>ingen</b> tilknyttede kursister.</div>
-
             <!-- Hvis du har 1 tilknyttet kursist -->
             {{#if antalTilknyttedeKursister1}}
             <script>$('#noneConnected').hide();</script>
-            
             <p id="Tilknyttedekursisterp"><b>Tilknyttede kursister</b></p>
             <tr>
                 <th class="tableHeading2">Navn</th>
@@ -47,7 +45,6 @@
                 <td><a href="underUdvikling.html">Start chat </a></td>
                 <td><a href="underUdvikling.html">Billedordbog</a> - <a href="underUdvikling.html">Videoordbog</a></td>
             </tr>
-
             <!-- Hvis du har 2 tilknyttede kursister -->
             <!-- Billedordbog og videoordbog ligger inde under td da de har samme overskrift ud fra table så de bliver reponsiveness -->
             {{#if antalTilknyttedeKursister2}}
@@ -57,7 +54,6 @@
                 <td><a href="underUdvikling.html">Start chat</a></td>
                 <td><a href="underUdvikling.html">Billedordbog</a> - <a href="underUdvikling.html">Videoordbog</a></td>
             </tr>
-
             <!-- Hvis du har 3 tilknyttede kursister -->
             <!-- Billedordbog og videoordbog ligger inde under td da de har samme overskrift ud fra table så de bliver reponsiveness -->
             {{#if antalTilknyttedeKursister3}}
@@ -67,7 +63,6 @@
                 <td><a href="underUdvikling.html">Start chat</a></td>
                 <td><a href="underUdvikling.html">Billedordbog</a> - <a href="underUdvikling.html">Videoordbog</a></td>
             </tr>
-
             <!-- Hvis du har 4 tilknyttede kursister -->
             <!-- Billedordbog og videoordbog ligger inde under td da de har samme overskrift ud fra table så de bliver reponsiveness -->
             {{#if antalTilknyttedeKursister4}}
@@ -77,7 +72,6 @@
                 <td><a href="underUdvikling.html">Start chat</a></td>
                 <td><a href="underUdvikling.html">Billedordbog</a> - <a href="underUdvikling.html">Videoordbog</a></td>
             </tr>
-
             <!-- Hvis du har 5 tilknyttede kursister -->
             <!-- Billedordbog og videoordbog ligger inde under td da de har samme overskrift ud fra table så de bliver reponsiveness -->
             {{#if antalTilknyttedeKursister5}}
@@ -93,7 +87,6 @@
             {{/if}}
             {{/if}}
         </table>
-        
         <!-- Hvis ikke er logget ind som sprogmakker vises følgende -->
         {{else}}
         Du er ikke registreret som sprogmakker og kan derfor heller ikke forbinde til kursister.

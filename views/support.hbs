@@ -1,19 +1,15 @@
 <div style="text-align:center;">
     <h1 class="loggedInHeading">Support</h1>
     <p class="loggedInText"><b>Hej {{name}}</b></p>
-
     {{#if kursist}}
     <p class="loggedInText">Oplever du problemer, så ret henvendelse til din <b>sprogmakker</b> eller <b>arbejdsplads</b>, som vil prøve at hjælpe dig.<br><br>Dit unikke ID-nummer: <b>{{uniqueId}}</b>.</p>
     <p class="loggedInText">Prøv også: <a href="#">Ofte stillede spørgsmål</a>.</p>
-    
     {{else if sprogmakker}}
     <p class="loggedInText">Hvis du som sprogmakker støder på tekniske problemer, så er du altid velkommen til at kontakte teknisk support på <a href="mailto:support@sprogapp.dk">support@sprogapp.dk</a></p>
     <p class="loggedInText">Du kan også prøve at henvise din kursist til vores side omkring <a href="#">ofte stillede spørgsmål</a>.</p>
-    
     {{else if admin}}
     <p classs="loggedInText">Du er admin! Hvem skulle kunne hjælpe dig?</p>
     {{/if}}
-    
     <br>
     <img src="/billeder/support.png" alt="Support" style="max-width:200px;max-height:200px;">
 </div>

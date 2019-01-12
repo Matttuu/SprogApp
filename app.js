@@ -24,9 +24,10 @@ var supportRouter = require('./routes/support');
 var connectIdRouter = require('./routes/connectId');
 var lydbogRouter = require('./routes/lydbog');
 
+// Initialize app
 var app = express();
 
-// Connect to MongoDB
+// Connect to MongoDB with Mongoose
 mongoose.connect('mongodb://admin:team12@ds125693.mlab.com:25693/cdi',{useNewUrlParser: true,});
 var db = mongoose.connection;
 
@@ -40,7 +41,6 @@ db.once('open', function () {
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(methodOverride('_method'));
-
 
 // Use sessions for tracking logins
 app.use(session({
@@ -63,6 +63,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+// Connect routes to endpoints
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/profile', profileRouter);
@@ -90,9 +91,5 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error', { layout: 'errorView2' });
 });
-
-
-
- 
 
 module.exports = app;

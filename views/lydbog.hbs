@@ -12,7 +12,6 @@
     <h1 class="loggedInHeading">Lydordbog</h1>
     <p class="loggedInText">Her kan du optage lyd og tilføje til din ordbog. Efterfølgende kan du tilføje tekst til lyden.</p>
 </center>
-
 <div class="col-md-5 m-auto">
     <form>
         <input type="search" name="search" placeholder="Søg efter lyd..." id="myInput">
@@ -39,7 +38,6 @@
             </form>
             <hr>
             <div id="lydListe">
-
                 {{#if audiofiles}}
                 {{#each audiofiles}}
                 <div class={{metadata}} style="display:none">
@@ -72,7 +70,6 @@
                         </form>
                     </div>
                 </div>
-
                 {{/each}}
                 {{/if}}
             </div>

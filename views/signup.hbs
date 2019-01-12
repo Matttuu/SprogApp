@@ -26,7 +26,6 @@
 		</div>
 	</div>
 	<div class="clear"></div>
-
 	<!-- Udregner et tilfældigt ID -->
 	<script>
 		var ID = function () {
@@ -34,8 +33,7 @@
 			og grabber de 11 første decimaler efter kommaet. */
 		return Math.random().toString(36).substr(2, 11);
 		};
-
-		// Det tilfældige ID smides i variablen inikkaId
+		// Det tilfældige ID smides i variablen unikkaId
 		var unikkaId = ID();
 		document.getElementById("idNo").value = unikkaId;
 	</script>

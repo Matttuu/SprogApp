@@ -9,11 +9,9 @@
         <table class="tilknyttetKursistTable" align="center">
             <div id="noneConnected">Du har i øjeblikket <b>ingen</b> tilknyttede kursister. <a href="connectId">Tilknyt
                     nogle her.</a></div>
-
             <!-- Hvis du har 1 tilknyttet kursist -->
             {{#if antalTilknyttedeKursister1}}
             <script>$('#noneConnected').hide();</script>
-
             <p id="Tilknyttedekursisterp"> <b>Tilknyttede kursister</b></p>
             <tr>
                 <th class="tableHeading2">Navn</th>
@@ -25,7 +23,6 @@
                 <td>{{tilknyttetKursistID1}}</td>
                 <td><a href="underUdvikling.html">Se billedordbog</a></td>
             </tr>
-
             <!-- Hvis du har 2 tilknyttede kursister -->
             {{#if antalTilknyttedeKursister2}}
             <tr>
@@ -33,7 +30,6 @@
                 <td>{{tilknyttetKursistID2}}</td>
                 <td><a href="underUdvikling.html">Se billedordbog</a></td>
             </tr>
-
             <!-- Hvis du har 3 tilknyttede kursister -->
             {{#if antalTilknyttedeKursister3}}
             <tr>
@@ -41,7 +37,6 @@
                 <td>{{tilknyttetKursistID3}}</td>
                 <td><a href="underUdvikling.html">Se billedordbog</a></td>
             </tr>
-
             <!-- Hvis du har 4 tilknyttede kursister -->
             {{#if antalTilknyttedeKursister4}}
             <tr>
@@ -49,7 +44,6 @@
                 <td>{{tilknyttetKursistID4}}</td>
                 <td><a href="underUdvikling.html">Se billedordbog</a></td>
             </tr>
-
             <!-- Hvis du har 5 tilknyttede kursister -->
             {{#if antalTilknyttedeKursister5}}
             <tr>
@@ -73,7 +67,6 @@
     <p class="loggedInText">Her kan du tage billeder og tilføje til din ordbog. Efterfølgende kan du tilføje tekst til
         dit billede.</p>
 </center>
-
 <div class="col-md-5 m-auto">
     <form>
         <input type="search" name="search" placeholder="Søg efter billede..." id="myInput">
@@ -101,7 +94,6 @@
             </form>
             <hr>
             <div id="billedeListe">
-
                 {{#if files}}
                 {{#each files}}
                 <div class={{metadata}} style="display:none">
@@ -132,8 +124,7 @@
                                             <input type="submit" value="Tilføj beskrivelse" class="btn btn-success btn-block">
                                         </form>
                                     </div>
-
-                                    <!--LYD-->
+                                    <!-- LYD -->
                                     <div class="card card-body mb-1">
                                             <form action="/billedbog/audiouploadLink/files/{{filename}}" method="POST">
                                                 <input type="text" class="form-control center_div" name="audioLink"
@@ -145,7 +136,7 @@
                                     </div>
                             </tr>
                             <tr>
-                                <!--Viser kontrolpanelet for lyden-->
+                                <!-- Viser kontrolpanelet for lyden -->
                                 <div class="card card-body mb-3">
                                     <audio controls style="width: 100%">
                                         <source src={{audioLink}} width="10px" type="audio/mp4">Din browser
@@ -157,12 +148,10 @@
                                 <button class="btn btn-danger btn-block mt-4">Slet billede</button>
                             </form>
                         </table>
-
                     </div>
                 </div>
                 {{/each}}
                 {{/if}}
-
             </div>
         </div>
     </div>
@@ -180,7 +169,6 @@
         $("div").filter("." + idValue).css("display", "block");
     });
 
-
     /*
         Søgefunktionen:
         Henter værdien fra #myInput, hvilket er søge-feltet og sætter alt til Lower Case,
@@ -195,6 +183,4 @@
             });
         });
     });
-
-
 </script>
