@@ -296,7 +296,7 @@ router.get('/image/:filename', (req, res) => {
         }
 
         // Check if image
-        if (file.contentType === 'image/jpeg' || file.contentType === 'image/png' || file.contentType === 'image/jpg' || file.contentType === 'audio/mp3' || file.contentType === 'audio/mp4' || file.contentType === 'audio/mov' || file.contentType === 'audio/mpeg-4' || file.contentType === 'audio/x-m4a' || file.contentType === 'audio/m4a' || file.contentType === 'audio/amr' || file.contentType === 'audio/wav' || file.contentType === 'video/quicktime') {
+        if (file.contentType === 'image/jpeg' || file.contentType === 'image/png' || file.contentType === 'image/jpg' || file.contentType === 'image/mp3' || file.contentType === 'image/mp4' || file.contentType === 'image/mov' || file.contentType === 'image/mpeg-4' || file.contentType === 'image/x-m4a' || file.contentType === 'image/m4a' || file.contentType === 'image/amr' || file.contentType === 'image/wav' || file.contentType === 'image/quicktime') {
           // Read output to browser
           const readstream = gfs.createReadStream(file.filename);
           readstream.pipe(res);
