@@ -88,7 +88,7 @@
             <form action="/billedbog/upload" method="POST" enctype="multipart/form-data">
                 <div class="custom-file mb-3">
                     Capture Image: <input type="file" accept="image/*" id="capture" capture="camera" name="file" class="custom-file-input">
-                    <label for="file" class="custom-file-label">Vælg billedfil</label>
+                    <label for="file" class="custom-file-label"> <i class="fas fa-camera"></i> Vælg billede</label>
                 </div>
                 <input type="submit" value="Tilføj valgte billede" class="btn btn-success btn-block">
             </form>
@@ -126,6 +126,7 @@
                                     </div>
                                     <!-- LYD -->
                                     <div class="card card-body mb-1">
+                                        
                                             <form action="/billedbog/audiouploadLink/files/{{filename}}" method="POST">
                                                 <input type="text" class="form-control center_div" name="audioLink"
                                                     placeholder="Indsæt link til lyd...">
@@ -145,7 +146,7 @@
                             </tr>
                             <!-- Slet billede -->
                             <form method="POST" action="/billedbog/files/{{_id}}?_method=DELETE">
-                                <button class="btn btn-danger btn-block mt-4">Slet billede</button>
+                                <button class="btn btn-danger btn-block mt-4">Slet billede <i class="far fa-trash-alt"></i></button>
                             </form>
                         </table>
                     </div>
