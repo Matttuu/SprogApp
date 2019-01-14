@@ -174,7 +174,7 @@
         var deadline = new Date(currentTime + timeInMinutes * 60 * 1000);
         expirationGMT = deadline.toGMTString();
         // Gem i deadline i en cookie
-        document.cookie = 'userPoints= ' + deadline + '; expires=' + expirationGMT + '; path=/; domain=localhost';
+        document.cookie = 'userPoints= ' + deadline + '; expires=' + expirationGMT + '; path=/; domain=www.exino.dk';
     }
     initializeClock('clockdiv', deadline);
     // Script til loading af siden.
