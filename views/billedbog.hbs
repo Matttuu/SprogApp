@@ -84,11 +84,13 @@
 <div class="container">
     <div class="row">
         <div class="col-md-6 m-auto">
-             <!-- Du kan tilføje det billede som du har taget -->
-            <form action="/billedbog/upload" method="POST" enctype="multipart/form-data">
+            <!-- Du kan tilføje det billede som du har taget -->
+            <form action="/billedbog/upload" method="POST" enctype="multipart/form-data" class="was-validated">
                 <div class="custom-file mb-3">
-                    Capture Image: <input type="file" accept="image/*" id="capture" capture="camera" name="file" class="custom-file-input">
-                    <label for="file" class="custom-file-label">Vælg billedfil</label>
+                    <input type="file" accept="image/*" id="file-upload" capture="camera" name="file" class="custom-file-input"
+                        required="">
+                    <label for="file" for="validatedCustomFile" class="custom-file-label"><label id="file-name">Vælg billedfil</label>
+                    </label>
                 </div>
                 <input type="submit" value="Tilføj valgte billede" class="btn btn-success btn-block">
             </form>
@@ -126,13 +128,14 @@
                                     </div>
                                     <!-- LYD -->
                                     <div class="card card-body mb-1">
-                                            <form action="/billedbog/audiouploadLink/files/{{filename}}" method="POST">
-                                                <input type="text" class="form-control center_div" name="audioLink"
-                                                    placeholder="Indsæt link til lyd...">
-                                                <br>
-                                                <input type="submit" value="Tilføj lyden til billedet" class="btn btn-primary btn-block">
-                                            </form>
-                                            <span id="needLink" style="margin-top:5px;"><a href="http://n4.dk/uploadLyd/" target="_self">Mangler du et link til lyden? Klik her!</a></span>
+                                        <form action="/billedbog/audiouploadLink/files/{{filename}}" method="POST">
+                                            <input type="text" class="form-control center_div" name="audioLink"
+                                                placeholder="Indsæt link til lyd...">
+                                            <br>
+                                            <input type="submit" value="Tilføj lyden til billedet" class="btn btn-primary btn-block">
+                                        </form>
+                                        <span id="needLink" style="margin-top:5px;"><a href="http://n4.dk/uploadLyd/"
+                                                target="_self">Mangler du et link til lyden? Klik her!</a></span>
                                     </div>
                             </tr>
                             <tr>
@@ -183,4 +186,9 @@
             });
         });
     });
+
+    $("#file-upload").change(function () {
+        $("#file-name").text(this.files[0].name);
+    });
+
 </script>
