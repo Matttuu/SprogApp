@@ -85,7 +85,7 @@
             <form action="/videobog/videoupload" method="POST" enctype="multipart/form-data">
                 <div class="custom-file mb-3">
                     Optag video: <input type="file" accept="video/*" id="capture" capture="camera" name="file" class="custom-file-input">
-                    <label for="file" class="custom-file-label">Vælg videofil</label>
+                    <label for="file" class="custom-file-label"><i class="fas fa-video"></i>     Vælg videofil</label>
                 </div>
                 <input type="submit" value="Tilføj valgte video" class="btn btn-success btn-block">
             </form>
@@ -118,7 +118,7 @@
                         </div>
                         <!-- Slet video -->
                         <form method="POST" action="/videobog/files/{{_id}}?_method=DELETE">
-                            <button class="btn btn-danger btn-block mt-4">Slet video</button>
+                            <button class="btn btn-danger btn-block mt-4">Slet video <i class="far fa-trash-alt"></i></button>
                         </form>
                     </div>
                 </div>

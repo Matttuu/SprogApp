@@ -89,7 +89,8 @@
                 <div class="custom-file mb-3">
                     <input type="file" accept="image/*" id="file-upload" capture="camera" name="file" class="custom-file-input"
                         required="">
-                    <label for="file" for="validatedCustomFile" class="custom-file-label"><label id="file-name">Vælg billedfil</label>
+                    <label for="file" for="validatedCustomFile" class="custom-file-label"> <i class="fas fa-camera"></i>
+                        <label id="file-name">Vælg billedfil</label>
                     </label>
                 </div>
                 <input type="submit" value="Tilføj valgte billede" class="btn btn-success btn-block">
@@ -103,7 +104,9 @@
                     <div id="billedeObj" class="card card-body mb-3">
                         <!-- Display billede -->
                         <p style="display:none" id="mdata">{{metadata}}</p>
+
                         <img src="billedbog/image/{{filename}}" alt="Billede">
+
                         <!-- Display tekst tilknyttet til billede -->
                         <blockquote class="blockquote text-center">
                             <br>
@@ -128,6 +131,7 @@
                                     </div>
                                     <!-- LYD -->
                                     <div class="card card-body mb-1">
+
                                         <form action="/billedbog/audiouploadLink/files/{{filename}}" method="POST">
                                             <input type="text" class="form-control center_div" name="audioLink"
                                                 placeholder="Indsæt link til lyd...">
@@ -148,7 +152,7 @@
                             </tr>
                             <!-- Slet billede -->
                             <form method="POST" action="/billedbog/files/{{_id}}?_method=DELETE">
-                                <button class="btn btn-danger btn-block mt-4">Slet billede</button>
+                                <button class="btn btn-danger btn-block mt-4">Slet billede <i class="far fa-trash-alt"></i></button>
                             </form>
                         </table>
                     </div>
