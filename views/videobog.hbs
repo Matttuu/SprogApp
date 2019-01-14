@@ -2,11 +2,13 @@
 {{#if sprogmakker}}
 <div style="text-align:center;">
     <h1 class="loggedInHeading">Videoordbog</h1>
-    <p class="loggedInText">Da du er logget ind som sprogmakker, har du ikke en personlig videoordbog, men du kan tilgå dine tilknyttede kursisters videoordbog herunder.</p>
+    <p class="loggedInText">Da du er logget ind som sprogmakker, har du ikke en personlig videoordbog, men du kan tilgå
+        dine tilknyttede kursisters videoordbog herunder.</p>
     <p class="loggedInText">
         <br>
         <table class="tilknyttetKursistTable" align="center">
-            <div id="noneConnected">Du har i øjeblikket <b>ingen</b> tilknyttede kursister. <a href="connectId">Tilknyt nogle her.</a></div>
+            <div id="noneConnected">Du har i øjeblikket <b>ingen</b> tilknyttede kursister. <a href="connectId">Tilknyt
+                    nogle her.</a></div>
             <!-- Hvis du har 1 tilknyttet kursist -->
             {{#if antalTilknyttedeKursister1}}
             <script>$('#noneConnected').hide();</script>
@@ -62,7 +64,8 @@
 {{else}}
 <center>
     <h1 class="loggedInHeading">Videoordbog</h1>
-    <p class="loggedInText">Her kan du optage video og tilføje til din ordbog. Efterfølgende kan du tilføje tekst til din video.</p>
+    <p class="loggedInText">Her kan du optage video og tilføje til din ordbog. Efterfølgende kan du tilføje tekst til
+        din video.</p>
 </center>
 <div class="col-md-5 m-auto">
     <form>
@@ -84,9 +87,10 @@
             <!-- Du kan tilføje den video som du har optaget -->
             <form action="/videobog/videoupload" method="POST" enctype="multipart/form-data">
                 <div class="custom-file mb-3">
-                    Optag video: <input type="file" accept="video/*" id="capture" capture="camera" name="file" class="custom-file-input">
-                    <label for="file" class="custom-file-label"><i class="fas fa-video"></i>     Vælg videofil</label>
-                </div>
+                    Optag video: <input type="file" accept="video/*" id="file-upload" capture="camera" name="file" class="custom-file-input">
+                    <label for="file" for="validatedCustomFile" class="custom-file-label"> <i class="fas fa-video"></i>
+                        <label id="file-name">Vælg billedfil</label>
+                    </label> </div>
                 <input type="submit" value="Tilføj valgte video" class="btn btn-success btn-block">
             </form>
             <hr>
@@ -153,5 +157,10 @@
                     $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
                 });
             });
+        });
+
+        //Funktion til at vise navnet på filen når den bliver valgt.
+        $("#file-upload").change(function () {
+            $("#file-name").text(this.files[0].name);
         });
     </script>
