@@ -104,8 +104,7 @@
                     <div id="billedeObj" class="card card-body mb-3">
                         <!-- Display billede -->
                         <p style="display:none" id="mdata">{{metadata}}</p>
-
-                        <img src="billedbog/image/{{filename}}" alt="Billede">
+                        <img src="billedbog/image/{{filename}}" alt="Billede" title="{{filename}}">
 
                         <!-- Display tekst tilknyttet til billede -->
                         <blockquote class="blockquote text-center">
@@ -191,9 +190,8 @@
         });
     });
 
-    //Funktion til at vise navnet på filen når den bliver valgt.
+    // Funktion til at vise navnet på filen når den bliver valgt.
     $("#file-upload").change(function () {
         $("#file-name").text(this.files[0].name);
     });
-
 </script>
