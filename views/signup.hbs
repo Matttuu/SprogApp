@@ -26,35 +26,32 @@
 		</div>
 	</div>
 	<div class="clear"></div>
-
 	<!-- Udregner et tilfældigt ID -->
 	<script>
 		var ID = function () {
-		/* Bruger Math.random til at spytte en String ud på 36 karakterer og grabber
-			de 11 første decimaler efter kommaet. */
+		/* Bruger Math.random til at spytte en String ud på 36 karakterer
+			og grabber de 11 første decimaler efter kommaet. */
 		return Math.random().toString(36).substr(2, 11);
 		};
-
-		// Det tilfældige ID smides i variablen inikkaId
+		// Det tilfældige ID smides i variablen unikkaId
 		var unikkaId = ID();
 		document.getElementById("idNo").value = unikkaId;
 	</script>
 </div>
 
-
-<!-- Kontrollerer om indtastede passwords er ens-->
+<!-- Kontrollerer om indtastede passwords er ens -->
 <script>
 	var password = document.getElementById("first_password")
-  , confirm_password = document.getElementById("confirm_password");
+	, confirm_password = document.getElementById("confirm_password");
 
-function validatePassword(){
-  if(first_password.value != confirm_password.value) {
-    confirm_password.setCustomValidity("Kodeord er ikke ens");
-  } else {
-    confirm_password.setCustomValidity('');
-  }
-}
+	function validatePassword() {
+		if(first_password.value != confirm_password.value) {
+			confirm_password.setCustomValidity("Kodeord er ikke ens");
+		} else {
+			confirm_password.setCustomValidity('');
+		}
+	}
 
-first_password.onchange = validatePassword;
-confirm_password.onkeyup = validatePassword;
+	first_password.onchange = validatePassword;
+	confirm_password.onkeyup = validatePassword;
 </script>

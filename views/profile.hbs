@@ -1,31 +1,189 @@
-<div style="text-align:center;">
-    <h2 class="loggedInHeading">Velkommen {{name}}</h2>
-    <p class="loggedInText">
-        Din registrerede rolle er: <b>{{role}}</b><br>
-        Dit unikke ID nummer er: <b>{{uniqueId}}</b><br>
-        {{#if sprogmakker}}
+<!-- En body er lavet pga. load-funktionen til denne hbs-side -->
+<body onload="myFunction()" style="margin:0;">
+    <div id="loader"></div>
+    <div style="display:none;" id="myDiv" class="animate-bottom">
+        <div style="text-align:center;">
+            <h2 class="loggedInHeading">Velkommen {{username}}</h2>
+            <p class="loggedInText">
+                Din rolle: <b>{{role}}</b><br>
+                Dit unikke ID: <b>{{uniqueId}}</b><br></p>
+            <!-- Hvis du er logget ind som sprogmakker, vises dette dashboard -->
+            {{#if sprogmakker}}
+            <h4 class="loggedInHeading">Vælg herunder:</h4>
+            <div class="flex-container">
+                <div id="chat">
+                    <a href='connectId'><img src="https://66.media.tumblr.com/5a824c1bfb66d8e7cb3a2431e79315e2/tumblr_pl4bs9TIFG1y4za8go1_540.gif"
+                            alt="Tilknyt kursist" style="width:100px"></a>
+                </div>
+                <div id="chat">
+                    <a href='underUdvikling.html'><img src="https://66.media.tumblr.com/1bf128a4bbe0b31f777d0ce138c75124/tumblr_pl454cWvyW1y4za8go1_540.gif"
+                            alt="Chat" style="width:100px"></a>
+                </div>
+            </div>
+            <!-- Hvis du er logget ind som kursist, vises dette dashboard -->
+            {{else if kursist}}
+            <p class="loggedInText">Optjente point i denne rang: <b>{{userPoints}}</b></p>
+            <!-- Progressbar som henter antal point fra databasen og skalérer automatisk -->
+            <div class="container" style="margin-bottom:5px;">
+                <div class="progress">
+                    <div class="progress-bar" role="progressbar" aria-valuenow={{userPoints}} aria-valuemin="0"
+                        aria-valuemax="100" style="width:{{userPoints}}%">
+                        {{userPoints}} / 100 point
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Viser din aktuelle rang og ikon -->
+        {{#if noRank}}
+        <p class="loggedInText">Nuværende rang: <b>{{userRank}}</b> <a href='rank.html'><b>(?)</b></a></p>
+        {{/if}}
+        {{#if bronze}}
+        <p class="loggedInText">Nuværende rang: <b>{{userRank}}</b> <img class="rankIconsProfile" src="/billeder/Bronze_icon.png"
+                alt=""> <a href='rank.html'><b>(?)</b></a></p>
+        {{/if}}
+        {{#if silver}}
+        <p class="loggedInText">Nuværende rang: <b>{{userRank}}</b> <img class="rankIconsProfile" src="/billeder/Silver_icon.png"
+                alt=""> <a href='rank.html'><b>(?)</b></a></p>
+        {{/if}}
+        {{#if gold}}
+        <p class="loggedInText">Nuværende rang: <b>{{userRank}}</b> <img class="rankIconsProfile" src="/billeder/Gold_icon.png"
+                alt=""> <a href='rank.html'><b>(?)</b></a></p>
+        {{/if}}
+        {{#if platinum}}
+        <p class="loggedInText">Nuværende rang: <b>{{userRank}}</b> <img class="rankIconsProfile" src="/billeder/Platinum_icon.png"
+                alt=""> <a href='rank.html'><b>(?)</b></a></p>
+        {{/if}}
+        {{#if diamond}}
+        <p class="loggedInText">Nuværende rang: <b>{{userRank}}</b> <img class="rankIconsProfile" src="/billeder/Diamond_icon.png"
+                alt=""> <a href='rank.html'><b>(?)</b></a></p>
+        {{/if}}
+        {{#if ordJongloer}}
+        <p class="loggedInText">Nuværende rang: <b>{{userRank}}</b> <img class="rankIconsProfile" src="/billeder/Champion_icon.png"
+                alt=""> <a href='rank.html'><b>(?)</b></a></p>
+        <p><b>Du har nået den øverste rank!<br>Godt klaret!</b></p>
+        {{/if}}
+        <!-- Dashboard ikoner/grafik -->
         <h4 class="loggedInHeading">Vælg herunder:</h4>
         <div class="flex-container">
-            <div id="item1"><a href='connectId'><i class="fas fa-plug" id="connectId" style="font-size:60px;"></i></a></div>
-            <div id="item2"><a href='chat'><i class="fas fa-comment" id="chat" style="font-size:60px;"></i></a></div>
+            <div>
+                <a href='billedbog'>
+                    <img src="https://66.media.tumblr.com/ce7da4097bd9bc732467e3518d1e5bab/tumblr_pl2kz7jpGI1y4za8go1_500.gif"
+                        alt="Billedbog" style="width:100px">
+                </a>
+            </div>
+            <div>
+                <a href='videobog'>
+                    <img src="https://66.media.tumblr.com/5355b32098c73c3d02a49620f8f9184a/tumblr_pl41u1gqRR1y4za8go1_500.gif"
+                        alt="Videobog" style="width:100px">
+                </a>
+            </div>
         </div>
-        {{else if kursist}}
-        <h4 class="loggedInHeading">Vælg herunder:</h4>
         <div class="flex-container">
-            <div id="item1"><a href='billedbog'><i class="fas fa-image" id="billedbog" style="font-size:60px;"></i></a></div>
-            <div id="item2"><a href='videobog'><i class="fas fa-video" id="videobog" style="font-size:60px;"></i></a></div>
+            <div>
+                <a href='support' class="support">
+                    <img src="https://media.giphy.com/media/5tdhxXqTKoGUcWSKfl/giphy.gif?fbclid=IwAR0iiWygLtuv_vlbOnB8uMEvrbKK7caOeQ8AE2m3tWPfgKHZRa2oMHrGs14s"
+                        alt="Support" style="width:100px">
+                </a>
+            </div>
+            <div id="chat">
+                <a href='underUdvikling.html'>
+                    <img src="https://66.media.tumblr.com/1bf128a4bbe0b31f777d0ce138c75124/tumblr_pl454cWvyW1y4za8go1_540.gif"
+                        alt="Chat" style="width:100px">
+                </a>
+            </div>
         </div>
-        <div class="flex-container">
-            <div id="item4"><a href='chat'><i class="far fa-comment" id="chat" style="font-size:60px;"></i></a></div>
-            <div id="item3"><a href='support'><i class="fas fa-hands-helping" id="support" style="font-size:60px;"></i></a></div>
+        <!-- Tid til den daglige belønning -->
+        <h4 class="loggedInHeading">Tid til daglig belønning:</h4>
+        <div id="clockdiv">
+            <div style="display:none;">
+                <span class="days"></span>
+                <div class="smalltext">Dage</div>
+            </div>
+            <div>
+                <span class="hours"></span>
+                <div class="smalltext">Timer</div>
+            </div>
+            <div>
+                <span class="minutes"></span>
+                <div class="smalltext">Minutter</div>
+            </div>
+            <div>
+                <span class="seconds"></span>
+                <div class="smalltext">Sekunder</div>
+            </div>
         </div>
+        <!-- Hvis du er logget ind som administrator, vises dette dashboard -->
         {{else if admin}}
         <h2 class="loggedInHeading">Admin menu</h2>
         <a href="billedbog">Billedordbog</a><br>
         <a href="videobog">Videoordbog</a><br>
         <a href="chat">Chat</a><br>
         <a href="connectId">Forbind kursist</a><br>
-        <a href="lyd">Lydtest her</a>
+        <a href="/profile/logout">Log ud</a>
         {{/if}}
-    </p>
-</div>
+    </div>
+</body>
+
+<script>
+    function getTimeRemaining(endtime) {
+        var t = Date.parse(endtime) - Date.parse(new Date());
+        var seconds = Math.floor((t / 1000) % 60);
+        var minutes = Math.floor((t / 1000 / 60) % 60);
+        var hours = Math.floor((t / (1000 * 60 * 60)) % 24);
+        var days = Math.floor(t / (1000 * 60 * 60 * 24));
+        return {
+            'total': t,
+            'days': days,
+            'hours': hours,
+            'minutes': minutes,
+            'seconds': seconds
+        };
+    }
+    function initializeClock(id, endtime) {
+        var clock = document.getElementById(id);
+        var daysSpan = clock.querySelector('.days');
+        var hoursSpan = clock.querySelector('.hours');
+        var minutesSpan = clock.querySelector('.minutes');
+        var secondsSpan = clock.querySelector('.seconds');
+
+        function updateClock() {
+            var t = getTimeRemaining(endtime);
+
+            daysSpan.innerHTML = t.days;
+            hoursSpan.innerHTML = ('0' + t.hours).slice(-2);
+            minutesSpan.innerHTML = ('0' + t.minutes).slice(-2);
+            secondsSpan.innerHTML = ('0' + t.seconds).slice(-2);
+
+            if (t.total <= 0) {
+                clearInterval(timeinterval);
+            }
+        }
+        updateClock();
+        var timeinterval = setInterval(updateClock, 1000);
+    }
+    // Hvis der allerede er en cookie, som hedder userPoints, brug værdien fra den til deadline
+    if (document.cookie && document.cookie.match('userPoints')) {
+        // Få deadline fra cookien
+        var deadline = document.cookie.match(/(^|;)userPoints=([^;]+)/)[2];
+    }
+    // Ellers sæt en deadline fra nu og gem som cookie med givet navn
+    else {
+        // Laver en deadline i '1320' minutter fra dette tidspunkt.
+        var timeInMinutes = 1320;
+        var currentTime = Date.parse(new Date());
+        var deadline = new Date(currentTime + timeInMinutes * 60 * 1000);   
+        expirationGMT = deadline.toGMTString();
+        // Gem i deadline i en cookie
+        document.cookie = 'userPoints= ' + deadline + '; expires=' + expirationGMT + '; path=/; domain=www.exino.dk';
+    }
+    initializeClock('clockdiv', deadline);
+    // Script til loading af siden.
+    var myVar;
+    function myFunction() {
+        myVar = setTimeout(showPage, 1500);
+    }
+    function showPage() {
+        document.getElementById("loader").style.display = "none";
+        document.getElementById("myDiv").style.display = "block";
+    }
+</script>

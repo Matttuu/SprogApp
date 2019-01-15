@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Sprogapplikation udviklet til CDI.">
+    <meta name="author" content="Team Vandmand, 2018-19.">
+    <title>Rang</title>
+
+    <!-- jQuery -->
+    <script
+      src="https://code.jquery.com/jquery-3.3.1.min.js"
+      integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+      crossorigin="anonymous">
+    </script>
+
+    <!-- Bootstrap core CSS -->
+    <link rel ='stylesheet' href='/stylesheets/bootstrap.min.css'>
+    <!-- <link rel='stylesheet' href='/stylesheets/style.css' /> -->
+    <link rel="stylesheet" href='/stylesheets/style2.css'>
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+    <!-- CSS til rang -->
+    <link rel="stylesheet" href="/stylesheets/rang.css">
+  </head>
+  <body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
+      <div class="container">
+        <!-- Font Awesome med icon, så nå du trykker på den, kommer du til startsiden -->
+        <a href='profile'><i class="fas fa-home" id="home"></i></a>
+        <a class="navbar-brand" href='profile'>Sprog App</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item active">
+              <a class="nav-link" href="profile">Dashboard
+                <span class="sr-only">(current)</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="billedbog">Billede</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="videobog">Video</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="underUdvikling.html">Chat</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="connectId">Tilknyt</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="support">Support</a>
+            </li>
+             <li class="nav-item">
+              <a class="nav-link" href="/profile/logout">Log ud</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <!-- Page Content -->
+    <div style="text-align:center;">
+        <h1 class="loggedInHeading">Rang</h1>
+        <p class="loggedInText">Du skal have 100 point for at stige i rang. Hver gang du stiger, så nulstilles dine point. Herunder kan du se, hvilke rangeringer der findes.</p>
+    </div>
+    <br>
+    <div class="tg-wrap">
+      <table class="tg"> 
+        <tr>
+          <td class="tg-sjuo" style="background-color:#343A40; color:white"><b>Rang nr.</b></td>
+          <td class="tg-sjuo" style="background-color:#343A40; color:white"><b>Titel</b></td>
+          <td class="tg-sjuo" style="background-color:#343A40; color:white"><b>Ikon</b></td>
+        </tr>
+        <tr>
+          <td class="tg-0lax" style="background-color:#343A40; color: white; font-size: 140%; text-shadow: -1px 0 rgb(230, 137, 214), 0 1px rgb(230, 137, 214), 1px 0 rgb(230, 137, 214), 0 -1px rgb(230, 137, 214) ">1</td>
+          <td class="tg-0lax" style="color:rgb(15, 15, 15); background-color:rgb(230, 137, 214); font-size: 140%">Ord-Jonglør</td>
+          <td class="tg-0lax" style="background-color:#343A40"><img class="rankIcons" src="/billeder/Champion_icon.png"></td>
+        </tr>
+        <tr>
+          <td class="tg-0lax" style="background-color:#343A40; color: white; font-size: 140%; text-shadow: -1px 0 rgb(66, 108, 185), 0 1px rgb(66, 108, 185), 1px 0 rgb(66, 108, 185), 0 -1px rgb(66, 108, 185) ">2</td>
+          <td class="tg-0lax" style="color:rgb(248, 248, 248); background-color:rgb(66, 108, 185); font-size: 140%">Diamant</td>
+          <td class="tg-0lax" style="background-color:#343A40"><img class="rankIcons" src="/billeder/Diamond_icon.png"></td>
+        </tr>
+        <tr>
+          <td class="tg-0lax" style="background-color:#343A40; color: white; font-size: 140%; text-shadow: -1px 0 rgb(156, 211, 224), 0 1px rgb(156, 211, 224), 1px 0 rgb(156, 211, 224), 0 -1px rgb(156, 211, 224) ">3</td>
+          <td class="tg-0lax" style="color:rgb(15, 15, 15); background-color:rgb(156, 211, 224); font-size: 140%">Platin</td>
+          <td class="tg-0lax" style="background-color:#343A40"><img class="rankIcons" src="/billeder/Platinum_icon.png"></td>
+        </tr>
+        <tr>
+          <td class="tg-0lax" style="background-color:#343A40; color: white; font-size: 140%; text-shadow: -1px 0 rgb(207, 168, 37), 0 1px rgb(207, 168, 37), 1px 0 rgb(207, 168, 37), 0 -1px rgb(207, 168, 37) ">4</td>
+          <td class="tg-0lax" style="color:rgb(15, 15, 15); background-color:rgb(207, 168, 37); font-size: 140%">Guld</td>
+          <td class="tg-0lax" style="background-color:#343A40"><img class="rankIcons" src="/billeder/Gold_icon.png"></td>
+        </tr>
+        <tr>
+          <td class="tg-0lax" style="background-color:#343A40; color: white; font-size: 140%; text-shadow: -1px 0 rgb(156, 156, 156), 0 1px rgb(156, 156, 156), 1px 0 rgb(156, 156, 156), 0 -1px rgb(156, 156, 156) ">5</td>
+          <td class="tg-0lax" style="color:rgb(15, 15, 15); background-color:rgb(156, 156, 156); font-size: 140%">Sølv</td>
+          <td class="tg-0lax" style="background-color:#343A40"><img class="rankIcons" src="/billeder/Silver_icon.png"></td>
+        </tr>
+        <tr>
+          <td class="tg-0lax" style="background-color:#343A40; color: white; font-size: 140%; text-shadow: -1px 0 rgb(122, 46, 32), 0 1px rgb(122, 46, 32), 1px 0 rgb(122, 46, 32), 0 -1px rgb(122, 46, 32) ">6</td>
+          <td class="tg-0lax" style="color:rgb(248, 248, 248); background-color:rgb(122, 46, 32); font-size: 140%">Bronze</td>
+          <td class="tg-0lax" style="background-color:#343A40"><img class="rankIcons" src="/billeder/Bronze_icon.png"></td>
+        </tr>
+      </table>
+    </div>
+
+    <!-- Bootstrap core JavaScript -->
+    <script src='/javascripts/jquery.min.js'></script>
+    <script src='/javascripts/bootstrap.bundle.min.js'></script>
+  </body>
+</html>

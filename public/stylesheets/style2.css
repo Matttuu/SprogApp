@@ -3,69 +3,192 @@
   cursor: pointer;
   text-decoration: none;
 }
-
 .flex-container {
   display: flex;
   flex-wrap: wrap;
   background-color: white;
-  padding: 2px 2px;
   justify-content:center;
-  cursor: pointer;
 }
-
 .flex-container>div {
-  background-color: rgba(245, 245, 255, 0.8);
   text-align: center; 
-  padding:45px 0px;
-  border: 1px solid black;
-  border-radius: 5px;
-  cursor: pointer;
-  width: 150px;
-  height: 150px;
-  margin: 0 2px;
-  font-weight: bold;
+  margin: 0px 10px 10px 0px;
+  border: 1px solid rgb(5, 5, 5);
+  padding: 0px 30px 0px 30px;
+  border-radius: 15px;
 }
-
-#tilføjBillede {
+#chat {
+  padding: 30px 30px 0px 30px;
+}
+#tilføjBillede, #tilføjVideo, #tilføjLyd {
   text-align: center;
   font-weight: bold;
 }
-
 img {
   width: 100%;
+  height: auto;
+  image-orientation: from-image;
 }
-
 .billeder {
 width: auto;
 height: 100%;
 }
-
 .loggedInHeading {
   margin: 20px;
 }
-
 .loggedInText {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
   padding-left: 20px;
   padding-right: 20px;
 }
-
-#billedeListe{
+#billedeListe, #videoListe, #lydListe {
   display: flex;
   flex-direction: column-reverse;
 }
-
 .tilknyttetKursistTable {
   font: 18px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
-
 .tilknyttetKursistTable th {
   padding: 15px;
 }
-
 .tilknyttetKursistTable td {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
   border: 1px solid #dddddd;
-  text-align: left;
   padding: 8px;
+}
+#Tilknyttedekursisterp{
+  font: 20px "Lucida Grande", Helvetica, Arial, sans-serif; 
+}
+.tableHeading2 {
+  font-size: 14px;
+  border: 1px solid #dddddd;
+  background-color: rgb(241, 241, 241);
+}
+#clockdiv {
+	font-family: sans-serif;
+	display: inline-block;
+	font-weight: 100;
+	text-align: center;
+  font-size: 15px;
+  color: #F7F7FF;
+}
+#clockdiv > div {
+	padding: 5px;
+	border-radius: 3px;
+	background: #F7F7FF;
+	display: inline-block;
+}
+#clockdiv div > span {
+	padding: 15px;
+	border-radius: 3px;
+	background: #007BFF;
+	display: inline-block;
+}
+.smalltext {
+	padding-top: 5px;
+  font-size: 16px;
+  color: black;
+}
+li {
+  list-style-type: none;
+}
+#home {
+  font-size: 30px;
+  color:gray;
+  margin-right:10px
+}
+
+/* CSS til søgefelt starter */
+#myInput::-webkit-input-placeholder {
+  padding: 140px;
+  -webkit-transition: all 0.5s;
+}
+:focus#myInput::-webkit-input-placeholder {
+  padding: 2px;
+  -webkit-transition: all 0.5s;
+}
+#myInput {
+  outline: none;
+}
+#myInput[type="search"] {
+  -webkit-box-sizing: content-box;
+  font-family: inherit;
+  font-size: 100%;
+}
+#myInput[type="search"] {
+  background: #ededed
+    url(https://static.tumblr.com/ftv85bp/MIXmud4tx/search-icon.png) no-repeat
+    120px center;
+  border: solid 1px #ccc;
+  padding: 7px 0px 7px 0px;
+  width: 100%;
+  -webkit-border-radius: 6px;
+  -webkit-transition: all 0.5s;
+}
+#myInput[type="search"]:focus {
+  background: none;
+  border-color: #66cc75;
+  -webkit-box-shadow: 0 0 5px rgba(109, 207, 246, 0.5);
+}
+/* CSS til søgefelt slutter */
+
+.rankIcons {
+  height: 15%;
+  width: auto;
+}
+.rankIconsProfile {
+  height: auto;
+  width: 30px;
+}
+
+/* CSS til Loader starter */
+/* Center the loader */
+#loader {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  z-index: 1;
+  width: 150px;
+  height: 150px;
+  margin: -75px 0 0 -75px;
+  border: 16px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 16px solid #3498db;
+  width: 120px;
+  height: 120px;
+  -webkit-animation: spin 2s linear infinite;
+  animation: spin 2s linear infinite;
+}
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Add animation to "page content" */
+.animate-bottom {
+  position: relative;
+  -webkit-animation-name: animatebottom;
+  -webkit-animation-duration: 1s;
+  animation-name: animatebottom;
+  animation-duration: 1s
+}
+@-webkit-keyframes animatebottom {
+  from { bottom:-100px; opacity:0 } 
+  to { bottom:0px; opacity:1 }
+}
+@keyframes animatebottom { 
+  from{ bottom:-100px; opacity:0 } 
+  to{ bottom:0; opacity:1 }
+}
+#myDiv {
+  display: none;
+  text-align: center;
+}
+/* CSS til Loader slutter */
+
+#needLink {
+  font-size: 90%
 }

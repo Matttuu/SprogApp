@@ -4,7 +4,8 @@ var User = require('../public/javascripts/user');
 
 // GET route for reading data
 router.get('/', function (req, res, next) {
-  res.render('signup.hbs',{
+  res.render('signup.hbs', {
+    title: 'Opret dig',
     layout: 'other',
   });
 });
@@ -18,9 +19,9 @@ router.post('/', function (req, res, next) {
     res.send("passwords dont match");
     return next(err);
   }
-  
-/* req.body indeholder værdierne (key-value pairs) som er  
-   indtastet i registrerings formen.*/
+
+  /* req.body indeholder værdierne (key-value pairs) som er  
+     indtastet i registrerings formen.*/
   if (req.body.uniqueId &&
     req.body.email &&
     req.body.username &&
@@ -35,6 +36,9 @@ router.post('/', function (req, res, next) {
       role: req.body.role,
       password: req.body.password,
       passwordConf: req.body.passwordConf,
+      userPoints: 0,
+      userRank: "Ingen rang",
+      lastVisitDate: 0
     }
 
     User.create(userData, function (error, user) {
@@ -42,30 +46,10 @@ router.post('/', function (req, res, next) {
         return next(error);
       } else {
         req.session.userId = user._id;
-        return res.render('profile',{
-          uniqueId: user.uniqueId,
-          name: user.username,
-          email: user.email,
-          role: user.role,
-          sprogmakker: user.role === "Sprogmakker",
-          kursist: user.role === "Kursist",
-          admin: user.role === "Administrator"
-        });
+        return res.redirect("/profile")
       }
     });
 
-  } else if (req.body.logemail && req.body.logpassword) {
-    User.authenticate(req.body.logemail, req.body.logpassword, function (error, user) {
-      if (error || !user) {
-        var err = new Error('Forkert e-mail eller kodeord.');
-        err.status = 401;
-        return next(err);
-      } else {
-        req.session.userId = user._id;
-        return res.redirect('/profile');
-
-      }
-    });
   } else {
     var err = new Error('Alle felter skal udfyldes!');
     err.status = 400;
@@ -87,25 +71,11 @@ router.get('/', function (req, res, next) {
         } else {
           return res.redirect('/profile');
 
-     
+
           //return res.send('<h1>Name:</h1>' + user.username + '<h2>ID:</h2>' + user.uniqueId + '<h2>Mail:</h2>' + user.email + '<h2>Rolle:</h2>' +user.role + '<br><a type="button" href="/logout">Logout</a>')
         }
       }
     });
-});
-
-// GET for logout logout
-router.get('/logout', function (req, res, next) {
-  if (req.session) {
-    // delete session object
-    req.session.destroy(function (err) {
-      if (err) {
-        return next(err);
-      } else {
-        return res.redirect('/');
-      }
-    });
-  }
 });
 
 module.exports = router;

@@ -1,6 +1,7 @@
 <div style="text-align:center;">
     <h1 class="loggedInHeading">Forbind til kursist</h1>
     <p class="loggedInText">
+        <!-- Hvis du er logget ind som sprogmakker, vises dette følgende -->
         {{#if sprogmakker}}
         <script>
             $(document).ready(function(e) {
@@ -24,46 +25,61 @@
         </div>
         <br>
         <div id="connecter">Vent venligst...</div>
+        <br>
         <table class="tilknyttetKursistTable" align="center">
             <div id="noneConnected">Du har i øjeblikket <b>ingen</b> tilknyttede kursister.</div>
+            <!-- Hvis du har 1 tilknyttet kursist -->
             {{#if antalTilknyttedeKursister1}}
             <script>$('#noneConnected').hide();</script>
+            <p id="Tilknyttedekursisterp"><b>Tilknyttede kursister</b></p>
             <tr>
-                <th colspan="4">Tilknyttede kursister</th>
+                <th class="tableHeading2">Navn</th>
+                <th class="tableHeading2">Unikt ID</th>
+                <th class="tableHeading2">Chat</th>
+                <th class="tableHeading2">Personlige ordbøger</th>
             </tr>
+            <!-- Billedordbog og videoordbog ligger inde under td da de har samme overskrift ud fra table så de bliver reponsiveness -->
             <tr>
-                <td><b>{{tilknyttetKursistID1}}</b></td>
-                <td><a href="chat">Chat</a></td>
-                <td><a href="billedbog">Billedordbog</a></td>
-                <td><a href="videobog">Videoordbog</a></td>
+                <td>{{obj1.users.username}}</td>
+                <td>{{tilknyttetKursistID1}}</td>
+                <td><a href="underUdvikling.html">Start chat </a></td>
+                <td><a href="underUdvikling.html">Billedordbog</a> - <a href="underUdvikling.html">Videoordbog</a></td>
             </tr>
+            <!-- Hvis du har 2 tilknyttede kursister -->
+            <!-- Billedordbog og videoordbog ligger inde under td da de har samme overskrift ud fra table så de bliver reponsiveness -->
             {{#if antalTilknyttedeKursister2}}
             <tr>
-                <td><b>{{tilknyttetKursistID2}}</b></td>
-                <td><a href="chat">Chat</a></td>
-                <td><a href="billedbog">Billedordbog</a></td>
-                <td><a href="videobog">Videoordbog</a></td>
+                <td>{{obj2.users.username}}</td>
+                <td>{{tilknyttetKursistID2}}</td>
+                <td><a href="underUdvikling.html">Start chat</a></td>
+                <td><a href="underUdvikling.html">Billedordbog</a> - <a href="underUdvikling.html">Videoordbog</a></td>
             </tr>
+            <!-- Hvis du har 3 tilknyttede kursister -->
+            <!-- Billedordbog og videoordbog ligger inde under td da de har samme overskrift ud fra table så de bliver reponsiveness -->
             {{#if antalTilknyttedeKursister3}}
             <tr>
-                <td><b>{{tilknyttetKursistID3}}</b></td>
-                <td><a href="chat">Chat</a></td>
-                <td><a href="billedbog">Billedordbog</a></td>
-                <td><a href="videobog">Videoordbog</a></td>
+                <td>{{obj3.users.username}}</td>
+                <td>{{tilknyttetKursistID3}}</td>
+                <td><a href="underUdvikling.html">Start chat</a></td>
+                <td><a href="underUdvikling.html">Billedordbog</a> - <a href="underUdvikling.html">Videoordbog</a></td>
             </tr>
+            <!-- Hvis du har 4 tilknyttede kursister -->
+            <!-- Billedordbog og videoordbog ligger inde under td da de har samme overskrift ud fra table så de bliver reponsiveness -->
             {{#if antalTilknyttedeKursister4}}
             <tr>
-                <td><b>{{tilknyttetKursistID4}}</b></td>
-                <td><a href="chat">Chat</a></td>
-                <td><a href="billedbog">Billedordbog</a></td>
-                <td><a href="videobog">Videoordbog</a></td>
+                <td>{{obj4.users.username}}</td>
+                <td>{{tilknyttetKursistID4}}</td>
+                <td><a href="underUdvikling.html">Start chat</a></td>
+                <td><a href="underUdvikling.html">Billedordbog</a> - <a href="underUdvikling.html">Videoordbog</a></td>
             </tr>
+            <!-- Hvis du har 5 tilknyttede kursister -->
+            <!-- Billedordbog og videoordbog ligger inde under td da de har samme overskrift ud fra table så de bliver reponsiveness -->
             {{#if antalTilknyttedeKursister5}}
             <tr>
-                <td><b>{{tilknyttetKursistID5}}</b></td>
-                <td><a href="chat">Chat</a></td>
-                <td><a href="billedbog">Billedordbog</a></td>
-                <td><a href="videobog">Videoordbog</a></td>
+                <td>{{obj5.users.username}}</td>
+                <td>{{tilknyttetKursistID5}}</td>
+                <td><a href="underUdvikling.html">Start chat</a></td>
+                <td><a href="underUdvikling.html">Billedordbog</a> - <a href="underUdvikling.html">Videoordbog</a></td>
             </tr>
             {{/if}}
             {{/if}}
@@ -71,6 +87,7 @@
             {{/if}}
             {{/if}}
         </table>
+        <!-- Hvis ikke er logget ind som sprogmakker vises følgende -->
         {{else}}
         Du er ikke registreret som sprogmakker og kan derfor heller ikke forbinde til kursister.
         {{/if}}

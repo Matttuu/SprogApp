@@ -1,65 +1,160 @@
+<!-- Hvis du er logget ind som sprogmakker, kan du ikke se nogen billedordbog, men du ser derimod kursisters ordbøger -->
+{{#if sprogmakker}}
+<div style="text-align:center;">
+    <h1 class="loggedInHeading">Billedordbog</h1>
+    <p class="loggedInText">Da du er logget ind som sprogmakker, har du ikke en personlig billedordbog, men du kan
+        tilgå dine tilknyttede kursisters billedordbog herunder.</p>
+    <p class="loggedInText">
+        <br>
+        <table class="tilknyttetKursistTable" align="center">
+            <div id="noneConnected">Du har i øjeblikket <b>ingen</b> tilknyttede kursister. <a href="connectId">Tilknyt
+                    nogle her.</a></div>
+            <!-- Hvis du har 1 tilknyttet kursist -->
+            {{#if antalTilknyttedeKursister1}}
+            <script>$('#noneConnected').hide();</script>
+            <p id="Tilknyttedekursisterp"> <b>Tilknyttede kursister</b></p>
+            <tr>
+                <th class="tableHeading2">Navn</th>
+                <th class="tableHeading2">Unikt ID</th>
+                <th class="tableHeading2">Ordbog</th>
+            </tr>
+            <tr>
+                <td>{{obj1.users.username}}</td>
+                <td>{{tilknyttetKursistID1}}</td>
+                <td><a href="underUdvikling.html">Se billedordbog</a></td>
+            </tr>
+            <!-- Hvis du har 2 tilknyttede kursister -->
+            {{#if antalTilknyttedeKursister2}}
+            <tr>
+                <td>{{obj2.users.username}}</td>
+                <td>{{tilknyttetKursistID2}}</td>
+                <td><a href="underUdvikling.html">Se billedordbog</a></td>
+            </tr>
+            <!-- Hvis du har 3 tilknyttede kursister -->
+            {{#if antalTilknyttedeKursister3}}
+            <tr>
+                <td>{{obj3.users.username}}</td>
+                <td>{{tilknyttetKursistID3}}</td>
+                <td><a href="underUdvikling.html">Se billedordbog</a></td>
+            </tr>
+            <!-- Hvis du har 4 tilknyttede kursister -->
+            {{#if antalTilknyttedeKursister4}}
+            <tr>
+                <td>{{obj4.users.username}}</td>
+                <td>{{tilknyttetKursistID4}}</td>
+                <td><a href="underUdvikling.html">Se billedordbog</a></td>
+            </tr>
+            <!-- Hvis du har 5 tilknyttede kursister -->
+            {{#if antalTilknyttedeKursister5}}
+            <tr>
+                <td>{{obj5.users.username}}</td>
+                <td>{{tilknyttetKursistID5}}</td>
+                <td><a href="underUdvikling.html">Se billedordbog</a></td>
+            </tr>
+            {{/if}}
+            {{/if}}
+            {{/if}}
+            {{/if}}
+            {{/if}}
+        </table>
+    </p>
+</div>
+
+<!-- Kursist og admin kan se sin personlige billedeordbog -->
+{{else}}
 <center>
     <h1 class="loggedInHeading">Billedordbog</h1>
-    <p class="loggedInText">Her kan du tage billeder og tilføje til din ordbog. Efterfølgende kan du tilføje tekst og
-        lyd til dit billede.</p>
+    <p class="loggedInText">Her kan du tage billeder og tilføje til din ordbog. Efterfølgende kan du tilføje tekst til
+        dit billede.</p>
 </center>
-
+<div class="col-md-5 m-auto">
+    <form>
+        <input type="search" name="search" placeholder="Søg efter billede..." id="myInput">
+    </form>
+</div>
+<br>
 <div id="tilføjBillede">
     <p>Tilføj billede til billedordbogen</p>
 </div>
 
+<!-- Sætter et usynligt tag på siden, som har brugerens unikke id som værdi.
+    Dette bliver brugt til at vise de billeder som passer til id'et. -->
+<input style="display:none" type="text" id="uniqueIDS" value={{uniqueId}}></input>
+
 <div class="container">
     <div class="row">
         <div class="col-md-6 m-auto">
+            <!-- Du kan tilføje det billede som du har taget -->
             <form action="/billedbog/upload" method="POST" enctype="multipart/form-data">
                 <div class="custom-file mb-3">
-                    Capture Image: <input type="file" accept="image/*" id="capture" capture="camera" name="file" class="custom-file-input">
-                    <label for="file" class="custom-file-label">Vælg billedfil</label>
+                    <input type="file" accept="image/*" id="file-upload" capture="camera" name="file" class="custom-file-input"
+                        required="">
+                    <label for="file" for="validatedCustomFile" class="custom-file-label"> <i class="fas fa-camera"></i>
+                        <label id="file-name">Vælg billedfil</label>
+                    </label>
                 </div>
-                <input type="submit" value="Tilføj billede" class="btn btn-success btn-block">
+                <input type="submit" value="Tilføj valgte billede" class="btn btn-success btn-block">
             </form>
             <hr>
             <div id="billedeListe">
                 {{#if files}}
                 {{#each files}}
-                <div class="card card-body mb-3">
-                    <!-- Display billede --> 
-                    <img src="billedbog/image/{{filename}}" alt="DB BILLEDE HER TAK">
-                    <br/>
-                    <!-- Display tekst tilknyttet til billede -->
-                    <blockquote class="blockquote text-center">
-                        <h6>
-                            <p class="text-muted">{{billedDescription}}</p>
-                        </h6>
-                    </blockquote>
-                    <!-- Tilføj tekst til billede --> 
-                    <form method="POST" action="/billedbog/files/{{filename}}">
-                        <input type="text" name="billedDescription" class="form-control center_div" placeholder="Tryk her for at tilføje / ændre din beskrivelse">
-                        </input>
-                        <input type="submit" value="Tilføj beskrivelse" class="btn btn-success btn-block">
-                    </form>
-                    <!-- Slet video -->
-                    <form method="POST" action="/billedbog/files/{{_id}}?_method=DELETE">
-                        <button class="btn btn-danger btn-block mt-4">Slet billede</button>
-                    </form>
-                    
+                <div class={{metadata}} style="display:none">
+                    <!-- Usynligt tag, som har billedets metadata -->
+                    <div id="billedeObj" class="card card-body mb-3">
+                        <!-- Display billede -->
+                        <p style="display:none" id="mdata">{{metadata}}</p>
+                        <img id="dbImages" src="billedbog/image/{{filename}}" alt="Billede">
 
-                    
-                    {{!-- <!-- Tilføj lyd til billede --> 
-                    <form method="POST" action="/billedbog/files/{{filename}}">
-                        <input type="file" name="billedLyd" class="form-control center_div" placeholder="Tryk her for at tilføje / ændre din beskrivelse">
-                        </input>
-                        <input type="submit" value="Tilføj lyd" class="btn btn-success btn-block">
-                    </form>
+                        <!-- Display tekst tilknyttet til billede -->
+                        <blockquote class="blockquote text-center">
+                            <br>
+                            <h6>
+                                <p id="beskrivelsen" class="text-muted">{{billedDescription}}</p>
+                                <!-- Næste linje virker ikke endnu, men gør heller ingen skade -->
+                                <p id="ingenBeskrivelse" class="text-muted" style="display:none;"><i>Ingen beskrivelse
+                                        tilføjet.</i></p>
+                            </h6>
+                        </blockquote>
+                        <table class="table">
+                            <tr>
+                                <div class="card-group">
+                                    <!-- Tilføj tekst til billede -->
+                                    <div class="card card-body mb-1">
+                                        <form method="POST" action="/billedbog/files/{{filename}}">
+                                            <input type="text" name="billedDescription" class="form-control center_div"
+                                                placeholder="Indsæt beskrivelse...">
+                                            <br>
+                                            <input type="submit" value="Tilføj beskrivelse" class="btn btn-success btn-block">
+                                        </form>
+                                    </div>
+                                    <!-- LYD -->
+                                    <div class="card card-body mb-1">
 
-                    <!-- Vis lydindspilning --> 
-                    <audio controls>
-                         <source src="billedbog/image/{{billedLyd}}" type="audio/mp3">
-                         <source src="billedbog/image/{{billedLyd}}" type="audio/m4a">
-                         Din browser understøtter ikke denne filtype!
-                    </audio>    --}} 
-                    
-
+                                        <form action="/billedbog/audiouploadLink/files/{{filename}}" method="POST">
+                                            <input type="text" class="form-control center_div" name="audioLink"
+                                                placeholder="Indsæt link til lyd...">
+                                            <br>
+                                            <input type="submit" value="Tilføj lyden til billedet" class="btn btn-primary btn-block">
+                                        </form>
+                                        <span id="needLink" style="margin-top:5px;"><a href="http://n4.dk/uploadLyd/"
+                                                target="_self">Mangler du et link til lyden? Klik her!</a></span>
+                                    </div>
+                            </tr>
+                            <tr>
+                                <!-- Viser kontrolpanelet for lyden -->
+                                <div class="card card-body mb-3">
+                                    <audio controls style="width: 100%">
+                                        <source src={{audioLink}} width="10px" type="audio/mp4">Din browser
+                                        understøtter ikke denne filtype!</audio>
+                                </div>
+                            </tr>
+                            <!-- Slet billede -->
+                            <form method="POST" action="/billedbog/files/{{_id}}?_method=DELETE">
+                                <button class="btn btn-danger btn-block mt-4">Slet billede <i class="far fa-trash-alt"></i></button>
+                            </form>
+                        </table>
+                    </div>
                 </div>
                 {{/each}}
                 {{/if}}
@@ -67,3 +162,36 @@
         </div>
     </div>
 </div>
+{{/if}}
+
+<script>
+    /*
+        jQuery-filter som vil vise alle de div-tags, der har klasse-værdien fra idValue, hvilket 
+        har brugerens unikke id som værdi. Det vil sige hvis den givende div har klassen: qksas0zzk8,
+        og idValue og er qksas0zzk8 så vil div'en blive vist.
+    */
+    $(document).ready(function () {
+        var idValue = $("#uniqueIDS").val();
+        $("div").filter("." + idValue).css("display", "block");
+    });
+
+    /*
+        Søgefunktionen:
+        Henter værdien fra #myInput, hvilket er søge-feltet og sætter alt til Lower Case,
+        hvilket betyder at jhon, Jhon og JHON vil give de samme resultater.
+        Her kigger funktionen efter billed-objekterne i billedlisten og matcher værdierne.
+    */
+    $(document).ready(function () {
+        $("#myInput").on("keyup", function () {
+            var value = $(this).val().toLowerCase();
+            $("#billedeListe #billedeObj").filter(function () {
+                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+            });
+        });
+    });
+
+    // Funktion til at vise navnet på filen når den bliver valgt.
+    $("#file-upload").change(function () {
+        $("#file-name").text(this.files[0].name);
+    });
+</script>
