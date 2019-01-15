@@ -105,7 +105,7 @@
                         <!-- Display billede -->
                         <p style="display:none" id="mdata">{{metadata}}</p>
 
-                        <img src="billedbog/image/{{filename}}" alt="Billede">
+                        <img id="dbImages" src="billedbog/image/{{filename}}" alt="Billede">
 
                         <!-- Display tekst tilknyttet til billede -->
                         <blockquote class="blockquote text-center">
@@ -195,5 +195,6 @@
     $("#file-upload").change(function () {
         $("#file-name").text(this.files[0].name);
     });
+
 
 </script>
