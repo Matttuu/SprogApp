@@ -1,0 +1,168 @@
+#ordbog, #chat{
+  text-align: center;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.flex-container {
+  display: flex;
+  flex-wrap: wrap;
+  background-color: white;
+  padding: 2px 2px;
+  justify-content:center;
+  cursor: pointer;
+}
+
+.flex-container>div {
+  background-color: rgba(245, 245, 255, 0.8);
+  text-align: center; 
+  padding:45px 0px;
+  border: 1px solid black;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 150px;
+  height: 150px;
+  margin: 0 2px;
+  font-weight: bold;
+}
+
+#tilføjBillede, #tilføjVideo, #tilføjLyd {
+  text-align: center;
+  font-weight: bold;
+}
+
+img {
+  width: 100%;
+}
+
+.billeder {
+width: auto;
+height: 100%;
+}
+
+.loggedInHeading {
+  margin: 20px;
+}
+
+.loggedInText {
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+#billedeListe, #videoListe, #lydListe {
+  display: flex;
+  flex-direction: column-reverse;
+}
+
+.tilknyttetKursistTable {
+  font: 18px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+.tilknyttetKursistTable th {
+  padding: 15px;
+}
+
+.tilknyttetKursistTable td {
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  border: 1px solid #dddddd;
+  padding: 8px;
+}
+
+#Tilknyttedekursisterp{
+  font: 20px "Lucida Grande", Helvetica, Arial, sans-serif; 
+}
+
+.tableHeading2 {
+  font-size: 14px;
+  border: 1px solid #dddddd;
+  background-color: rgb(241, 241, 241);
+}
+
+#clockdiv{
+	font-family: sans-serif;
+	display: inline-block;
+	font-weight: 100;
+	text-align: center;
+  font-size: 15px;
+  color:#F7F7FF;
+}
+
+#clockdiv > div{
+	padding: 5px;
+	border-radius: 3px;
+	background: #F7F7FF;
+	display: inline-block;
+}
+
+#clockdiv div > span{
+	padding: 15px;
+	border-radius: 3px;
+	background: #007BFF;
+	display: inline-block;
+}
+
+.smalltext{
+	padding-top: 5px;
+  font-size: 16px;
+  color: black;
+}
+
+li{
+    list-style-type: none;
+  
+}
+#home{
+  font-size: 30px;
+  color:gray;
+  margin-right:10px
+}
+
+
+
+
+
+/*      CSS til søgefelt         */
+
+#myInput::-webkit-input-placeholder{
+  padding: 140px;
+  -webkit-transition: all 0.5s;
+}
+
+:focus#myInput::-webkit-input-placeholder{
+  padding: 2px;
+  -webkit-transition: all 0.5s;
+}
+
+#myInput {
+  outline: none;
+}
+#myInput[type="search"] {
+  -webkit-box-sizing: content-box;
+  font-family: inherit;
+  font-size: 100%;
+}
+
+#myInput[type="search"] {
+  background: #ededed
+    url(https://static.tumblr.com/ftv85bp/MIXmud4tx/search-icon.png) no-repeat
+    120px center;
+  border: solid 1px #ccc;
+  padding: 7px 0px 7px 0px;
+  width: 100%;
+
+  -webkit-border-radius: 6px;
+  -webkit-transition: all 0.5s;
+
+}
+#myInput[type="search"]:focus {
+  background: none;
+  border-color: #66cc75;
+  -webkit-box-shadow: 0 0 5px rgba(109, 207, 246, 0.5);
+}
+
+
+
+
+
+/*  ^   CSS til søgefelt     ^   */
